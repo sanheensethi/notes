@@ -124,4 +124,32 @@ Example: One person is married to only one person
     In one-to-many mapping, an entity in E1 is associated with at most one entity in E2, and an entity in E2 is associated with any number of entities in E1.
 
     ![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints3.png)
+    
+    Example: Here,
+    1. One student can enroll in at most one course.
+    2. One course can be enrolled by any number (zero or more) of students.
+    
+    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Many-to-One-Relationship-ER-Diagram-1.png)
+    
+- **One-to-Many Cardinality**-
+ In one-to-many mapping, an entity in E1 is associated with any number of entities in E2, and an entity in E2 is associated with at most one entity in E1.
+
+    ![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints2.png)
+    
+    Example: Here,
+    1. One student can enroll in any number (zero or more) of courses.
+    2. One course can be enrolled by at most one student.
+    
+    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/One-to-Many-Relationship-ER-Diagram.png)
+    
+- **One-to-One Cardinality**-
+    In one-to-one mapping, an entity in E1 is associated with at most one entity in E2, and an entity in E2 is associated with at most one entity in E1.
+
+    ![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints.png)
+    
+    Example: Here,
+    1. One student can enroll in at most one course.
+    2. One course can be enrolled by at most one student.
+    
+    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/One-to-One-Relationship-ER-Diagram.png)
 
