@@ -106,7 +106,7 @@ Example: One person is married to only one person
 ## Cardinality Constraint
 
 - The number of entities to which another entity can be associated through a relationship.
-- The number of entities to which another entity can be associated through a relationship is known as cardinality
+- We have four types of cardinality constraints.
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Cardinality-Ratios-in-DBMS.png)
 
