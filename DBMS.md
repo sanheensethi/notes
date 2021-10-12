@@ -158,7 +158,7 @@ Example: One person is married to only one person
 ## Attributes
 > It is used to describe the property of an entity
 
-> There exist a specific domain or set of values for each attribute from where the attribute can take its values.
+> There exist a specific domain or set of values for each attribute from where that attribute can take its values.
 
 ### Types of Attributes-
 
