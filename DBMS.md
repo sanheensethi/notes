@@ -213,14 +213,14 @@ Example : Here, the attribute “Roll_no” is a key attribute as it can identif
 
 There are following 10 important keys in DBMS - 
 
-    Super key
-    Candidate key
-    Primary key
-    Alternate key
-    Foreign key
-    Partial key
-    Composite key
-    Unique key
+- Super key
+- Candidate key
+- Primary key
+- Alternate key
+- Foreign key
+- Partial key
+- Composite key
+- Unique key
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Keys-in-DBMS.png)
 
@@ -242,7 +242,8 @@ All the attributes in a super key are definitely sufficient to identify each tup
     
 - `Candidate Key` : 
     1. A minimal super key is called as a candidate key.
-    2. It is an attribute with uniquely identify a tuple
+    2. It is an attribute with uniquely identify a tuple.
+    
     Example-
     Consider the following Student schema-
     - Student ( roll , name , sex , age , address , class , section )
