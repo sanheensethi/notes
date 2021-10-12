@@ -112,7 +112,7 @@ Example: One person is married to only one person
 
 - **Many-to-Many Cardinality**-
     In many-to-many mapping, an entity in E1 is associated with any number of entities in E2, and an entity in E2 is associated with any number of entities in E1.
-
+    (Association - to make a connection between people or things in your mind)
     ![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints4.png)
     
     Example: Here,
