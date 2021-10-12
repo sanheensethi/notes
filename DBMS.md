@@ -313,7 +313,8 @@ NOTES-
 ## Normalization
 - Database Normalization is a technique of organizing the data in the database
 - Normalization is a systematic approach of decomposing tables to eliminate data redundancy(repetition).
-- and undesirable characteristics like Insertion, Update and Deletion Anomalies.
+- To eliminate Insertion, Update and Deletion Anomalies.
+- (Optional - To eliminate undesirable characteristics like Insertion, Update and Deletion Anomalies)
 - It is a multi-step process that puts data into tabular form, removing duplicated data from the relation tables.
 
 Normalization is used for mainly two purposes:
