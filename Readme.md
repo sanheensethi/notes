@@ -7,7 +7,8 @@ Other Notes Links:
 
 
 ## Database
-- It is an organized collection of interrelated information that show some aspects of the real world. Database System is designed to make the information easily accessible and manageable.
+- It is an organized collection of interrelated information that show some aspects of the real world. 
+- Database System is designed to make the information easily accessible and manageable.
 
 ## DBMS
 
