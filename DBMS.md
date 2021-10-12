@@ -313,8 +313,7 @@ NOTES-
 ## Normalization
 - Database Normalization is a technique of organizing the data in the database
 - Normalization is a systematic approach of decomposing tables to eliminate data redundancy(repetition).
-- To eliminate Insertion, Update and Deletion Anomalies.
-- (Optional - To eliminate undesirable characteristics like Insertion, Update and Deletion Anomalies)
+- and undesirable characteristics like Insertion, Update and Deletion Anomalies.
 - It is a multi-step process that puts data into tabular form, removing duplicated data from the relation tables.
 
 Normalization is used for mainly two purposes:
@@ -347,7 +346,18 @@ These scenarios are nothing but Insertion anomalies.
 
 - Deletion Anomaly : In our Student table, two different informations are kept together, Student information and Branch information. Hence, at the end of the academic year, if student records are deleted, we will also lose the branch information. This is Deletion anomaly.
 
-#### Normalization Rule
+>> Normalization of a Database is achieved by following a set of rules called 'forms' in creating the database.
+
+
+### Normalization Rule
+
+> Short Note :
+
+##### Need for Normalization :
+1. Improve database design.
+2. Ensures minimum redundancy of data
+3. Reduces need to reorganize data when design is modified.
+4. Reduce anomalies for database activities.
 
 Normalization rules are divided into the following normal forms:
 1. First Normal Form (1NF)
@@ -356,6 +366,48 @@ Normalization rules are divided into the following normal forms:
 4. BCNF
 5. Fourth Normal Form (4NF)
 
-lINK : https://www.studytonight.com/dbms/database-normalization.php
+> First Normal Form (1 NF)
 
+For a table to be in the First Normal Form, it should follow the following 4 rules:
+- It should only have single(atomic) valued attributes/columns.
+- Values stored in a column should be of the same domain
+- All the columns in a table should have unique names.
+- And the order in which data is stored, does not matter.
 
+> Second Normal Form (2NF)
+
+For a table to be in the Second Normal Form,
+- It should be in the First Normal form.
+- And, it should not have Partial Dependency.
+- Check if all fields are dependent on the whole key
+- Remove fields that depend on part of the key (Partial Dependency)
+- Group partially-dependent fields as separate table
+- Name the tables
+- Identify key(s) to the table
+
+> Third Normal Form (3NF)
+
+A table is said to be in the Third Normal Form when,
+- Remove fields that
+- depend on other non-key fields
+- can be calculated or derived from logic
+- Group interdependent fields as separate tables, identify the key and name the table
+- It is in the Second Normal form.
+- And, it doesn't have Transitive Dependency.
+- No column entry should be dependent on any other entry (value) other than the key for the table.If such an entity exists, move it outside into a new table.
+
+> Boyce and Codd Normal Form (BCNF)
+
+A table is said to be in the BCNF when,
+- 3NF and all tables in the database should be only one primary key.
+- It is a higher version of the Third Normal form. 
+- This form deals with certain type of anomaly that is not handled by 3NF.
+- A 3NF table which does not have multiple overlapping candidate keys is said to be in BCNF. For a table to be in BCNF, following conditions must be satisfied:
+    - R must be in 3rd Normal Form
+    - and, for each functional dependency ( X → Y ), X should be a super Key.
+
+> Fourth Normal Form (4NF)
+
+A table is said to be in the Fourth Normal Form when,
+- It is in the Boyce-Codd Normal Form.
+- And, it doesn't have Multi-Valued Dependency.
