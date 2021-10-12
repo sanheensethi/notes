@@ -42,9 +42,10 @@ It provides security to the data and maintain consistency.
 
 ## ER-Diagram
 *ER-Diagram* : It stands for Entity Relationship Diagram.
-• It is a conceptual model that gives graphical representation of the logical structure of the database.
-• It shows all the constraints and relationships among the entities.
-• An ER-Diagram has three main components : 
+
+- It is a conceptual model that gives graphical representation of the logical structure of the database.
+- It shows all the constraints and relationships among the entities.
+- An ER-Diagram has three main components : 
     1) Entity
     2) Relationships
     3) Attributes
