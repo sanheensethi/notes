@@ -53,7 +53,7 @@ It provides security to the data and maintain consistency.
 
 > Attribute : It is used to describe the property of an entity, for e.g. Student has attributes like rollnumber , name , dob , address etc.
 
-> Relationship : It is used to describe the relationship between entities.
+> Relationship : It is used to describe the connection between entities.
     
 `Enrolled in` is a relationship that exists between entities Student and Course.
 
