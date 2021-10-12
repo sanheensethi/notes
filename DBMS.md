@@ -265,11 +265,11 @@ NOTES -
     2. A primary key is a candidate key that the database designer selects while designing the database.
 
 NOTES-
-- The value of primary key can never be NULL.
-- The value of primary key must always be unique.
-- The values of primary key can never be changed i.e. no updation is possible.
-- The value of primary key must be assigned when inserting a record.
-- A relation is allowed to have only one primary key.
+1. The value of primary key can never be NULL.
+2. The value of primary key must always be unique.
+3. The values of primary key can never be changed i.e. no updation is possible.
+4. The value of primary key must be assigned when inserting a record.
+5. A relation is allowed to have only one primary key.
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Super-Key-Candidate-Key-Primary-Key.png)
 
@@ -283,14 +283,14 @@ NOTES-
     ![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Foreign-Key.png)
 
 NOTES-
-- Foreign key references the primary key of the table.
-- Foreign key can take only those values which are present in the primary key of the referenced relation.
-- Foreign key may have a name other than that of a primary key.
-- Foreign key can take the NULL value.
-- There is no restriction on a foreign key to be unique.
-- In fact, foreign key is not unique most of the time.
-- Referenced relation may also be called as the master table or primary table.
-- Referencing relation may also be called as the foreign table.
+1. Foreign key references the primary key of the table.
+2. Foreign key can take only those values which are present in the primary key of the referenced relation.
+3. Foreign key may have a name other than that of a primary key.
+4. Foreign key can take the NULL value.
+5. There is no restriction on a foreign key to be unique.
+6. In fact, foreign key is not unique most of the time.
+7. Referenced relation may also be called as the master table or primary table.
+8. Referencing relation may also be called as the foreign table.
 
 
 - `Composite Key` : 
