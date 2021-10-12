@@ -1,7 +1,7 @@
 # DBMS(Database Management System)
 
 Other Notes Links:
-- [DBMS](https://github.com/sanheensethi/notes/blob/main/README.md)
+- [DBMS](https://github.com/sanheensethi)
 - [CN]() 
 - [OS]()
 
@@ -54,6 +54,11 @@ It provides security to the data and maintain consistency.
 > Attribute : It is used to describe the property of an entity, for e.g. Student has attributes like rollnumber , name , dob , address etc.
 
 > Relationship : It is used to describe the relationship between entities.
+    
+`Enrolled in` is a relationship that exists between entities Student and Course.
+![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Relationship-in-ER-Diagram-Example.png)
+
+## Relationship Set and Entity Sets
 
 • Entity Set - set of same type of entities
 
@@ -70,10 +75,25 @@ It provides security to the data and maintain consistency.
    5) discriminator is represented by underlining with a dashed line.
 
 
-• Relationship : It is used to describe the relationship between entities.
+• Relationship Set : A relationship set is a set of relationships of same type.
 
-   ![Alt text](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Relationship-in-ER-Diagram-Example.png)
-    1. **Unary Relationship Set** : It is a relationship where only one entity set participate in a relationship set.
-    2. **Binary Relationship Set** : It is a relationship where only two entity sets participates in a relationship set
-    3. **Ternary Relationship Set** : It is a relationship set where only three entity set participates in a relationship set.
-    4. **N-ary Relationship Set** : where `n` entity sets particitaes in relationship set
+-Example: Set representation of above ER diagram is-
+![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Set-Representation-of-ER-Diagram.png)
+
+> Degree of a Relationship Set-
+    # Degree of a relationship set = Number of entity sets participating in a relationship set
+
+[Types of Relationship Sets] -
+![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Type-of-Relationship-Sets.png)
+
+ 1. **Unary Relationship Set** : It is a relationship where only one entity set participate in a relationship set.
+Example: One person is married to only one person
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Unary-Relationship-Set.png)
+
+ 2. **Binary Relationship Set** : It is a relationship where only two entity sets participates in a relationship set.
+ Example: Student is enrolled in a Course.
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Binary-Relationship-Set.png)
+ 3. **Ternary Relationship Set** : It is a relationship set where only three entity set participates in a relationship set.
+ 4. **N-ary Relationship Set** : where `n` entity sets particitaes in relationship set.
+ 
+
