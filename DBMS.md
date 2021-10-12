@@ -173,26 +173,32 @@ Example: One person is married to only one person
 
 `Simple attributes -` : Simple attributes are those attributes which can not be divided further.
 Example: Here, all the attributes are simple attributes as they can not be divided further.
+
     ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Simple-Attributes-Example.png)
     
 `Composite Attributes -` : Composite attributes are those attributes which are composed of many other simple attributes. (Which can be further divided).
 Example: Here, the attributes “Name” and “Address” are composite attributes as they are composed of many other simple attributes.
+
     ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Composite-Attributes-Example.png)
 
 `Single Valued Attributes -` : Single valued attributes are those attributes which can take only one value for a given entity from an entity set.
 Example: Here, all the attributes are single valued attributes as they can take only one specific value for each entity.
+
     ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Single-Valued-Attributes-Example.png)
 
 `Multi Valued Attributes -` : Multi valued attributes are those attributes which can take more than one value for a given entity from an entity set.
 Example: Here, the attributes “Mob_no” and “Email_id” are multi valued attributes as they can take more than one values for a given entity.
+
     ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Multi-Valued-Attributes-Example.png)
 
 ` Derived Attributes -` : Derived attributes are those attributes which can be derived from other attribute(s).
 Example: Here, the attribute “Age” is a derived attribute as it can be derived from the attribute “DOB”.
+
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Derived-Attributes-Example.png)
 
 `Key Attributes - ` : Key attributes are those attributes which can identify an entity uniquely in an entity set.
 Example : Here, the attribute “Roll_no” is a key attribute as it can identify any student uniquely.
+
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Key-Attributes-Example.png)
 
 ## KEYS 
