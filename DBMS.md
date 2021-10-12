@@ -203,8 +203,7 @@ Example : Here, the attribute “Roll_no” is a key attribute as it can identif
 
 > Different Types Of Keys in DBMS -
 
-*Video* -
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/RRUeFwuJ39Q)
+*Video* - [Youtube Link](https://youtu.be/RRUeFwuJ39Q)
 
 There are following 10 important keys in DBMS - 
 
