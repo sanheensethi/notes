@@ -56,6 +56,7 @@ It provides security to the data and maintain consistency.
 > Relationship : It is used to describe the relationship between entities.
     
 `Enrolled in` is a relationship that exists between entities Student and Course.
+
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Relationship-in-ER-Diagram-Example.png)
 
 ## Relationship Set and Entity Sets
@@ -78,6 +79,7 @@ It provides security to the data and maintain consistency.
 • Relationship Set : A relationship set is a set of relationships of same type.
 
 -Example: Set representation of above ER diagram is-
+
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Set-Representation-of-ER-Diagram.png)
 
 > Degree of a Relationship Set-
@@ -94,6 +96,8 @@ Example: One person is married to only one person
  Example: Student is enrolled in a Course.
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Binary-Relationship-Set.png)
  3. **Ternary Relationship Set** : It is a relationship set where only three entity set participates in a relationship set.
+ ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Ternary-Relationship-Set-1.png)
  4. **N-ary Relationship Set** : where `n` entity sets particitaes in relationship set.
  
+
 
