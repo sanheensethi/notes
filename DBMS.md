@@ -201,6 +201,120 @@ Example : Here, the attribute “Roll_no” is a key attribute as it can identif
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Key-Attributes-Example.png)
 
+## Constraints
+
+- Constraints are the rules enforced (that are applied) on the data columns of a table
+- These are used to limit the type of data that can go into a table.
+- This ensures the accuracy and reliability of the data in the database.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Constraints-in-DBMS.png)
+
+- Domain constraint
+- Tuple Uniqueness constraint
+- Key constraint
+- Entity Integrity constraint
+- Referential Integrity constraint
+
+**1. Domain Constraint-**
+- Domain constraint defines the domain or set of values for an attribute.
+- The data type of domain includes string, character, integer, time, date, currency, etc.
+- It specifies that the value taken by the attribute must be the atomic value from its domain.
+
+Example: Consider the following Student table-
+|STU_ID| 	Name| 	Age|
+|-----|------|-----|
+|S001| 	Akshay| 	20|
+|S002| 	Abhishek| 	21|
+|S003| 	Shashank| 	20|
+|S004| 	Rahul| 	`A` |
+
+Here, value `A` is not allowed since only integer values can be taken by the age attribute.
+
+**2. Tuple Uniqueness Constraint-**
+Tuple Uniqueness constraint specifies that all the tuples must be necessarily unique in any relation.
+Example 1 : 
+Consider the following Student table-
+|STU_ID| 	Name| 	Age|
+|-----|------|-----|
+|S001| 	Akshay| 	20|
+|S002| 	Abhishek| 	21|
+|S003| 	Shashank| 	20|
+|S004| 	Rahul| 	20 |
+This relation satisfies the tuple uniqueness constraint since here all the tuples are unique.
+
+Example 2:
+Consider the following Student table-
+|STU_ID| 	Name| 	Age|
+|-----|------|-----|
+|S001| 	`Akshay` | 	20|
+|S002| 	`Akshay` | 	21|
+|S003| 	Shashank| 	20|
+|S004| 	Rahul| 	20 |
+This relation does not satisfy the tuple uniqueness constraint since here all the tuples are not unique.
+
+**3. Key Constraint-**
+Key constraint specifies that in any relation-
+- All the values of primary key must be unique.
+- The value of primary key must not be null.
+Example: 
+Consider the following Student table-
+
+|STU_ID| 	Name| 	Age|
+|-----|------|-----|
+|`S001`| 	Akshay | 	20|
+|`S001`| 	Abhishek | 	21|
+|S003| 	Shashank| 	20|
+|S004| 	Rahul| 	20 |
+This relation does not satisfy the key constraint as here all the values of primary key are not unique.
+
+**4. Entity Integrity Constraint-**
+- The entity integrity constraint states that primary key value can't be null.
+- This is because the primary key value is used to identify individual rows in relation and if the primary key has a null value, then we can't identify those rows.
+- A table can contain a null value other than the primary key field.
+
+![](https://static.javatpoint.com/dbms/images/dbms-integrity-constraints3.png)
+
+**5. Referential Integrity Constraint-**
+- A referential integrity constraint is specified between two tables.
+- This constraint is enforced(applied) when a foreign key references the primary key of a relation.
+- In the Referential integrity constraints, if a foreign key in Table 1 refers to the Primary Key of Table 2, then every value of the Foreign Key in Table 1 must be null or be available in Table 2.
+
+![](https://static.javatpoint.com/dbms/images/dbms-integrity-constraints4.png)
+
+> Important Results-
+
+The following two important results emerges out due to referential integrity constraint-
+- We can not insert a record into a referencing relation if the corresponding record does not exist in the referenced relation.
+- We can not delete or update a record of the referenced relation if the corresponding record exists in the referencing relation.
+
+Example-
+Consider the following two relations- `Student` and `Department`.
+Here, relation `Student` references the relation `Department`.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Referential-Integrity-Constraint-Diagram.png)
+
+**Student**
+|STU_ID| 	Name| 	Dept_no|
+|----|----|----|
+|S001| 	Akshay| 	D10|
+|S002| 	Abhishek| 	D10|
+|S003| 	Shashank| 	D11|
+|S004| 	Rahul| 	`D14`|
+
+**Department**
+|Dept_no| 	Dept_name|
+|----|----|
+|D10| 	ASET|
+|D11| 	ALS|
+|D12| 	ASFL|
+|D13| 	ASHS|
+
+Here,
+- The relation ‘Student’ does not satisfy the referential integrity constraint.
+- This is because in relation ‘Department’, no value of primary key specifies department no. 14.
+- Thus, referential integrity constraint is violated.
+
+
 ## KEYS 
 
 (Do any one defination)
