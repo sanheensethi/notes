@@ -308,3 +308,53 @@ NOTES-
     - If it gets lost and another duplicate copy is issued, then the duplicate copy always has the same number as before.
     - Thus, it is non-updatable.
     - Few citizens may not have got their Adhaar cards, so for them its value is NULL.
+
+
+## Normalization
+- Database Normalization is a technique of organizing the data in the database
+- Normalization is a systematic approach of decomposing tables to eliminate data redundancy(repetition).
+- and undesirable characteristics like Insertion, Update and Deletion Anomalies.
+- It is a multi-step process that puts data into tabular form, removing duplicated data from the relation tables.
+
+Normalization is used for mainly two purposes:
+1. Eliminating redundant(useless) data.
+2. Ensuring data dependencies make sense i.e data is logically stored.
+
+**Video - [Youtube Link](https://youtu.be/xoTyrdT9SZI)**
+
+### Problems Without Normalization
+1. If a table is not properly normalized and have data redundancy then it will not only eat up extra memory space but will also make it difficult to handle and update the database, without facing data loss.
+2. Insertion, Updation and Deletion Anomalies are very frequent if database is not normalized.
+
+Example: To understand these anomalies let us take an example of a Student table.
+
+|rollno|name|branch|hod|office_tel|
+|------|----|------|---|----------|
+|401|Akon|CSE|Mr. X|53337|
+|402|Bkon|CSE|Mr. X|53337|
+|403|Ckon|CSE|Mr. X|53337|
+|404|Dkon|CSE|Mr. X|53337|
+
+In the table above, we have data of 4 Computer Sci. students. As we can see, data for the fields branch, hod(Head of Department) and office_tel is repeated for the students who are in the same branch in the college, this is Data Redundancy.
+
+- Insertion Anomaly : 
+    1. Suppose for a new admission, until and unless a student opts for a branch, data of the student cannot be inserted, or else we will have to set the branch information as NULL.
+    2. Also, if we have to insert data of 100 students of same branch, then the branch information will be repeated for all those 100 students.
+These scenarios are nothing but Insertion anomalies.
+
+- Updation Anomaly : What if Mr. X leaves the college? or is no longer the HOD of computer science department? In that case all the student records will have to be updated, and if by mistake we miss any record, it will lead to data inconsistency. This is Updation anomaly.
+
+- Deletion Anomaly : In our Student table, two different informations are kept together, Student information and Branch information. Hence, at the end of the academic year, if student records are deleted, we will also lose the branch information. This is Deletion anomaly.
+
+#### Normalization Rule
+
+Normalization rules are divided into the following normal forms:
+1. First Normal Form (1NF)
+2. Second Normal Form (2NF)
+3. Third Normal Form (3NF)
+4. BCNF
+5. Fourth Normal Form (4NF)
+
+lINK : https://www.studytonight.com/dbms/database-normalization.php
+
+
