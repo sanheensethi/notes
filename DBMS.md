@@ -114,18 +114,18 @@ Example: One person is married to only one person
     In many-to-many mapping, an entity in E1 is associated with any number of entities in E2, and an entity in E2 is associated with any number of entities in E1.
     (Association - to make a connection between people or things in your mind)
     
-    ![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints4.png)
+![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints4.png)
     
     Example: Here,
     1. One student can enroll in any number (zero or more) of courses.
     2. One course can be enrolled by any number (zero or more) of students.
     
-    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Many-to-Many-Relationship-ER-Diagram.png)
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Many-to-Many-Relationship-ER-Diagram.png)
 
 - **Many-to-One Cardinality**-
     In one-to-many mapping, an entity in E1 is associated with at most one entity in E2, and an entity in E2 is associated with any number of entities in E1.
 
-    ![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints3.png)
+![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints3.png)
     
     Example: Here,
     1. One student can enroll in at most one course.
@@ -136,24 +136,24 @@ Example: One person is married to only one person
 - **One-to-Many Cardinality**-
  In one-to-many mapping, an entity in E1 is associated with any number of entities in E2, and an entity in E2 is associated with at most one entity in E1.
 
-    ![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints2.png)
+![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints2.png)
     
     Example: Here,
     1. One student can enroll in any number (zero or more) of courses.
     2. One course can be enrolled by at most one student.
     
-    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/One-to-Many-Relationship-ER-Diagram.png)
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/One-to-Many-Relationship-ER-Diagram.png)
     
 - **One-to-One Cardinality**-
     In one-to-one mapping, an entity in E1 is associated with at most one entity in E2, and an entity in E2 is associated with at most one entity in E1.
 
-    ![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints.png)
+![](https://static.javatpoint.com/dbms/images/dbms-mapping-constraints.png)
     
     Example: Here,
     1. One student can enroll in at most one course.
     2. One course can be enrolled by at most one student.
     
-    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/One-to-One-Relationship-ER-Diagram.png)
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/One-to-One-Relationship-ER-Diagram.png)
 
 ## Attributes
 > It is used to describe the property of an entity
@@ -174,22 +174,22 @@ Example: One person is married to only one person
 `Simple attributes -` : Simple attributes are those attributes which can not be divided further.
 Example: Here, all the attributes are simple attributes as they can not be divided further.
 
-    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Simple-Attributes-Example.png)
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Simple-Attributes-Example.png)
     
 `Composite Attributes -` : Composite attributes are those attributes which are composed of many other simple attributes. (Which can be further divided).
 Example: Here, the attributes “Name” and “Address” are composite attributes as they are composed of many other simple attributes.
 
-    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Composite-Attributes-Example.png)
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Composite-Attributes-Example.png)
 
 `Single Valued Attributes -` : Single valued attributes are those attributes which can take only one value for a given entity from an entity set.
 Example: Here, all the attributes are single valued attributes as they can take only one specific value for each entity.
 
-    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Single-Valued-Attributes-Example.png)
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Single-Valued-Attributes-Example.png)
 
 `Multi Valued Attributes -` : Multi valued attributes are those attributes which can take more than one value for a given entity from an entity set.
 Example: Here, the attributes “Mob_no” and “Email_id” are multi valued attributes as they can take more than one values for a given entity.
 
-    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Multi-Valued-Attributes-Example.png)
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Multi-Valued-Attributes-Example.png)
 
 ` Derived Attributes -` : Derived attributes are those attributes which can be derived from other attribute(s).
 Example: Here, the attribute “Age” is a derived attribute as it can be derived from the attribute “DOB”.
@@ -221,8 +221,6 @@ There are following 10 important keys in DBMS -
     Partial key
     Composite key
     Unique key
-    Surrogate key
-    Secondary key
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Keys-in-DBMS.png)
 
