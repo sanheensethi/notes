@@ -95,8 +95,10 @@ Example: One person is married to only one person
  2. **Binary Relationship Set** : It is a relationship where only two entity sets participates in a relationship set.
  Example: Student is enrolled in a Course.
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Binary-Relationship-Set.png)
+
  3. **Ternary Relationship Set** : It is a relationship set where only three entity set participates in a relationship set.
  ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Ternary-Relationship-Set-1.png)
+ 
  4. **N-ary Relationship Set** : where `n` entity sets particitaes in relationship set.
  
 
