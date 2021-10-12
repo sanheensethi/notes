@@ -351,6 +351,8 @@ These scenarios are nothing but Insertion anomalies.
 
 ### Normalization Rule
 
+(Must See the explanation part in starting of revision for some days.)
+
 > Short Note :
 
 ##### Need for Normalization :
@@ -368,6 +370,8 @@ Normalization rules are divided into the following normal forms:
 
 > First Normal Form (1 NF)
 
+`Explanation` : [Blog](https://www.studytonight.com/dbms/first-normal-form.php) | [Video](https://www.studytonight.com/dbms/first-normal-form.php)
+
 For a table to be in the First Normal Form, it should follow the following 4 rules:
 - It should only have single(atomic) valued attributes/columns.
 - Values stored in a column should be of the same domain
@@ -375,6 +379,8 @@ For a table to be in the First Normal Form, it should follow the following 4 rul
 - And the order in which data is stored, does not matter.
 
 > Second Normal Form (2NF)
+
+`Explanation` : [Blog](https://www.studytonight.com/dbms/second-normal-form.php) | [Video](https://youtu.be/R7UblSu4744)
 
 For a table to be in the Second Normal Form,
 - It should be in the First Normal form.
@@ -387,6 +393,8 @@ For a table to be in the Second Normal Form,
 
 > Third Normal Form (3NF)
 
+`Explanation` : [Blog](https://www.studytonight.com/dbms/third-normal-form.php) | [Video](https://youtu.be/aAx_JoEDXQA)
+
 A table is said to be in the Third Normal Form when,
 - Remove fields that
 - depend on other non-key fields
@@ -396,18 +404,27 @@ A table is said to be in the Third Normal Form when,
 - And, it doesn't have Transitive Dependency.
 - No column entry should be dependent on any other entry (value) other than the key for the table.If such an entity exists, move it outside into a new table.
 
-> Boyce and Codd Normal Form (BCNF)
+> Boyce and Codd Normal Form (BCNF) 
+
+`Explanation` : [Blog](https://www.studytonight.com/dbms/third-normal-form.php) | [Video](https://youtu.be/aAx_JoEDXQA)
 
 A table is said to be in the BCNF when,
-- 3NF and all tables in the database should be only one primary key.
-- It is a higher version of the Third Normal form. 
-- This form deals with certain type of anomaly that is not handled by 3NF.
-- A 3NF table which does not have multiple overlapping candidate keys is said to be in BCNF. For a table to be in BCNF, following conditions must be satisfied:
-    - R must be in 3rd Normal Form
-    - and, for each functional dependency ( X → Y ), X should be a super Key.
+- It should be in the Third Normal Form.
+- And, for any dependency A → B, A should be a super key.
+The second point sounds a bit tricky, right? In simple words, it means, that for a dependency A → B, A cannot be a non-prime attribute, if B is a prime attribute.
 
 > Fourth Normal Form (4NF)
+
+`Explanation` : [Blog](https://www.studytonight.com/dbms/fourth-normal-form.php) | [Video](https://youtu.be/OTCuykFHBeA)
 
 A table is said to be in the Fourth Normal Form when,
 - It is in the Boyce-Codd Normal Form.
 - And, it doesn't have Multi-Valued Dependency.
+
+**What is Multi-valued Dependency ?**
+A table is said to have multi-valued dependency, if the following conditions are true,
+1. For a dependency A → B, if for a single value of A, multiple value of B exists, then the table may have multi-valued dependency.
+2. Also, a table should have at-least 3 columns for it to have a multi-valued dependency.
+3. And, for a relation R(A,B,C), if there is a multi-valued dependency between, A and B, then B and C should be independent of each other.
+
+If all these conditions are true for any relation(table), it is said to have multi-valued dependency.
