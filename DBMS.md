@@ -60,7 +60,7 @@ It provides security to the data and maintain consistency.
 
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Relationship-in-ER-Diagram-Example.png)
 
-## Relationship Set and Entity Sets
+## Entity Sets and Relationship Set
 
 • Entity Set - set of same type of entities
 
