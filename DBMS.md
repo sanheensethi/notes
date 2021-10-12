@@ -194,3 +194,113 @@ Example: Here, the attribute “Age” is a derived attribute as it can be deriv
 `Key Attributes - ` : Key attributes are those attributes which can identify an entity uniquely in an entity set.
 Example : Here, the attribute “Roll_no” is a key attribute as it can identify any student uniquely.
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Key-Attributes-Example.png)
+
+## KEYS 
+
+(Do any one defination)
+- It is set of attribute that uniquely identifies any record from the table.
+- A key is a set of attributes that can identify each tuple uniquely in the given relation.
+
+> Different Types Of Keys in DBMS -
+
+*Video* -
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/RRUeFwuJ39Q)
+
+There are following 10 important keys in DBMS - 
+
+    Super key
+    Candidate key
+    Primary key
+    Alternate key
+    Foreign key
+    Partial key
+    Composite key
+    Unique key
+    Surrogate key
+    Secondary key
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Keys-in-DBMS.png)
+
+- `Super Key` : 
+    1. It the combination of all possible attributes that can be uniquely identify the rows in the given relation.
+    2. A super key may consist of any number of attributes.
+    
+    Example-
+    Consider the following Student schema-
+    - Student ( roll , name , sex , age , address , class , section )
+    Given below are the examples of super keys since each set can uniquely identify each student in the Student table
+    - ( roll , name , sex , age , address , class , section )
+    - ( class , section , roll )
+    - (class , section , roll , sex )
+    - ( name , address )
+
+NOTE - 
+All the attributes in a super key are definitely sufficient to identify each tuple uniquely in the given relation but all of them may not be necessary.
+    
+- `Candidate Key` : 
+    1. A minimal super key is called as a candidate key.
+    2. It is an attribute with uniquely identify a tuple
+    Example-
+    Consider the following Student schema-
+    - Student ( roll , name , sex , age , address , class , section )
+    
+    Given below are the examples of candidate keys since each set consists of minimal attributes required to identify each student uniquely in the Student table-
+    - ( class , section , roll )
+    - ( name , address )
+
+NOTES -
+1. All the attributes in a candidate key are sufficient as well as necessary to identify each tuple uniquely.
+2. Removing any attribute from the candidate key fails in identifying each tuple uniquely.
+3. The value of candidate key must always be unique.
+4. The value of candidate key can never be NULL.
+5. It is possible to have multiple candidate keys in a relation.
+6. hose attributes which appears in some candidate key are called as prime attributes.
+
+- `Primary Key` :
+    1. It is one of the candidate key which uniquely identify the tuple in a table.
+    2. A primary key is a candidate key that the database designer selects while designing the database.
+
+NOTES-
+- The value of primary key can never be NULL.
+- The value of primary key must always be unique.
+- The values of primary key can never be changed i.e. no updation is possible.
+- The value of primary key must be assigned when inserting a record.
+- A relation is allowed to have only one primary key.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Super-Key-Candidate-Key-Primary-Key.png)
+
+- `Alternate Key` : 
+    1. Alternate keys out of all the candidate is only one get selected as primary key but the remaining ki are alternate keys.
+    2. Unimplemented candidate keys are called as alternate keys.
+    
+- `Foreign Key` :
+    It is used to link the two tables together it references the primary key of another table
+    Example : Here, t_dept can take only those values which are present in dept_no in Department table since only those departments actually exist.
+    ![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Foreign-Key.png)
+
+NOTES-
+- Foreign key references the primary key of the table.
+- Foreign key can take only those values which are present in the primary key of the referenced relation.
+- Foreign key may have a name other than that of a primary key.
+- Foreign key can take the NULL value.
+- There is no restriction on a foreign key to be unique.
+- In fact, foreign key is not unique most of the time.
+- Referenced relation may also be called as the master table or primary table.
+- Referencing relation may also be called as the foreign table.
+
+
+- `Composite Key` : 
+    1. It having more than one attribute to identify the tuple is called the composite key.
+    2. A primary key comprising of multiple attributes and not just a single attribute is called as a composite key.
+
+- `Unique Key` : Unique key is a key with the following properties-
+    1. It is unique for all the records of the table.
+    2. It may have a NULL value.
+    3. Once assigned, its value can not be changed i.e. it is non-updatable.
+   
+    Example:
+    The best example of unique key is Adhaar Card Numbers.
+    - The Adhaar Card Number is unique for all the citizens (tuples) of India (table).
+    - If it gets lost and another duplicate copy is issued, then the duplicate copy always has the same number as before.
+    - Thus, it is non-updatable.
+    - Few citizens may not have got their Adhaar cards, so for them its value is NULL.
