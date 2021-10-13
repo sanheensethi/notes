@@ -543,3 +543,67 @@ A table is said to have multi-valued dependency, if the following conditions are
 3. And, for a relation R(A,B,C), if there is a multi-valued dependency between, A and B, then B and C should be independent of each other.
 
 If all these conditions are true for any relation(table), it is said to have multi-valued dependency.
+
+## Relational Algebra
+- Relational Algebra is a procedural query language which takes a relation as an input and generates a relation as an output.
+#### Types of Relational operation
+-  Select Operation
+-  Project Operation
+-  Union Operation
+-  Set Intersection
+-  Set Difference
+-  Cartesian product
+-  Rename Operation
+ 
+****
+> Select Operation:-
+Selection Operator (σ) is a unary operator in relational algebra that performs a selection operation.
+It selects those rows or tuples from the relation that satisfies the selection condition.
+[BLOG](https://www.gatevidyalay.com/selection-operator-relational-algebra-dbms/)
+****
+>  Project Operation:-
+Relational Operators always work on one or more relational tables.
+Relational Operators always produce another relational table.
+The table produced by a relational operator has all the properties of a relational model.
+[BLOG](https://www.gatevidyalay.com/tag/project-operation-in-dbms/)
+
+****
+
+> Union Operation:-
+Let R and S be two relations.
+Then-
+R ∪ S is the set of all tuples belonging to either R or S or both.
+In R ∪ S, duplicates are automatically removed.
+Union operation is both commutative and associative.
+[BLOG](https://www.gatevidyalay.com/tag/difference-operator-sql/)
+****
+
+> Intersection Operator (∩):-
+Let R and S be two relations.
+Then-
+R ∩ S is the set of all tuples belonging to both R and S.
+In R ∩ S, duplicates are automatically removed.
+Intersection operation is both commutative and associative.
+[BLOG](https://www.gatevidyalay.com/tag/intersection-operator/)
+****
+
+> Difference Operator (-):-
+Let R and S be two relations.
+Then-
+R – S is the set of all tuples belonging to R and not to S.
+In R – S, duplicates are automatically removed.
+Difference operation is associative but not commutative.
+[BLOG](https://www.gatevidyalay.com/tag/difference-operator-sql/)
+****
+
+> Cartesian product
+The Cartesian product is used to combine each row in one table with each row in the other table. It is also known as a cross product.
+It is denoted by X.
+[BLOG](https://www.javatpoint.com/dbms-relational-algebra)
+****
+
+> Rename Operation:
+The rename operation is used to rename the output relation. It is denoted by rho (ρ).
+Example: We can use the rename operator to rename STUDENT relation to STUDENT1.
+[BLOG](https://www.javatpoint.com/dbms-relational-algebra)
+****
