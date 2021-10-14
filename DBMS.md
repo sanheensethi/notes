@@ -66,7 +66,7 @@ Other Notes Links:
 
 ## Entity Sets and Relationship Set
 
-• Entity Set - set of same type of entities
+#### Entity Set - set of same type of entities
 
 - **Strong entity set** : 
   1) it is an entity set that contains sufficient attributes that can uniquely identify all its entities.
@@ -81,7 +81,7 @@ Other Notes Links:
    5) discriminator is represented by underlining with a dashed line.
 
 
-• Relationship Set : A relationship set is a set of relationships of same type.
+#### Relationship Set : A relationship set is a set of relationships of same type.
 
 -Example: Set representation of above ER diagram is-
 
