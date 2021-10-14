@@ -430,9 +430,9 @@ NOTES-
 ## Functional Dependancy
 - It is a **relationship between set of attributes** of a table, **dependent on each other**.
 - It typically **exists between the primary key and non-key attribute** within a table.
-- Functional Dependency is represented by $$\to$$ (arrow sign)
+- Functional Dependency is represented by → (arrow sign)
 - Let us consider P is a relation with attributes A and B
-    > A $$\to$$ B
+    > A → B
 
 Example: We have a *Department* table with two attributes − *DeptId* and *DeptName*.
 The *DeptId* is our primary key. Here, *DeptId* uniquely identifies the *DeptName* attribute. This is because if you want to know the department name, then at first you need to have the *DeptId*.
@@ -443,7 +443,7 @@ The *DeptId* is our primary key. Here, *DeptId* uniquely identifies the *DeptNam
 |002|Marketing|
 |003|HR|
 
-Function Dependency : *DeptId $$\to$$ DeptName*
+Function Dependency : *DeptId → DeptName*
 
 There are two types of functional dependencies-
 1. Trivial Functional Dependencies
@@ -465,7 +465,7 @@ The examples of trivial functional dependencies are-
 We are considering the same *Department* table with two attributes to understand the concept of trivial dependency.
 
 The following is a trivial functional dependency since *DeptId* is a subset of *DeptId* and *DeptName*
-> *{ DeptId,  DeptName } $$\to$$ Dept Id*
+> *{ DeptId,  DeptName } → Dept Id*
 
 **2. Non-Trivial Functional Dependencies** :
 - A functional dependency X → Y is said to be n**on-trivial if and only if Y ⊄ X.**
