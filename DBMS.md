@@ -424,6 +424,48 @@ NOTES-
     - Thus, it is non-updatable.
     - Few citizens may not have got their Adhaar cards, so for them its value is NULL.
 
+## Decomposition of a Relation-
+> The process of **breaking** up a **single relation** into **two or more sub relations** is called as decomposition of a relation.
+
+#### Properties of Decomposition-
+
+**1. Lossless decomposition-**
+It ensures - 
+- No information is lost from the original relation during decomposition.
+- When the sub relations are joined back, the same relation is obtained that was decomposed.
+- Every decomposition must always be lossless.
+
+**2. Dependency Preservation-**
+It ensures -
+- None of the functional dependencies that holds on the original relation are lost.
+- The sub relations still hold or satisfy the functional dependencies of the original relation.
+
+#### Types of Decomposition-
+1. Lossless Join Decomposition
+2. Lossy Join Decomposition-
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Types-of-Decomposition-1.png)
+
+**1. Lossless Join Decomposition-**
+- Consider there is a relation R which is decomposed into sub relations R1 , R2 , …. , Rn.
+- This decomposition is called lossless join decomposition when the join of the sub relations results in the same relation R that was decomposed
+- Also Known as **non-additive join decomposition.**
+- For lossless join decomposition, we always have- 
+    > R1 ⋈ R2 ⋈ R3 ……. ⋈ Rn = R 
+    where ⋈ is a natural join operator
+
+[Example](https://www.gatevidyalay.com/decomposition-of-a-relation/)
+
+**2. Lossy Join Decomposition-**
+- Consider there is a relation R which is decomposed into sub relations R1 , R2 , …. , Rn.
+- This decomposition is called lossy join decomposition when the join of the sub relations does not result in the same relation R that was decomposed.
+- The natural join of the sub relations is always found to have some extraneous tuples.
+- Also Known as **careless decomposition.**
+- For lossy join decomposition, we always have-
+    > R1 ⋈ R2 ⋈ R3 ……. ⋈ Rn ⊃ R
+    where ⋈ is a natural join operator
+
+[Example](https://www.gatevidyalay.com/decomposition-of-a-relation/)
+
 
 ## Normalization
 - Database Normalization is a technique of organizing the data in the database
