@@ -69,6 +69,7 @@ Other Notes Links:
 - **Size** : It occupies Large space of disks and large memory to run them efficiently.
 - **Higher Impact of Failure** : Failure impact the database highly  because in most of the organization, all the data is placed in a single darabase and if database is corruped then data may lost forever.
 ****
+
 ## ER-Diagram
 [Index](#index)
 *ER-Diagram* : It stands for Entity Relationship Diagram.
@@ -90,7 +91,8 @@ Other Notes Links:
 
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Relationship-in-ER-Diagram-Example.png)
 ****
-## Entity Sets and Relationship Set
+
+## Entity Sets
 [Index](#index)
 #### Entity Set - set of same type of entities
 
@@ -106,17 +108,18 @@ Other Notes Links:
    4) discriminator can identify a group of entites from the entity sets.
    5) discriminator is represented by underlining with a dashed line.
 
-
-#### Relationship Set : A relationship set is a set of relationships of same type.
+## Relationship Sets
+[Index](#index)
+**Relationship Set** : A relationship set is a **set of relationships of same type**.
 
 -Example: Set representation of above ER diagram is-
 
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Set-Representation-of-ER-Diagram.png)
 
-> Degree of a Relationship Set-
-    # Degree of a relationship set = Number of entity sets participating in a relationship set
+> Degree of a relationship set = Number of entity sets participating in a relationship set
 
 [Types of Relationship Sets] -
+
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Type-of-Relationship-Sets.png)
 
  1. **Unary Relationship Set** : It is a relationship where only one entity set participate in a relationship set.
@@ -133,6 +136,7 @@ Example: One person is married to only one person
  4. **N-ary Relationship Set** : where `n` entity sets particitaes in relationship set.
  
 ****
+
 ## Cardinality Constraint
 [Index](#index)
 - The number of entities to which another entity can be associated through a relationship.
