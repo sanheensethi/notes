@@ -1,9 +1,10 @@
 # DBMS(Database Management System)
+****
 Other Notes Links:
 - [DBMS](https://github.com/sanheensethi/notes/blob/main/DBMS.md#dbmsdatabase-management-system)
 - [CN](https://github.com/sanheensethi/notes) 
 - [OS](https://github.com/sanheensethi/notes)
-
+****
 ## Index
 - [Database](#database)
 - [DBMS](#dbms)
@@ -27,12 +28,12 @@ Other Notes Links:
     - [Serializable schedule](#3-serializable-schedule-youtube)
 - [Relational Algebra](#relational-algebra)
 - [Joins](#joins)
-
+****
 ## Database
 - It is an organized collection of interrelated information that show some aspects of the real world. 
 - Database System is designed to make the information easily accessible and manageable.
 - Database is a collection of data in some organised manner,such that the user can easily access,manage,upload the data.
-
+****
 ## DBMS
 
 - Database Management System.
@@ -66,7 +67,7 @@ Other Notes Links:
 - **Cost of Hardware and Software** : Reuqire high speed of data processor and large memory size to run DBMS efficiently.
 - **Size** : It occupies Large space of disks and large memory to run them efficiently.
 - **Higher Impact of Failure** : Failure impact the database highly  because in most of the organization, all the data is placed in a single darabase and if database is corruped then data may lost forever.
-
+****
 ## ER-Diagram
 *ER-Diagram* : It stands for Entity Relationship Diagram.
 
@@ -86,7 +87,7 @@ Other Notes Links:
 `Enrolled in` is a relationship that exists between entities Student and Course.
 
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Relationship-in-ER-Diagram-Example.png)
-
+****
 ## Entity Sets and Relationship Set
 
 #### Entity Set - set of same type of entities
@@ -129,7 +130,7 @@ Example: One person is married to only one person
  
  4. **N-ary Relationship Set** : where `n` entity sets particitaes in relationship set.
  
-
+****
 ## Cardinality Constraint
 
 - The number of entities to which another entity can be associated through a relationship.
@@ -181,7 +182,7 @@ Example: Here,
     2. One course can be enrolled by at most one student.
     
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/One-to-One-Relationship-ER-Diagram.png)
-
+****
 ## Attributes
 > It is used to describe the property of an entity
 
@@ -227,12 +228,12 @@ Example: Here, the attribute “Age” is a derived attribute as it can be deriv
 Example : Here, the attribute “Roll_no” is a key attribute as it can identify any student uniquely.
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Key-Attributes-Example.png)
-
+****
 ## Closure of An Attribute - [Youtube](https://youtu.be/bSdvM_0hzgc)
 Not Important just go through it.
 - The set of all those attributes which can be functionally determined from an attribute set is called as a closure of that attribute set.
 - Closure of attribute set {X} is denoted as {X}+.
-
+****
 
 ## Constraints
 
@@ -254,6 +255,7 @@ Not Important just go through it.
 - It specifies that the value taken by the attribute must be the atomic value from its domain.
 
 Example: Consider the following Student table-
+
 |STU_ID| 	Name| 	Age|
 |-----|------|-----|
 |S001| 	Akshay| 	20|
@@ -267,6 +269,7 @@ Here, value `A` is not allowed since only integer values can be taken by the age
 Tuple Uniqueness constraint specifies that all the tuples must be necessarily unique in any relation.
 Example 1 : 
 Consider the following Student table-
+
 |STU_ID| 	Name| 	Age|
 |-----|------|-----|
 |S001| 	Akshay| 	20|
@@ -277,6 +280,7 @@ This relation satisfies the tuple uniqueness constraint since here all the tuple
 
 Example 2:
 Consider the following Student table-
+
 |STU_ID| 	Name| 	Age|
 |-----|------|-----|
 |S001| 	`Akshay` | 	20|
@@ -327,6 +331,7 @@ Here, relation `Student` references the relation `Department`.
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Referential-Integrity-Constraint-Diagram.png)
 
 **Student**
+
 |STU_ID| 	Name| 	Dept_no|
 |----|----|----|
 |S001| 	Akshay| 	D10|
@@ -335,6 +340,7 @@ Here, relation `Student` references the relation `Department`.
 |S004| 	Rahul| 	`D14`|
 
 **Department**
+
 |Dept_no| 	Dept_name|
 |----|----|
 |D10| 	ASET|
@@ -347,7 +353,7 @@ Here,
 - This is because in relation ‘Department’, no value of primary key specifies department no. 14.
 - Thus, referential integrity constraint is violated.
 
-
+****
 ## KEYS 
 
 (Do any one defination)
@@ -455,7 +461,7 @@ NOTES-
     - If it gets lost and another duplicate copy is issued, then the duplicate copy always has the same number as before.
     - Thus, it is non-updatable.
     - Few citizens may not have got their Adhaar cards, so for them its value is NULL.
-
+****
 ## Functional Dependancy
 - It is a **relationship between set of attributes** of a table, **dependent on each other**.
 - It typically **exists between the primary key and non-key attribute** within a table.
@@ -557,7 +563,7 @@ Hence, according to the axiom of transitivity,* enrol_no → building_no* is a v
 4. **Decomposition**- If A → BC, then A → B and A → C always holds.
 5. **Composition**- If A → B and C → D, then AC → BD always holds.
 6. **Additive**- If A → B and A → C, then A → BC always holds.
-
+****
 ## Decomposition of a Relation-
 > The process of **breaking** up a **single relation** into **two or more sub relations** is called as decomposition of a relation.
 
@@ -601,7 +607,7 @@ It ensures -
 
 [Example](https://www.gatevidyalay.com/decomposition-of-a-relation/)
 
-
+****
 ## Normalization
 - Database Normalization is a technique of organizing the data in the database
 - Normalization is a systematic approach of decomposing tables to eliminate data redundancy(repetition).
@@ -721,7 +727,7 @@ A table is said to be in the Fourth Normal Form when,
 - [Example](https://www.javatpoint.com/dbms-multivalued-dependency)
 
 If all these conditions are true for any relation(table), it is said to have multi-valued dependency.
-
+****
 ## Transaction
 
 - A transaction is a set of logically related operations.
@@ -806,7 +812,7 @@ Transaction states are as follows-
 - This property ensures that all the changes made by a transaction after its successful execution are written successfully to the disk.
 - It also ensures that these changes exist permanently and are never lost even if there occurs a failure of any kind.
 - It is the responsibility of recovery manager to ensure durability in the database.
-
+****
 ## Schedules
 - A series of operation from one transaction to another transaction is known as schedule
 
@@ -928,7 +934,7 @@ Two operations are called as conflicting operations if all the following conditi
 In this schedule, W1 (A) and R2 (A) are called as conflicting operations.
 
 **View Serializability-** [Youtube](https://youtu.be/8LKM_RWeroM)
-
+****
 ## Relational Algebra
 - Relational Algebra is a procedural query language which takes a relation as an input and generates a relation as an output.
 
@@ -1016,7 +1022,7 @@ Then-
 - Example: We can use the rename operator to rename STUDENT relation to STUDENT1.
 
 > **Division Operator**:- [Video](https://youtu.be/0N8EEM3myTE)
-
+****
 ## Joins
 [Video](https://youtu.be/28V421ajsQI)
 - Join is a combination of a Cartesian product followed by a selection process.
@@ -1106,3 +1112,5 @@ Example:
 - In a FULL OUTER JOIN , all tuples from both relations are included in the result, irrespective of the matching condition.
 - 
 ![](https://sqlhints.com/wp-content/uploads/2014/01/FULL-OUTER-JOIN.jpg)
+****
+Created by Sanheen Sethi and Riya Triathi (2021)
