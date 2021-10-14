@@ -12,9 +12,10 @@ Other Notes Links:
 
 ## DBMS
 
-Database Management System. It is a software which is used to manage the data easily. It provides an interface to perform various operations like creating database , creating table in it , insertion , updation , deletion of data and lot more.
-It provides security to the data and maintain consistency.
-it is the collection of programs or a software through which the user can insert,modify and delete the data into the database. 
+- Database Management System.
+-  It is a software which is used to manage the data easily. It provides an interface to perform various operations like creating database , creating table in it , insertion, updation , deletion of data and lot more.
+- It provides security to the data and maintain consistency.
+- it is the collection of programs or a software through which the user can insert,modify and delete the data into the database. 
 
 > DBMS allow users to maintain the following tasks.
 1. **Data Defination** : It is used to create update delete the defination that defines the organization of data in databse.
