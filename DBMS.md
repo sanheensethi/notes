@@ -1,7 +1,7 @@
 # DBMS(Database Management System)
 Other Notes Links:
 - [DBMS](https://github.com/sanheensethi/notes/blob/main/DBMS.md#dbmsdatabase-management-system)
-- [CN]() 
+- [CN](#dbms) 
 - [OS]()
 
 
