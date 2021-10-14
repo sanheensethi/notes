@@ -486,7 +486,7 @@ Example:
 
 Here, *roll_no → name* is a non-trivial functional dependency, since the dependent *name* is not a subset of determinant *roll_no*.
 
-Similarly, *{roll_no, name} → age *is also a non-trivial functional dependency, since age is not a subset of *{roll_no, name}*
+Similarly, *{roll_no, name} → age* is also a non-trivial functional dependency, since age is not a subset of *{roll_no, name}*
 
 **3. Multivalued Functional Dependency** :
 - Entities of the dependent set are not dependent on each other.
