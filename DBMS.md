@@ -782,64 +782,86 @@ Transaction states are as follows-
 
 ## Relational Algebra
 - Relational Algebra is a procedural query language which takes a relation as an input and generates a relation as an output.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/08/Relational-Algebra-Operators.png)
+
 #### Types of Relational operation
--  Select Operation
--  Project Operation
+-  Selection Operation
+-  Projection Operation
 -  Union Operation
 -  Set Intersection
 -  Set Difference
 -  Cartesian product
 -  Rename Operation
- 
-****
-> Select Operation:-
-Selection Operator (σ) is a unary operator in relational algebra that performs a selection operation.
-It selects those rows or tuples from the relation that satisfies the selection condition.
-[BLOG](https://www.gatevidyalay.com/selection-operator-relational-algebra-dbms/)
-****
->  Project Operation:-
-Relational Operators always work on one or more relational tables.
-Relational Operators always produce another relational table.
+
+> **Selection Operation**:- [BLOG](https://www.gatevidyalay.com/selection-operator-relational-algebra-dbms/)
+
+- Selection Operator (σ) is a unary operator in relational algebra that performs a selection operation.
+- It selects those rows or tuples from the relation that satisfies the selection condition.
+
+**Note-**
+- Selection operator only selects the required tuples according to the selection condition.
+- It does not display the selected tuples.
+- To display the selected tuples, projection operator is used.
+- Selection operator always selects the entire tuple. It can not select a section or part of a tuple.
+- We may use logical operators like ∧ , ∨ , ! and relational operators like = , ≠ , > , < , <= , >= with the selection condition.
+
+>  **Projection Operation**:- [BLOG](https://www.gatevidyalay.com/tag/project-operation-in-dbms/)
+
+- Relational Operators always work on one or more relational tables.
+- Relational Operators always produce another relational table.
 The table produced by a relational operator has all the properties of a relational model.
-[BLOG](https://www.gatevidyalay.com/tag/project-operation-in-dbms/)
+
+**Note-**
+- Projection operator automatically removes all the duplicates while projecting the output relation.
+- So, cardinality of the original relation and output relation may or may not be same.
+- If there are no duplicates in the original relation, then the cardinality will remain same otherwise it will surely reduce.
+- If attribute list is a super key on relation R, then we will always get the same number of tuples in the output relation.
+- This is because then there will be no duplicates to filter.
+- There is only one difference between projection operator of relational algebra and SELECT operation of SQL.
+- Projection operator does not allow duplicates while SELECT operation allows duplicates.
+- To avoid duplicates in SQL, we use “distinct” keyword and write SELECT distinct
+- Thus, projection operator of relational algebra is equivalent to SELECT operation of SQL.
 
 ****
+**Note-**
+- Selection Operator performs horizontal partitioning of the relation.
+- Projection operator performs vertical partitioning of the relation.
+****
 
-> Union Operation:-
+> **Union Operation**:- [BLOG](https://www.gatevidyalay.com/tag/difference-operator-sql/)
+
 Let R and S be two relations.
 Then-
-R ∪ S is the set of all tuples belonging to either R or S or both.
-In R ∪ S, duplicates are automatically removed.
-Union operation is both commutative and associative.
-[BLOG](https://www.gatevidyalay.com/tag/difference-operator-sql/)
-****
+- R ∪ S is the set of all tuples belonging to either R or S or both.
+- In R ∪ S, duplicates are automatically removed.
+- Union operation is both commutative and associative.
 
-> Intersection Operator (∩):-
+> **Intersection Operator (∩)**:- [BLOG](https://www.gatevidyalay.com/tag/intersection-operator/)
+
 Let R and S be two relations.
 Then-
-R ∩ S is the set of all tuples belonging to both R and S.
-In R ∩ S, duplicates are automatically removed.
-Intersection operation is both commutative and associative.
-[BLOG](https://www.gatevidyalay.com/tag/intersection-operator/)
-****
+- R ∩ S is the set of all tuples belonging to both R and S.
+- In R ∩ S, duplicates are automatically removed.
+- Intersection operation is both commutative and associative.
 
-> Difference Operator (-):-
+> **Difference Operator (-)**:- [BLOG](https://www.gatevidyalay.com/tag/difference-operator-sql/)
+
 Let R and S be two relations.
 Then-
-R – S is the set of all tuples belonging to R and not to S.
-In R – S, duplicates are automatically removed.
-Difference operation is associative but not commutative.
-[BLOG](https://www.gatevidyalay.com/tag/difference-operator-sql/)
-****
+- R – S is the set of all tuples belonging to R and not to S.
+- In R – S, duplicates are automatically removed.
+- Difference operation is associative but not commutative.
 
-> Cartesian product
-The Cartesian product is used to combine each row in one table with each row in the other table. It is also known as a cross product.
-It is denoted by X.
-[BLOG](https://www.javatpoint.com/dbms-relational-algebra)
-****
+> **Cartesian product**:- [BLOG](https://www.javatpoint.com/dbms-relational-algebra)
 
-> Rename Operation:
-The rename operation is used to rename the output relation. It is denoted by rho (ρ).
-Example: We can use the rename operator to rename STUDENT relation to STUDENT1.
-[BLOG](https://www.javatpoint.com/dbms-relational-algebra)
-****
+- The Cartesian product is used to combine each row in one table with each row in the other table. 
+- It is also known as a cross product.
+- It is denoted by X.
+- Example in Blog
+
+
+> **Rename Operation**:- [BLOG](https://www.javatpoint.com/dbms-relational-algebra)
+
+- The rename operation is used to rename the output relation. - It is denoted by rho (ρ).
+- Example: We can use the rename operator to rename STUDENT relation to STUDENT1.
