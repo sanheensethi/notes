@@ -431,8 +431,9 @@ NOTES-
 - It is a **relationship between set of attributes** of a table, **dependent on each other**.
 - It typically **exists between the primary key and non-key attribute** within a table.
 - Functional Dependency is represented by → (arrow sign)
-- Let us consider P is a relation with attributes A and B
-    > A → B
+- Let us consider P is a relation with attributes A and B where A is primary key then
+    > A → B 
+    > Here A is **Determinant** and B is **Dependent**
 
 Example: We have a *Department* table with two attributes − *DeptId* and *DeptName*.
 The *DeptId* is our primary key. Here, *DeptId* uniquely identifies the *DeptName* attribute. This is because if you want to know the department name, then at first you need to have the *DeptId*.
