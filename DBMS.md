@@ -594,9 +594,49 @@ If all these conditions are true for any relation(table), it is said to have mul
 - The life cycle of a transaction is-
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Transaction-States-in-DBMS.png)
 
+**Transaction State** -
 Explanation : [Transaction States](https://www.gatevidyalay.com/transaction-states-in-dbms/)
+Transaction states are as follows-
+1. Active state
+2. Partially committed state
+3. Committed state
+4. Failed state
+5. Aborted state
+6. Terminated state
 
-##### Operations in Transaction-
+**1. Active State-**
+- This is the first state in the life cycle of a transaction.
+- A transaction is called in an active state as long as its instructions are getting executed.
+- All the changes made by the transaction now are stored in the buffer in main memory.
+
+**2. Partially Committed State-**
+- After the last instruction of transaction has executed, it enters into a partially committed state.
+- After entering this state, the transaction is considered to be partially committed.
+- It is not considered fully committed because all the changes made by the transaction are still stored in the buffer in main memory.
+
+**3. Committed State-**
+- After all the changes made by the transaction have been successfully stored into the database, it enters into a committed state.
+- Now, the transaction is considered to be fully committed.
+> Note :
+
+- After a transaction has entered the committed state, it is not possible to roll back the transaction.
+- In other words, it is not possible to undo the changes that has been made by the transaction.
+- This is because the system is updated into a new consistent state.
+- The only way to undo the changes is by carrying out another transaction called as compensating transaction that performs the reverse operations.
+
+**4. Failed State-**
+- When a transaction is getting executed in the active state or partially committed state and some failure occurs due to which it becomes impossible to continue the execution, it enters into a failed state.
+
+**5. Aborted State-**
+- After the transaction has failed and entered into a failed state, all the changes made by it have to be undone.
+- To undo the changes made by the transaction, it becomes necessary to roll back the transaction.
+- After the transaction has rolled back completely, it enters into an aborted state.
+
+**6. Terminated State-**
+- This is the last state in the life cycle of a transaction.
+- After entering the committed state or aborted state, the transaction finally enters into a terminated state where its life cycle finally comes to an end.
+
+#### Operations in Transaction-
 - **Read Operation** *R(A)/Read(A)* : Read operation reads the data from the database and then stores it in the buffer in main memory.
 - **Write Operation** *W(A)/Write(A)* : Write operation writes the updated data value back to the database from the buffer.
 
