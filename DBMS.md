@@ -778,7 +778,127 @@ Transaction states are as follows-
 - It also ensures that these changes exist permanently and are never lost even if there occurs a failure of any kind.
 - It is the responsibility of recovery manager to ensure durability in the database.
 
+## Schedules
+- A series of operation from one transaction to another transaction is known as schedule
 
+![](https://static.javatpoint.com/dbms/images/dbms-schedule.png)
+
+##### Types of Schedules-
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Types-of-Schedules-in-DBMS.png)
+
+##### 1. Serial Schedules-
+- All the transactions execute serially one after the other.
+- When one transaction executes, no other transaction is allowed to execute.
+
+> Characteristics-
+
+Serial schedules are always-
+- Consistent
+- Recoverable
+- Cascadeless
+- Strict
+
+Example:
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Serial-Schedules-Example-01.png)
+
+In this schedule,
+- There are two transactions T1 and T2 executing serially one after the other.
+- Transaction T1 executes first.
+- After T1 completes its execution, transaction T2 executes.
+- So, this schedule is an example of a Serial Schedule.
+
+Example:
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Serial-Schedules-Example-02.png)
+
+In this schedule,
+- There are two transactions T1 and T2 executing serially one after the other.
+- Transaction T2 executes first.
+- After T2 completes its execution, transaction T1 executes.
+- So, this schedule is an example of a Serial Schedule.
+
+##### 2. Non-Serial Schedules-
+
+- Multiple transactions execute concurrently.
+- Operations of all the transactions are inter leaved or mixed with each other.
+
+> Characteristics-
+
+Non-serial schedules are **NOT** always-
+- Consistent
+- Recoverable
+- Cascadeless
+- Strict
+
+Example:
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Non-Serial-Schedules-Example-01.png)
+
+In this schedule,
+- There are two transactions T1 and T2 executing concurrently.
+- The operations of T1 and T2 are interleaved.
+- So, this schedule is an example of a Non-Serial Schedule.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Non-Serial-Schedules-Example-02.png)
+
+In this schedule,
+- There are two transactions T1 and T2 executing concurrently.
+- The operations of T1 and T2 are interleaved.
+- So, this schedule is an example of a Non-Serial Schedule.
+
+****
+**Note-**
+- Serial schedules are always consistent.
+- Non-serial schedules are not always consistent.
+****
+
+##### 3. Serializable schedule [Youtube](https://youtu.be/s8QlJoL1G6w)
+
+- Some non-serial schedules may lead to inconsistency of the database.
+- Serializability is a concept that helps to identify which non-serial schedules are correct and will maintain the consistency of the database.
+
+> If a given non-serial schedule of ‘n’ transactions is equivalent to some serial schedule of ‘n’ transactions, then it is called as a serializable schedule.
+
+**Characteristics-**
+Serializable schedules behave exactly same as serial schedules.
+
+Thus, serializable schedules are always-
+- Consistent
+- Recoverable
+- Casacadeless
+- Strict
+
+##### Types of Serializability-
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Types-of-Serializability.png)
+
+Serializability is mainly of two types-
+- Conflict Serializability
+- View Serializability
+
+**Conflict Serializability-** [Youtube](https://youtu.be/zv0ba0Iok1Y)
+If a given **non-serial schedule** can be **converted into** a **serial schedule** by **swapping its non-conflicting operations**, then it is called as a **conflict serializable schedule**.
+
+> Conflicting Operations-
+
+Two operations are called as conflicting operations if all the following conditions hold true for them-
+- Both the operations belong to different transactions
+- Both the operations are on the same data item
+- At least one of the two operations is a write operation
+
+> Conflictig Pairs: (Important)
+
+- Write - Write (W - W)
+- Write - Read (W - R)
+- Read - Write (R - W)
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Conflicting-Operations-in-DBMS.png)
+
+In this schedule, W1 (A) and R2 (A) are called as conflicting operations.
+
+**View Serializability-** [Youtube](https://youtu.be/8LKM_RWeroM)
 
 ## Relational Algebra
 - Relational Algebra is a procedural query language which takes a relation as an input and generates a relation as an output.
