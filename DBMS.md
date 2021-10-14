@@ -8,11 +8,13 @@ Other Notes Links:
 ## Database
 - It is an organized collection of interrelated information that show some aspects of the real world. 
 - Database System is designed to make the information easily accessible and manageable.
+- Database is a collection of data in some organised manner,such that the user can easily access,manage,upload the data.
 
 ## DBMS
 
 Database Management System. It is a software which is used to manage the data easily. It provides an interface to perform various operations like creating database , creating table in it , insertion , updation , deletion of data and lot more.
 It provides security to the data and maintain consistency.
+it is the collection of programs or a software through which the user can insert,modify and delete the data into the database. 
 
 > DBMS allow users to maintain the following tasks.
 1. **Data Defination** : It is used to create update delete the defination that defines the organization of data in databse.
@@ -34,6 +36,7 @@ It provides security to the data and maintain consistency.
 - **Easily Maintenance** : It can be easily maintained due to centralized nature of the database.
 - **Backup and Recovery** : It provides backup and recovery features which is used during the hardware and software failures.
 - It Provides multiple user interface like GUI , API (graphical user interface and application program interface)
+- **In short (Reduces Redundancy,Unautharised acess is restricted,Provide multiple user interface,Provide backup and recovery)**
 
 > Disadvantages :
 - **Cost of Hardware and Software** : Reuqire high speed of data processor and large memory size to run DBMS efficiently.
