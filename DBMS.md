@@ -433,6 +433,7 @@ NOTES-
 - Functional Dependency is represented by → (arrow sign)
 - Let us consider P is a relation with attributes A and B where A is primary key then
     > A → B 
+    > 
     > Here A is **Determinant** and B is **Dependent**
 
 Example: We have a *Department* table with two attributes − *DeptId* and *DeptName*.
