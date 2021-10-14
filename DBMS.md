@@ -456,7 +456,7 @@ There are two types of functional dependencies-
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/07/Functional-Dependency-Types-1.png)
 
 **1. Trivial Function Dependencies** : 
-- A functional dependency X → Y is said to be t**rivial if and only if Y ⊆ X.**
+- A functional dependency X → Y is said to be t**rivial if and only if Y ⊆ X i.e Y is the subset of X**
 
 Example:
 The examples of trivial functional dependencies are-
@@ -470,7 +470,7 @@ The following is a trivial functional dependency since *DeptId* is a subset of *
 > *{ DeptId,  DeptName } → Dept Id*
 
 **2. Non-Trivial Functional Dependencies** :
-- A functional dependency X → Y is said to be n**on-trivial if and only if Y ⊄ X.**
+- A functional dependency X → Y is said to be n**on-trivial if and only if Y ⊄ X i.e if Y is not the subset of X.**
 
 Example:
 The examples of non-trivial functional dependencies are-
