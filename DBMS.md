@@ -868,3 +868,68 @@ Then-
 
 > **Division Operator**:- [Video](https://youtu.be/0N8EEM3myTE)
 
+## Joins
+[Video](https://youtu.be/28V421ajsQI)
+- Join is a combination of a Cartesian product followed by a selection process.
+    > Join = Cartesian Product + Selection
+- A Join operation pairs two tuples from different relations, if and only if a given join condition is satisfied.
+- Symbol : ⋈
+    > A ⋈ B = σ(A X B)
+
+![](http://www1.udel.edu/evelyn/SQL-Class2/joins.jpg)
+
+#### Difference between Cartesian Product and Joins
+
+|Joins|Catesian Product|
+|-----|-----------------|
+|Combination of Tuples that satisfy matching conditions|All possible combinations of tuples/rows from the realtion/table|
+|Fewer tuples then cross product,might be able to compute efficiently|Huge Number of tuples and costly to manage|
+
+**There are two types of Joins**
+1. Inner Join
+2. Outer Join
+
+|Inner Join|Outer Join|
+|---------|-----------|
+|Theta Join|Left Join|
+|Equi Join|Right Join|
+|Natural Join|Full Join|
+
+**Inner Join**-
+- Contains only those tuples that satisfy the matching conditions.
+
+**Outer Join**-
+- Extension of Join
+- Contains those tuples that satisfy the matching conditions, along with some or all tuples that do not satisfy the matching conditions
+- Contain all rows from either one or both relations.
+
+#### Inner Join -
+
+> Theta Join:
+
+- THETA JOIN allows you to merge two tables based on the condition represented by theta. 
+- Theta joins work for all comparison operators. 
+- It is denoted by symbol θ. 
+- The general case of JOIN operation is called a Theta join.
+
+Example:
+
+![](https://slidetodoc.com/presentation_image_h/dbabeaa27ffd32c124b2a010c9f956f2/image-36.jpg)
+
+> Equi Join
+
+- EQUI JOIN is done when a Theta join uses only the equivalence condition (=). 
+- EQUI join is the most difficult operation to implement efficiently in an RDBMS, and one reason why RDBMS have essential performance problems.
+
+![](https://courses.cs.washington.edu/courses/csep544/14wi/video/archive/html5/csep544_14wi_2/slide326.jpg)
+
+> Natural Join
+
+- NATURAL JOIN does not utilize any of the comparison operators. 
+- In this type of join, the attributes should have the same name and domain. 
+- In Natural Join, there should be at least one common attribute between two relations.
+- It performs selection forming equality on those attributes which appear in both relations and eliminates the duplicate attributes.
+
+Example:
+
+![](https://www.researchgate.net/profile/Lukas-Blunschi-2/publication/255636925/figure/fig11/AS:339614729555984@1457981869521/Figure-A2-Natural-join-example.png)
