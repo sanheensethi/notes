@@ -116,17 +116,15 @@ What is/are ?
 ## Difference between DBMS and RDBMS
 |No.| 	DBMS| 	RDBMS|
 |---|----|-----|
-|1)| 	DBMS applications store data as file.| 	RDBMS applications store data in a tabular form.|
-2)| 	In DBMS, data is generally stored in either a hierarchical form or a navigational form.| 	In RDBMS, the tables have an identifier called primary key and the data values are stored in the form of tables.|
-3)| 	Normalization is not present in DBMS.| 	Normalization is present in RDBMS.|
-4)| 	DBMS does not apply any security with regards to data manipulation.| 	RDBMS defines the integrity constraint for the purpose of ACID (Atomocity, Consistency, Isolation and Durability) property.|
-5)| 	DBMS uses file system to store data, so there will be no relation between the tables.| 	in RDBMS, data values are stored in the form of tables, so a relationship between these data values will be stored in the form of a table as well.|
-6)| 	DBMS has to provide some uniform methods to access the stored information.| 	RDBMS system supports a tabular structure of the data and a relationship between them to access the stored information.|
-
-7) |	DBMS does not support distributed database.| RDBMS supports distributed database.|
-8) |	DBMS is meant to be for small organization and deal with small data. it supports single user.| 	RDBMS is designed to handle large amount of data. it supports multiple users.|
-
-9)| 	Examples of DBMS are file systems, xml etc.| Example of RDBMS are mysql, postgre, sql server, oracle etc.|
+|1)| DBMS applications store data as file.| 	RDBMS applications store data in a tabular form.|
+|2)| In DBMS, data is generally stored in either a hierarchical form or a navigational form.| 	In RDBMS, the tables have an identifier called primary key and the data values are stored in the form of tables.|
+|3)| Normalization is not present in DBMS.| 	Normalization is present in RDBMS.|
+|4)| DBMS does not apply any security with regards to data manipulation.| 	RDBMS defines the integrity constraint for the purpose of ACID (Atomocity, Consistency, Isolation and Durability) property.|
+|5)| DBMS uses file system to store data, so there will be no relation between the tables.| 	in RDBMS, data values are stored in the form of tables, so a relationship between these data values will be stored in the form of a table as well.|
+|6)| DBMS has to provide some uniform methods to access the stored information.| 	RDBMS system supports a tabular structure of the data and a relationship between them to access the stored information.|
+|7) |DBMS does not support distributed database.| RDBMS supports distributed database.|
+|8) |DBMS is meant to be for small organization and deal with small data. it supports single user.| 	RDBMS is designed to handle large amount of data. it supports multiple users.|
+|9)| Examples of DBMS are file systems, xml etc.| Example of RDBMS are mysql, postgre, sql server, oracle etc.|
 
 ****
 ## File System vs DBMS
