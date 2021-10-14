@@ -33,7 +33,36 @@ Other Notes Links:
 - It is an organized collection of interrelated information that show some aspects of the real world. 
 - Database System is designed to make the information easily accessible and manageable.
 - Database is a collection of data in some organised manner,such that the user can easily access,manage,upload the data.
+
+#### Types of Databases
+![](https://static.javatpoint.com/dbms/images/types-of-databases.png)
+[Explanation](https://www.javatpoint.com/types-of-databases)
+- Centralized Database
+- Distributed Database
+- Relational Database (`Important`)
+- NoSQL Database
+- Cloud Database
+- Object-oriented Databases (`Important`)
+- Hierarchical Databases (`Important`)
+- Network Databases (`Important`)
+
+## Database System
+Together, the data and the DBMS, along with the applications that are associated with them, are referred to as a database system
+
+### Database Challanges 
+- **Data security** is required because data is a valuable business asset. Protecting data stores requires skilled cybersecurity staff.
+- **Data integrity** ensures data is trustworthy. It is not always easy to achieve data integrity because it means restricting access to databases to only those qualified to handle it.
+- **Database performance** requires regular database updates and maintenance. Without the proper support, database functionality can decline as the technology supporting the database changes or as the data it contains changes.
+
 ****
+
+## Data Integrity
+- Data integrity is the overall accuracy, completeness, and consistency of data
+- Data integrity also refers to the safety of data.
+- Data integrity is usually imposed during the database design phase through the use of standard procedures and rules.
+- Database Integrity can be mainted by [Integrity Constraits](#constraints)
+****
+
 ## DBMS
 [Index](#index)
 - Database Management System.
