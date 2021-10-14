@@ -14,7 +14,7 @@ Other Notes Links:
     - [Relationship Set](#relationship-set--a-relationship-set-is-a-set-of-relationships-of-same-type)
 - [Cardinality Constraints](#cardinality-constraint)
 - [Attributes](#attributes)
-- [Closure of attributes](#closure-of-an-attribute---youtube)
+- [Closure of attributes](#closure-of-an-attribute--)
 - [Constraints/Integrity Constraints](#constraints)
 - [Keys](#keys)
 - [Functional Dependancy](#functional-dependancy)
