@@ -933,3 +933,27 @@ Example:
 Example:
 
 ![](https://www.researchgate.net/profile/Lukas-Blunschi-2/publication/255636925/figure/fig11/AS:339614729555984@1457981869521/Figure-A2-Natural-join-example.png)
+
+#### Outer Join
+
+> Left Outer Join: 
+
+(Check Symbol on Google)
+- LEFT JOIN returns all the rows from the table on the left even if no matching rows have been found in the table on the right. 
+- When no matching record found in the table on the right, NULL is returned.
+
+![](https://sqlhints.com/wp-content/uploads/2014/01/LEFT-OUTER-JOIN1.jpg)
+
+> Right Outer Join:
+
+- RIGHT JOIN returns all the columns from the table on the right even if no matching rows have been found in the table on the left. 
+- When no matches have been found in the table on the left, NULL is returned. 
+- RIGHT outer JOIN is the opposite of LEFT JOIN.
+
+![](https://sqlhints.com/wp-content/uploads/2014/01/RIGHT-OUTER-JOIN.jpg)
+
+> Full Outer Join:
+
+- In a FULL OUTER JOIN , all tuples from both relations are included in the result, irrespective of the matching condition.
+- 
+![](https://sqlhints.com/wp-content/uploads/2014/01/FULL-OUTER-JOIN.jpg)
