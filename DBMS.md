@@ -122,9 +122,11 @@ What is/are ?
 4)| 	DBMS does not apply any security with regards to data manipulation.| 	RDBMS defines the integrity constraint for the purpose of ACID (Atomocity, Consistency, Isolation and Durability) property.|
 5)| 	DBMS uses file system to store data, so there will be no relation between the tables.| 	in RDBMS, data values are stored in the form of tables, so a relationship between these data values will be stored in the form of a table as well.|
 6)| 	DBMS has to provide some uniform methods to access the stored information.| 	RDBMS system supports a tabular structure of the data and a relationship between them to access the stored information.|
+
 7) |	DBMS does not support distributed database.| 	RDBMS supports distributed database.|
 8) |	DBMS is meant to be for small organization and deal with small data. it supports single user.| 	RDBMS is designed to handle large amount of data. it supports multiple users.|
 9)| 	Examples of DBMS are file systems, xml etc.| 	Example of RDBMS are mysql, postgre, sql server, oracle etc.|
+
 ****
 ## File System vs DBMS
 
@@ -219,6 +221,35 @@ Database architecture can be seen as a single tier or multi-tier. But logically,
 **3) Object-based Data Model:** An extension of the ER model with notions of functions, encapsulation, and object identity, as well.Here, the objects are nothing but the data carrying its properties.
 
 **4) Semistructured Data Model:** This type of data model is different from the other three data models.The semistructured data model allows the data specifications at places where the individual data items of the same type may have different attributes sets. The Extensible Markup Language, also known as XML, is widely used for representing the semistructured data. Although XML was initially designed for including the markup information to the text document, it gains importance because of its application in the exchange of data.
+
+****
+
+## Data model Schema and Instance
+- The data which is stored in the database at a particular moment of time is called an instance of the database.
+- The overall design of a database is called schema.
+- A database schema is the skeleton structure of the database. - It represents the logical view of the entire database.
+- A schema contains schema objects like table, foreign key, primary key, views, columns, data types, stored procedure, etc.
+- A database schema can be represented by using the visual diagram. That diagram shows the database objects and relationship with each other.
+- A database schema is designed by the database designers to help programmers whose software will interact with the database. The process of database creation is called data modeling.
+****
+
+## Data Independance
+- Data independence can be explained using the three-schema architecture.
+- Data independence refers characteristic of being able to modify the schema at one level of the database system without altering the schema at the next higher level.
+
+**1. Logical Data Independence**
+- Logical data independence refers characteristic of being able to change the conceptual schema without having to change the external schema.
+- Logical data independence is used to separate the external level from the conceptual view.
+- If we do any changes in the conceptual view of the data, then the user view of the data would not be affected.
+- Logical data independence occurs at the user interface level.
+
+**2. Physical Data Independence**
+- Physical data independence can be defined as the capacity to change the internal schema without having to change the conceptual schema.
+- If we do any changes in the storage size of the database system server, then the Conceptual structure of the database will not be affected.
+- Physical data independence is used to separate conceptual levels from the internal levels.
+- Physical data independence occurs at the logical interface level.
+
+![](https://static.javatpoint.com/dbms/images/dbms-data-independence.png)
 
 ****
 
