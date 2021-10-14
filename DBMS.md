@@ -595,7 +595,6 @@ If all these conditions are true for any relation(table), it is said to have mul
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Transaction-States-in-DBMS.png)
 
 **Transaction State** -
-Explanation : [Transaction States](https://www.gatevidyalay.com/transaction-states-in-dbms/)
 Transaction states are as follows-
 1. Active state
 2. Partially committed state
