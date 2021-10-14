@@ -93,7 +93,8 @@ Other Notes Links:
 
 ## Entity Sets
 [Index](#index)
-#### Entity Set - set of same type of entities
+
+> Set of same type of entities
 
 - **Strong entity set** : 
   1) it is an entity set that contains sufficient attributes that can uniquely identify all its entities.
@@ -109,7 +110,8 @@ Other Notes Links:
 
 ## Relationship Sets
 [Index](#index)
-**Relationship Set** : A relationship set is a **set of relationships of same type**.
+
+> Set of relationships of same type.
 
 -Example: Set representation of above ER diagram is-
 
