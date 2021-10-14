@@ -636,11 +636,11 @@ Transaction states are as follows-
 - This is the last state in the life cycle of a transaction.
 - After entering the committed state or aborted state, the transaction finally enters into a terminated state where its life cycle finally comes to an end.
 
-#### Operations in Transaction-
+### Operations in Transaction-
 - **Read Operation** *R(A)/Read(A)* : Read operation reads the data from the database and then stores it in the buffer in main memory.
 - **Write Operation** *W(A)/Write(A)* : Write operation writes the updated data value back to the database from the buffer.
 
-#### ACID Properties of Transaction
+### ACID Properties of Transaction
 - It is important to ensure that the database remains consistent before and after the transaction.
 - To ensure the consistency of database, certain properties are followed by all the transactions occurring in the system.
 - These properties are called as ACID Properties of a transaction.
