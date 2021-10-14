@@ -865,3 +865,6 @@ Then-
 
 - The rename operation is used to rename the output relation. - It is denoted by rho (ρ).
 - Example: We can use the rename operator to rename STUDENT relation to STUDENT1.
+
+> **Division Operator**:- [Video](https://youtu.be/0N8EEM3myTE)
+
