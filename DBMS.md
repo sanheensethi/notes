@@ -443,6 +443,7 @@ It ensures -
 #### Types of Decomposition-
 1. Lossless Join Decomposition
 2. Lossy Join Decomposition-
+
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/04/Types-of-Decomposition-1.png)
 
 **1. Lossless Join Decomposition-**
