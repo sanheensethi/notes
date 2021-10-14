@@ -1,5 +1,4 @@
-# DBMS(Database Management System)
-
+# DBMS(Database Management System) ![](https://w7.pngwing.com/pngs/722/146/png-transparent-red-important-stamp-seal-label-icon-symbol-important-stamp-sign-information.png)
 Other Notes Links:
 - [DBMS](https://github.com/sanheensethi)
 - [CN]() 
