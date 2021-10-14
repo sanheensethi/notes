@@ -98,6 +98,130 @@ Together, the data and the DBMS, along with the applications that are associated
 - **Higher Impact of Failure** : Failure impact the database highly  because in most of the organization, all the data is placed in a single darabase and if database is corruped then data may lost forever.
 ****
 
+## RDBMS
+- **RDBMS** stands for **Relational Database Management Systems**.
+- All modern database management systems like SQL, MS SQL Server, IBM DB2, ORACLE, My-SQL and Microsoft Access are based on RDBMS.
+- It is called Relational Data Base Management System (RDBMS) because it is based on relational model.
+- Relational database is most commonly used database. It contains number of tables and each table has its own primary key.
+- Due to a collection of organized set of tables, data can be accessed easily in RDBMS.
+
+[Explanation](https://www.javatpoint.com/what-is-rdbms)
+What is/are ?
+- Relation/Table
+- Field
+- Row or Record
+- Column
+- NULL Values
+****
+## Difference between DBMS and RDBMS
+|No.| 	DBMS| 	RDBMS|
+|---|----|-----|
+|1)| 	DBMS applications store data as file.| 	RDBMS applications store data in a tabular form.|
+2)| 	In DBMS, data is generally stored in either a hierarchical form or a navigational form.| 	In RDBMS, the tables have an identifier called primary key and the data values are stored in the form of tables.|
+3)| 	Normalization is not present in DBMS.| 	Normalization is present in RDBMS.|
+4)| 	DBMS does not apply any security with regards to data manipulation.| 	RDBMS defines the integrity constraint for the purpose of ACID (Atomocity, Consistency, Isolation and Durability) property.|
+5)| 	DBMS uses file system to store data, so there will be no relation between the tables.| 	in RDBMS, data values are stored in the form of tables, so a relationship between these data values will be stored in the form of a table as well.|
+6)| 	DBMS has to provide some uniform methods to access the stored information.| 	RDBMS system supports a tabular structure of the data and a relationship between them to access the stored information.|
+7) |	DBMS does not support distributed database.| 	RDBMS supports distributed database.|
+8) |	DBMS is meant to be for small organization and deal with small data. it supports single user.| 	RDBMS is designed to handle large amount of data. it supports multiple users.|
+9)| 	Examples of DBMS are file systems, xml etc.| 	Example of RDBMS are mysql, postgre, sql server, oracle etc.|
+****
+## File System vs DBMS
+
+|File System| 	DBMS|
+|-----------|----|
+A file system is a software that manages and organizes the files in a storage medium.| It controls how data is stored and retrieved. 	DBMS or Database Management System is a software application. It is used for accessing, creating, and managing databases.|
+The file system provides the details of data representation and storage of data.| 	DBMS gives an abstract view of data that hides the details|
+Storing and retrieving of data can’t be done efficiently in a file system.| 	DBMS is efficient to use as there are a wide variety of methods to store and retrieve data.|
+It does not offer data recovery processes.| 	There is a backup recovery for data in DBMS.|
+The file system doesn’t have a crash recovery mechanism. |	DBMS provides a crash recovery mechanism|
+Protecting a file system is very difficult.| 	DBMS offers good protection mechanism.|
+In a file management system, the redundancy of data is greater.| 	The redundancy of data is low in the DBMS system.|
+Data inconsistency is higher in the file system.| 	Data inconsistency is low in a database management system.|
+The file system offers lesser security.| 	Database Management System offers high security.|
+File System allows you to stores the data as isolated data files and entities.| 	Database Management System stores data as well as defined constraints and interrelation.|
+Not provide support for complicated transactions.| 	Easy to implement complicated transactions.|
+The centralization process is hard in File Management System.| 	Centralization is easy to achieve in the DBMS system.|
+It doesn’t offer backup and recovery of data if it is lost.| 	DBMS system provides backup and recovery of data even if it is lost.|
+There is no efficient query processing in the file system.| 	You can easily query data in a database using the SQL language.|
+These system doesn’t offer concurrency.| 	DBMS system provides a concurrency facility. |
+
+Advantages,Disadvantages,Application - [Link](https://www.guru99.com/difference-between-file-system-and-dbms.html)
+****
+## DBMS Architecture
+- The DBMS design depends upon its architecture. The basic client/server architecture is used to deal with a large number of PCs, web servers, database servers and other components that are connected with networks.
+- The client/server architecture consists of many PCs and a workstation which are connected via the network.
+- DBMS architecture depends upon how users are connected to the database to get their request done. 
+
+#### Types of DBMS Architecture -
+![](https://static.javatpoint.com/dbms/images/dbms-architecture.png)
+
+Database architecture can be seen as a single tier or multi-tier. But logically, database architecture is of two types like: **2-tier architecture** and **3-tier architecture**. 
+
+> 1-Tier Architecture
+
+- In this architecture, the database is directly available to the user. It means the user can directly sit on the DBMS and uses it.
+- Any changes done here will directly be done on the database itself. It doesn't provide a handy tool for end users.
+- The 1-Tier architecture is used for development of the local application, where programmers can directly communicate with the database for the quick response.
+
+> 2-Tier Architecture
+
+- The 2-Tier architecture is same as basic client-server. In the two-tier architecture, applications on the client end can directly communicate with the database at the server side. For this interaction, API's like: ODBC, JDBC are used.
+- The user interfaces and application programs are run on the client-side.
+- The server side is responsible to provide the functionalities like: query processing and transaction management.
+- To communicate with the DBMS, client-side application establishes a connection with the server side.
+
+![](https://static.javatpoint.com/dbms/images/dbms-2-tier-architecture.png)
+
+> 3-Tier Architecture
+
+- The 3-Tier architecture contains another layer between the client and server. In this architecture, client can't directly communicate with the server.
+- The application on the client-end interacts with an application server which further communicates with the database system.
+- End user has no idea about the existence of the database beyond the application server. The database also has no idea about any other user beyond the application.
+- The 3-Tier architecture is used in case of large web application.
+
+![](https://static.javatpoint.com/dbms/images/dbms-3-tier-architecture.png)
+
+##### Three schema Architecture
+
+- The three schema architecture is also called ANSI/SPARC architecture or three-level architecture.
+- This framework is used to describe the structure of a specific database system.
+- The three schema architecture is also used to separate the user applications and physical database.
+- The three schema architecture contains three-levels. It breaks the database down into three different categories.
+
+![](https://static.javatpoint.com/dbms/images/dbms-three-schema-architecture.png)
+
+1. Internal Level : 
+    - It describes the physical storage structure of the database.
+    - It uses the physical data model. It is used to define that how the data will be stored in a block.
+2. Conceptual Level :
+    - Conceptual level is also known as logical level.
+    - describes the structure of the whole database. 
+    - describes what data are to be stored in the database and also describes what relationship exists among those data.
+    - implementation of the data structure are hidden.
+3. External Level :
+    - At the external level, a database contains several schemas that sometimes called as subschema. The subschema is used to describe the different view of the database. 
+    - An external schema is also known as view schema.
+    - Each view schema describes the database part that a particular user group is interested and hides the remaining database from that user group.
+    - The view schema describes the end user interaction with database systems.
+****
+## Data Models
+- Data models define how the logical structure of a database is modeled.
+- It provides the conceptual tools for describing the design of a database at each level of data abstraction.
+- Data models define how data is connected to each other and how they are processed and stored inside the system.
+
+![](https://static.javatpoint.com/dbms/images/data-models.png)
+
+**1) Relational Data Model:** This type of model designs the data in the form of rows and columns within a table. Thus, a relational model uses tables for representing data and in-between relationships. The relational data model is the widely used model which is primarily used by commercial data processing applications.
+
+**2) Entity-Relationship Data Model:** An ER model is the logical representation of data as objects and relationships among them. These objects are known as entities, and relationship is an association among these entities.It was widely used in database designing.A set of attributes describe the entities.
+
+**3) Object-based Data Model:** An extension of the ER model with notions of functions, encapsulation, and object identity, as well.Here, the objects are nothing but the data carrying its properties.
+
+**4) Semistructured Data Model:** This type of data model is different from the other three data models.The semistructured data model allows the data specifications at places where the individual data items of the same type may have different attributes sets. The Extensible Markup Language, also known as XML, is widely used for representing the semistructured data. Although XML was initially designed for including the markup information to the text document, it gains importance because of its application in the exchange of data.
+
+****
+
 ## ER-Diagram
 [Index](#index)
 *ER-Diagram* : It stands for Entity Relationship Diagram.
