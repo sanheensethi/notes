@@ -1,9 +1,32 @@
 # DBMS(Database Management System)
 Other Notes Links:
 - [DBMS](https://github.com/sanheensethi/notes/blob/main/DBMS.md#dbmsdatabase-management-system)
-- [CN](#dbms) 
-- [OS]()
+- [CN](https://github.com/sanheensethi/notes) 
+- [OS](https://github.com/sanheensethi/notes)
 
+## Index
+- [Database](#database)
+- [DBMS](#dbms)
+- [ER Diagram](#er-diagram)
+- [Entity Sets and Relationship Sets](#entity-sets-and-relationship-set)
+    - [Entity Sets](#entity-set---set-of-same-type-of-entities)
+    - [Relationship Set](#relationship-set--a-relationship-set-is-a-set-of-relationships-of-same-type)
+- [Cardinality Constraints](#cardinality-constraint)
+- [Attributes](#attributes)
+- [Closure of attributes](#closure-of-an-attribute)
+- [Constraints/Integrity Constraints](#constraints)
+- [Keys](#keys)
+- [Functional Dependancy](#functional-dependancy)
+- [Decomposition of Relation](#decomposition-of-a-relation-)
+- [Normalization](#normalization)
+- [Transaction](#transaction)
+    - [ACID Properties](#acid-properties-of-transaction)
+- [Schedules](#schedules)
+    - [Serial Schedules](#1-serial-schedules-)
+    - [Non-Serial Schedules](#2-non-serial-schedules-)
+    - [Serializable schedule](#3-serializable-schedule-youtube)
+- [Relational Algebra](#relational-algebra)
+- [Joins](#joins)
 
 ## Database
 - It is an organized collection of interrelated information that show some aspects of the real world. 
@@ -204,6 +227,12 @@ Example: Here, the attribute “Age” is a derived attribute as it can be deriv
 Example : Here, the attribute “Roll_no” is a key attribute as it can identify any student uniquely.
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Key-Attributes-Example.png)
+
+## Closure of An Attribute - [Youtube](https://youtu.be/bSdvM_0hzgc)
+Not Important just go through it.
+- The set of all those attributes which can be functionally determined from an attribute set is called as a closure of that attribute set.
+- Closure of attribute set {X} is denoted as {X}+.
+
 
 ## Constraints
 
