@@ -124,7 +124,8 @@ Other Notes Links:
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Type-of-Relationship-Sets.png)
 
  1. **Unary Relationship Set** : It is a relationship where only one entity set participate in a relationship set.
-Example: One person is married to only one person
+Example: One person is married to only one person.
+
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Unary-Relationship-Set.png)
 
  2. **Binary Relationship Set** : It is a relationship where only two entity sets participates in a relationship set.
@@ -133,6 +134,7 @@ Example: One person is married to only one person
  ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Binary-Relationship-Set.png)
 
  3. **Ternary Relationship Set** : It is a relationship set where only three entity set participates in a relationship set.
+  
  ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Ternary-Relationship-Set-1.png)
  
  4. **N-ary Relationship Set** : where `n` entity sets particitaes in relationship set.
