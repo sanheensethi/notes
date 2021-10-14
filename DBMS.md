@@ -30,12 +30,13 @@ Other Notes Links:
 - [Joins](#joins)
 ****
 ## Database
+[Index](#index)
 - It is an organized collection of interrelated information that show some aspects of the real world. 
 - Database System is designed to make the information easily accessible and manageable.
 - Database is a collection of data in some organised manner,such that the user can easily access,manage,upload the data.
 ****
 ## DBMS
-
+[Index](#index)
 - Database Management System.
 -  It is a software which is used to manage the data easily. It provides an interface to perform various operations like creating database , creating table in it , insertion, updation , deletion of data and lot more.
 - It provides security to the data and maintain consistency.
@@ -69,6 +70,7 @@ Other Notes Links:
 - **Higher Impact of Failure** : Failure impact the database highly  because in most of the organization, all the data is placed in a single darabase and if database is corruped then data may lost forever.
 ****
 ## ER-Diagram
+[Index](#index)
 *ER-Diagram* : It stands for Entity Relationship Diagram.
 
 - It is a conceptual model that gives graphical representation of the logical structure of the database.
@@ -89,7 +91,7 @@ Other Notes Links:
 ![https://www.gatevidyalay.com/relationship-sets/](https://www.gatevidyalay.com/wp-content/uploads/2018/05/Relationship-in-ER-Diagram-Example.png)
 ****
 ## Entity Sets and Relationship Set
-
+[Index](#index)
 #### Entity Set - set of same type of entities
 
 - **Strong entity set** : 
@@ -132,7 +134,7 @@ Example: One person is married to only one person
  
 ****
 ## Cardinality Constraint
-
+[Index](#index)
 - The number of entities to which another entity can be associated through a relationship.
 - We have four types of cardinality constraints.
 
@@ -184,6 +186,7 @@ Example: Here,
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/05/One-to-One-Relationship-ER-Diagram.png)
 ****
 ## Attributes
+[Index](#index)
 > It is used to describe the property of an entity
 
 > There exist a specific domain or set of values for each attribute from where that attribute can take its values.
@@ -229,14 +232,16 @@ Example : Here, the attribute “Roll_no” is a key attribute as it can identif
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/06/Key-Attributes-Example.png)
 ****
-## Closure of An Attribute - [Youtube](https://youtu.be/bSdvM_0hzgc)
+## Closure of An Attribute -
+[Youtube](https://youtu.be/bSdvM_0hzgc)
+[Index](#index)
 Not Important just go through it.
 - The set of all those attributes which can be functionally determined from an attribute set is called as a closure of that attribute set.
 - Closure of attribute set {X} is denoted as {X}+.
 ****
 
 ## Constraints
-
+[Index](#index)
 - Constraints are the rules enforced (that are applied) on the data columns of a table
 - These are used to limit the type of data that can go into a table.
 - This ensures the accuracy and reliability of the data in the database.
@@ -355,7 +360,7 @@ Here,
 
 ****
 ## KEYS 
-
+[Index](#index)
 (Do any one defination)
 - It is set of attribute that uniquely identifies any record from the table.
 - A key is a set of attributes that can identify each tuple uniquely in the given relation.
@@ -463,6 +468,7 @@ NOTES-
     - Few citizens may not have got their Adhaar cards, so for them its value is NULL.
 ****
 ## Functional Dependancy
+[Index](#index)
 - It is a **relationship between set of attributes** of a table, **dependent on each other**.
 - It typically **exists between the primary key and non-key attribute** within a table.
 - Functional Dependency is represented by → (arrow sign)
@@ -565,6 +571,7 @@ Hence, according to the axiom of transitivity,* enrol_no → building_no* is a v
 6. **Additive**- If A → B and A → C, then A → BC always holds.
 ****
 ## Decomposition of a Relation-
+[Index](#index)
 > The process of **breaking** up a **single relation** into **two or more sub relations** is called as decomposition of a relation.
 
 #### Properties of Decomposition-
@@ -609,6 +616,7 @@ It ensures -
 
 ****
 ## Normalization
+[Index](#index)
 - Database Normalization is a technique of organizing the data in the database
 - Normalization is a systematic approach of decomposing tables to eliminate data redundancy(repetition).
 - and undesirable characteristics like Insertion, Update and Deletion Anomalies.
@@ -729,7 +737,7 @@ A table is said to be in the Fourth Normal Form when,
 If all these conditions are true for any relation(table), it is said to have multi-valued dependency.
 ****
 ## Transaction
-
+[Index](#index)
 - A transaction is a set of logically related operations.
 - A transaction goes through different states throughout its life cycle.
 - The life cycle of a transaction is-
@@ -814,6 +822,7 @@ Transaction states are as follows-
 - It is the responsibility of recovery manager to ensure durability in the database.
 ****
 ## Schedules
+[Index](#index)
 - A series of operation from one transaction to another transaction is known as schedule
 
 ![](https://static.javatpoint.com/dbms/images/dbms-schedule.png)
@@ -936,6 +945,7 @@ In this schedule, W1 (A) and R2 (A) are called as conflicting operations.
 **View Serializability-** [Youtube](https://youtu.be/8LKM_RWeroM)
 ****
 ## Relational Algebra
+[Index](#index)
 - Relational Algebra is a procedural query language which takes a relation as an input and generates a relation as an output.
 
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/08/Relational-Algebra-Operators.png)
@@ -1025,7 +1035,33 @@ Then-
 ****
 ## Joins
 [Video](https://youtu.be/28V421ajsQI)
-- Join is a combination of a Cartesian product followed by a selection process.
+[Index](#index)
+
+> Summary:
+
+- There are mainly **two types** of **joins** in DBMS 
+    1. **Inner Join** 
+    2. **Outer Join**
+- An **inner join** is the widely used join operation and can be considered as a **default join-type**.
+- **Inner Join** is further divided into **three subtypes**: 
+    1. **Theta join**
+    2. **Natural join**
+    3. **EQUI join**
+- **Theta Join** allows you to **merge two tables** based on the **condition** represented by **theta**
+- When a **theta join use**s only **equivalence condition**, it becomes an **equi join**.
+- **Natural join** does not utilize any of the comparison operators.
+- An **outer join** doesn’t require each record in the two join tables to have a matching record.
+- Outer Join is further divided into three subtypes are: 
+    1. **Left Outer Join**
+    2. **Right Outer Join**
+    3. **Full Outer Join**
+- The **LEFT Outer Join** returns all the rows from the table on the left, even if no matching rows have been found in the table on the right.
+- The **RIGHT Outer Join** returns all the columns from the table on the right, even if no matching rows have been found in the table on the left.
+- In a **full outer join**, all tuples from both relations are included in the result, irrespective of the matching condition.
+
+> Defination and Explanation : 
+
+- **Join** is a **combination** of a **Cartesian product** followed by a **selection process**.
     > Join = Cartesian Product + Selection
 - A Join operation pairs two tuples from different relations, if and only if a given join condition is satisfied.
 - Symbol : ⋈
@@ -1111,6 +1147,7 @@ Example:
 
 - In a FULL OUTER JOIN , all tuples from both relations are included in the result, irrespective of the matching condition.
 - 
-![](https://sqlhints.com/wp-content/uploads/2014/01/FULL-OUTER-JOIN.jpg)
+![](https://sqlhints.com/wp-content/uploads/2014/01/FULL-OUTER-JOIN.jpg)]
+
 ****
-Created by Sanheen Sethi and Riya Triathi (2021)
+Created by Sanheen Sethi and Riya Tripathi (2021)
