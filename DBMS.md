@@ -427,6 +427,106 @@ NOTES-
     - Thus, it is non-updatable.
     - Few citizens may not have got their Adhaar cards, so for them its value is NULL.
 
+## Functional Dependancy
+- It is a **relationship between set of attributes** of a table, **dependent on each other**.
+- It typically **exists between the primary key and non-key attribute** within a table.
+- Functional Dependency is represented by $$\to$$ (arrow sign)
+- Let us consider P is a relation with attributes A and B
+    > A $$\to$$ B
+
+Example: We have a *Department* table with two attributes − *DeptId* and *DeptName*.
+The *DeptId* is our primary key. Here, *DeptId* uniquely identifies the *DeptName* attribute. This is because if you want to know the department name, then at first you need to have the *DeptId*.
+
+|DeptId|DeptName|
+|------|--------|
+|001|Finance|
+|002|Marketing|
+|003|HR|
+
+Function Dependency : *DeptId $$\to$$ DeptName*
+
+There are two types of functional dependencies-
+1. Trivial Functional Dependencies
+2. Non-trivial Functional Dependencies
+3. Multivalued Functional Dependency
+4. Transitive Functional Dependency
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/07/Functional-Dependency-Types-1.png)
+
+**1. Trivial Function Dependencies** : 
+- A functional dependency X → Y is said to be t**rivial if and only if Y ⊆ X.**
+
+Example:
+The examples of trivial functional dependencies are-
+- AB → A
+- AB → B
+- AB → AB
+
+We are considering the same *Department* table with two attributes to understand the concept of trivial dependency.
+
+The following is a trivial functional dependency since *DeptId* is a subset of *DeptId* and *DeptName*
+> *{ DeptId,  DeptName } $$\to$$ Dept Id*
+
+**2. Non-Trivial Functional Dependencies** :
+- A functional dependency X → Y is said to be n**on-trivial if and only if Y ⊄ X.**
+
+Example:
+The examples of non-trivial functional dependencies are-
+- AB → BC
+- AB → CD
+
+Example:
+
+|roll_no	|name	|age|
+|-----|----|---|
+|42	|abc	|17|
+|43	|pqr	|18|
+|44	|xyz	|18|
+|45	|abc	|19|
+
+Here, *roll_no → name* is a non-trivial functional dependency, since the dependent *name* is not a subset of determinant *roll_no*.
+
+Similarly, *{roll_no, name} → age *is also a non-trivial functional dependency, since age is not a subset of *{roll_no, name}*
+
+**3. Multivalued Functional Dependency** :
+- Entities of the dependent set are not dependent on each other.
+- If *a → {b, c}* and there exists no functional dependency between b and c, then it is called a multivalued functional dependency.
+
+Example:
+
+|roll_no	|name	|age|
+|-----|----|---|
+|42	|abc	|17|
+|43	|pqr	|18|
+|44	|xyz	|18|
+|45	|abc	|19|
+
+Here, *roll_no → {name, age} i*s a multivalued functional dependency, since the dependents name & age are not dependent on each other(i.e. *name → age *or a*ge → name d*oesn’t exist !)
+
+**4. Transitive Functional Dependency** :
+- Dependent is indirectly dependent on determinant.
+- If *a → b & b → c,* then according to axiom of transitivity, *a → c.* This is a transitive functional dependency.
+
+Example:
+
+|enrol_no|	name|	dept|	building_no|
+|------|----|----|--------|
+|42|	abc|	CO|	4|
+|43|	pqr|	EC|	2|
+|44|	xyz|	IT|	1|
+|45|	abc|	EC|	2|
+
+Here, *enrol_no → dept *and *dept → building_no,* 
+Hence, according to the axiom of transitivity,* enrol_no → building_no* is a valid functional dependency. This is an indirect functional dependency, hence called Transitive functional dependency.
+
+#### Inference Rules-
+1. **Reflexivity**- If B is a subset of A, then A → B always holds.
+2. **Transitivity**- If A → B and B → C, then A → C always holds.
+3. **Augmentation**- If A → B, then AC → BC always holds.
+4. **Decomposition**- If A → BC, then A → B and A → C always holds.
+5. **Composition**- If A → B and C → D, then AC → BD always holds.
+6. **Additive**- If A → B and A → C, then A → BC always holds.
+
 ## Decomposition of a Relation-
 > The process of **breaking** up a **single relation** into **two or more sub relations** is called as decomposition of a relation.
 
