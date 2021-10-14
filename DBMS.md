@@ -507,7 +507,7 @@ These scenarios are nothing but Insertion anomalies.
 >> Normalization of a Database is achieved by following a set of rules called 'forms' in creating the database.
 
 
-### Normalization Rule
+#### Normalization Rule
 
 (Must See the explanation part in starting of revision for some days.)
 
@@ -543,33 +543,35 @@ For a table to be in the First Normal Form, it should follow the following 4 rul
 For a table to be in the Second Normal Form,
 - It should be in the First Normal form.
 - And, it should not have Partial Dependency.
-- Check if all fields are dependent on the whole key
-- Remove fields that depend on part of the key (Partial Dependency)
-- Group partially-dependent fields as separate table
-- Name the tables
-- Identify key(s) to the table
+
+**Partial Dependency** :
+- Where an attribute in a table depends on only a part of the primary key and not on the whole key(Composite Key).
+- Partial Dependency occurs when a non-prime attribute is functionally dependent on part of a candidate key.
+- [Example](https://www.tutorialspoint.com/Partial-Dependency-in-DBMS)
 
 > Third Normal Form (3NF)
 
 `Explanation` : [Blog](https://www.studytonight.com/dbms/third-normal-form.php) | [Video](https://youtu.be/aAx_JoEDXQA)
 
 A table is said to be in the Third Normal Form when,
-- Remove fields that
-- depend on other non-key fields
-- can be calculated or derived from logic
-- Group interdependent fields as separate tables, identify the key and name the table
 - It is in the Second Normal form.
 - And, it doesn't have Transitive Dependency.
-- No column entry should be dependent on any other entry (value) other than the key for the table.If such an entity exists, move it outside into a new table.
+
+**Transitive Dependency** :  
+- When a non-prime attribute depends on other non-prime attributes rather than depending upon the prime attributes or primary key.
+- When an indirect relationship causes functional dependency it is called Transitive Dependency.
+- If  P -> Q and Q -> R is true, then P-> R is a transitive dependency.
+- [Example](https://www.tutorialspoint.com/Transitive-dependency-in-DBMS)
 
 > Boyce and Codd Normal Form (BCNF) 
 
-`Explanation` : [Blog](https://www.studytonight.com/dbms/third-normal-form.php) | [Video](https://youtu.be/aAx_JoEDXQA)
+`Explanation` : [Blog](https://www.studytonight.com/dbms/boyce-codd-normal-form.php) | [Video](https://youtu.be/aAx_JoEDXQA)
 
 A table is said to be in the BCNF when,
 - It should be in the Third Normal Form.
 - And, for any dependency A → B, A should be a super key.
-The second point sounds a bit tricky, right? In simple words, it means, that for a dependency A → B, A cannot be a non-prime attribute, if B is a prime attribute.
+The second point sounds a bit tricky, right? 
+In simple words, it means, that for a dependency A → B, A cannot be a non-prime attribute, if B is a prime attribute.
 
 > Fourth Normal Form (4NF)
 
@@ -579,11 +581,10 @@ A table is said to be in the Fourth Normal Form when,
 - It is in the Boyce-Codd Normal Form.
 - And, it doesn't have Multi-Valued Dependency.
 
-**What is Multi-valued Dependency ?**
-A table is said to have multi-valued dependency, if the following conditions are true,
-1. For a dependency A → B, if for a single value of A, multiple value of B exists, then the table may have multi-valued dependency.
-2. Also, a table should have at-least 3 columns for it to have a multi-valued dependency.
-3. And, for a relation R(A,B,C), if there is a multi-valued dependency between, A and B, then B and C should be independent of each other.
+**What is Multi-valued Dependency** :
+- Multivalued dependency occurs when two attributes in a table are independent of each other but, both depend on a third attribute.
+- A multivalued dependency consists of at least two attributes that are dependent on a third attribute that's why it always requires at least three attributes.
+- [Example](https://www.javatpoint.com/dbms-multivalued-dependency)
 
 If all these conditions are true for any relation(table), it is said to have multi-valued dependency.
 
