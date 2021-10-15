@@ -36,6 +36,7 @@ Other Notes Links:
 
 #### Types of Databases
 ![](https://static.javatpoint.com/dbms/images/types-of-databases.png)
+
 [Explanation](https://www.javatpoint.com/types-of-databases)
 - Centralized Database
 - Distributed Database
