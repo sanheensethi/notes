@@ -184,7 +184,7 @@ Database architecture can be seen as a single tier or multi-tier. But logically,
 
 ![](https://static.javatpoint.com/dbms/images/dbms-3-tier-architecture.png)
 
-##### Three schema Architecture
+### Three schema Architecture
 
 - The three schema architecture is also called ANSI/SPARC architecture or three-level architecture.
 - This framework is used to describe the structure of a specific database system.
