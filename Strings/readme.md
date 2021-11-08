@@ -1,8 +1,8 @@
 # Strings
 
-- [ ] Rearrange characters in a string such that no two adjacent are same [Link](https://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/) 
+- ### Rearrange characters in a string such that no two adjacent are same [Link](https://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/) 
 
-- [x] Round the given number to nearest multiple of 10.  [Link](https://www.geeksforgeeks.org/round-the-given-number-to-nearest-multiple-of-10/)
+- ### Round the given number to nearest multiple of 10.  [Link](https://www.geeksforgeeks.org/round-the-given-number-to-nearest-multiple-of-10/)
 - `Note :` Not For very Big Numbers, Try Another String Solution.
 > Sanheen
 ```cpp
@@ -27,7 +27,7 @@ int main(){
 }
 ```
 
-- [x] Find one extra character in a string [Link](https://www.geeksforgeeks.org/find-one-extra-character-string/)
+- ### Find one extra character in a string [Link](https://www.geeksforgeeks.org/find-one-extra-character-string/)
 > Sanheen
 ```cpp
 void extraChar(){
@@ -63,7 +63,7 @@ int main(){
 }
 ```
 
-- [x] Smallest number with sum of digits as N and divisible by 10^N [Link](https://www.geeksforgeeks.org/smallest-number-sum-digits-n-divisible-10n/)
+- ### Smallest number with sum of digits as N and divisible by 10^N [Link](https://www.geeksforgeeks.org/smallest-number-sum-digits-n-divisible-10n/)
 
 `Algorithm : ` To make a number divisible by $$10^N$$ we need at least N zeros at the end of the number. To make the number smallest, we append exactly N zeros to the end of the number. Now, we need to ensure the sum of the digits is N. For this, we will try to make the length of the number as small as possible to get the answer. Thus we keep on inserting 9 into the number till the sum doesn’t exceed N. If we have any remainder left, then we keep it as the first digit (most significant one) so that the resulting number is minimized.
 The approach works well for all subtasks but there are 2 corner cases:
