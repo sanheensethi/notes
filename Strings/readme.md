@@ -26,3 +26,39 @@ int main(){
     cout<<ans;
 }
 ```
+
+- [x] Find one extra character in a string [Link](https://www.geeksforgeeks.org/find-one-extra-character-string/)
+> Sanheen
+```cpp
+void extraChar(){
+	string str1,str2;
+	getline(cin,str1);
+	getline(cin,str2);
+	string completeString = str1+str2;
+	char diffChar = completeString[0];
+	for(int i=1;i<completeString.size();i++){
+		diffChar = diffChar ^ completeString[i];
+	}
+	cout<<diffChar;
+}
+```
+> Riya
+```cpp
+int main(){
+	string s1,s2;
+	cin>>s1>>s2;
+	unordered_map<char,int> mp;
+	for(auto i:s1){
+		mp[i]++;
+	}
+	for(auto i:s2){
+		mp[i]++;
+	}
+	for(auto it : mp){
+		if(it.second == 1){
+			cout<<it.first<<endl;
+		}
+	}
+	return 0;
+}
+```
