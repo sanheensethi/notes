@@ -46,3 +46,22 @@ void digitsNum(int N)
 }
 ```
 
+```cpp
+string smallestDigitSumN(int N){
+	string number = "";
+	if(N%9!=0) number += to_string(N%9);
+	for(int i=1;i<=N/9;i++){
+		number+="9";
+	}
+	return number;
+}
+
+void smallestNumberDivideBy10PowerNSumN(int N){
+	string number = smallestDigitSumN(N);
+	for(int i=1;i<=N;i++){
+		number+="0";
+	}
+	cout<<number;
+}
+```
+
