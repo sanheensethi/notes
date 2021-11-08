@@ -7,10 +7,7 @@
 
 - ### Find one extra character in a string [Link](https://www.geeksforgeeks.org/find-one-extra-character-string/)
 ```cpp
-void extraChar(){
-	string str1,str2;
-	getline(cin,str1);
-	getline(cin,str2);
+void extraChar(string str1,string str2){
 	string completeString = str1+str2;
 	char diffChar = completeString[0];
 	for(int i=1;i<completeString.size();i++){
