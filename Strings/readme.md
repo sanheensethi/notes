@@ -57,6 +57,10 @@ string smallestDigitSumN(int N){
 }
 
 void smallestNumberDivideBy10PowerNSumN(int N){
+	if(N==0){
+            cout<<"0";
+	    return;
+	}
 	string number = smallestDigitSumN(N);
 	for(int i=1;i<=N;i++){
 		number+="0";
