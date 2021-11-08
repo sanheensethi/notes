@@ -22,6 +22,17 @@ void extraChar(string str1,string str2){
 ### Smallest number with sum of digits as N and divisible by 10^N [Link](https://www.geeksforgeeks.org/smallest-number-sum-digits-n-divisible-10n/)
 
 ```cpp
+To make a number divisible by 10^N we need at least N zeros at the end of the number. 
+To make the number smallest, we append exactly N zeros to the end of the number. 
+Now, we need to ensure the sum of the digits is N. For this, 
+we will try to make the length of the number as small as possible to get the answer. 
+Thus we keep on inserting 9 into the number till the sum doesn’t exceed N. 
+If we have any remainder left, 
+then we keep it as the first digit (most significant one) 
+so that the resulting number is minimized.
+```
+
+```cpp
 void digitsNum(int N)
 {
     // If N = 0 the string will be 0
@@ -43,29 +54,6 @@ void digitsNum(int N)
         cout << "0";
      
     cout << "\n";
-}
-```
-
-```cpp
-string smallestDigitSumN(int N){
-	string number = "";
-	if(N%9!=0) number += to_string(N%9);
-	for(int i=1;i<=N/9;i++){
-		number+="9";
-	}
-	return number;
-}
-
-void smallestNumberDivideBy10PowerNSumN(int N){
-	if(N==0){
-            cout<<"0";
-	    return;
-	}
-	string number = smallestDigitSumN(N);
-	for(int i=1;i<=N;i++){
-		number+="0";
-	}
-	cout<<number;
 }
 ```
 
