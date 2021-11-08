@@ -17,6 +17,22 @@ void extraChar(string str1,string str2){
 	cout<<diffChar;
 }
 ```
+### Change string to a new character set [Link](https://www.geeksforgeeks.org/find-one-extra-character-string/)
+```cpp
+string stringToNewChar(string keyboard,string str){
+	char alpha[27];
+	for(int i=0;i<keyboard.size();i++){
+		char store = i+'a';
+		int index = keyboard[i]-'a';
+		alpha[index] = store;
+	}
+	for(int i=0;i<str.size();i++){
+		str[i] = alpha[str[i]-'a'];
+	}
+	return str;
+}
+```
+
 
 ## Arithmatic Opetraions
 ### Smallest number with sum of digits as N and divisible by 10^N [Link](https://www.geeksforgeeks.org/smallest-number-sum-digits-n-divisible-10n/)
