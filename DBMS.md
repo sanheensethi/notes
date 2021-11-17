@@ -253,6 +253,13 @@ Database architecture can be seen as a single tier or multi-tier. But logically,
 
 ****
 
+## Degree and Cardinality
+> What do you mean by degree and cardinality?
+
+- Degree - The number of attributes or columns in a relation is called the Degree of the relation. 
+- Cardinality - The number of tuples/ rows in a relation is called the Cardinality of the relation.
+
+****
 ## ER-Diagram
 [Index](#index)
 *ER-Diagram* : It stands for Entity Relationship Diagram.
