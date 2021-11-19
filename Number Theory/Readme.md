@@ -52,6 +52,8 @@
 
 ![17. ](http://www.sciweavers.org/upload/Tex2Img_1637356276/render.png) _In a Cartesian coordinate system, gcd(a, b) can be interpreted as the number of segments between points with integral coordinates on the straight line segment joining the points (0, 0) and (a, b)._
 
+18. gcd(odd,odd) = odd, gcd(odd,even) = odd
+
 
 ### Basic Euclidean Algorithm for GCD
 
