@@ -42,7 +42,7 @@ Using Division method to find gcd.
 
 ```cpp
     int gcd(int a,int b){
-        if(a%b == 0) return b; // if(b=0) return a; [1 more call of recursion]
+        if(a%b == 0) return b; // also we can write there , if(b==0) return a; [1 more call of recursion]
         return gcd(b,a%b);
     }
 ```
@@ -52,6 +52,6 @@ Using Division method to find gcd.
         return (a*b)/gcd(a,b);
     }
 ```
-**Inbuild Function : ** ``__gcd(a,b)``
+**Inbuild Function :** ``__gcd(a,b)``
 
 
