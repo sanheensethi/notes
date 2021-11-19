@@ -1,5 +1,10 @@
 # Strings
 
+# Concepts -
+1.  All substrings of `str` will exist in `str` if and only if the entire string `str` is palindrome.We can justify this fact by considering the whole string, a reverse of it will exist only if it is palindrome. And if a string is palindrome, then all reverse of all substrings exist.
+	- str = "ab" , all substrings are "a","b","ab" but reverse of "ab" is not present in str.
+	- Input : str = "aba" , Output: "YES"
+
 ## Basic
 ### Rearrange characters in a string such that no two adjacent are same [Link](https://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/) 
 
