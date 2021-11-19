@@ -75,4 +75,11 @@ Using Division method to find gcd.
 
 #### GCD Queries [Question] - [Link](https://youtu.be/e3qhRh4UOug)
 
+### Geometrical View of GCD
+Given Below, 24-by-60 rectangular area can be divided into a grid of: 1-by-1 squares, 2-by-2 squares, 3-by-3 squares, 4-by-4 squares, 6-by-6 squares or 12-by-12 squares. Therefore, 12 is the greatest common divisor of 24 and 60. A 24-by-60 rectangular area can thus be divided into a grid of 12-by-12 squares, with two squares along one edge (24/12 = 2) and five squares along the other (60/12 = 5). 
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/24x60.svg/170px-24x60.svg.png)
+
+> Note : `Result (Generally):` an a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b.
+
 
