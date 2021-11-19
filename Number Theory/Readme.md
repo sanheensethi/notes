@@ -82,4 +82,6 @@ Given Below, 24-by-60 rectangular area can be divided into a grid of: 1-by-1 squ
 
 > Note : `Result (Generally):` an a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b.
 
+Question on above result [Link](https://www.codechef.com/problems/ZACKHAN)
+
 
