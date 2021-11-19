@@ -26,6 +26,8 @@
 
 ![5. GCD(a,b,c) = GCD(GCD(a,b),c)](http://www.sciweavers.org/upload/Tex2Img_1637347135/render.png)
 
+![6. ](http://www.sciweavers.org/upload/Tex2Img_1637349528/render.png)
+
 ### Basic Euclidean Algorithm for GCD
 
 Using Division method to find gcd.
