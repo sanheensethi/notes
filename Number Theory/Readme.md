@@ -50,7 +50,7 @@
 
 ![16. ](http://www.sciweavers.org/upload/Tex2Img_1637356168/render.png)
 
-17. In a Cartesian coordinate system, gcd(a, b) can be interpreted as the number of segments between points with integral coordinates on the straight line segment joining the points (0, 0) and (a, b).
+![17. ](http://www.sciweavers.org/upload/Tex2Img_1637356276/render.png) In a Cartesian coordinate system, gcd(a, b) can be interpreted as the number of segments between points with integral coordinates on the straight line segment joining the points (0, 0) and (a, b).
 
 
 ### Basic Euclidean Algorithm for GCD
