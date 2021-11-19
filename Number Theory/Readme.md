@@ -28,7 +28,7 @@
 
 ![6. ](http://www.sciweavers.org/upload/Tex2Img_1637349528/render.png)
 
-![7. ](http://www.sciweavers.org/upload/Tex2Img_1637352266/render.png) [Obvoious, c is greatest common divisor of both, so it divides a and b]
+![7. ](http://www.sciweavers.org/upload/Tex2Img_1637352266/render.png) [Obvious, c is greatest common divisor of both, so it divides a and b]
 
 ![8. ](http://www.sciweavers.org/upload/Tex2Img_1637352739/render.png)
 
