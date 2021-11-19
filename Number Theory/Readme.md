@@ -54,4 +54,6 @@ Using Division method to find gcd.
 ```
 **Inbuild Function :** ``__gcd(a,b)``
 
+#### GCD Queries [Question] - [Link](https://youtu.be/e3qhRh4UOug)
+
 
