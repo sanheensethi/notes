@@ -24,6 +24,8 @@
 
 ![4. GCD(n,n+1) = 1](http://www.sciweavers.org/upload/Tex2Img_1637345021/render.png)
 
+![5. GCD(a,b,c) = GCD(GCD(a,b),c)](http://www.sciweavers.org/upload/Tex2Img_1637347135/render.png)
+
 ### Basic Euclidean Algorithm for GCD
 
 Using Division method to find gcd.
