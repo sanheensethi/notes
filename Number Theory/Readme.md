@@ -28,7 +28,7 @@
 
 ![6. ](http://www.sciweavers.org/upload/Tex2Img_1637349528/render.png)
 
-![7. ](http://www.sciweavers.org/upload/Tex2Img_1637352222/render.png)
+![7. ](http://www.sciweavers.org/upload/Tex2Img_1637352266/render.png)
 
 ### Basic Euclidean Algorithm for GCD
 
