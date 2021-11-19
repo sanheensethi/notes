@@ -36,7 +36,7 @@ Using Division method to find gcd.
 
 ![](http://www.sciweavers.org/upload/Tex2Img_1637346470/render.png)
 
-**Time Complexity :** O(log(min(a, b))
+**Time Complexity :** `O(log(min(a, b))`
 
 ```cpp
     int gcd(int a,int b){
