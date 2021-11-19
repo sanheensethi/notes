@@ -50,7 +50,7 @@
 
 ![16. ](http://www.sciweavers.org/upload/Tex2Img_1637356168/render.png)
 
-![17. ](http://www.sciweavers.org/upload/Tex2Img_1637356276/render.png) **_In a Cartesian coordinate system, gcd(a, b) can be interpreted as the number of segments between points with integral coordinates on the straight line segment joining the points (0, 0) and (a, b)._**
+![17. ](http://www.sciweavers.org/upload/Tex2Img_1637356276/render.png) _In a Cartesian coordinate system, gcd(a, b) can be interpreted as the number of segments between points with integral coordinates on the straight line segment joining the points (0, 0) and (a, b)._
 
 
 ### Basic Euclidean Algorithm for GCD
@@ -86,9 +86,9 @@ Using Division method to find gcd.
 ### Geometrical View of GCD
 Given Below, 24-by-60 rectangular area can be divided into a grid of: 1-by-1 squares, 2-by-2 squares, 3-by-3 squares, 4-by-4 squares, 6-by-6 squares or 12-by-12 squares. Therefore, 12 is the greatest common divisor of 24 and 60. A 24-by-60 rectangular area can thus be divided into a grid of 12-by-12 squares, with two squares along one edge (24/12 = 2) and five squares along the other (60/12 = 5). 
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/24x60.svg/170px-24x60.svg.png)
+**_More Generally, a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b._**
 
-> Note : `Result (Generally):` An a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b.
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/24x60.svg/170px-24x60.svg.png)
 
 Question on above result [Link](https://www.codechef.com/problems/ZACKHAN)
 
