@@ -32,6 +32,16 @@
 
 ![8. ](http://www.sciweavers.org/upload/Tex2Img_1637352739/render.png)
 
+![9. ](http://www.sciweavers.org/upload/Tex2Img_1637352928/render.png)
+
+![10. ](http://www.sciweavers.org/upload/Tex2Img_1637353348/render.png)
+
+![11. ](http://www.sciweavers.org/upload/Tex2Img_1637353314/render.png)
+
+![12. ](http://www.sciweavers.org/upload/Tex2Img_1637353254/render.png)
+
+![13. ](http://www.sciweavers.org/upload/Tex2Img_1637353215/render.png)
+
 ### Basic Euclidean Algorithm for GCD
 
 Using Division method to find gcd.
