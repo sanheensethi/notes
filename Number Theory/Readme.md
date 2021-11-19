@@ -35,6 +35,9 @@ Using Division method to find gcd.
 [Reference Foundation - Video 3]
 
 ![](http://www.sciweavers.org/upload/Tex2Img_1637346470/render.png)
+
+**Time Complexity :** O(log(min(a, b))
+
 ```cpp
     int gcd(int a,int b){
         if(a%b == 0) return b; // if(b=0) return a; [1 more call of recursion]
