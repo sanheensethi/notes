@@ -14,6 +14,8 @@
 - [x] `coprime numbers` : gcd(x,y) = 1 , consecutive numbers are coprime numbers.
 - [x] `relatively prime pair wise` : gcd(a,b) = 1 i.e., they are coprime numbers. 
 
+> Note : `Result (Generally):` An a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b.
+
 ### Properties of GCD and LCM
 
 ![1. LCM(A,B) x GCD(A,B) = AB](http://www.sciweavers.org/upload/Tex2Img_1637338492/render.png)
@@ -80,7 +82,7 @@ Given Below, 24-by-60 rectangular area can be divided into a grid of: 1-by-1 squ
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/24x60.svg/170px-24x60.svg.png)
 
-> Note : `Result (Generally):` an a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b.
+> Note : `Result (Generally):` An a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b.
 
 Question on above result [Link](https://www.codechef.com/problems/ZACKHAN)
 
