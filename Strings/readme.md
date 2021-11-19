@@ -1,7 +1,8 @@
 # Strings
 
 # Concepts -
-1.  Reverse of all substrings of `str` will exist in `str` if and only if the entire string `str` is palindrome.We can justify this fact by considering the whole string, a reverse of it will exist only if it is palindrome. And if a string is palindrome, then all reverse of all substrings exist. [Link](https://www.geeksforgeeks.org/perfect-reversible-string/)
+1. A string is said to be a `palindrome` if the string `read from left to right` is `equal` to the string `read from right to left`.
+2. Reverse of all substrings of `str` will exist in `str` if and only if the entire string `str` is palindrome.We can justify this fact by considering the whole string, a reverse of it will exist only if it is palindrome. And if a string is palindrome, then all reverse of all substrings exist. [Link](https://www.geeksforgeeks.org/perfect-reversible-string/)
 	- str = "ab" , all substrings are "a","b","ab" but reverse of "ab" is not present in str.
 	- Input : str = "aba" , Output: "YES"
 
