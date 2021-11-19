@@ -45,5 +45,11 @@ Using Division method to find gcd.
     }
 ```
 
+```cpp
+    int lcm(a,b){
+        return (a*b)/gcd(a,b);
+    }
+```
+**Inbuild Function : ** ``__gcd(a,b)``
 
 
