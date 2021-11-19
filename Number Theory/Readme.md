@@ -14,7 +14,7 @@
 - [x] `coprime numbers` : gcd(x,y) = 1 , consecutive numbers are coprime numbers.
 - [x] `relatively prime pair wise` : gcd(a,b) = 1 i.e., they are coprime numbers. 
 
-> Note : `Result (Generally):` An a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b.
+> Note : `Result (Generally):` An a-by-b rectangle can be covered with square tiles of side length c only if c is a common divisor of a and b. [Link](#geometrical-view-of-gcd)
 
 ### Properties of GCD and LCM
 
