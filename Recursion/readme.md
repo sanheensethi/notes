@@ -184,3 +184,22 @@ int main(){
     ...
 }
 ```
+`Question 6:` Maximum of an array using recursion
+```cpp
+/* Firstly, go to the last element,then when there is nothing left we return -infinity because in iteration when we find max, we initialize a number to some negative number, then start comparing*/
+
+/*Comparing in Backward Direction */
+int maxElement(int* arr,int index,int size){
+    if(index == size) return INT_MIN;
+    int prevMax = maxElement(arr,index+1,size);
+    return max(prevMax,arr[index]);
+}
+
+/* Comparing in forward direction */
+int maxElement(int *arr,int index,int size,int prevAns){
+    if(index == size) return prevAns;
+    int ans = max(prevAns,arr[index]);
+    return maxElement(arr,index+1,size,ans);
+}
+// call - maxElement(arr,0,size,INT_MIN);
+```
