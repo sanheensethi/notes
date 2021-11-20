@@ -229,3 +229,36 @@ int lastIndex(int *arr,int index,int size,int data){
     }
 }
 ```
+
+`Question 11:` All Index of Data in an array using recursion
+```cpp
+/*without using Vector , you have to just count the number of elemnts that match with data and in base case just creatre the array in heap and return its address and in returning you have to fill the array with index*/
+
+/*with using vector , you have to just push_back the index data mathching*/
+
+// without using vector
+int* allIndices(int* arr,int index,int size,int indexSize,int data,int* indexArraySize){
+    if(index == size){
+        int* brr = new int[indexSize];
+        *indexArraySize = indexSize;
+        return brr;
+    }
+    if(arr[index] != data){
+        return allIndices(arr,index+1,size,indexSize,data,indexArraySize);
+    }else{
+        int* brr = allIndices(arr,index+1,size,indexSize+1,data,indexArraySize);
+        brr[indexSize] = index;
+        return brr;
+    }
+}
+
+// With Using Vector
+
+void allIndices(int arr,int size,int index,int data,vector<int>& indexes){
+    if(index == size) return;
+    if(arr[index] == data){
+        indexes.push_back(index);
+    }
+    allIndices(arr,size,index+1,data,indexes);
+}
+```
