@@ -155,12 +155,28 @@ int main(){
 }
 ```
 
-`Question 6:` Print Array
+`Question 6:` Print Array using recursion
 ```cpp
 void arrayPrint(int* arr,int index,int size){
     if(index == size) return;
     cout<<arr[index]<<" ";
     arrayPrint(arr,index+1,size); // in every call we inc. index
+}
+int main(){
+    ...
+    arrayPrint(arr,0,n); // starting index, n is size of array.
+    ...
+}
+```
+
+`Question 7:` Print Array in Reverse using recursion
+```cpp
+/* first go completely last in array to print the last element first, when returning just print the current index element.*/
+
+void arrayPrintReverse(int* arr,int index,int size){
+    if(index == size) return;
+    arrayPrint(arr,index+1,size); // in every call we inc. index
+    cout<<arr[index]<<" "; 
 }
 int main(){
     ...
