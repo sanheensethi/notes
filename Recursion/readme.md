@@ -203,6 +203,7 @@ int maxElement(int *arr,int index,int size,int prevAns){
 }
 // call - maxElement(arr,0,size,INT_MIN);
 ```
+
 `Question 9:` First Index of Data in an array.
 ```cpp
 
@@ -210,6 +211,6 @@ int maxElement(int *arr,int index,int size,int prevAns){
 int firstIndex(int *arr,int index,int size,int data){
     if(index == size) return -1;
     if(arr[index] == data) return index;
+    return firstIndex(arr,index+1,size,data);
 }
-// call - maxElement(arr,0,size,INT_MIN);
 ```
