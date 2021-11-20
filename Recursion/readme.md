@@ -115,3 +115,43 @@ Example  :
 ```
 
 *Practice Recursion Questions from PEPCODING website*
+
+`Question 5: ` **Tower OF Hanoi**
+
+`Question 5:` Tower of Hanoi
+- Print the instructios to move the disk
+- from tower 1 to tower 2 using tower 3
+- following are the rules:
+    - move 1 disk at a time
+    - never place smaller disk under large
+    - you can only move the disk at the top.
+
+![](https://www.tutorialspoint.com/data_structures_algorithms/images/tower_of_hanoi.gif)
+
+- Expectation: toh(3,source,destination,helper)
+- Faith: toh(2,source,destination,helper) [Vishwas rkhenge 2 disk ka kaam khud ho jayega, hme nhi sochna kese hoga]
+- Expectation + Faith
+    - toh (3,A,B,C) -> 3 disk A se B mae using C
+    hum maan kr chlenge 2 disk upar ki already C mae hai to hum srd 3rd jo sbse niche ki disk hogi use move krenge.
+    toh(2,A,C,B) -> hmne 2 disk upar ki A se C mae dali hai dont know kese bas daal di hai, using B.
+    - hum ab 3rd disk ko move krenge A se B mae
+    - then, 2 disk ko B mae move krenge C se taking help from A. toh(2,B,C,A).
+    
+- Algorithm:
+    1. Move n-1 disk from source to destination using helper tower
+    2. move nth disk from source to destination i.e., print nth disk : source -> destination
+    3. Move n-1 disk again from source to destination using helper tower
+
+```cpp
+void TOH(int n,char A,char B,char C){ // A - kha se , B - Kha pr , C - Helper tower
+    if(n==0) return;
+    TOH(n-1,A,C,B); // move n-1 disk from A to C using B
+    cout<<n<<": "<<A<<" -> "<<B<<endl;
+    TOH(n-1,C,B,A); // move n-1 disk from C to B using A
+}
+
+int main(){
+    TOH(3,'A','B','C');
+    return 0;
+}
+```
