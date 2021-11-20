@@ -214,3 +214,18 @@ int firstIndex(int *arr,int index,int size,int data){
     return firstIndex(arr,index+1,size,data);
 }
 ```
+
+`Question 10:` Last Index of Data in an array using recursion
+```cpp
+/*First go to the last element of array i.e. out of bound then from there take -1, when returning check if a is -1 then we have to check the data with array data, if it is found then we dont have to check in returning we have to just return it, there for we add a == -1 in the if condition because when we found some index then a != -1 therefore we found the last index so, we have to return that.*/
+
+int lastIndex(int *arr,int index,int size,int data){
+    if(index == size) return -1;
+    int a = firstIndex(arr,index+1,size,data);
+    if(a == -1 && arr[index] == data){
+        return index;
+    }else{
+        return a;
+    }
+}
+```
