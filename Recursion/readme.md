@@ -67,3 +67,16 @@ void printDI(int n){
     cout<<n<<endl;
 }
 ```
+`Question 3` : Find Factorial of number n i.e. n!
+
+- Expectatiion: fact(5) = 5 x 4 x 3 x 2 x 1
+- Faith: fact(4) will return 4! i.e. 4 x 3 x 2 x 1
+- Expectation + Faith: fact(5) = 5 x fact(4)
+- Base Case : when n = 0 it will return 1 i.e., 0! = 1 or you can also return 1 when n = 1
+
+```cpp
+int factorial(int n){
+    if(n==1) return 1;
+    return n * factorial(n-1);
+}
+```
