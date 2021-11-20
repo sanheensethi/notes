@@ -154,3 +154,17 @@ int main(){
     return 0;
 }
 ```
+
+`Question 6:` Print Array
+```cpp
+void arrayPrint(int* arr,int index,int size){
+    if(index == size) return;
+    cout<<arr[index]<<" ";
+    arrayPrint(arr,index+1,size); // in every call we inc. index
+}
+int main(){
+    ...
+    arrayPrint(arr,0,n); // starting index, n is size of array.
+    ...
+}
+```
