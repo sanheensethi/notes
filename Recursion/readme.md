@@ -3,6 +3,8 @@
 - It can be `related with mathematics` in `mathematical induction`.
 - We just have faith that the function is true for n = k, then we find only for n = k+1
 
+> Note: Practice Basic Question from PEPCODING Website or Youtube first then from Aditya Verma Youtube
+
 Example : let we have to find the sum of n natural numbers, so we have to find: sum(n),
 now let n = 5, sum(5)  = 1 + 2 + 3 + 4 + 5
 we know that thing, but suppose we have faith that my sum function knows the answer for sum(4) = 1 + 2 + 3 + 4 then we have to just add 5 in sum(4),
@@ -114,11 +116,8 @@ Example  :
     }
 ```
 
-*Practice Recursion Questions from PEPCODING website*
-
 `Question 5: ` **Tower OF Hanoi**
 
-`Question 5:` Tower of Hanoi
 - Print the instructios to move the disk
 - from tower 1 to tower 2 using tower 3
 - following are the rules:
