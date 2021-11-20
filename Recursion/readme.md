@@ -94,7 +94,7 @@ int power(int x,int n){
 }
 ```
 
-`Important Function of Power`:
+### `Important Function of Power`:
 
 ![](http://www.sciweavers.org/upload/Tex2Img_1637399250/render.png)
 
