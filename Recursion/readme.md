@@ -93,3 +93,23 @@ int power(int x,int n){
     return x * power(x,n-1);
 }
 ```
+
+`Important Function of Power`:
+
+![](http://www.sciweavers.org/upload/Tex2Img_1637399250/render.png)
+
+Example  : 
+
+![](http://www.sciweavers.org/upload/Tex2Img_1637399397/render.png)
+
+```cpp
+    int powerFast(int x,int n){
+        if(n==0) return 1;
+        else if(n%2==0){ // power is even
+            int a = powerFast(x,n/2);
+            return a*a;
+        }else if(n%2 != 0){ // power is odd
+            return x*powerFase(n-1);
+        }
+    }
+```
