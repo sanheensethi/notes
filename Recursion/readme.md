@@ -50,3 +50,20 @@ void print(int n){
     cout<<n<<endl;
 }
 ```
+
+Question 2 : Print Decreasing Increasing
+n = 5, Output : 5 4 3 2 1 1 2 3 4 5
+
+- Expectation : print(5) = 5 .... 5
+- Faith : print(4) will work by himself
+- Expectation + Faith = print(5) = 5 , print(4) , 5
+- Base Case, when n == 0 it not prints so return at this time.
+
+```cpp
+void printDI(int n){
+    if(n==0) return;
+    cout<<n<<endl;
+    printDI(n-1);
+    cout<<n<<endl;
+}
+```
