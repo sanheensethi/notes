@@ -80,3 +80,16 @@ int factorial(int n){
     return n * factorial(n-1);
 }
 ```
+`Question 4` : Find ![](http://www.sciweavers.org/upload/Tex2Img_1637398319/render.png), create a function pow(x,n)
+
+-  ![Expectation: pow(3,5) = 3^5 = 3 x 3^4](http://www.sciweavers.org/upload/Tex2Img_1637398535/render.png)
+- ![Faith: pow(3,4) return its ans](http://www.sciweavers.org/upload/Tex2Img_1637398617/render.png)
+- Expectation + Faith: pow(3,5) = 3 x pow(3,4)
+- Base Case : when n = 0 it will return 1 i.e., power 0 of 3 = 1
+
+```cpp
+int power(int x,int n){
+    if(n==0) return 1;
+    return x * power(x,n-1);
+}
+```
