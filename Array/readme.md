@@ -13,4 +13,17 @@ We will run 3 nested loops,
 2.  the inner loop(2nd loop) picks the ending element
 3.  the innermost loop(3rd loop) print the values between i and j
 
+```cpp
+int arr[] = {1,2,3,4,5};
+int n = 5;
+for(int i=0;i<n;i++){ // starting point
+  for(int j=0;j<n;j++){ // ending point
+    for(int k=i;k<=j;k++){ // start to end printing
+      cout<<arr[k]<<" ";
+    }
+    cout<<endl;
+  }
+}
+```
+
 ![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021.png?token=AIQIQB7DV3QTC752VD7SLC3BVGTCK)
