@@ -59,8 +59,6 @@ Value of Counter            Subset
     111                    -> abc
 ```
 
-![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021(1).png?token=AIQIQBYCYUZYMJAY7LLZQGLBVGWA6)
-
 ```cpp
 void printPowerSet(char *set, int set_size)
 {
@@ -83,6 +81,8 @@ void printPowerSet(char *set, int set_size)
     }
 }
 ```
+
+![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021(1).png?token=AIQIQBYCYUZYMJAY7LLZQGLBVGWA6)
 
 ## Subsequence:
 
