@@ -26,7 +26,7 @@ for(int i=0;i<n;i++){ // starting point
 }
 ```
 
-![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021.png?token=AIQIQB7DV3QTC752VD7SLC3BVGTCK)
+![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021.png?token=AIQIQB634K6KRUOWCN255TDBVGWGU)
 
 ## Power Set:
 
