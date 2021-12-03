@@ -20,4 +20,43 @@
 
    It returns the numbers of set bits in an integer (the number of ones in the binary representation of the integer).
 
+6. N & 1 == 1 // odd
+   N & 1 == 0 // even
+
+7. void swap(int *a,int *b){ // swap two numbers 
+      *a^=*b; // *a = *a^*b
+      *b^=*a; // *b = *b^*a
+      *a^=*b; // *a = *a^*b
+   }
+
+8. log10(N) + 1 // number of digits in base 10 number
+
+9. char ch = 'c'; // Lower To Upper
+   ch &= '_' // ch = C
+   
+10. char ch = 'C'; // Upper To Lower
+   ch |= ' ' // ch = c
+   
+11. 1<<k; // k-th power of 2
+
+12. index++;
+    if(index >= n) index = 0;
+    
+    To overcome above : index = (index+1)%n;
+    
+13. index--;
+    if(index < 0) index = n-1;
+    
+    To Overcome above : index = (index+n-1)%n;
+    
+14. if(x==N) return true;
+    else return false;
+    
+    Above can also be written as : return x==N;
+    
+15. Setting all values of array is 0 -
+    for(int i=0;i<n;i++) array[i] = 0;
+    
+    For that - memset(arrayName,value,sizeOfArray); - memset(array,0,n);
+    
 ```
