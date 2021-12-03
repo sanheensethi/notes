@@ -13,4 +13,4 @@ We will run 3 nested loops,
 2.  the inner loop(2nd loop) picks the ending element
 3.  the innermost loop(3rd loop) print the values between i and j
 
-!(image)[https://www.autodraw.com/share/1A60OU7WL5CO]
+![image](./image/autodraw 3_12_2021.png?raw=true)
