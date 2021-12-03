@@ -26,7 +26,7 @@ for(int i=0;i<n;i++){ // starting point
 }
 ```
 
-![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021.png?token=AIQIQB634K6KRUOWCN255TDBVGWGU)
+![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021.png?token=AIQIQB7X4VB3YXU47JOPROTBVGXUM)
 
 ## Power Set:
 
@@ -82,7 +82,9 @@ void printPowerSet(char *set, int set_size)
 }
 ```
 
-![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021(1).png?token=AIQIQBYCYUZYMJAY7LLZQGLBVGWA6)
+![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021(1).png?token=AIQIQB2AFDEV7VIOXZPF7ALBVGXUO)
+
+![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021(2).png?token=AIQIQB7IQBZGEBOHZYRX4OTBVGXUO)
 
 ## Subsequence:
 
