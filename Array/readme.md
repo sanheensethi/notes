@@ -13,4 +13,4 @@ We will run 3 nested loops,
 2.  the inner loop(2nd loop) picks the ending element
 3.  the innermost loop(3rd loop) print the values between i and j
 
-![image](./image/autodraw 3_12_2021.png?raw=true)
+![image](https://raw.githubusercontent.com/sanheensethi/notes/main/Array/image/autodraw%203_12_2021.png?token=AIQIQB7DV3QTC752VD7SLC3BVGTCK)
