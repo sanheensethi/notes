@@ -113,7 +113,7 @@ vector<int> nodeToRootPath(Node* root,int data){
 const int N = 1e5+10;
 
 vector<int> g[N]; // in this we are declaring N vectors i.e. 2D vector, i.e. there are N vectors inside a `g` vector.
-bool visited[N];
+bool visited[N]; // whenever we enter into any vertex , we visit it.
 
 int main(){
   int n,m;
@@ -133,8 +133,10 @@ int main(){
 ```cpp
 void dfs(int vertex){
   /* Section 1:Take action on vertex after entering the vertex. */
+    visited[vertex] = true;
     for(int child:g[vertex]){
       /* Section 2: Take action on child before entering child node. */
+      if(visited[child] == true) continue;
       dfs(child);
       /* Section 3: Take action on child after exiting the child node */
     }
