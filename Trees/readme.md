@@ -103,3 +103,27 @@ vector<int> nodeToRootPath(Node* root,int data){
 - The time complexity of this solution is O(n), where n is the total number of nodes in the binary tree. 
 - But the auxiliary space used by it is O(n) required for storing two arrays.
 
+## Trees are special types of Graph.
+- Graph can be stored with adjacency matrix and adjacency list.
+- Adjacency is not memory sufficient so we use mostly adjacency list.
+- we can perform DFS and BFS in Trees also, they are same as graph {BFS - Level order traversal in  trees}
+
+```cpp
+#include<bits/stdc++.h>
+const int N = 1e5+10;
+
+vector<int> g[N]; // in this we are declaring N vectors i.e. 2D vector, i.e. there are N vectors inside a `g` vector.
+bool visited[N];
+
+int main(){
+  int n,m;
+  cin>>m>>m; // n vertices and m edges
+  for(int i=0; i<m; ++i){
+    int v1,v2;
+    cin>>v1>>v2;
+    g[v1].push_back(v2);
+    g[v2].push_back(v1);
+  }
+}
+
+```
