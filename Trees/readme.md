@@ -24,6 +24,42 @@ bool findNode(Node* root,int data){
   return false; // if not found in left and right return false
 }
 ```
+### Find Node to Root Path
+- First Find the Node
+- While going back to root -> add the nodes to a ;ist while returning.
+
+> Note: we can reduce the time if we pass the vector by reference in a function.
+
+```cpp
+vector<int> nodeToRootPath(Node* root,int data){
+  if(root == NULL){
+    vector<int> ans;
+    return ans;
+  }
+  
+  if(root->data == data){
+    vector<int> path;
+    path.emplace_back(root->data); // emplace_back is similar to push_back , difference in speed, push_back is bit slower then emplace back
+    return path;
+  }
+  
+  vector<int> pathLeft = nodeToRootPath(root->left,data);
+  if(pathLeft.size() != 0){
+    pathLeft.emplace_back(root->data);
+    return pathLeft;
+  }
+  
+  vector<int> pathRight = nodeToRootPath(root->left,data);
+  if(pathRight.size() != 0){
+    pathRight.emplace_back(root->data);
+    return pathRight;
+  }
+  
+  vector<int> ans;
+  return ans; // empty path if not found.
+  
+}
+```
 
 ### LCA (Lowest Common Ancestor)
 
