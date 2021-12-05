@@ -74,7 +74,7 @@ vector<int> nodeToRootPath(Node* root,int data){
     return pathLeft;
   }
   
-  vector<int> pathRight = nodeToRootPath(root->left,data);
+  vector<int> pathRight = nodeToRootPath(root->right,data);
   if(pathRight.size() != 0){
     pathRight.emplace_back(root->data);
     return pathRight;
