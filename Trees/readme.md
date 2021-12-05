@@ -2,6 +2,29 @@
 
 ## Binary Trees
 
+### Find Node in Tree
+- Idea is to use tree traversal.
+- If current node has same data then return with that node
+- otherwise, find in left subtree and right subtree.
+
+```cpp
+bool findNode(Node* root,int data){
+  if(root == NULL) return false;
+  
+  if(root->data == data){ // check if current node data is the data we are finding
+    return true;
+  }
+  
+  bool findLeft = findNode(root->left,data); // find in left subtree
+  if(findLeft) return true;
+  
+  bool findRight = findNode(root->right,data); // find in right subtree
+  if(findRight) return true;
+  
+  return false; // if not found in left and right return false
+}
+```
+
 ### LCA (Lowest Common Ancestor)
 
 - The lowest common ancestor (LCA) of two nodes x and y in a binary tree is the lowest (i.e., deepest) node that has both x and y as descendants, where each node can be a descendant of itself (so if x is reachable from w, w is the LCA). 
