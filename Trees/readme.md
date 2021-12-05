@@ -2,6 +2,31 @@
 
 ## Binary Trees
 
+### Node of Tree
+```cpp
+class Node{
+public:
+  int data;
+  Node *left,*right;
+  Node(int data){
+    this->data = data;
+    this->left = NULL;
+    this->right = NULL;
+  }
+};
+```
+### Sample Tree for Testing
+![](https://media.geeksforgeeks.org/wp-content/cdn-uploads/lca.png)
+```cpp
+Node *root = newNode(1);
+    root->left = newNode(2);
+    root->right = newNode(3);
+    root->left->left = newNode(4);
+    root->left->right = newNode(5);
+    root->right->left = newNode(6);
+    root->right->right = newNode(7);
+```
+
 ### Find Node in Tree
 - Idea is to use tree traversal.
 - If current node has same data then return with that node
