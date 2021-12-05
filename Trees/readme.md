@@ -125,5 +125,19 @@ int main(){
     g[v2].push_back(v1);
   }
 }
+```
 
+### DFS (Depth-First-Search)
+- In this we go deeply into a single child untill we reach last leaf node, before moving to other childs. 
+
+```cpp
+void dfs(int vertex){
+  /* Section 1:Take action on vertex after entering the vertex. */
+    for(int child:g[vertex]){
+      /* Section 2: Take action on child before entering child node. */
+      dfs(child);
+      /* Section 3: Take action on child after exiting the child node */
+    }
+  /* Section 4: Take action on vertex before exiting the vertex. */
+}
 ```
