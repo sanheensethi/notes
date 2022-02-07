@@ -91,6 +91,29 @@ int LCSubstring(string& x,string& y,int n,int m,int len){
 	return max({count,val1,val2});
 }
 ```
+> Memo
+```cpp
+int LCSubstring(string& x,string& y,int n,int m,int len,vector<vector<vector<int>>>& dp){
+	if(n == 0 || m == 0){
+		return len;
+	}
+	if(dp[n][m][len] != -1) return dp[n][m][len];
+	int count = len;
+	if(x[n-1] == y[m-1]){
+		count = LCSubstring(x,y,n-1,m-1,len+1,dp); 
+	}
+	int val1 = LCSubstring(x,y,n-1,m,0,dp);
+	int val2 = LCSubstring(x,y,n,m-1,0,dp);
+	return dp[n][m][len] = max({count,val1,val2});
+}
+
+int n,m;
+  	n = x.size();
+  	m = y.size();
+  	vector<vector<vector<int>>> dp(n+1,vector<vector<int>>(m+1,vector<int>(min(n+1,m+1),-1)));
+  	cout<<LCSubstring(x,y,n,m,0,dp);
+```
+
 > Tabular
 ```cpp
 int LCSubstringTabular(string& x,string& y){
