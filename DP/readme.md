@@ -142,12 +142,71 @@ int LCSubstringTabular(string& x,string& y){
 	return maxi;
 }
 ```
+### Print LCS
+```cpp
+pair<int,string> printLCS(string& x,string& y, int n,int m){
+	if(n == 0 || m == 0){
+		return {0,""};
+	}
+	if(x[n-1] == y[m-1]){
+		auto pr = printLCS(x,y,n-1,m-1);
+		pr.first = pr.first + 1;
+		pr.second = pr.second + to_string(x[n-1]);
+		return pr;
+	}
+	
+	auto val1 = printLCS(x,y,n-1,n);
+	auto val2 = printLCS(x,y,n,m-1);
+	if(val1.first < val2.first){
+		return val1;
+	}else{
+		return val2;
+	}
+}
 
-## Shortest Common Subsequence (Length)
+```
 
-> Lenght of Shortest Common Subsequence is n + m - LCS(x,y,n,m), because when we concatenate the both string we have to remove the common part, common part is nothing but a LCS, therefore we substract length of common subsequence.
+## Print All LCS
+```cpp
+pair<int,set<string>> allLCS(string& x,string& y,int n,int m){
+	if(n == 0 || m == 0){
+		set<string> ss;
+		ss.insert("");
+		return {0,ss};
+	}
+	if(x[n-1] == y[m-1]){
+		auto pr = allLCS(x,y,n-1,m-1);
+		pr.first = pr.first+1;
+		set<string> ss;
+		for(auto&val:pr.second){
+			ss.insert(val+x[n-1]);
+		}
+		return {pr.first,ss};
+	}
+	auto val1 = allLCS(x,y,n-1,m);
+	auto val2 = allLCS(x,y,n,m-1);
+	if(val1.first >= val2.first){
+		if(val1.first == val2.first){
+			set<string> ss;
+			for(auto&val:val1.second){
+				ss.insert(val);
+			}
+			for(auto&val:val2.second){
+				ss.insert(val);
+			}
+			return {val1.first,ss};
+		}else{
+			return val1;
+		}
+	}else{
+		return val2;
+	}
+}
+```
 
-
+Visulize Recursion [Link](https://recursion.vercel.app/)
+```js
+// visulization code
 function fn(n,m) {
   if(n == 0 || m == 0){
     let set = new Set();
@@ -188,3 +247,9 @@ function fn(n,m) {
     return v2;
   }
 }
+
+```
+
+## Shortest Common Subsequence (Length)
+
+> Lenght of Shortest Common Subsequence is n + m - LCS(x,y,n,m), because when we concatenate the both string we have to remove the common part, common part is nothing but a LCS, therefore we substract length of common subsequence.
