@@ -70,3 +70,21 @@ int LCSTabular(string& x,string& y){
 	return dp[n][m];
 }
 ```
+
+## Longest Common Substring
+
+> Recursion
+```cpp
+int LCSubstring(string& x,string& y,int n,int m,int len){
+	if(n == 0 || m == 0){
+		return len;
+	}
+	int count = len;
+	if(x[n-1] == y[m-1]){
+		count = LCSubstring(x,y,n-1,m-1,len+1); 
+	}
+	int val1 = LCSubstring(x,y,n-1,m,0);
+	int val2 = LCSubstring(x,y,n,m-1,0);
+	return max({count,val1,val2});
+}
+```
