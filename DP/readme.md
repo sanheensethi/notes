@@ -91,3 +91,45 @@ int LCSubstring(string& x,string& y,int n,int m,int len){
 	return max({count,val1,val2});
 }
 ```
+
+
+function fn(n,m) {
+  if(n == 0 || m == 0){
+    let set = new Set();
+    set.add('');
+    return [0,[... set]];
+  }
+
+  if(x[n-1] == y[m-1]){
+    let pr = fn(n-1,m-1);
+    pr[0] = pr[0]+1;
+    let set = new Set();
+    let val = pr[1];
+    for(const v of val){
+      set.add(v + x[n-1]);
+    }
+    return [pr[0],[... set]];
+  }
+
+  let v1 = fn(n-1,m);
+  let v2 = fn(n,m-1);
+
+  if(v1[0] >= v2[0]){
+    if(v1[0] == v2[0]){
+      let set = new Set();
+      let val1 = v1[1];
+      let val2 = v2[1];
+      for(const v of val1){
+        set.add(v);
+      }
+      for(const v of val2){
+        set.add(v);
+      }
+      return [v1[0],[... set]];
+    }else{
+      return v1;
+    }
+  }else{
+    return v2;
+  }
+}
