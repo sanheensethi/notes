@@ -91,7 +91,34 @@ int LCSubstring(string& x,string& y,int n,int m,int len){
 	return max({count,val1,val2});
 }
 ```
-
+> Tabular
+```cpp
+int LCSubstringTabular(string& x,string& y){
+	int n = x.size();
+	int m = y.size();
+	vector<vector<int>> dp(n+1,vector<int>(m+1,-1));
+	// initialization
+	for(int j = 0;j <= m;j++){
+		dp[0][j] = 0;
+	}
+	for(int i=0;i<=n;i++){
+		dp[i][0] = 0;
+	}
+	// run
+	int maxi = INT_MIN;
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=m;j++){
+			if(x[i-1] == y[j-1]){
+				dp[i][j] = 1 + dp[i-1][j-1];
+				maxi = max(maxi,dp[i][j]);
+			}else{
+				dp[i][j] = 0;
+			}
+		}
+	}
+	return maxi;
+}
+```
 
 function fn(n,m) {
   if(n == 0 || m == 0){
