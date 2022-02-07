@@ -143,6 +143,11 @@ int LCSubstringTabular(string& x,string& y){
 }
 ```
 
+## Shortest Common Subsequence (Length)
+
+> Lenght of Shortest Common Subsequence is n + m - LCS(x,y,n,m), because when we concatenate the both string we have to remove the common part, common part is nothing but a LCS, therefore we substract length of common subsequence.
+
+
 function fn(n,m) {
   if(n == 0 || m == 0){
     let set = new Set();
