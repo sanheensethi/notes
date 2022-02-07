@@ -74,6 +74,9 @@ int LCSTabular(string& x,string& y){
 ## Longest Common Substring
 
 > Recursion
+ - We are taking max of count,val1,val2 because suppose if we didn't encounter the same char then we have to start with 0 length again, but for that we can't forget to consider already solved problem maybe it is the max substring therefore we can't return from if statement as subsequence, rather we calculate further for no matching char and return the max of these three.
+For Visulization visit : [Visulize Link](https://recursion.vercel.app/)
+
 ```cpp
 int LCSubstring(string& x,string& y,int n,int m,int len){
 	if(n == 0 || m == 0){
