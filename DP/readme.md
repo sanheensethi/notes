@@ -260,3 +260,7 @@ function fn(n,m) {
 > Insertion: Length(a) - LCS
   
 > Deletion: Length(b) - LCS
+
+## Longest Palindromic Subsequence
+
+> LPS = LCS (a,reverse(a)); This is because we want a string which is common from front and back, and as it is also relatable to LCS therefore there is thought that there should be second string but it is not given, it means that string should be get from the given string by some operation. We have to just see the similarity and for LPS to make front and back equal we have to find longest common subsequence from front and back side.
