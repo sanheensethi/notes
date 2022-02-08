@@ -258,4 +258,4 @@ function fn(n,m) {
 ## Minimum Number of Insertion and Deletion to convert String `a` to String `b`
 
 > Insertion: Length(a) - LCS
-> Deletion: Length(b) - LCS
+  Deletion: Length(b) - LCS
