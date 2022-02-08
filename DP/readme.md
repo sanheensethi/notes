@@ -252,4 +252,10 @@ function fn(n,m) {
 
 ## Shortest Common Subsequence (Length)
 
-> Lenght of Shortest Common Subsequence is n + m - LCS(x,y,n,m), because when we concatenate the both string we have to remove the common part, common part is nothing but a LCS, therefore we substract length of common subsequence.
+> Length of Shortest Common Subsequence is n + m - LCS(x,y,n,m), because when we concatenate the both string we have to remove the common part, common part is nothing but a LCS, therefore we substract length of common subsequence.
+
+
+## Minimum Number of Insertion and Deletion to convert String `a` to String `b`
+
+> Insertion: Length(a) - LCS
+> Deletion: Length(b) - LCS
