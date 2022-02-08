@@ -271,4 +271,4 @@ function fn(n,m) {
 
 ## Minimum number of deletion in a string to make it a palindrome
 
-> 
+> `Length(string) - LPS`
