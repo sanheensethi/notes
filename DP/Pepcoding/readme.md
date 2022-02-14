@@ -126,3 +126,36 @@ void solve(){
 	cout<<current<<endl;
 }
 ```
+
+## Climb Stair Variable Jumps
+> Recursion
+```cpp
+int paths(vector<int>& jumps,int i,int n){
+	if(i > n) return 0;
+	if(i == n) return 1;
+	int total = 0;
+	int steps = jumps[i];
+	while(steps){
+		total += paths(jumps,i+steps,n);
+		steps--;
+	}
+	return total;
+}
+```
+
+> Memoization
+```cpp
+int paths(vector<int>& jumps,int i,int n,vector<int>& dp){
+	if(i > n) return 0;
+	if(i == n) return 1;
+	if(dp[i] != -1) return dp[i];
+	int total = 0;
+	int steps = jumps[i];
+	while(steps){
+		total += paths(jumps,i+steps,n,dp);
+		steps--;
+	}
+	return dp[i] = total;
+}
+vector<int> dp(n+1,-1);
+```
