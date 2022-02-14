@@ -94,3 +94,35 @@ vector<int> dp(n+1,-1);
 
 > Tabular
 ```cpp
+void solve(){
+	int n;cin>>n;
+	vector<int> dp(n+1,-1);
+	// initialization
+	dp[0] = 1;
+	dp[1] = 1;
+	dp[2] = 2;
+	for(int i = 3;i<=n;i++){
+		dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
+	}
+	cout<<dp[n]<<endl;
+}
+```
+
+> Memory Optimized
+```cpp
+void solve(){
+	int n;cin>>n;
+	// initialization
+	int prev0 = 1;
+	int prev1 = 1;
+	int prev2 = 2;
+	int current;
+	for(int i = 3;i<=n;i++){
+		current = prev2 + prev1 + prev0;
+		prev0 = prev1;
+		prev1 = prev2;
+		prev2 = current;
+	}
+	cout<<current<<endl;
+}
+```
