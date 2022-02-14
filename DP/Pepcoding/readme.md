@@ -207,3 +207,27 @@ int minSteps(vector<int>& jumps,int idx,int n){
 	return 1 + mini; // current move have to be counted that yes we make this move
 }
 ```
+> Memoization
+```cpp
+int minSteps(vector<int>& jumps,int idx,int n,vector<int>& dp){
+	if(idx > n) return INT_MAX;
+	if(idx == n) return 0;
+	if(dp[idx] != -1) return dp[idx];
+	int steps = jumps[idx];
+	int mini = INT_MAX-1;
+	while(steps){
+		int val = minSteps(jumps,idx+steps,n,dp);
+		mini = min(val,mini);
+		steps--;
+	}
+	return dp[idx] = 1 + mini; // current move have to be counted that yes we make this move
+}
+
+vector<int> dp(n+1,-1);
+int ans = minSteps(jumps,0,n,dp);
+if(ans == INT_MAX){
+	cout<<"null"<<endl;
+}else{
+	cout<<ans<<endl;
+}
+```
