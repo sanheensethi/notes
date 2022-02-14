@@ -231,3 +231,34 @@ if(ans == INT_MAX){
 	cout<<ans<<endl;
 }
 ```
+> Tabulation
+```cpp
+void solve(){
+	int n;cin>>n;
+	vector<int> jumps(n);
+	for(int i=0;i<n;i++){
+		cin>>jumps[i];
+	}
+	vector<int> dp(n+1,-1);
+	// initialization
+	dp[n] = 0;
+	for(int i = n-1;i>=0;i--){
+		int steps = jumps[i];
+		int mini = INT_MAX-1;
+		while(steps){
+			if(i + steps <= n){
+				int val = dp[i+steps];
+				mini = min(mini,val);
+			}
+			steps--;
+		}
+		dp[i] = 1 + mini;
+	}
+
+	if(dp[0] == INT_MAX){
+		cout<<"null"<<endl;
+	}else{
+		cout<<dp[0]<<endl;
+	}
+}
+```
