@@ -189,7 +189,8 @@ void solve(){
 ## Climbing Stairs Minimum Moves
 > Recursion
 
-- Why we take `mini=INT_MAX-1` -> if we didn't take -1 then for 0 jumps from particular position, mini is INT_MAX but it will not iterate through while loop therefre after that we add 1 to INT_MAX as returning 1 + mini => INT_MAX + 1 = INT_MIN therefore we just take INT_MAX-1 as max value.
+- Why we take `mini=INT_MAX-1` -> if we didn't take -1 then for 0 jumps from particular position, mini is INT_MAX, but it will not iterate through while loop therefore after while loop while returning we add 1 + mini => 1 + INT_MAX as returning 1 + mini => INT_MAX + 1 = INT_MIN therefore we just take INT_MAX-1 as max value, so afer we add 1 it will not be INT_MIN, it will remain INT_MAX
+
 - example n = 6 ; jumps = [4,2,0,2,2,3]
 
 ```cpp
