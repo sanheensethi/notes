@@ -64,3 +64,33 @@ void solve(){
 	cout<<current;
 }
 ```
+
+## Climb Stairs
+> Recursion
+```cpp
+int paths(int n){
+	if(n < 0) return 0;
+	if(n == 0) return 1;
+	int v1 = paths(n-1);
+	int v2 = paths(n-2);
+	int v3 = paths(n-3);
+	return v1+v2+v3;
+}
+```
+
+> Memoization
+```cpp
+int paths(int n,vector<int>& dp){
+	if(n < 0) return 0;
+	if(n == 0) return 1;
+	if(dp[n] != -1) return dp[n];
+	int v1 = paths(n-1,dp);
+	int v2 = paths(n-2,dp);
+	int v3 = paths(n-3,dp);
+	return v1+v2+v3;
+}
+vector<int> dp(n+1,-1);
+```
+
+> Tabular
+```cpp
