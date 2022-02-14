@@ -186,3 +186,23 @@ void solve(){
 	cout<<dp[0]<<endl;
 }
 ```
+## Climbing Stairs Minimum Moves
+> Recursion
+
+- Why we take `mini=INT_MAX-1` -> if we didn't take -1 then for 0 jumps from particular position, mini is INT_MAX but it will not iterate through while loop therefre after that we add 1 to INT_MAX as returning 1 + mini => INT_MAX + 1 = INT_MIN therefore we just take INT_MAX-1 as max value.
+- example n = 6 ; jumps = [4,2,0,2,2,3]
+
+```cpp
+int minSteps(vector<int>& jumps,int idx,int n){
+	if(idx > n) return INT_MAX;
+	if(idx == n) return 0;
+	int steps = jumps[idx];
+	int mini = INT_MAX-1;
+	while(steps){
+		int val = minSteps(jumps,idx+steps,n);
+		mini = min(val,mini);
+		steps--;
+	}
+	return 1 + mini; // current move have to be counted that yes we make this move
+}
+```
