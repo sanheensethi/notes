@@ -160,3 +160,29 @@ int paths(vector<int>& jumps,int i,int n,vector<int>& dp){
 }
 vector<int> dp(n+1,-1);
 ```
+
+> Tabulation
+```cpp
+void solve(){
+	int n;cin>>n;
+	vector<int> jumps(n);
+	for(int i=0;i<n;i++){
+		cin>>jumps[i];
+	}
+	vector<int> dp(n+1,-1);
+	// initialization
+	dp[n] = 1;
+	for(int i = n-1;i>=0;i--){
+		int steps = jumps[i];
+		int total = 0;
+		while(steps){
+			if(i+steps <= n){
+				total += dp[i+steps];
+			}
+			steps--;
+		}
+		dp[i] = total;
+	}
+	cout<<dp[0]<<endl;
+}
+```
