@@ -339,6 +339,12 @@ int ans = minCost(maze,0,0,dp);
 
 > Tabular
 
+- In Tabular, we will initialize last row(`n-1`) and last column(`m-1`) the 2D matrix.
+- Why ? because, when man is standing in the last `row`, it have only one option to move in the right direction i.e., `col+1`. 
+- Simillarly, when we man is in the last `column`, it have only one direction to move i.e. in downward direction i.e., `row+1`.
+- And, we fill this array from bottom to up , because we know at `(n-1,m-1)` the ans will be itself value `maze[n-1][m-1]`.
+- So, during initialization, we are adding last row as suffix sum and last col also as suffix sum. 
+
 ```cpp
 void solve(){
 	int n,m;cin>>n>>m;
