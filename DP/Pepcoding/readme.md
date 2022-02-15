@@ -265,6 +265,23 @@ void solve(){
 
 ## Minimum Cost Dynamic Programming
 
+> Recursion (Wrong Way):
+```cpp
+int minCost(vector<vector<int>>& maze,int row,int col){
+	if(row >= maze.size() || col >= maze[0].size()) return INT_MAX;
+	if(row == maze.size()-1 && col == maze[0].size()-1){
+		return maze[row][col];
+	}
+	int val1 = maze[row][col] + minCost(maze,row+1,col); // down
+	int val2 = maze[row][col] + minCost(maze,row,col+1); // right
+	return min(val1,val2); // current cell taken
+}
+```
+- `Question:` Why Wrong ?
+- `Answer:` We will not return `INT_MAX` from the base case.
+- `Question:` Why we didn't return `INT_MAX` as base case when `row >= maze.size()` or `col >= maze.size()` ?
+- `Answer:` It's difficult to think in the first go but when you dry run for smaller testcase you will got to know the main problem, as when you write this as base case, then when you get `INT_MAX` as return from parituclar row and col to preious partiular row and column, you end up with `maze[row][col] + INT_MAX` = `INT_MIN` that's wrong. Okay, now you will say that okay i will not add maze[row][col] to val1 and val2 directly but in the end i will add it. Yes you can do it, I just tell you the case to think that while returning INT_MAX you should care of that adding these numbers to INT_MAX which make the bug in code.
+
 > Recursion:
 ```cpp
 int minCost(vector<vector<int>>& maze,int row,int col){
