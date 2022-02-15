@@ -262,3 +262,92 @@ void solve(){
 	}
 }
 ```
+
+## Minimum Cost Dynamic Programming
+
+> Recursion:
+```cpp
+int minCost(vector<vector<int>>& maze,int row,int col){
+	if(row == maze.size()-1 && col == maze[0].size()-1){
+		return maze[row][col];
+	}
+	int val1 = INT_MAX;
+	int val2 = INT_MAX;
+	// down
+	if(row+1 < maze.size() && col < maze[0].size()){
+		val1 = maze[row][col] + minCost(maze,row+1,col);
+	}
+	// right
+	if(col+1 < maze[0].size() && row < maze.size()){
+		val2 = maze[row][col] + minCost(maze,row,col+1);
+	}
+	return min(val1,val2); // current cell taken
+}
+```
+
+> Memoization
+```cpp
+int minCost(vector<vector<int>>& maze,int row,int col,vector<vector<int>>& dp){
+	if(row == maze.size()-1 && col == maze[0].size()-1){
+		return maze[row][col];
+	}
+	if(dp[row][col] != -1) return dp[row][col];
+	int val1 = INT_MAX;
+	int val2 = INT_MAX;
+	if(row+1 < maze.size() && col < maze[0].size()){
+		val1 = maze[row][col] + minCost(maze,row+1,col,dp);
+	}
+	if(col + 1 < maze[0].size() && row < maze.size()){
+		val2 = maze[row][col] + minCost(maze,row,col+1,dp);
+	}
+	return dp[row][col] = min(val1,val2);
+}
+vector<vector<int>> dp(n+1,vector<int>(m+1,-1));
+int ans = minCost(maze,0,0,dp);
+```
+
+> Tabular
+
+```cpp
+void solve(){
+	int n,m;cin>>n>>m;
+	vector<vector<int>> maze(n,vector<int>(m));
+	
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			cin>>maze[i][j];
+		}
+	}
+
+	vector<vector<int>> T(n,vector<int>(m,-1));
+	T[n-1][m-1] = maze[n-1][m-1];
+
+	// initialization
+	// when man is on last row, its option
+	// is only 1 move in right direction.
+
+	for(int j= m-2;j >= 0;j--){
+		T[n-1][j] = maze[n-1][j] + T[n-1][j+1];
+	}
+
+	// when man is in last column it have only
+	// one option move in down direction only.
+
+	for(int i = n-2;i >= 0;i--){
+		T[i][m-1] = maze[i][m-1] + T[i+1][m-1];
+	}
+
+	// 2d matrix fill
+
+	for(int i = n-2;i>=0;i--){
+		for(int j = m-2;j>=0;j--){
+			int val1 = INT_MAX;
+			int val2 = INT_MAX
+			val1 = maze[i][j] + T[i+1][j];
+			val2 = maze[i][j] + T[i][j+1];
+			T[i][j] = min(val1,val2);
+		}
+	}
+	cout<<T[0][0]<<endl;
+}
+```
