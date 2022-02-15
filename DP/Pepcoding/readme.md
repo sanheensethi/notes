@@ -280,9 +280,21 @@ int minCost(vector<vector<int>>& maze,int row,int col){
 - `Question:` Why Wrong ?
 - `Answer:` We will not return `INT_MAX` from the base case.
 - `Question:` Why we didn't return `INT_MAX` as base case when `row >= maze.size()` or `col >= maze.size()` ?
-- `Answer:` It's difficult to think in the first go but when you dry run for smaller testcase you will got to know the main problem, as when you write this as base case, then when you get `INT_MAX` as return from parituclar row and col to preious partiular row and column, you end up with `maze[row][col] + INT_MAX` = `INT_MIN` that's wrong. Okay, now you will say that okay i will not add maze[row][col] to val1 and val2 directly but in the end i will add it. Yes you can do it, I just tell you the case to think that while returning INT_MAX you should care of that adding these numbers to INT_MAX which make the bug in code.
+- `Answer:` It's difficult to think in the first go but when you dry run for smaller testcase you will got to know the main problem, as when you write this as base case, then when you get `INT_MAX` as return from parituclar row and col to preious partiular row and column, you end up with `maze[row][col] + INT_MAX` = `INT_MIN` that's wrong. Okay, now you will say that okay i will not add `maze[row][col]` to `val1` and `val2` directly but in the end `on returing` i will `add it`. Yes you can do it, I just tell you the case to think that while returning `INT_MAX` from base case you should care of that adding these numbers to `INT_MAX` which `make the bug in code`.
 
-> Recursion:
+> Recursion: (Right way):
+```cpp
+int minCost(vector<vector<int>>& maze,int row,int col){
+	if(row == maze.size()-1 && col == maze[0].size()-1){
+		return maze[row][col];
+	}
+	int val1 = minCost(maze,row+1,col,dp); // down
+	int val2 = minCost(maze,row,col+1,dp); // right
+	return maze[row][col] + min(val1,val2); // current cell taken
+}
+```
+
+> Recursion (Another Right Way):
 ```cpp
 int minCost(vector<vector<int>>& maze,int row,int col){
 	if(row == maze.size()-1 && col == maze[0].size()-1){
@@ -301,6 +313,8 @@ int minCost(vector<vector<int>>& maze,int row,int col){
 	return min(val1,val2); // current cell taken
 }
 ```
+
+
 
 > Memoization
 ```cpp
