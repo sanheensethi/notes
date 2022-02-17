@@ -285,6 +285,7 @@ int minCost(vector<vector<int>>& maze,int row,int col){
 > Recursion: (Right way):
 ```cpp
 int minCost(vector<vector<int>>& maze,int row,int col){
+	if(row >= maze.size() || col >= maze[0].size()) return INT_MAX;
 	if(row == maze.size()-1 && col == maze[0].size()-1){
 		return maze[row][col];
 	}
@@ -297,6 +298,7 @@ int minCost(vector<vector<int>>& maze,int row,int col){
 > Recursion (Another Right Way):
 ```cpp
 int minCost(vector<vector<int>>& maze,int row,int col){
+
 	if(row == maze.size()-1 && col == maze[0].size()-1){
 		return maze[row][col];
 	}
@@ -319,7 +321,7 @@ int minCost(vector<vector<int>>& maze,int row,int col){
 > Memoization
 ```cpp
 int minCost(vector<vector<int>>& maze,int row,int col,vector<vector<int>>& dp){
-	if(row >= maze.size() || col >= maze[0].size()) return INT_MAX;
+	
 	if(row == maze.size()-1 && col == maze[0].size()-1){
 		return maze[row][col];
 	}
