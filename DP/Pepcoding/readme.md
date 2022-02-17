@@ -319,6 +319,7 @@ int minCost(vector<vector<int>>& maze,int row,int col){
 > Memoization
 ```cpp
 int minCost(vector<vector<int>>& maze,int row,int col,vector<vector<int>>& dp){
+	if(row >= maze.size() || col >= maze[0].size()) return INT_MAX;
 	if(row == maze.size()-1 && col == maze[0].size()-1){
 		return maze[row][col];
 	}
