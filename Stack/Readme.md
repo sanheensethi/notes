@@ -7,7 +7,7 @@
 
 vector<int> ngeRight(vector<int>& vec){
 	// right to left as when i am at index i then i have to 
-	// check i+1 th element first so it should be in top
+	// check i+1 th element first so it should be in top of stack
 	stack<int> st;
 	int n = vec.size();
 	vector<int> ans;
