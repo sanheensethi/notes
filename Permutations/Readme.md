@@ -17,7 +17,7 @@ void printPermutations(string question,string ans){
 	}
 }
 ```
-> Using Recursion (Striver) [More Space Complaxity] (Approach 1)
+> Using Recursion (Striver) [More Space Complaxity] (Approach 1) [Using Map]
 
 ```cpp
 void permutations(vector<int>& arr,vector<int>& vec,umap<int,bool>& umap,vector<vector<int>>& ans){
