@@ -62,3 +62,34 @@ void BalanceBrackets(string str){
 	}
 }
 ```
+
+## Next Greater Element
+
+```cpp
+vector<ll> nextGreater(vector<ll>& vec){
+	int n = vec.size();
+	stack<ll> st;
+	vector<ll> ans;
+	for(int i=n-1;i>=0;i--){
+		if(st.empty()){
+			ans.push_back(-1);
+			st.push(vec[i]);
+		}else if(st.top() > vec[i]){
+			ans.push_back(st.top());
+			st.push(vec[i]);
+		}else if(st.top() <= vec[i]){
+			while(!st.empty() && st.top() <= vec[i]){
+				st.pop();
+			}
+			if(st.empty()){
+				ans.push_back(-1);
+			}else{
+				ans.push_back(st.top());
+			}
+			st.push(vec[i]);
+		}
+	}
+	reverse(all(ans));
+	return ans;
+}
+```
