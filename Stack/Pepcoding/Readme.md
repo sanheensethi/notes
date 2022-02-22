@@ -93,3 +93,31 @@ vector<ll> nextGreater(vector<ll>& vec){
 	return ans;
 }
 ```
+
+## Sliding window maximum/maximum element of subarray of size k
+
+- We will find the nextGreaterElement Index for each element then with help of this we will run the algo.
+- If next greater element of element exists in same window we jump j to that element index, and repeat it untill we find the next greater element index out of the window.
+- if we find index of next greater element of the current, which is out of window of size k, then the current element is the bigger element of current window.
+
+```cpp
+vector<int> maxKsubarray(vector<int>& arr,int k){
+	vector<int> nge = nextGreaterElementIndex(arr); // vector of index of next greater element
+	int i = 0;
+	int n = arr.size();
+	int j = i;
+	vector<int> ans;
+	while(i <= n-k){
+		if(j < i){
+			j = i;
+		}
+		while(nge[j] < i+k){
+			j = nge[j];
+		}
+		ans.push_back(arr[j]);
+		i++;
+	}
+
+	return ans;
+}
+```
