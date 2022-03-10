@@ -1,7 +1,7 @@
-## Lab Manual 1 Solution:
+# Lab Manual 1 Solution:
 
 
-> Solution 1 : 
+## Solution 1 : 
 
 > Riya
 ```cpp
