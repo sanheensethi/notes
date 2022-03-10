@@ -1,5 +1,8 @@
 ## Lab Manual 1 Solution:
 
+
+> Solution 1 : 
+
 > Riya
 ```cpp
   void bfs(vector<vector<int>> &graph,int start,int end){
