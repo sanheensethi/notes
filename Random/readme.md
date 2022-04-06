@@ -59,4 +59,5 @@
     
     For that - memset(arrayName,value,sizeOfArray); - memset(array,0,n);
     
-```
+16. Example: if an array has elements as [a,a,a,a,a,a,a,a,a,a] then number of pairs (a,a) such that i<j is n*(n-1)/2 wheren n is count of a.
+ ```
