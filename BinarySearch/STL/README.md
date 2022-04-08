@@ -1,4 +1,4 @@
-#Binary Search Function
+# Binary Search Function
 
 ```cpp
 
@@ -10,7 +10,7 @@ bool res = binary_search(a,a+n,4) // true
 
 ```
 
-Lower Bound Function
+# Lower Bound Function
 
 ```cpp
 
@@ -24,5 +24,19 @@ int ind = lower_bound(a,a+n,7) - a; // it return iterator of next greater elemen
 
 int ind = lower_bound(a,a+n,10) - a; // it return immediate greater to given number if not find then next greter element index
 // return 6
+```
 
+# Upper Bound Function
+
+```cpp
+a[] = {1,4,5,6,9,9};
+
+int ind = lower_bound(a,a+n,4) - a; // it will return iterator of 5 
+// return 2
+
+int ind = lower_bound(a,a+n,7) - a; // it return iterator of next greater element of 7 if fount and if not found then also it give next greater element of 7
+// return 4
+
+int ind = lower_bound(a,a+n,10) - a; // it return immediate greater to given number if not find then next greter element index is given.
+// return 6
 ```
