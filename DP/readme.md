@@ -309,7 +309,7 @@ bool isPalindrome(string& s,int i,int j){
 
 What if we store already calculated palindrome indexes that yes from i to j it is palindrome ?
 
-> memo
+> memo - O(n^2)
 ```cpp
     bool isPalin(string& s,int i,int j,vector<vector<int>>& dp){
         if(i >= j) return dp[i][j] = 1;
