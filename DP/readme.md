@@ -272,3 +272,60 @@ function fn(n,m) {
 ## Minimum number of deletion in a string to make it a palindrome
 
 > `Length(string) - LPS`
+
+## Number of Palindromic Substrings [Link](https://leetcode.com/problems/palindromic-substrings/)
+
+> Brute Force
+```cpp
+// check for all possible values. O(n^3)
+
+bool isPalindrome(string& s,int i,int j){
+	while(i <= j){
+		if(s[i] != s[j]) return false;
+		i++;j--;
+	}
+	return true;
+}
+
+int countPalindrome(string s){
+	int n = s.size();
+	for(int i=0;i<n;i++){
+		for(int j=i;j<n;j++){
+			ans += isPalindrome(s,i,j);
+		}
+	}
+}
+```
+
+> Recursion Brute Force:
+```cpp
+// check palindrome with recursion - we are checking all possible combination again and again
+bool isPalindrome(string& s,int i,int j){
+	if(i >= j) return true;
+	if(s[i] != s[j]) return false;
+	return isPalindrome(s,i+1,j-1);
+}
+```
+
+What if we store already calculated palindrome indexes that yes from i to j it is palindrome ?
+
+> memo
+```cpp
+    bool isPalin(string& s,int i,int j,vector<vector<int>>& dp){
+        if(i >= j) return dp[i][j] = 1;
+        if(dp[i][j] != -1) return dp[i][j];
+        if(s[i] != s[j]) return dp[i][j] = 0;
+        return dp[i][j] = isPalin(s,i+1,j-1,dp);
+    }
+    
+    int countSubstrings(string s) {
+        int ans = 0;
+        vector<vector<int>> memo(s.size()+1,vector<int>(s.size()+1,-1));
+        for(int i=0;i<s.size();i++){
+            for(int j=i;j<s.size();j++){
+                ans += isPalin(s,i,j,memo);
+            }
+        }
+        return ans;
+    }
+```
