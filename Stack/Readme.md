@@ -173,3 +173,105 @@ public:
     }
 };
 ```
+
+## 5. Maximal Rectangle [Question](https://leetcode.com/problems/maximal-rectangle/)
+
+- for each row calculate heights and find Maximum rectangle histogram
+- if row[i] == 0 then make heights[i] = 0 chahe pehle us heights ki position pr kuch bhi ho, kuki building hwa mae udegi isliye (Aditya verma)
+
+```cpp
+class Solution {
+public:
+    
+    vector<int> sl,sr;
+    
+    void nextSmallLeft(vector<int>& arr){
+        sl.clear();
+        int n = arr.size();
+        stack<int> st;
+        for(int i=0;i<n;i++){
+            if(st.empty()){
+                sl.push_back(-1);
+                st.push(i);
+            }else if(arr[st.top()] < arr[i]){
+                sl.push_back(st.top());
+                st.push(i);
+            }else if(arr[st.top()] >= arr[i]){
+                while(!st.empty() && arr[st.top()] >= arr[i]){
+                    st.pop();
+                }
+                if(st.empty()){
+                    sl.push_back(-1);
+                }else{
+                    sl.push_back(st.top());
+                }
+                st.push(i);
+            }
+        }
+    }
+    
+    void nextSmallRight(vector<int>& arr){
+        sr.clear();
+        int n = arr.size();
+        stack<int> st;
+        for(int i=n-1;i>=0;i--){
+            if(st.empty()){
+                sr.push_back(n);
+                st.push(i);
+            }else if(arr[st.top()] < arr[i]){
+                sr.push_back(st.top());
+                st.push(i);
+            }else if(arr[st.top()] >= arr[i]){
+                while(!st.empty() && arr[st.top()] >= arr[i]){
+                    st.pop();
+                }
+                if(st.empty()){
+                    sr.push_back(n);
+                }else{
+                    sr.push_back(st.top());
+                }
+                st.push(i);
+            }
+        }
+        reverse(sr.begin(),sr.end());
+    }
+    
+    int MAH(vector<int>& heights){
+        nextSmallLeft(heights);
+        nextSmallRight(heights);
+        
+        int ans = INT_MIN;
+        int n = heights.size();
+        for(int i = 0;i<n;i++){
+            ans = max(ans,(heights[i]*(sr[i] - sl[i] - 1)));
+        }
+        return ans;
+    }
+    
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<int> heights(m,0);
+        for(int i = 0;i < m ; i++){
+            if(matrix[0][i] == '1'){
+                heights[i] = 1;
+            }
+        }
+        
+        int ans = MAH(heights);
+        
+        for(int i = 1; i < n ; i++){
+            for(int j = 0;j < m ; j++){
+                if(matrix[i][j] == '0'){
+                    heights[j] = 0;
+                }else{
+                    heights[j] = heights[j]+1;
+                }
+            }
+            ans = max(ans,MAH(heights));
+        }
+        
+        return ans;
+    }
+};
+```
