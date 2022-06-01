@@ -100,9 +100,9 @@ public:
 ```
 ## 4. Largest Rectangle in Histogram [Question](https://leetcode.com/problems/largest-rectangle-in-histogram/)
 
-> find next smaller to right
-> find next smaller to left
-> by smaller right and smaller left we will find the width and then calculate the area.
+- find next smaller to right
+- find next smaller to left
+- by smaller right and smaller left we will find the width and then calculate the area.
 
 ```cpp
 	class Solution {
