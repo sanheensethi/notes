@@ -45,4 +45,8 @@ vector<int> ngeRight(vector<int>& vec){
 
 ## Next Greater Element II [Link](https://leetcode.com/problems/next-greater-element-ii/)
 
-
+- Circular Array is Given.
+- Last Element is joined with the first Element.
+- In this, we process first from index n-2 to 0, but not creating the ans array.
+- then it changes the stack which is having some elements or maybe not.
+- then do Next Greater element to right
