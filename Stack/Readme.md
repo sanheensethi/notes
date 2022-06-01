@@ -276,7 +276,7 @@ public:
 };
 ```
 
-## 6. Validate Sequqnce
+## 6. Validate Sequqnce [Question](https://leetcode.com/problems/validate-stack-sequences/)
 
 > My Solution, using O(n) space
 
@@ -358,12 +358,13 @@ public:
     }
 };
 ```
-## 7. Minimum add to make valid paranthesis [Question]()
+## 7. Minimum add to make valid paranthesis [Question](https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/)
 
 > My Solution O(n) TC, O(1) space
-> add if (
-> pop if ) and not empty , if empty ans += 1
-> return ans + st.size(); //maybe some elements left in stack (((
+
+- push if (
+- pop if ) and not empty , if empty ans += 1
+- return ans + st.size(); //maybe some elements left in stack (((
 
 ```cpp
 class Solution {
