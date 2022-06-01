@@ -365,6 +365,7 @@ public:
 - push if (
 - pop if ) and not empty , if empty ans += 1
 - return ans + st.size(); //maybe some elements left in stack (((
+- Idea is to remove valid paranthesis, to count invalid parts
 
 ```cpp
 class Solution {
