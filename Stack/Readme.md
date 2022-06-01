@@ -39,3 +39,5 @@ vector<int> ngeRight(vector<int>& vec){
 ## Next Greater Element to Left 
 
 - `Left to Right Push` and compare
+
+> Other Variation : Next Small to Right , Next Small to Left (in this comparison is opposite to upper two questions)
