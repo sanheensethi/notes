@@ -98,7 +98,7 @@ public:
     }
 };
 ```
-## 4. Largest Rectangle in Histogram
+## 4. Largest Rectangle in Histogram [Question](https://leetcode.com/problems/largest-rectangle-in-histogram/)
 
 > find next smaller to right
 > find next smaller to left
