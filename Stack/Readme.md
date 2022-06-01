@@ -358,3 +358,32 @@ public:
     }
 };
 ```
+## 7. Minimum add to make valid paranthesis [Question]()
+
+> My Solution O(n) TC, O(1) space
+> add if (
+> pop if ) and not empty , if empty ans += 1
+> return ans + st.size(); //maybe some elements left in stack (((
+
+```cpp
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        int ans = 0;
+        stack<char> st;
+        for(auto& ch:s){
+            if(ch == '('){
+                st.push('(');
+            }else if(ch == ')'){
+                if(!st.empty()){
+                    st.pop();
+                }else{
+                    ans += 1;
+                }
+            }
+        }
+        ans += st.size();
+        return ans;
+    }
+};
+```
