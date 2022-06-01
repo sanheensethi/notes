@@ -1,6 +1,7 @@
 # Stack
 
-## Next Greater Element (Nearest Greater To Right) - Right to Left
+## Next Greater Element (Nearest Greater To Right) 
+- Right to Left Push in stack and Compare
 
 ```cpp
 #define all(x) (x).begin(), (x).end()
