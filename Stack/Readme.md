@@ -275,3 +275,55 @@ public:
     }
 };
 ```
+
+## 6. Validate Sequqnce
+
+> My Solution, using O(n) space
+
+- create a vector named compare
+- fill the compare vector:
+	1. pushed[i] != popped[j] && st.top() == popped[j]
+	2. pushed[i] == popped[j]
+- fill the stack when pushed[i] != popped[j]
+- after that empty the remaining stack in compare vector
+- compare popped and pushed
+
+```cpp
+class Solution {
+public:
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        vector<int> compare;
+        int i = 0,j = 0;
+        stack<int> st;
+        while(i < pushed.size()){
+            if(pushed[i] != popped[j]){
+                if(!st.empty() && st.top() == popped[j]){
+                    compare.push_back(st.top());
+                    st.pop();
+                    j++;
+                }else{
+                    st.push(pushed[i]);
+                    i++;
+                }
+            }else{
+                compare.push_back(pushed[i]);
+                j++;
+                i++;
+            }
+        }
+        
+        while(!st.empty()){
+            compare.push_back(st.top());
+            st.pop();
+        }
+        
+        for(int i = 0;i<compare.size();i++){
+            if(compare[i] != popped[i]){
+                return false;
+            }
+        }
+        return true;
+        
+    }
+};
+```
