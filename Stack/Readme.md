@@ -1,7 +1,7 @@
 # Stack
 
 ## Next Greater Element (Nearest Greater To Right) 
-- Right to Left Push in stack and Compare
+- `Right to Left Push` in stack and Compare
 
 ```cpp
 #define all(x) (x).begin(), (x).end()
@@ -35,3 +35,7 @@ vector<int> ngeRight(vector<int>& vec){
 	return ans;
 }
 ```
+
+## Next Greater Element to Left 
+
+- `Left to Right Push` and compare
