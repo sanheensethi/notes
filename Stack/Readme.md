@@ -50,3 +50,51 @@ vector<int> ngeRight(vector<int>& vec){
 - In this, we process first from index n-2 to 0, but not creating the ans array.
 - then it changes the stack which is having some elements or maybe not.
 - then do Next Greater element to right
+- 2 paas bystack from right to left
+
+```cpp
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        stack<int> st;
+        // process from n-2 to 0
+        int n = nums.size();
+        for(int i = n-2;i>=0;i--){
+            if(st.empty()){
+                st.push(nums[i]);
+            }else if(st.top() > nums[i]){
+                st.push(nums[i]);
+            }else if(st.top() <= nums[i]){
+                while(!st.empty() && st.top() <= nums[i]){
+                    st.pop();
+                }
+                st.push(nums[i]);
+            }
+        }
+        
+        // now do next greater element
+        vector<int> ans;
+        for(int i = n-1;i>=0;i--){
+            if(st.empty()){
+                ans.push_back(-1);
+                st.push(nums[i]);
+            }else if(st.top() > nums[i]){
+                ans.push_back(st.top());
+                st.push(nums[i]);
+            }else{
+                while(!st.empty() && st.top() <= nums[i]){
+                    st.pop();
+                }
+                if(st.empty()){
+                    ans.push_back(-1);
+                }else{
+                    ans.push_back(st.top());
+                }
+                st.push(nums[i]);
+            }
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+```
