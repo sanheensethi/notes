@@ -98,3 +98,78 @@ public:
     }
 };
 ```
+## 4. Largest Rectangle in Histogram
+
+> find next smaller to right
+> find next smaller to left
+> by smaller right and smaller left we will find the width and then calculate the area.
+
+```cpp
+	class Solution {
+public:
+    vector<int> sr;
+    vector<int> sl;
+    
+    void nextSmallRight(vector<int>& heights){
+        int n = heights.size();
+        stack<int> st;
+        for(int i = n-1; i>=0 ; i--){
+            if(st.empty()){
+                sr.push_back(n);
+                st.push(i);
+            }else if(heights[st.top()] >= heights[i]){
+                while(!st.empty() && heights[st.top()] >= heights[i]){
+                    st.pop();
+                }
+                if(st.empty()){
+                    sr.push_back(n);
+                    st.push(i);
+                }else{
+                    sr.push_back(st.top());
+                    st.push(i);
+                }
+            }else if(heights[st.top()] < heights[i]){
+                sr.push_back(st.top());
+                st.push(i);
+            }
+        }
+        reverse(sr.begin(),sr.end());
+    }
+    
+    void nextSmallLeft(vector<int>& heights){
+        int n = heights.size();
+        stack<int> st;
+        for(int i = 0; i<n ; i++){
+            if(st.empty()){
+                sl.push_back(-1);
+                st.push(i);
+            }else if(heights[st.top()] >= heights[i]){
+                while(!st.empty() && heights[st.top()] >= heights[i]){
+                    st.pop();
+                }
+                if(st.empty()){
+                    sl.push_back(-1);
+                    st.push(i);
+                }else{
+                    sl.push_back(st.top());
+                    st.push(i);
+                }
+            }else if(heights[st.top()] < heights[i]){
+                sl.push_back(st.top());
+                st.push(i);
+            }
+        }
+    }
+    
+    int largestRectangleArea(vector<int>& heights) {
+        nextSmallRight(heights);
+        nextSmallLeft(heights);
+        int ans = INT_MIN;
+        int n = heights.size();
+        for(int i = 0; i < n; i++){
+            ans = max(ans,(heights[i]*(sr[i]-sl[i]-1)));
+        }
+        return ans;
+    }
+};
+```
