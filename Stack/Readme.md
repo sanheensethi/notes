@@ -327,3 +327,34 @@ public:
     }
 };
 ```
+> Other Solution: O(1) Space
+
+- push element and if you find stack top == popped[j] then remove the elements from stack and j++;
+- we can check rest elements with while loop or another thing is that, we will see patterns
+- if all elements are correct then j is going to out of array otherwise not so we can also use
+- `return j == popped.size();`
+
+```cpp
+class Solution {
+public:
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        stack<int> st;
+        int j = 0;
+        for(auto& val:pushed){
+            st.push(val);
+            while(!st.empty() && st.top() == popped[j]){
+                st.pop();
+                j++;
+            }
+        }
+        while(!st.empty()){
+             if(st.top() != popped[j]){
+                 return false;
+             }
+             j++;
+         }
+         return true;
+        // return j == popped.size();
+    }
+};
+```
