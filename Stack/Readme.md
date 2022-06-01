@@ -1,6 +1,6 @@
 # Stack
 
-## Next Greater Element (Nearest Greater To Right)
+## Next Greater Element (Nearest Greater To Right) - Right to Left
 
 ```cpp
 #define all(x) (x).begin(), (x).end()
