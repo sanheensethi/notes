@@ -42,3 +42,7 @@ vector<int> ngeRight(vector<int>& vec){
 - `Left to Right Push` and compare
 
 > Other Variation : Next Small to Right , Next Small to Left (in this comparison is opposite to upper two questions)
+
+## Next Greater Element II [Link](https://leetcode.com/problems/next-greater-element-ii/)
+
+
