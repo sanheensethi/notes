@@ -2,6 +2,7 @@
 
 ## Next Greater Element (Nearest Greater To Right) 
 - `Right to Left Push` in stack and Compare
+- Question [Link](https://leetcode.com/problems/next-greater-element-i/)
 
 ```cpp
 #define all(x) (x).begin(), (x).end()
