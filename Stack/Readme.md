@@ -1,6 +1,6 @@
 # Stack
 
-## Next Greater Element (Nearest Greater To Right) 
+## 1. Next Greater Element (Nearest Greater To Right) 
 - `Right to Left Push` in stack and Compare
 - Question [Link](https://leetcode.com/problems/next-greater-element-i/)
 
@@ -37,13 +37,13 @@ vector<int> ngeRight(vector<int>& vec){
 }
 ```
 
-## Next Greater Element to Left 
+## 2. Next Greater Element to Left 
 
 - `Left to Right Push` and compare
 
 > Other Variation : Next Small to Right , Next Small to Left (in this comparison is opposite to upper two questions)
 
-## Next Greater Element II [Link](https://leetcode.com/problems/next-greater-element-ii/)
+## 3. Next Greater Element II [Link](https://leetcode.com/problems/next-greater-element-ii/)
 
 - Circular Array is Given.
 - Last Element is joined with the first Element.
