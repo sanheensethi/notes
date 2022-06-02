@@ -680,4 +680,49 @@ public:
 ```
 ## Asteroid Collision:!
 
+- Collision Happenes only in 1 direction i.e., opposite direction
+- val > 0 : push in stack 
+- val < 0 : 3 case arises:
+	1. st.top() > current value - do not push current value
+	2. st.top() == current value - pop the value, also not push current value
+	3. st.top() < current value - pop
+	4. else st.push current value
+
 ![Pepcoding - Asteroid Collision Leetcode 735  Y82zCeJft-Q - 885x498 - 15m31s](https://user-images.githubusercontent.com/35686407/171734873-6641e32c-dfff-44ac-831d-0fd3dbf992fc.png)
+
+```cpp
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        stack<int> st;
+        for(auto& val:asteroids){
+            if(val > 0){
+                st.push(val);
+            }else if(val < 0){
+                int v = abs(val);
+                if(!st.empty() && st.top() > v){
+                    continue;
+                }else{
+                    while(!st.empty() && st.top() > 0 && st.top() < v){
+                        st.pop();
+                    }
+                    if(!st.empty() && st.top() == v){
+                        st.pop();
+                    }else if(!st.empty() && st.top() > v){
+                        //pass
+                    }else{
+                        st.push(val);
+                    }
+                }
+            }
+        }
+        vector<int> ans;
+        while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+```
