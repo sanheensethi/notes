@@ -726,3 +726,55 @@ public:
     }
 };
 ```
+
+## 15. Remove K Digits [Question](https://leetcode.com/problems/remove-k-digits/)
+
+![Pepcoding - Remove K Digits Leetcode 402  RCE2L0Zk7xE - 1536x864 - 8m38s](https://user-images.githubusercontent.com/35686407/171746873-be968332-1a4c-4246-b3e0-89c54744d8c1.png)
+
+num : abcd
+
+- if st.top() > current : pop untill k != 0 and st.top() > current
+- else push elements [if st.top() <= current]
+- if k is left after completing string, then pop elements k times from stack
+
+```cpp
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        if( k == num.size()) return "0";
+        stack<char> st;
+        for(auto& ch:num){
+            if(st.empty()){
+                st.push(ch);
+            }else if(st.top() <= ch){
+                st.push(ch);
+            }else if(st.top() > ch){
+                while(!st.empty() && k!=0 && st.top() > ch){
+                    st.pop();k--;
+                }
+                st.push(ch);
+            }
+        }
+        while(!st.empty() && k!=0){
+            st.pop();k--;
+        }
+        
+        string ans = "";
+        while(!st.empty()){
+            ans += st.top();
+            st.pop();
+        }
+        
+        reverse(ans.begin(),ans.end());
+        
+        int i = 0;
+        while(ans[i] == '0') i++;
+        ans = ans.substr(i);
+        if(ans == ""){
+            return "0";
+        }
+        return ans;
+        
+    }
+};
+```
