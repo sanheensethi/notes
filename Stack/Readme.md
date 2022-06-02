@@ -456,3 +456,41 @@ public:
     }
 };
 ```
+## 10. Reverse Substring between each pair of parantheses:
+
+- open '(' and other char dalte jao
+- jb ')' dekhe pop krke kaam kro
+- pop krne pr queue mae dalo kuki reverse krna hai string ko (FIFO)
+- vapis stack mae daal do
+
+```cpp
+class Solution {
+public:
+    string reverseParentheses(string s) {
+        stack<char> st;
+        queue<char> Q;
+        for(auto& ch:s){
+            if(ch != ')'){
+                st.push(ch);
+            }else if(ch == ')'){
+                while(!st.empty() && st.top() != '('){
+                    Q.push(st.top());
+                    st.pop();
+                }
+                st.pop();
+                while(!Q.empty()){
+                    st.push(Q.front());Q.pop();
+                }
+            }
+        }
+        vector<char> v(st.size());
+        for(int i = st.size()-1;i >= 0;i--){
+            v[i] = st.top();
+            st.pop();
+        }
+        
+        string ans(v.begin(),v.end());
+        return ans;
+    }
+};
+```
