@@ -620,3 +620,61 @@ public:
  * int param_1 = obj->next(price);
  */
 ```
+
+## 13. Exclusive Time of Functions [Question]()
+
+- we will create stack of 3 values, id,starttime,childtime
+- interval time of id = endTime - startTime + 1 [it includes id's child interval time also]
+- execution time of id = intervalTime - childTime
+- when child gets executed, if parent exists then it tell the parent about it's interval
+
+![Photo](https://drive.google.com/uc?export=view&id=1Y4gxBz-5jojk9NR1e8BRZFJLJ9ZJ2iOr)
+
+```cpp
+class Solution {
+public:
+    vector<string> split(string& log,char delimeter){
+        vector<string> ans;
+        string temp = "";
+        for(auto& ch:log){
+            if(ch != delimeter){
+                temp += ch;
+            }else{
+                ans.push_back(temp);
+                temp = "";
+            }
+        }
+        ans.push_back(temp);
+        return ans;
+    }
+    
+    vector<int> exclusiveTime(int n, vector<string>& logs) {
+        stack<vector<int>> st;
+        vector<int> ans(n,0);
+        for(auto& status:logs){
+            auto log = split(status,':');
+            if(log[1] == "start"){
+                int id = stoi(log[0]);
+                int startTime = stoi(log[2]);
+                int childTime = 0;
+                st.push({id,startTime,childTime});
+            }else{
+                auto startPr = st.top();st.pop();
+                int id = stoi(log[0]);
+                int endTime = stoi(log[2]);
+                int interval = endTime - startPr[1] + 1; // it includes child time also
+                int executionTime = interval - startPr[2]; // subtracting child time
+                
+                ans[id]+=executionTime;
+                
+                if(st.size()){
+                    // if it have parent tell parent about its execution time
+                    // for parent it is child
+                    (st.top())[2] += interval; // interval because it have its child time also.
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
