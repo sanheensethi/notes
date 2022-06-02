@@ -570,7 +570,7 @@ vector<int> solve(vector<int>arr)
 }
 ```
 
-12. Online Stock Span [Question]()
+## 12. Online Stock Span [Question](https://leetcode.com/problems/online-stock-span/)
 
 - Same as stock span.
 - Difference is only, that one by one number is given.
