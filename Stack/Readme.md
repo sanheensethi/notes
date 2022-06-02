@@ -389,3 +389,31 @@ public:
     }
 };
 ```
+## 8. Remove Outermost Parantheses [Question](
+
+- if '(' then check first, if st empty then it is outermost, not add in ans and if not empty then it is innermost add in ans
+- if ')' then first pop , if st empty then it is outermost otherwise it is innermost and add in ans
+
+```cpp
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        string ans = "";
+        stack<char> st;
+        for(auto& ch:s){
+            if(ch == '('){
+                if(!st.empty()){
+                    ans += '(';
+                }
+                st.push('(');
+            }else{
+                st.pop();
+                if(!st.empty()){
+                    ans += ')';
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
