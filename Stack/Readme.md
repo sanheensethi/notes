@@ -494,3 +494,41 @@ public:
     }
 };
 ```
+## 10. Minimum remove to make valid parantheses [Question]()
+
+- in stack only '(' indexes is there
+- ignore chars
+- when '(' came and if stack is empty then we put marker in string as '.' that this parantheses is invalid not part of ans.
+- simmilarly when string ends, if stack has '(' indexes it means that they are also invalid , so we have to mark.
+- after that we create our ans by skipping the '.'
+
+```cpp
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        int n = s.size();
+        stack<int> st;
+        for(int i = 0; i < n; i++){
+            if(s[i] == '('){
+                st.push(i);
+            }else if(s[i] == ')'){
+                if(st.empty()){
+                    s[i] = '.';
+                }else{
+                    st.pop();
+                }
+            }
+        }
+        while(!st.empty()){
+            s[st.top()] = '.';
+            st.pop();
+        }
+        string ans = "";
+        for(auto& ch:s){
+            if(ch == '.') continue;
+            ans += ch;
+        }
+        return ans;
+    }
+};
+```
