@@ -418,20 +418,12 @@ public:
 };
 ```
 
-## 9. Score of Parantheses [Question]()
+## 9. Score of Parantheses [Question](https://leetcode.com/problems/score-of-parentheses/)
 
 - if '(' push -1
 - if ')' and top is '(' i.e. -1 then pop it and push 1
 - if ')' and top is not '(' it means that it have childs in it then sum all childes and multiply them by 2 and push it again
 - finally empty stack and return ans.
-
------------
-( | 1 | 2 | )
------------
-
------------
-6
------------
 
 ```cpp
 class Solution {
