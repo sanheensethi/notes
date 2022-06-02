@@ -456,7 +456,7 @@ public:
     }
 };
 ```
-## 10. Reverse Substring between each pair of parantheses:
+## 10. Reverse Substring between each pair of parantheses [Question](https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/)
 
 - open '(' and other char dalte jao
 - jb ')' dekhe pop krke kaam kro
