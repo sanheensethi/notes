@@ -417,3 +417,48 @@ public:
     }
 };
 ```
+
+## 9. Score of Parantheses [Question]()
+
+- if '(' push -1
+- if ')' and top is '(' i.e. -1 then pop it and push 1
+- if ')' and top is not '(' it means that it have childs in it then sum all childes and multiply them by 2 and push it again
+- finally empty stack and return ans.
+
+-----------
+( | 1 | 2 | )
+-----------
+
+-----------
+6
+-----------
+
+```cpp
+class Solution {
+public:
+    int scoreOfParentheses(string s) {
+        stack<int> st;
+        for(auto& ch:s){
+            if(ch == '('){
+                st.push(-1);
+            }else if(ch == ')' && st.top() == -1){
+                st.pop();
+                st.push(1);
+            }else if(ch == ')' && st.top() != -1){
+                int sum = 0;
+                while(!st.empty() && st.top() != -1){
+                    sum += st.top();
+                    st.pop();
+                }
+                st.pop();
+                st.push(sum*2);
+            }
+        }
+        int ans = 0;
+        while(!st.empty()){
+            ans += st.top();st.pop();
+        }
+        return ans;
+    }
+};
+```
