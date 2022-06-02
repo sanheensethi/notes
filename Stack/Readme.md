@@ -729,13 +729,16 @@ public:
 
 ## 15. Remove K Digits [Question](https://leetcode.com/problems/remove-k-digits/)
 
-![Pepcoding - Remove K Digits Leetcode 402  RCE2L0Zk7xE - 1536x864 - 8m38s](https://user-images.githubusercontent.com/35686407/171746873-be968332-1a4c-4246-b3e0-89c54744d8c1.png)
-
 num : abcd
 
 - if st.top() > current : pop untill k != 0 and st.top() > current
 - else push elements [if st.top() <= current]
 - if k is left after completing string, then pop elements k times from stack
+
+![Pepcoding - Remove K Digits Leetcode 402  RCE2L0Zk7xE - 1536x864 - 8m38s](https://user-images.githubusercontent.com/35686407/171746873-be968332-1a4c-4246-b3e0-89c54744d8c1.png)
+
+![Pepcoding - Remove K Digits Leetcode 402  RCE2L0Zk7xE - 885x498 - 13m38s](https://user-images.githubusercontent.com/35686407/171747032-7cdf0496-db0d-4579-8d88-1b77befdb347.png)
+
 
 ```cpp
 class Solution {
