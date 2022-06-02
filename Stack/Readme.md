@@ -532,3 +532,91 @@ public:
     }
 };
 ```
+
+## 11. Stock Sapn [Question](https://nados.io/question/stock-span?zen=true)
+
+- stock span : esa number jo ye btata hai ki abhi vala number pichle kitne `consecutive numbers` se bda hai,
+- ya fr pichle bde number se kitni door hai abhi vala number.
+
+- find next greater element to left
+- find the distance between tow (current and bigger)
+
+```cpp
+vector<int> solve(vector<int>arr)
+{
+  vector<int> ans;
+  stack<int> st;
+  int n = arr.size();
+  for(int i = 0 ; i < n ; i++){
+      if(st.empty()){
+          ans.push_back(i+1);
+          st.push(i);
+      }else if(arr[st.top()] > arr[i]){
+          ans.push_back(i - st.top());
+          st.push(i);
+      }else if(arr[st.top()] <= arr[i]){
+          while(!st.empty() && arr[st.top()] <= arr[i]){
+              st.pop();
+          }
+          if(st.empty()){
+              ans.push_back(i+1);
+          }else{
+              ans.push_back(i - st.top());
+          }
+          st.push(i);
+      }
+  }
+  return ans;
+}
+```
+
+12. Online Stock Span [Question]()
+
+- Same as stock span.
+- Difference is only, that one by one number is given.
+- You have to take indexes by own and find the previous greater element and find difference
+- store the both element in stack - {price,index} // index tell which position the number came.
+
+```cpp
+class StockSpanner {
+public:
+    int idx;
+    stack<pair<int,int>> st;
+    StockSpanner() {
+        idx = 0;
+    }
+    
+    int next(int price) {
+        if(st.empty()){
+            st.push({price,idx});
+            idx++;
+            return idx;
+        }else if(st.top().first > price){
+            int ans = idx - st.top().second;
+            st.push({price,idx});
+            idx++;
+            return ans;
+        }else if(st.top().first <= price){
+            while(!st.empty() && st.top().first <= price){
+                st.pop();
+            }
+            int ans = -1;
+            if(st.empty()){
+                ans = idx + 1;
+            }else{
+                ans = idx - st.top().second;
+            }
+            st.push({price,idx});
+            idx++;
+            return ans;
+        }
+        return -1;
+    }
+};
+
+/**
+ * Your StockSpanner object will be instantiated and called as such:
+ * StockSpanner* obj = new StockSpanner();
+ * int param_1 = obj->next(price);
+ */
+```
