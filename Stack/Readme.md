@@ -389,7 +389,7 @@ public:
     }
 };
 ```
-## 8. Remove Outermost Parantheses [Question](
+## 8. Remove Outermost Parantheses [Question](https://leetcode.com/problems/remove-outermost-parentheses/)
 
 - if '(' then check first, if st empty then it is outermost, not add in ans and if not empty then it is innermost add in ans
 - if ')' then first pop , if st empty then it is outermost otherwise it is innermost and add in ans
