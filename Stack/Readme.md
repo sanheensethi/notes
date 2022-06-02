@@ -628,7 +628,7 @@ public:
 - execution time of id = intervalTime - childTime
 - when child gets executed, if parent exists then it tell the parent about it's interval
 
-![Photo](https://drive.google.com/uc?export=view&id=1Y4gxBz-5jojk9NR1e8BRZFJLJ9ZJ2iOr)
+![Photo](https://drive.google.com/uc?export=view&id=1HPW97zN8uPofHHbnHvVuyqEt9qLFquSD)
 
 ```cpp
 class Solution {
