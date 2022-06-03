@@ -678,7 +678,7 @@ public:
     }
 };
 ```
-## Asteroid Collision: [Question](https://leetcode.com/problems/asteroid-collision/)
+## 14. Asteroid Collision: [Question](https://leetcode.com/problems/asteroid-collision/)
 
 - Collision Happenes only in 1 direction i.e., opposite direction
 - val > 0 : push in stack 
@@ -780,4 +780,97 @@ public:
         
     }
 };
+```
+
+## 16. Remove Dublicate Letters [Question](https://leetcode.com/problems/remove-duplicate-letters/)
+
+![Pepcoding - Remove Duplicate Letters Leetcode 316  luCn7p2CIbI - 885x498 - 24m08s](https://user-images.githubusercontent.com/35686407/171791444-b2698373-c419-422d-9ef3-a5a9d7405e37.png)
+
+> In this question, agar hme smaller element mile current jo pichle valo se chota hai, and pichle valo ki agar freq > 0 hai to iska mtlb vo bigger element pichle vale aage bhi exists krte hai, to hum pichle valo ko remove kr denge , aage valo ko ke lenge isse hmara jo string hoga vo dictionary order mae bnega.
+
+- we create freq of chars map and it exists map
+- if st.top() < ch :
+	push ch to stack
+	exists[ch] = true
+	freq[ch]--;
+- if exists[ch] == true, i.e., char already exists, then freq[ch]--; and continue;
+- if st.top() > ch :
+	while st is not empty and st.top() > ch and st ke top ki frequency > 0 :
+		exists[st.top()] = false
+		st.pop();
+
+
+
+Solution Writing `Type 1`:
+
+```cpp
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        int freq[26] = {0};
+        int exists[26] = {false};
+        stack<int> st;
+        int n = s.size();
+        
+        for(auto& ch:s){
+            int index = ch-'a';
+            freq[index]++;
+        }
+        
+	// Two Ways to write this loop
+        int idx;
+        for(auto& ch:s){
+            idx = ch-'a';
+            if(exists[idx] == true){
+                freq[idx]--;
+                continue;
+            }else if(st.empty()){
+                st.push(ch);
+                freq[idx]--;
+                exists[idx] = true;
+            }else if(st.top() < ch){
+                st.push(ch);
+                freq[idx]--;
+                exists[idx] = true;
+            }else if(st.top() > ch){
+                // it means it is possible to delete big char if its occurance exists in aage vale string part mae
+                while(!st.empty() && st.top() > ch && freq[st.top() - 'a'] > 0){
+                    exists[st.top() - 'a'] = false;
+                    st.pop();
+                }
+                st.push(ch);
+                freq[idx]--;
+                exists[idx] = true;
+            }
+        }
+        string ans = "";
+        while(!st.empty()){
+            ans += st.top();
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+```
+
+> Another way to write that loop
+
+```cpp
+for(auto& ch:s){
+    idx = ch-'a';
+    if(exists[idx] == true){
+	freq[idx]--;
+	continue;   
+    }
+
+    while(!st.empty() && st.top() > ch && freq[st.top() - 'a'] > 0){
+	exists[st.top() - 'a'] = false;
+	st.pop();
+    }
+
+    st.push(ch);
+    exists[idx] = true;
+    freq[idx]--;
+}
 ```
