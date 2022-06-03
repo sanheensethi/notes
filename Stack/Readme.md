@@ -936,3 +936,38 @@ public:
     }
 };
 ```
+
+## 18. Number of Valid Subarrays [Question](https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/stacks/number-of-valid-subarrays-official/ojquestion)
+
+
+- find index next smaller element to right
+- smaller element index - i is my current number of valid subarrays.
+- do this for all and add them.
+
+```cpp
+int validSubarrays(vector<int>& arr){
+    int ans = 0;
+    int n = arr.size();
+    stack<int> st;
+    for(int i = n-1 ; i >= 0 ; i--){
+        if(st.empty()){
+            ans += (n-i);
+            st.push(i);
+        }else if(arr[st.top()] >= arr[i]){
+            while(!st.empty() && arr[st.top()] >= arr[i]){
+                st.pop();
+            }
+            if(st.empty()){
+                ans += (n-i);
+            }else{
+                ans += (st.top() - i);
+            }
+            st.push(i);
+        }else if(arr[st.top()] < arr[i]){
+            ans += (st.top() - i);
+            st.push(i);
+        }
+    }
+    return ans;
+}
+```
