@@ -908,5 +908,31 @@ for(auto& ch:s){
 - Same concept is for rightSide, `else if(a(r) < a(l))` : it tells we are making sure that someone is bigger building on left if i am currently at rth index,
 That is why leftMax - a[i] and rightMax - a[i] is working.
 
-
-- 
+```cpp
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int l = 0;
+        int r = height.size()-1;
+        int leftMax = 0;
+        int rightMax = 0;
+        int ans = 0;
+        while(l <= r){
+            if(height[l] <= height[r]){
+                // making sure that someone is bigger from the current element i.e. l on right side
+                // now check what is the max value in left
+                if(height[l] >= leftMax) leftMax = height[l];
+                else ans += leftMax - height[l];
+                l++;
+            }else if(height[r] < height[l]){
+                // making sure that someone is bigger from the current element i.e., r on left side
+                // now check if right has rightLeft or not
+                if(height[r] >= rightMax) rightMax = height[r];
+                else ans += rightMax - height[r];
+                r--;
+            }
+        }
+        return ans;
+    }
+};
+```
