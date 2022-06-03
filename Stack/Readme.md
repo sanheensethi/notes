@@ -874,3 +874,39 @@ for(auto& ch:s){
     freq[idx]--;
 }
 ```
+## 17. Trapping Rain Water [Question](https://leetcode.com/problems/trapping-rain-water/)
+
+> Brute Force 
+
+- For each index , we find left max element and right max element
+- water at index = min(leftmax,rightmax) - height[current] , leftmax and rightmax can be taken in O(n)
+- TC : O(n^2) , we iterate left and right parts of array for each element
+- SC : O(1)
+
+> Solution 2 (Optimized) : (Prefix and Suffix)/DP
+
+- In this method, we will find left max and right max already before process and store them in an array
+- now water at index = min(leftmax,rightmax) - height[current] , leftmax and rightmasx can be taken in O(1) from created arrays.
+- TC : O(n)
+- SC : O(n) + O(n) = O(2n) ~ O(n)
+
+> Solution 3 (Further Optimized) : Two Pointers
+
+- Before understanding the intuation, run the algorithm dry run it
+
+![take U forward - Trapping Rainwater Brute Better Optimal with INTUITION  m18Hntz4go8 - 703x395 - 19m54s](https://user-images.githubusercontent.com/35686407/171883941-5586f152-8d7a-4c84-83bf-f4b02328b7e8.png)
+
+
+`Intuation` :  In Brute : `Water = min(leftMax,rightMax) - a[i];`
+
+- Agar right mae 3 na ho to how I am sure that 1 (index = 4) is storing water which has leftMax 2 ? because if there is no bigger building on right side of 1 (index = 4) , then it didn't store water.
+- So, How i am sure that there are building on right hand side which is >= 2, that is 1 (index = 4) stores water.
+- So, if you look at the algorithm, vha pr water = leftMax - a[i] or water = rightMax - a[i] le rhe hai, but how i am make sure, leftMax is min in Brute method and rightMax is min in Brute method.
+- By algorithm, Jo bhi hum leftMax utha rhe hai, hum make sure kr rhe hai ki vo a(r) ke equal ya usse chota hoga, it means , hum make sure kr rhe hai, right side mae koi na koi to hai jo leftmax se bda hai, 
+- `if(a(l) <= a(r)` : this condition tells/make sure, right side mae jo koi na koi to hai jo current leftMax se bda hai,
+- `if(leftMax <= a(l)) leftMax = a(l)` : now leftMax update tb hoga jb purana leftMax chota hoga current element se, mtlb ye hai ki abhi vala element bda hai pichle leftMax se, to vo water store nhi krega.
+- Same concept is for rightSide, `else if(a(r) < a(l))` : it tells we are making sure that someone is bigger building on left if i am currently at rth index,
+That is why leftMax - a[i] and rightMax - a[i] is working.
+
+
+- 
