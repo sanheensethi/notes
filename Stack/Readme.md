@@ -1013,3 +1013,28 @@ void deleteMiddleStack(stack<int>& st,int k){
     st.push(val);
 }
 ```
+
+## 21. Reverse Stack using Recursion (It is done also with another stack)
+
+- SC : O(1) , if we didn't see auxillary stack space of call stack
+
+```cpp
+void insert(stack<int>& st,int temp){
+    if(st.size() == 0){
+        st.push(temp);
+        return;
+    }
+    int val = st.top();
+    st.pop();
+    insert(st,temp);
+    st.push(val);
+}
+
+void reverseStack(stack<int>& st){
+    if(st.size() == 1) return;
+    int val = st.top();
+    st.pop();
+    reverseStack(st);
+    insert(st,val);
+}
+```
