@@ -998,3 +998,18 @@ void sortStack(stack<int>& st){
     insert(st,val);
 }
 ```
+
+## 20. Delete Middle Element From Stack
+
+```cpp
+void deleteMiddleStack(stack<int>& st,int k){
+    if(st.size() == k){ // or k == 1 if we pass in rectusion k-1 for next calls
+        st.pop();
+        return;
+    }
+    int val = st.top();
+    st.pop();
+    deleteMiddleStack(st,k);
+    st.push(val);
+}
+```
