@@ -971,3 +971,30 @@ int validSubarrays(vector<int>& arr){
     return ans;
 }
 ```
+## 19. Sort Stack Using Recursion (Same as Sort Array using Recursion):
+
+- Make Input Small for next recursion call
+- To put the element which is popped. another recursion call is happend (insert) to insert the value.
+
+```cpp
+void insert(stack<int>& st,int temp){
+    if(st.size() == 0 || st.top() <= temp){
+        st.push(temp);
+        return;
+    }
+    int val = st.top();
+    st.pop();
+    insert(st,temp);
+    st.push(val);
+}
+
+void sortStack(stack<int>& st){
+    if(st.size() == 1){
+        return;
+    }
+    int val = st.top();
+    st.pop();
+    sortStack(st);
+    insert(st,val);
+}
+```
