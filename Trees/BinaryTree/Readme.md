@@ -38,6 +38,8 @@
 
 ## 5. PreOrder - PostOrder - InOrder Traversal [Recursion]
 
+- TC : O(n)
+
 ```cpp
 void preOrder(TreeNode* root,vector<int>& ans){
         // Root Left Right
@@ -66,4 +68,33 @@ void inOrder(TreeNode* root,vector<int>& ans){
         ans.push_back(root->val);
         preOrder(root->right,ans);
 }
+```
+
+## 6. Level Order Traversal (BFS): 
+
+- Queue DS is used.
+
+```cpp
+vector<vector<int>> levelOrder(TreeNode* root) {
+        if(root == NULL) return {};
+        vector<vector<int>> ans;
+        queue<TreeNode*> Q;
+        Q.push(root);
+        while(!Q.empty()){
+            int size = Q.size();
+            vector<int> levelNodes;
+            while(size--){
+                TreeNode* node = Q.front();Q.pop();
+                levelNodes.push_back(node->val);
+                if(node->left){
+                    Q.push(node->left);
+                }
+                if(node->right){
+                    Q.push(node->right);
+                }
+            }
+            ans.push_back(levelNodes);
+        }
+        return ans;
+    }
 ```
