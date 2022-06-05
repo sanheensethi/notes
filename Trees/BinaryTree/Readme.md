@@ -299,3 +299,19 @@ vector<int> preorderTraversal(TreeNode* root) {
         return pre;
     }
 ```
+
+## 9. Depth of Binary Tree
+
+- ROOT == NULL : return 0
+- return max(leftCall,rightCall) + 1;
+
+```cpp
+int maxDepth(TreeNode* root) {
+        if(root == NULL) return 0;
+        
+        int leftHeight = maxDepth(root->left);
+        int rightHeight = maxDepth(root->right);
+        
+        return max(leftHeight,rightHeight) + 1;
+    }
+```
