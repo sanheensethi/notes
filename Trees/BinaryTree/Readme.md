@@ -104,10 +104,11 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 - Stack DataStructure is Used.
 
 #### 1. `PreOrder`:
-    1. `Root Left Right` (in `recursion`)
-    2. `Root Right Left` (in `Iterative`) , it's reverse of recursion , Why ? we need Left First in PreOrder, so by that Left will be at top. as Stack : LIFO
-    3. TC : O(N)
-    4. SC : O(N) ~ O(H) (Worse Case : Skewed Binary Tree)
+
+1. `Root Left Right` (in `recursion`)
+2. `Root Right Left` (in `Iterative`) , it's reverse of recursion , Why ? we need Left First in PreOrder, so by that Left will be at top. as Stack : LIFO
+3. TC : O(N)
+4. SC : O(N) ~ O(H) (Worse Case : Skewed Binary Tree)
  
 ```cpp
 vector<int> preorderTraversal(TreeNode* root) {
@@ -131,14 +132,14 @@ vector<int> preorderTraversal(TreeNode* root) {
 ```
 
 #### 2. InOrder:
-    1. In this, we push the node if it is not null, and move node to left
-    2. after that if node is null then pop the node and print and move to right
-    3. Simple Steps:
-        - Node != NULL , Push in Stack , Node = Node->left
-        - Node == NULL , Pop from Stack , Print , Node = Node->right
-        - If st.empty() then break;
-    4. TC : O(n)
-    5. SC : O(n) ~ O(H) (Worst Case : Skewed Binary Tree)
+1. In this, we push the node if it is not null, and move node to left
+2. after that if node is null then pop the node and print and move to right
+3. Simple Steps:
+- Node != NULL , Push in Stack , Node = Node->left
+- Node == NULL , Pop from Stack , Print , Node = Node->right
+- If st.empty() then break;
+4. TC : O(n)
+5. SC : O(n) ~ O(H) (Worst Case : Skewed Binary Tree)
 
 ```cpp
 vector<int> inorderTraversal(TreeNode* root) {
