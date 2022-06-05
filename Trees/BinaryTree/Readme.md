@@ -1,6 +1,6 @@
 # Binary Tree
 
-## Termonologies
+## 1. Termonologies
 
 - Root
 - Childrens
@@ -11,7 +11,7 @@
 ![take U forward - L1  Introduction to Trees Types of Trees  _ANrF3FJm7I - 885x498 - 4m15s](https://user-images.githubusercontent.com/35686407/172037552-66cb469e-082a-43d7-a644-8d7c92e8b21b.png)
 
 
-## Types of Binary Tree
+## 2. Types of Binary Tree
 - Full : Either has 0 or 2 children
 - Complete : 
         1. All levels are completly filled except last level
@@ -20,10 +20,18 @@
 - Balanced : `Height of Tree` at `max log(N)`
 - Degenerate : Skewed Trees either left or right , mtlb ek single line ki trh hai left ya right ki trf bdte ja rhe hai.
 
-## 2. Representation
+## 3. Representation
 
 ![take U forward - L2  Binary Tree Representation in C++  ctCpP0RFDFc - 885x498 - 2m19s](https://user-images.githubusercontent.com/35686407/172037416-1d7422c6-16a9-4d79-b665-965fb826ddf1.png)
 
 ![take U forward - L2  Binary Tree Representation in C++  ctCpP0RFDFc - 853x480 - 2m45s](https://user-images.githubusercontent.com/35686407/172037419-8679dec1-a74a-4653-b94d-180944a6020c.png)
 
+## 4. Graph Traversals (BFS / DFS)
 
+#### DFS : (Depth First Search)
+- InOrder : Left Root Right
+- PreOrder : Root Left Right
+- PostOrder : Left Right Root
+
+#### BFS : (Breadth First Search)
+- Level Order
