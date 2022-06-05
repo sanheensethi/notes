@@ -204,4 +204,58 @@ vector<int> postorderTraversal(TreeNode* root) {
 
 ![take U forward - L12  Iterative Postorder Traversal using 1 Stack C++ Java Binary Trees  NzIGLLwZBS8 - 1536x864 - 9m14s](https://user-images.githubusercontent.com/35686407/172042915-678e58ee-39f2-47a8-ad01-c14f2d9cc774.png)
 
+- As we do in Recursion
+- Go to left left left left
+- if left null , go to last left's right
+- then go again to left left left
+- if left is null and also , last left's right is also null,
+- then we print and in returning, we print the values.
 
+- Same thing is doing in this iterative
+- Simple Steps:
+    1. curr = root
+    2. while curr != NULL OR stack is not empty
+    3. if curr != NULL , then push curr to stack , Curr = Curr->left
+    4. if Curr == NULL , i.e., we got left as NULL , trying to move in right
+    5. then temp = stack top's right
+    6. if temp != NULL , it means right exists , then we again go to left left left => curr = temp;
+    7. if temp == NULL , it means right is also NULL, 
+    8. then , temp = top of stack , pop the element from stack, print the element
+    9. while loop again, untill stack is empty and temp == stack top right, then temp = stack top, pop from stack and print the element
+
+```cpp
+vector<int> postorderTraversal(TreeNode* root) {
+        
+        if(root == NULL) return {};
+        
+        TreeNode* curr = root;
+        stack<TreeNode*> st;
+        vector<int> ans;
+        
+        while(curr != NULL || !st.empty()){
+            if(curr != NULL){
+                st.push(curr);
+                curr = curr->left;
+            }else{
+                TreeNode* temp = st.top()->right;
+                
+                if(temp != NULL){
+                    curr = temp;
+                }else{
+                    temp = st.top();
+                    st.pop();
+                    ans.push_back(temp->val);
+                    
+                    while(!st.empty() && temp == st.top()->right){
+                        temp = st.top();
+                        st.pop();
+                        ans.push_back(temp->val);
+                    }
+                    
+                }
+            }
+        }
+        
+        return ans;
+    }
+```
