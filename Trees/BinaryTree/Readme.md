@@ -103,7 +103,7 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 
 - Stack DataStructure is Used.
 
-1. `PreOrder`:
+#### 1. `PreOrder`:
     1. `Root Left Right` (in `recursion`)
     2. `Root Right Left` (in `Iterative`) , it's reverse of recursion , Why ? we need Left First in PreOrder, so by that Left will be at top. as Stack : LIFO
     3. TC : O(N)
@@ -130,7 +130,7 @@ vector<int> preorderTraversal(TreeNode* root) {
     }
 ```
 
-2. InOrder:
+#### 2. InOrder:
     1. In this, we push the node if it is not null, and move node to left
     2. after that if node is null then pop the node and print and move to right
     3. Simple Steps:
@@ -164,9 +164,9 @@ vector<int> inorderTraversal(TreeNode* root) {
     }
 ```
         
-3. PostOrder:
+#### 3. PostOrder:
 
-3.1 Using 2 Stack -
+`3.1 Using 2 Stack` -
 
 - Create 2 Stacks. st1,st2
 - Push Root in St1
@@ -199,3 +199,8 @@ vector<int> postorderTraversal(TreeNode* root) {
         return ans;
     }
 ```
+
+`3.2 Using 1 Stack` -
+
+![take U forward - L12  Iterative Postorder Traversal using 1 Stack C++ Java Binary Trees  NzIGLLwZBS8 - 885x498 - 9m10s](https://user-images.githubusercontent.com/35686407/172042877-2fbf1f04-abcd-47fb-9c1b-35d8394b8ba6.png)
+
