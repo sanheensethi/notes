@@ -221,7 +221,7 @@ vector<int> postorderTraversal(TreeNode* root) {
     6. if temp != NULL , it means right exists , then we again go to left left left => curr = temp;
     7. if temp == NULL , it means right is also NULL, 
     8. then , temp = top of stack , pop the element from stack, print the element
-    9. while loop again, untill stack is empty and temp == stack top right, then temp = stack top, pop from stack and print the element
+    9. while loop again, untill stack is empty and temp == stack top right, it means we are going to print parent while returning to the parent then temp = stack top, pop from stack and print the element
 
 ```cpp
 vector<int> postorderTraversal(TreeNode* root) {
