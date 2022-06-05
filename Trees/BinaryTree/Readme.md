@@ -173,6 +173,8 @@ vector<int> inorderTraversal(TreeNode* root) {
 - in loop : Pop from St1 and Push in st2
 - Push Left Right in st1 of node in loop
 - When loops end, empty st2 , its postOrder Traversal
+- TC : O(n)
+- SC : O(2n)
 
 ```cpp
 vector<int> postorderTraversal(TreeNode* root) {
