@@ -104,8 +104,8 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 - Stack DataStructure is Used.
 
 1. PreOrder:
-        - Root Left Right (in recursion)
-        - Root Right Left (in Iterative) , it's reverse of recursion , Why ? we need Left First in PreOrder, so by that Left will be at top. as Stack : LIFO
+        1. Root Left Right (in recursion)
+        2. Root Right Left (in Iterative) , it's reverse of recursion , Why ? we need Left First in PreOrder, so by that Left will be at top. as Stack : LIFO
 ```cpp
 vector<int> preorderTraversal(TreeNode* root) {
         vector<int> ans;
