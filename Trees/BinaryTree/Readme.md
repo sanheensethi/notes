@@ -315,3 +315,28 @@ int maxDepth(TreeNode* root) {
         return max(leftHeight,rightHeight) + 1;
     }
 ```
+## 10. Balaced Binary Tree
+
+- Balaced Tree : abs(leftHeight - rightHeght) <= 1 for every node.
+
+```cpp
+int depth(TreeNode* root){
+        if(root == NULL) return 0;
+        
+        int leftHeight = depth(root->left);
+        if(leftHeight == -1) return -1;
+        
+        int rightHeight = depth(root->right);
+        if(rightHeight == -1) return -1;
+        
+        if(abs(leftHeight - rightHeight) > 1) return -1; // to send it is not balanced -1 is marker
+        
+        return max(leftHeight,rightHeight) + 1;
+    }
+    bool isBalanced(TreeNode* root) {
+        if(depth(root) == -1){
+            return false;
+        }
+        return true;
+    }
+```
