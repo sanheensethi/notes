@@ -167,3 +167,33 @@ vector<int> inorderTraversal(TreeNode* root) {
 3. PostOrder:
 
 3.1 Using 2 Stack -
+
+- Create 2 Stacks. st1,st2
+- Push Root in St1
+- in loop : Pop from St1 and Push in st2
+- Push Left Right in st1 of node in loop
+- When loops end, empty st2 , its postOrder Traversal
+
+```cpp
+vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        if(root == NULL) return ans;
+        
+        stack<TreeNode*> st1,st2;
+        st1.push(root);
+        
+        while(!st1.empty()){
+            TreeNode* node = st1.top();st1.pop();
+            st2.push(node);
+            if(node->left) st1.push(node->left);
+            if(node->right) st1.push(node->right);
+        }
+        
+        while(!st2.empty()){
+            ans.push_back(st2.top()->val);
+            st2.pop();
+        }
+        
+        return ans;
+    }
+```
