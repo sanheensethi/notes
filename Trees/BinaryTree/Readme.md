@@ -202,5 +202,6 @@ vector<int> postorderTraversal(TreeNode* root) {
 
 `3.2 Using 1 Stack` -
 
-![take U forward - L12  Iterative Postorder Traversal using 1 Stack C++ Java Binary Trees  NzIGLLwZBS8 - 885x498 - 9m10s](https://user-images.githubusercontent.com/35686407/172042877-2fbf1f04-abcd-47fb-9c1b-35d8394b8ba6.png)
+![take U forward - L12  Iterative Postorder Traversal using 1 Stack C++ Java Binary Trees  NzIGLLwZBS8 - 1536x864 - 9m14s](https://user-images.githubusercontent.com/35686407/172042915-678e58ee-39f2-47a8-ad01-c14f2d9cc774.png)
+
 
