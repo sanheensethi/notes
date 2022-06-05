@@ -259,3 +259,43 @@ vector<int> postorderTraversal(TreeNode* root) {
         return ans;
     }
 ```
+## 8. PreOrder - PostOrder - InOrder in One Traversal
+
+![take U forward - L13  Preorder Inorder Postorder Traversals in One Traversal C++ Java Stack Binary Trees  ySp2epYvgTE - 1536x864 - 8m36s](https://user-images.githubusercontent.com/35686407/172045217-0d85cb6e-dfb2-4afa-bbb6-36bc5d684f83.png)
+
+
+- if num == 1 , preorder, num++ , push node again with new num , if left push it with num = 1
+- if num == 2 , inorder, num++, push node again with new num, if right push it with num = 1
+- if num == 3, postorder, we don't need to push it again
+
+```cpp
+vector<int> preorderTraversal(TreeNode* root) {
+        if(root == NULL) return {};
+        vector<int> pre;
+        stack<pair<TreeNode*,int>> st;
+        st.push({root,1});
+        while(!st.empty()){
+            auto pr = st.top();
+            st.pop();
+            
+            if(pr.second == 1){
+                // part of pre
+                pre.push_back(pr.first->val);
+                st.push({pr.first,pr.second+1});
+                if(pr.first->left){
+                    st.push({pr.first->left,1});
+                }
+            }else if(pr.second == 2){
+                // part of in
+                // in.push_back(pr.first->val);
+                st.push({pr.first,pr.second+1});
+                if(pr.first->right){
+                    st.push({pr.first->right,1});
+                }
+            }else{
+                // post.push_back(pr.first->val);
+            }
+        }
+        return pre;
+    }
+```
