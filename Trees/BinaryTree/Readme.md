@@ -35,3 +35,35 @@
 
 #### BFS : (Breadth First Search)
 - Level Order
+
+## 5. PreOrder - PostOrder - InOrder Traversal
+
+```cpp
+void preOrder(TreeNode* root,vector<int>& ans){
+        // Root Left Right
+        if(root == NULL) return;
+        ans.push_back(root->val);
+        preOrder(root->left,ans);
+        preOrder(root->right,ans);
+}
+```
+
+```cpp
+void postOrder(TreeNode* root,vector<int>& ans){
+        // Left Right Root
+        if(root == NULL) return;
+        preOrder(root->left,ans);
+        preOrder(root->right,ans);
+        ans.push_back(root->val);
+}
+```
+
+```cpp
+void inOrder(TreeNode* root,vector<int>& ans){
+        // Left Root Right
+        if(root == NULL) return;
+        preOrder(root->left,ans);
+        ans.push_back(root->val);
+        preOrder(root->right,ans);
+}
+```
