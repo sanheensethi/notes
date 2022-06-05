@@ -98,3 +98,34 @@ vector<vector<int>> levelOrder(TreeNode* root) {
         return ans;
     }
 ```
+
+## 7. PreOrder - PostOrder - InOrder Iterative
+
+- Stack DataStructure is Used.
+
+1. PreOrder:
+        - Root Left Right (in recursion)
+        - Root Right Left (in Iterative) , it's reverse of recursion , Why ? we need Left First in PreOrder, so by that Left will be at top. as Stack : LIFO
+```cpp
+vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        if(root == NULL) return ans;
+        stack<TreeNode*> st;
+        st.push(root);
+        // Put in stack Method for Preorder in iterative :  Right Left 
+        while(!st.empty()){
+            TreeNode* node = st.top();st.pop();
+            ans.push_back(node->val);
+            if(node->right){
+                st.push(node->right);
+            }
+            if(node->left){
+                st.push(node->left);
+            }
+        }
+        return ans;
+    }
+```
+
+2. PostOrder:
+        
