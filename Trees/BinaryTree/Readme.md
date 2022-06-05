@@ -36,7 +36,7 @@
 #### BFS : (Breadth First Search)
 - Level Order
 
-## 5. PreOrder - PostOrder - InOrder Traversal
+## 5. PreOrder - PostOrder - InOrder Traversal [Recursion]
 
 ```cpp
 void preOrder(TreeNode* root,vector<int>& ans){
