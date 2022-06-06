@@ -301,7 +301,7 @@ vector<int> preorderTraversal(TreeNode* root) {
     }
 ```
 
-## 9. Depth of Binary Tree
+## 9. Depth/Height of Binary Tree
 
 - ROOT == NULL : return 0
 - return max(leftCall,rightCall) + 1;
@@ -349,3 +349,41 @@ int depth(TreeNode* root){
 
 ![take U forward - L16  Diameter of Binary Tree C++ Java  Rezetez59Nk - 885x498 - 2m41s](https://user-images.githubusercontent.com/35686407/172090414-27868b91-1aab-4695-9a43-0ec481e4fd24.png)
 
+- `LeftHeight+RightHeight` for every node, max number is diameter of binary tree.
+-  We have to find max(leftHeight+rightHeight) for every node.
+
+1. Brute Force:
+
+- Calculate Left Height and Right Height from each node, and find diameter and compare it with max value
+- Do above step for all nodes.
+
+```cpp
+int height(TreeNode* root){
+        if(root == NULL){
+            return 0;
+        }
+        int lh = height(root->left);
+        int rh = height(root->right);
+        return 1+max(lh,rh);
+        
+    }
+    
+    void solve(TreeNode* root,int& diameter){
+        if(root == NULL) return;
+        
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        
+        diameter = max(diameter,leftHeight+rightHeight);
+        
+        solve(root->left,diameter);
+        solve(root->right,diameter);
+        
+    }
+    
+    int diameterOfBinaryTree(TreeNode* root) {
+        int diameter = 0;
+        solve(root,diameter);
+        return diameter;
+    }
+```
