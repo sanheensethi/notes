@@ -451,3 +451,19 @@ int pathSum(TreeNode* root,int& ans){
         return ans;
     }
 ```
+## 13. Identical Trees/Same Trees [Question](https://leetcode.com/problems/same-tree/)
+
+- move both simultaneouly.
+- if p == NULL || q == NULL , check both are same or not and return
+
+```cpp
+bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p == NULL || q == NULL){
+            return p == q;
+        }
+        
+        return (p->val == q->val) 
+            && isSameTree(p->left,q->left)
+            && isSameTree(p->right,q->right);
+    }
+```
