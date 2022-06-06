@@ -2,6 +2,9 @@
 
 ## 1. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
+![Fraz - Intersection of Two Linked List EP 18  DGEqY5rLyVc - 1536x864 - 5m00s](https://user-images.githubusercontent.com/35686407/172180060-3c3e8077-7cdb-41f0-80c1-72a7ed665d44.png)
+
+
 #### Method 1: Brute Force
 
 - Steps:
