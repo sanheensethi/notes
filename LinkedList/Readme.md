@@ -137,4 +137,25 @@ int size(ListNode* head){
     }
 ```
 
-#### Method 2:
+#### Method 4:
+
+![Fraz - Intersection of Two Linked List EP 18  DGEqY5rLyVc - 885x498 - 12m24s](https://user-images.githubusercontent.com/35686407/172188867-55f3e129-1f88-4f40-854e-2bc1c6846e9f.png)
+
+
+1. Intuation:
+    - suppose L1 m+x length ki hai, x is common list length from intersection
+    - suppose L2 n+x kength ki hai, x is common list length from intersection
+    - `L1 = (m+x)` and `L2 = (n+x)`
+    - to suppose mae L1 ko kuch length or traverse krwadu i.e., n+x ~ L1 = (m+x) + `(n+x)`
+    - suppose mae L2 ko kuch length or traverse krwadu i.e., m+x ~ L2 = (n+x) + `(m+x)`
+    - ab yha se L1 = L2 hogyi, so, we are able to move them together.
+ 
+2. Steps:
+    - tempA = headA
+    - tempB = headB
+    - tempA and tempB ko aage bhadao ikate,
+    - jo pehle null pr pohcha , usko uske opposite mae initialize krdo and aage bhadao
+    - agar dusre vala bhi null hogya , usko bhi uske opposite mae initialize krdo
+    - ab dono barabar jagag pr synchronize hogye
+    - ab dono ko ikate chlao,
+    - jha vo mile vo intersection point.
