@@ -626,3 +626,10 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
         return ans;
     }
 ```
+
+2. Clockwise
+
+- 3 Steps:
+    - Take Right Boundary, excluding leaf nodes , right right right if not left then right right right
+    - TakeLeaf Nodes from right to left , recursive, go to right then left
+    - Take Left Boundary, in reverse Direction, exclusing leaf nodes , left left left if not right then left left left, reverse and then add in ans.
