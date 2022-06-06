@@ -56,6 +56,8 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
     2. ab dusre ko traverse krte wakt find kro ki vo map mae exists krti hai ya nhi ?
     3. jese hi pehli node mile jo krti hai , return krdo us address ko
     4. otherwise return null
+    5. TC : O(m+n)
+    6. SC : O(m or n) whatever you put in hashmap
 
 ```cpp
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
@@ -84,7 +86,7 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
 
 
 
-#### Method 3:
+#### Method 3: (Size of LinkedList Method)
 
 - Steps:
     1. Dono linked list ka size nikalo
