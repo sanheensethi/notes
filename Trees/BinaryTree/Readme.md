@@ -415,3 +415,17 @@ int height(TreeNode* root,int& diameter){
         return diameter;
     }
 ```
+## 12. Maximum Path Sum
+
+- hum `maxi = max(maxi,node->val+leftSum+rightSum)` isliye le rhe hai, ho skta hai path 20 se start ho max vala, na ki root se.
+- `return node->val + max(leftSum,rightSum)` -> isse hum root ko bta rhe hai, tumhe konsi side mae jana chahiye left ya right side jga se max sum aara ho.
+- ho skta hai andar child node se start krke andar khi max sum aara hai to uske liye hmne `maxi = max(maxi,node->val+leftSum+rightSum)` vala rkha hai. umbrealla shape curve andar bhi bnkr max sum deri ho maybe.
+ 
+![take U forward - L17  Maximum Path Sum in Binary Tree C++ Java  WszrfSwMz58 - 853x480 - 5m29s](https://user-images.githubusercontent.com/35686407/172124299-159da4cd-7b60-46b0-8c23-5c67a38cf1d8.png)
+
+![take U forward - L17  Maximum Path Sum in Binary Tree C++ Java  WszrfSwMz58 - 1536x864 - 13m40s](https://user-images.githubusercontent.com/35686407/172124242-ee6bb6f2-78a7-458d-addf-a5d7a19d2441.png)
+
+
+```cpp
+
+```
