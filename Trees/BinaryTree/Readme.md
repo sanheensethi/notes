@@ -316,6 +316,9 @@ int maxDepth(TreeNode* root) {
         return max(leftHeight,rightHeight) + 1;
     }
 ```
+
+# Variations of Height of Binary Tree : From 10 to 12
+
 ## 10. Balaced Binary Tree
 
 - Balaced Tree : abs(leftHeight - rightHeght) <= 1 for every node.
