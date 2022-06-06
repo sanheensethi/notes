@@ -467,3 +467,47 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
             && isSameTree(p->right,q->right);
     }
 ```
+## 14. Zig-Zag Traversal [Question](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+
+- Same as Level Order
+- Just put flag true false, true for left to right and false for right to left;
+
+- 1st Way:
+    - if right to left then we reverse the vec and push it
+    - other wise not reverse it
+
+```cpp
+vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        if(root == NULL) return {};
+        vector<vector<int>> ans;
+        
+        queue<TreeNode*> Q;
+        Q.push(root);
+        bool leftToRight = true;
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            vector<int> vec;
+            while(size--){
+                TreeNode* node = Q.front();Q.pop();
+                if(node->left) Q.push(node->left);
+                if(node->right) Q.push(node->right);
+                vec.push_back(node->val);
+            }
+            if(leftToRight == false){
+                // it means right to left
+                reverse(vec.begin(),vec.end());
+                leftToRight = true;
+            }else{
+                leftToRight = false;
+            }
+            ans.push_back(vec);
+        }
+        return ans;
+    }
+```
+
+- 2nd Way
+    - Initialze the vector of size
+    - then `index = i` if `left to right is true`, `otherwise` it's stored in last index so `index = size - 1 - i`
+
