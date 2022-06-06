@@ -420,12 +420,34 @@ int height(TreeNode* root,int& diameter){
 - hum `maxi = max(maxi,node->val+leftSum+rightSum)` isliye le rhe hai, ho skta hai path 20 se start ho max vala, na ki root se.
 - `return node->val + max(leftSum,rightSum)` -> isse hum root ko bta rhe hai, tumhe konsi side mae jana chahiye left ya right side jga se max sum aara ho.
 - ho skta hai andar child node se start krke andar khi max sum aara hai to uske liye hmne `maxi = max(maxi,node->val+leftSum+rightSum)` vala rkha hai. umbrealla shape curve andar bhi bnkr max sum deri ho maybe.
+- Children node act as root, and say ki max path sum mujse hoke jayega,
+- return mae hum upar direction bta rhe hai ki aap kis trf ja skte hai max sum pane ke liye
  
 ![take U forward - L17  Maximum Path Sum in Binary Tree C++ Java  WszrfSwMz58 - 853x480 - 5m29s](https://user-images.githubusercontent.com/35686407/172124299-159da4cd-7b60-46b0-8c23-5c67a38cf1d8.png)
 
 ![take U forward - L17  Maximum Path Sum in Binary Tree C++ Java  WszrfSwMz58 - 1536x864 - 13m40s](https://user-images.githubusercontent.com/35686407/172124242-ee6bb6f2-78a7-458d-addf-a5d7a19d2441.png)
 
+- Now , also we have to ignore the negative Path Sums, because it will lead more negative to ans, so we ignore negative path sums. and instead negative take 0.
+
+![take U forward - L17  Maximum Path Sum in Binary Tree C++ Java  WszrfSwMz58 - 853x480 - 15m04s](https://user-images.githubusercontent.com/35686407/172125253-7a8f06b0-7fe4-47cb-8b2b-21a62dfe354c.png)
 
 ```cpp
-
+int pathSum(TreeNode* root,int& ans){
+        if(root == NULL) return 0;
+        
+        int lSum = pathSum(root->left,ans);
+        int rSum = pathSum(root->right,ans);
+    
+        lSum = max(0,lSum); // discarding if left sum is negative;
+        rSum = max(0,rSum); // discarding if right sum is negative;
+        
+        ans = max(ans,lSum + rSum + root->val); // khud ans bnna chah rha hai node
+        
+        return root->val + max(lSum,rSum);
+    }
+    int maxPathSum(TreeNode* root) {
+        int ans = INT_MIN;
+        int a = pathSum(root,ans);
+        return ans;
+    }
 ```
