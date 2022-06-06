@@ -341,3 +341,11 @@ int depth(TreeNode* root){
         return true;
     }
 ```
+
+## 11. Diameter of Binary Tree
+
+- Longest Path between 2 Nodes.
+- Path doesn't need to pass via root.
+
+![take U forward - L16  Diameter of Binary Tree C++ Java  Rezetez59Nk - 885x498 - 2m41s](https://user-images.githubusercontent.com/35686407/172090414-27868b91-1aab-4695-9a43-0ec481e4fd24.png)
+
