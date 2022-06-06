@@ -637,9 +637,84 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
 
 ## 16. Vertical Order Traversal:
 
+- `map<int,map<int,multiset<int>>> mp` , it represents vertical , level , node value (sorted order, having same value therefore multiset)
+- `class cluster` , store [ vertical, level, node ] as single box/entity.
+- Do, level order, and if left then vertical - 1, and if right then vertical + 1
+
 ![take U forward - L21  Vertical Order Traversal of Binary Tree C++ Java  q_a6lpbKJdw - 885x498 - 5m33s](https://user-images.githubusercontent.com/35686407/172165987-d5312ed9-ca55-4d73-a9d9-d081be147eae.png)
 
 
 ![take U forward - L21  Vertical Order Traversal of Binary Tree C++ Java  q_a6lpbKJdw - 1435x807 - 7m40s](https://user-images.githubusercontent.com/35686407/172165854-7fe468f7-fc9a-4bea-9bcb-989fef44cd92.png)
 
+```cpp
+class Solution {
+    
+    class cluster{
+        public:
+            int vertical;
+            int level;
+            TreeNode* node;
+            cluster(int _v,int _l,TreeNode* _n){
+                this->vertical = _v;
+                this->level = _l;
+                this->node = _n;
+            }
+    };
+    
+public:
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        if(root == NULL) return {};
+        vector<vector<int>> ans;
+        
+        map<int,map<int,multiset<int>>> mp;
+        queue<cluster> Q;
+        Q.push(cluster(0,0,root));
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                auto cl = Q.front();
+                Q.pop();
+                int v = cl.vertical;
+                int lvl = cl.level;
+                TreeNode* node = cl.node;
+                
+                mp[v][lvl].insert(node->val);
+                
+                if(node->left){
+                    Q.push(cluster(v-1,lvl+1,node->left));
+                }
+                
+                if(node->right){
+                    Q.push(cluster(v+1,lvl+1,node->right));
+                }
+            
+            }
+        }
+        
+        for(auto& vertical:mp){
+            vector<int> vec;
+            for(auto& level:vertical.second){
+                for(auto& val:level.second){
+                    vec.push_back(val);
+                }
+            }
+            ans.push_back(vec);
+        }
+        
+        return ans;
+    }
+};
+```
 
+- we can also use for loop as
+
+```cpp
+for(auto& vertical:ds){
+            vector<int> smallAns;
+            for(auto& level:vertical.second){
+                smallAns.insert(smallAns.end(),level.second.begin(),level.second.end());
+            }
+            ans.push_back(smallAns);
+        }
+```
