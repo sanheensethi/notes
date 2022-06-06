@@ -472,6 +472,9 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
 - Same as Level Order
 - Just put flag true false, true for left to right and false for right to left;
 
+![take U forward - L19  Zig-Zag or Spiral Traversal in Binary Tree C++ Java  3OXWEdlIGl4 - 1536x864 - 5m20s](https://user-images.githubusercontent.com/35686407/172138051-882a7b09-1056-4006-9858-431b13ab3e48.png)
+
+
 - 1st Way:
     - if right to left then we reverse the vec and push it
     - other wise not reverse it
@@ -508,6 +511,43 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
 ```
 
 - 2nd Way
+    - Saving the Reverse Time
     - Initialze the vector of size
     - then `index = i` if `left to right is true`, `otherwise` it's stored in last index so `index = size - 1 - i`
 
+```cpp
+vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        if(root == NULL) return ans;
+        
+        queue<TreeNode*> Q;
+        Q.push(root);
+        bool leftToRight = true;
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            vector<int> vec(size);
+            
+            // level start
+            for(int i = 0 ; i < size ; i++){
+                TreeNode* node = Q.front();
+                Q.pop();
+                
+                // if LR is true -> we put from front in vector
+                // if LR is false -> we put from back in vector
+                int index = leftToRight ? i : size - 1 - i;
+                
+                vec[index] = node->val;
+                
+                if(node->left) Q.push(node->left);
+                
+                if(node->right) Q.push(node->right);
+                
+            }
+            // level end
+            leftToRight = !leftToRight;
+            ans.push_back(vec);
+        }
+        return ans;
+    }
+```
