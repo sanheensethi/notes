@@ -159,3 +159,30 @@ int size(ListNode* head){
     - ab dono barabar jagag pr synchronize hogye
     - ab dono ko ikate chlao,
     - jha vo mile vo intersection point.
+
+```cpp
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        // let L1 = (m+x)
+        // let L2 = (n+x)
+        
+        ListNode* tempA = headA;
+        ListNode* tempB = headB;
+        
+        // now L1 = (m+x) + (n+x)
+        // now L2 = (n+x) + (m+x)
+        
+        // to make both pointer sync
+        
+        while(tempA != tempB){
+            
+            if(tempA == NULL) tempA = headB;
+            else tempA = tempA->next;
+            
+            if(tempB == NULL) tempB = headA;
+            else tempB = tempB->next;
+            
+        }
+        
+        return tempA;
+    }
+```
