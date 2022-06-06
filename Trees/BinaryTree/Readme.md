@@ -356,6 +356,7 @@ int depth(TreeNode* root){
 
 - Calculate Left Height and Right Height from each node, and find diameter and compare it with max value
 - Do above step for all nodes.
+- TC : O(n^2) , for a skewed tree.
 
 ```cpp
 int height(TreeNode* root){
@@ -384,6 +385,30 @@ int height(TreeNode* root){
     int diameterOfBinaryTree(TreeNode* root) {
         int diameter = 0;
         solve(root,diameter);
+        return diameter;
+    }
+```
+2. Optimized Solution:
+
+- We know how to find height of tree in O(n),
+- now while `finding height` from every node, `we have left height and right height` at that time, just `calculate the diameter at that time` `in height code`.
+- we don't need to seperately code for the diameter.
+
+```cpp
+int height(TreeNode* root,int& diameter){
+        if(root == NULL) return 0;
+        
+        int leftHeight = height(root->left,diameter);
+        int rightHeight = height(root->right,diameter);
+        
+        diameter = max(diameter,leftHeight + rightHeight);
+        
+        return 1 + max(leftHeight,rightHeight);
+    }
+    
+    int diameterOfBinaryTree(TreeNode* root) {
+        int diameter = 0;
+        int hgt = height(root,diameter);
         return diameter;
     }
 ```
