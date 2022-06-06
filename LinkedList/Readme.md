@@ -41,6 +41,7 @@ int size(ListNode* head){
             }
         }
         
+        // dono ikate 1 step se chlao
         while(tempA != tempB){
             tempA = tempA->next;
             tempB = tempB->next;
@@ -51,3 +52,5 @@ int size(ListNode* head){
         
     }
 ```
+
+#### Method 2:
