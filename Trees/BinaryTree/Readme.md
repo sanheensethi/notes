@@ -552,7 +552,7 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
     }
 ```
 
-## 15. Boundary Traversal
+## 15. Boundary Traversal [Question](https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1#)
 
 1. Anti-Clock Wise
 
@@ -568,10 +568,61 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
 
 - Take Leaf Nodes:
     - It's Left and Right both are NULL.
-    - Use InOrder Traversal, not preorder or levelorder because, maybe some leafs are on upper level
+    - Use InOrder Traversal, not preorder or levelorder because, maybe some leafs are on upper level.
+    - Left ki trf jao, right ki trf jao, jb end pr pocho leaf node pr add krte jao.
  
  - Take Right Boundary in Reverse:
      - From Root, Take Right Right Right
      - if Right not exists go to Left 
      - then again Right Right Right
      - put all in stack, so when you pop, it's in reverse direction.
+     
+![take U forward - L20  Boundary Traversal in Binary Tree C++ Java  0ca1nvR0be4 - 885x498 - 6m41s](https://user-images.githubusercontent.com/35686407/172161626-54c287d0-9638-4353-a3b8-ab14cad4e2fe.png)
+
+```cpp
+    bool isLeaf(Node* root){
+        return (!root->left && !root->right);
+    }
+    
+    void addLeftBoundary(Node* root,vector<int>& ans){
+        Node* cur = root->left;
+        while(cur){
+            if(!isLeaf(cur)) ans.push_back(cur->data);
+            if(cur->left) cur = cur->left;
+            else cur = cur->right;
+        }
+    }
+    
+    void addLeaf(Node* root,vector<int>& ans){
+        if(isLeaf(root)){
+            ans.push_back(root->data);
+            return;
+        }
+        if(root->left) addLeaf(root->left,ans);
+        if(root->right) addLeaf(root->right,ans);
+    }
+    
+    void addRightBoundary(Node* root,vector<int>& ans){
+        Node* cur = root->right;
+        stack<int> st;
+        while(cur){
+            if(!isLeaf(cur)) st.push(cur->data);
+            if(cur->right) cur = cur->right;
+            else cur = cur->left;
+        }
+        while(!st.empty()){
+            ans.push_back(st.top());st.pop();
+        }
+    }
+    
+    vector <int> boundary(Node *root)
+    {
+        vector<int> ans;
+        if(root == NULL) return ans;
+        if(!isLeaf(root)) ans.push_back(root->data);
+        addLeftBoundary(root,ans);
+        addLeaf(root,ans);
+        addRightBoundary(root,ans);
+        return ans;
+    }
+```
