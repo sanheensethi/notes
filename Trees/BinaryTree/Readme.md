@@ -637,6 +637,9 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
 
 ## 16. Vertical Order Traversal:
 
+![take U forward - L21  Vertical Order Traversal of Binary Tree C++ Java  q_a6lpbKJdw - 885x498 - 5m33s](https://user-images.githubusercontent.com/35686407/172165987-d5312ed9-ca55-4d73-a9d9-d081be147eae.png)
+
+
 ![take U forward - L21  Vertical Order Traversal of Binary Tree C++ Java  q_a6lpbKJdw - 1435x807 - 7m40s](https://user-images.githubusercontent.com/35686407/172165854-7fe468f7-fc9a-4bea-9bcb-989fef44cd92.png)
 
 
