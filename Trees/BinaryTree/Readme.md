@@ -551,3 +551,27 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
         return ans;
     }
 ```
+
+## 15. Boundary Traversal
+
+1. Anti-Clock Wise
+
+- 3 Steps:
+    - Take Left Boundary, excluding leaf nodes
+    - TakeLeaf Nodes from left to right
+    - Take Right Boundary, in reverse Direction, exclusing leaf nodes
+
+- Take Left Boundary:
+    - From Root , go to Left , Left , Left , Left 
+    - if Left not exists go to right
+    - then again Left Left Left
+
+- Take Leaf Nodes:
+    - It's Left and Right both are NULL.
+    - Use InOrder Traversal, not preorder or levelorder because, maybe some leafs are on upper level
+ 
+ - Take Right Boundary in Reverse:
+     - From Root, Take Right Right Right
+     - if Right not exists go to Left 
+     - then again Right Right Right
+     - put all in stack, so when you pop, it's in reverse direction.
