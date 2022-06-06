@@ -633,3 +633,10 @@ vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
     - Take Right Boundary, excluding leaf nodes , right right right if not left then right right right
     - TakeLeaf Nodes from right to left , recursive, go to right then left
     - Take Left Boundary, in reverse Direction, exclusing leaf nodes , left left left if not right then left left left, reverse and then add in ans.
+
+
+## 16. Vertical Order Traversal:
+
+![take U forward - L21  Vertical Order Traversal of Binary Tree C++ Java  q_a6lpbKJdw - 1435x807 - 7m40s](https://user-images.githubusercontent.com/35686407/172165854-7fe468f7-fc9a-4bea-9bcb-989fef44cd92.png)
+
+
