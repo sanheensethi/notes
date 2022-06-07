@@ -978,7 +978,7 @@ vector<vector<int>> Paths(Node* root)
     return ans;
 }
 ```
-## LCA
+## 23. LCA
 
 - Lowest Common Ancestor
 
@@ -1079,3 +1079,21 @@ TreeNode* lca(TreeNode* root,TreeNode* p,TreeNode* q){
     }
 ```
 
+## 24. Max Width of Binary Tree
+
+![take U forward - L28  Maximum Width of Binary Tree C++ Java  ZbybYvcVLks - 1435x807 - 7m17s](https://user-images.githubusercontent.com/35686407/172383962-925331dc-ee01-4024-b5b1-426cc4cda9ec.png)
+
+
+![take U forward - L28  Maximum Width of Binary Tree C++ Java  ZbybYvcVLks - 1435x807 - 9m04s](https://user-images.githubusercontent.com/35686407/172383934-cca99e15-feae-48eb-a123-dc18447ccdcb.png)
+
+
+![take U forward - L28  Maximum Width of Binary Tree C++ Java  ZbybYvcVLks - 1435x807 - 9m35s](https://user-images.githubusercontent.com/35686407/172383908-59d5b71d-266a-4ce5-a773-169e36ecde82.png)
+
+
+![take U forward - L28  Maximum Width of Binary Tree C++ Java  ZbybYvcVLks - 1435x807 - 11m40s](https://user-images.githubusercontent.com/35686407/172383859-014d6322-019b-484f-ace6-cf59e9cbd161.png)
+
+
+![take U forward - L28  Maximum Width of Binary Tree C++ Java  ZbybYvcVLks - 1435x807 - 14m33s](https://user-images.githubusercontent.com/35686407/172383822-d922d12b-0bac-476a-b2b6-e028bc782bbc.png)
+
+
+![take U forward - L28  Maximum Width of Binary Tree C++ Java  ZbybYvcVLks - 1435x807 - 15m29s](https://user-images.githubusercontent.com/35686407/172383795-38aed705-28a1-4382-8c56-ba3e5fb50503.png)
