@@ -1097,3 +1097,36 @@ TreeNode* lca(TreeNode* root,TreeNode* p,TreeNode* q){
 
 
 ![take U forward - L28  Maximum Width of Binary Tree C++ Java  ZbybYvcVLks - 1435x807 - 15m29s](https://user-images.githubusercontent.com/35686407/172383795-38aed705-28a1-4382-8c56-ba3e5fb50503.png)
+
+```cpp
+int widthOfBinaryTree(TreeNode* root) {
+        
+        if(root == NULL) return 0;
+        
+        long long ans = 0;
+        queue<pair<TreeNode*,long long>> Q;
+        Q.push({root,0});
+        
+        while(!Q.empty()){
+            long long min = Q.front().second;
+            int size = Q.size();
+            long long first,last;
+            for(int i = 0; i < size ; i++){
+                auto pr = Q.front();
+                Q.pop();
+                
+                long long cur_idx = pr.second - min;
+                TreeNode* node = pr.first;
+                
+                if(i == 0) first = cur_idx;
+                if(i == size-1) last = cur_idx;
+                
+                if(node->left) Q.push({node->left,2*cur_idx+1});
+                if(node->right) Q.push({node->right,2*cur_idx+2});
+            }
+            ans = max(ans,last-first+1);
+        }
+        
+        return (int)ans;
+    }
+```
