@@ -994,6 +994,55 @@ Steps:
     - TC : O(2n)
     - SC : O(2n)
 
+```cpp
+bool RootToNodePath(TreeNode* root,TreeNode* target,vector<TreeNode*>& path){
+        if(root == NULL) return false;
+        
+        if(root == target){
+            path.push_back(root);
+            return true;
+        }
+        
+        path.push_back(root);
+        
+        bool left = RootToNodePath(root->left,target,path);
+        if(left == true) return true;
+        
+        bool right = RootToNodePath(root->right,target,path);
+        if(right == true) return true;
+        
+        path.pop_back();
+        return false;
+    }
+    
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        vector<TreeNode*> path1,path2;
+        
+        RootToNodePath(root,p,path1);
+        RootToNodePath(root,q,path2);
+        
+        TreeNode* prev = NULL;
+        
+        int n = path1.size();
+        int m = path2.size();
+        
+        int i,j;
+        i = j = 0;
+        
+        while(i < n && j < m){
+            if(path1[i] == path2[j]){
+                prev = path1[i];
+                i++;
+                j++;
+            }else{
+                break;
+            }
+        }
+        
+        return prev;
+    }
+```
+
 #### Optimized (DFS Traversal) , Left Right Work
 - Move Left
 - Move Right
