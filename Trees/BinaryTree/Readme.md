@@ -991,4 +991,22 @@ Steps:
     - traverse from front of both path,
     - if they are same, go head
     - moment when two nodes didn't match , the LCA is just uske pichle wala
+    - TC : O(2n)
+    - SC : O(2n)
+
+#### Optimized (DFS Traversal) , Left Right Work
+- Move Left
+- Move Right
+- then work
+- Moment when you find one of the node from both
+- instead of going aage return that number , in this case 4
+- left right return null then return null,
+- from left null , from right its 7
+- return 7 not null,
+- when going to 2 , we found from left 4 and from right 7
+- that signify, what 2 is lca of both nodes.
+
+![take U forward - L27  Lowest Common Ancestor in Binary Tree LCA C++ Java  _-QHfMDde90 - 853x480 - 9m10s](https://user-images.githubusercontent.com/35686407/172333456-9ed3260e-a3a0-4355-b318-2119555dd7eb.png)
+
+
 
