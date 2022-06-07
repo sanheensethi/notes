@@ -784,6 +784,8 @@ vector<int> topView(Node *root)
 
 ## 19. Right/Left Side of Binary Tree.
 
+> Note : Tell Interview the Recursive Case, very important.
+
 #### Right View:
 
 ![take U forward - L24  RightLeft View of Binary Tree C++ Java  KV4mRzTjlAk - 1536x864 - 11m12s](https://user-images.githubusercontent.com/35686407/172302565-1ad48c4f-1604-4053-bb76-1b28f386cf53.png)
