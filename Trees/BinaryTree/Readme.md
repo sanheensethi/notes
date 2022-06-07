@@ -771,41 +771,47 @@ vector<int> topView(Node *root)
 
 ## 18. Bottom View of Binary Tree
 
+![take U forward - L23  Bottom View of Binary Tree C++ Java  0FtVY6I4pB8 - 885x498 - 3m32s](https://user-images.githubusercontent.com/35686407/172299268-11a73f60-41b8-4425-95df-b313f93dcedc.png)
+
+
 - Similar as Top view, 
 - difference is only that , in top view , node is first node of vertical line
 - in this node is last node of vertical line
 - so , we have to update the value in map, again and again,
 - therefore we remove the if condition of mp.find in top view, which only allow us to put value only once.
+- So, in while loop just write: 
+- `mp[v] = node->data` , there will be no if condition.
+
+## 19. Right/Left Side of Binary Tree.
+
+#### Right View:
+- Last node of every level.
 
 ```cpp
-vector <int> bottomView(Node *root) {
-        // Your Code Here
-        map<int,int> mp; // vertical,node
-        queue<pair<int,Node*>> Q;
-        
-        Q.push({0,root});
-        
-        while(!Q.empty()){
-            int size = Q.size();
-            while(size--){
-                auto pr = Q.front();Q.pop();
-                
-                int v = pr.first;
-                Node* node = pr.second;
-                
-                mp[v] = node->data;
-                
-                if(node->left) Q.push({v-1,node->left});
-                if(node->right) Q.push({v+1,node->right});
-            }
-        }
-        
-        vector<int> ans;
-        
-        for(auto& pr:mp){
-            ans.push_back(pr.second);
-        }
-        
-        return ans;
+vector<int> rightView(Node *root)
+    {
+       // Your Code here
+       queue<Node*> Q;
+       vector<int> ans;
+       
+       Q.push(root);
+       
+       while(!Q.empty()){
+           int size = Q.size();
+           for(int i = 0; i < size ; i++){
+               Node* node = Q.front();Q.pop();
+               
+               if(i == size-1) ans.push_back(node->data);
+               
+               if(node->left) Q.push(node->left);
+               if(node->right) Q.push(node->right);
+               
+           }
+       }
+       
+       return ans;
     }
 ```
+
+#### Left View of Binary Tree
+- First Node of Every level.
