@@ -944,3 +944,35 @@ bool rootToNode(TreeNode* root,int target,vector<int>& ans){
 
 - Just same as Root to Node Path,
 - Just difference is, we will go to the leaf.
+- we wi
+
+```cpp
+void Paths(Node* root,vector<int>& ds,vector<vector<int>>& ans){
+    if(root->left == NULL && root->right == NULL){
+        //leaf node , left and right both not exists
+        ds.push_back(root->data); // add data to ds
+        
+        ans.push_back(ds); // push ds to ans , as we are in leaf
+        
+        ds.pop_back(); // pop current data from ds
+        
+        return;
+    }
+    
+    ds.push_back(root->data); // push data to ds
+    
+    if(root->left) Paths(root->left,ds,ans); // call when left exists
+    if(root->right) Paths(root->right,ds,ans); // call when right exists
+    
+    ds.pop_back(); // added current data will be popped
+    
+} 
+
+vector<vector<int>> Paths(Node* root)
+{
+    vector<vector<int>> ans;
+    vector<int> ds;
+    Paths(root,ds,ans);
+    return ans;
+}
+```
