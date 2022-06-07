@@ -940,3 +940,7 @@ bool rootToNode(TreeNode* root,int target,vector<int>& ans){
         return ans;
     }
 ```
+## 22. Root to Leaf Path
+
+- Just same as Root to Node Path,
+- Just difference is, we will go to the leaf.
