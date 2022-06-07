@@ -728,10 +728,43 @@ for(auto& vertical:ds){
 
 - First Node in every line is my Top View
 - Using Level Order
-- Not recursion because : 
+- Not recursion because : Suppose we do inorder traversal, when you reach node 6, it's not the first node in that line, 3 is the first node, so we have to write the seperate logic for the height of the tree, so in that line, min height node is taken, so it's not more intuative, this vertical order is intuative.
 - First time visit on line and find node is my top view node, (didn't update when you find line already in map)
 - Map of Line and Node . Queue of Line and Node
 
 ```cpp
-
+vector<int> topView(Node *root)
+    {
+        queue<pair<int,Node*>> Q; // vertical,node
+        map<int,int> mp; // vertical,node val
+        
+        Q.push({0,root});
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                auto pr = Q.front();
+                Q.pop();
+                int v = pr.first;
+                Node* node = pr.second;
+                
+                if(mp.find(v) == mp.end()){
+                    // if v is not found in map, put, if found dont do anything,
+                    // because already first node is present
+                    mp[v] = node->data;
+                }
+                
+                if(node->left) Q.push({v-1,node->left});
+                if(node->right) Q.push({v+1,node->right});
+                
+            }
+        }
+        
+        vector<int> ans;
+        for(auto& pr:mp){
+            ans.push_back(pr.second);
+        }
+        
+        return ans;
+    }
 ```
