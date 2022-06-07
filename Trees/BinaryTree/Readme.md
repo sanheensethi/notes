@@ -1049,7 +1049,7 @@ bool RootToNodePath(TreeNode* root,TreeNode* target,vector<TreeNode*>& path){
 - then work
 - Moment when you find one of the node from both
 - instead of going aage return that number , in this case 4
-- left right return null then return null,
+- left and right both return null then return null,
 - from left null , from right its 7
 - return 7 not null,
 - when going to 2 , we found from left 4 and from right 7
@@ -1057,5 +1057,23 @@ bool RootToNodePath(TreeNode* root,TreeNode* target,vector<TreeNode*>& path){
 
 ![take U forward - L27  Lowest Common Ancestor in Binary Tree LCA C++ Java  _-QHfMDde90 - 853x480 - 9m10s](https://user-images.githubusercontent.com/35686407/172333456-9ed3260e-a3a0-4355-b318-2119555dd7eb.png)
 
-
+```cpp
+TreeNode* lca(TreeNode* root,TreeNode* p,TreeNode* q){
+        if(root == NULL) return NULL;
+        if(root == p) return p;
+        if(root == q) return q;
+        
+        TreeNode* left = lca(root->left,p,q);
+        TreeNode* right = lca(root->right,p,q);
+        
+        if(left == NULL){
+            return right;
+        }else if(right == NULL){
+            return left;
+        }else{
+            return root;
+        }
+        
+    }
+```
 
