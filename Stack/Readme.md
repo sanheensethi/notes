@@ -494,7 +494,7 @@ public:
     }
 };
 ```
-## 10. Minimum remove to make valid parantheses [Question]()
+## 10. Minimum remove to make valid parantheses [Question](https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/)
 
 - in stack only '(' indexes is there
 - ignore chars
