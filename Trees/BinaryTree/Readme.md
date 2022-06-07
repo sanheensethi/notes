@@ -721,7 +721,17 @@ for(auto& vertical:ds){
 
 ## 17. Top View of Binary Tree (Vertical Order Traversal Line Concept)
 
+![take U forward - L22  Top View of Binary Tree C++ Java  Et9OCDNvJ78 - 853x480 - 2m50s](https://user-images.githubusercontent.com/35686407/172295920-7b53b66e-86b3-42e2-9345-98dcbdd11aab.png)
+
+![take U forward - L22  Top View of Binary Tree C++ Java  Et9OCDNvJ78 - 885x498 - 7m16s](https://user-images.githubusercontent.com/35686407/172296433-377c437b-1b62-4a4d-94d5-bf470b1c5715.png)
+
+
+- First Node in every line is my Top View
 - Using Level Order
 - Not recursion because : 
+- First time visit on line and find node is my top view node, (didn't update when you find line already in map)
+- Map of Line and Node . Queue of Line and Node
 
-![take U forward - L22  Top View of Binary Tree C++ Java  Et9OCDNvJ78 - 885x498 - 1m23s](https://user-images.githubusercontent.com/35686407/172295794-bd451c52-7e84-49ab-931b-17560075a482.png)
+```cpp
+
+```
