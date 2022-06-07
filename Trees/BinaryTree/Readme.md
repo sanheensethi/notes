@@ -768,3 +768,44 @@ vector<int> topView(Node *root)
         return ans;
     }
 ```
+
+## 18. Bottom View of Binary Tree
+
+- Similar as Top view, 
+- difference is only that , in top view , node is first node of vertical line
+- in this node is last node of vertical line
+- so , we have to update the value in map, again and again,
+- therefore we remove the if condition of mp.find in top view, which only allow us to put value only once.
+
+```cpp
+vector <int> bottomView(Node *root) {
+        // Your Code Here
+        map<int,int> mp; // vertical,node
+        queue<pair<int,Node*>> Q;
+        
+        Q.push({0,root});
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                auto pr = Q.front();Q.pop();
+                
+                int v = pr.first;
+                Node* node = pr.second;
+                
+                mp[v] = node->data;
+                
+                if(node->left) Q.push({v-1,node->left});
+                if(node->right) Q.push({v+1,node->right});
+            }
+        }
+        
+        vector<int> ans;
+        
+        for(auto& pr:mp){
+            ans.push_back(pr.second);
+        }
+        
+        return ans;
+    }
+```
