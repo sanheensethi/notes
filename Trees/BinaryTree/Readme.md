@@ -862,3 +862,36 @@ vector<int> rightView(Node *root)
 - Iterative
     - Level Order Traversal
     - First Node of Every level.
+
+## 20. Check for Symmetrical Binary Tree
+
+![take U forward - L25  Check for Symmetrical Binary Trees C++ Java  nKggNAiEpBE - 1536x864 - 1m11s](https://user-images.githubusercontent.com/35686407/172306383-1f32bf20-5fca-439a-9539-3f686335ad53.png)
+
+![take U forward - L25  Check for Symmetrical Binary Trees C++ Java  nKggNAiEpBE - 1536x864 - 5m27s](https://user-images.githubusercontent.com/35686407/172306398-8eb87e07-1bc0-4188-9a04-b8c1cd8079df.png)
+
+- if we draw mirror on root,
+- hme pta hai mirror ki property, left ~ right dekhega
+- right ~ left dekhega,
+- to hum kuch ese traverse krenge, ki mirror ke left mae jb left mae jaye, to mirror ke right mae hum right ko jaye
+- means left ke corresponding right
+- right ke correspoinding left
+- Root->left : ROOT LEFT RIGHT
+- Root->right : ROOT RIGHT LEFT
+- and now same as identical check of binary tree
+
+```cpp
+bool isSymmetric(TreeNode* p,TreeNode* q){
+        if(p == NULL || q == NULL){
+            return p == q;
+        }
+
+        return (p->val == q->val) &&
+               isSymmetric(p->left,q->right) &&
+               isSymmetric(p->right,q->left);
+}
+    
+bool isSymmetric(TreeNode* root) {
+        if(root == NULL) return true;
+        return isSymmetric(root->left,root->right);
+}
+```
