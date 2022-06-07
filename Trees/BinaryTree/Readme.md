@@ -869,6 +869,9 @@ vector<int> rightView(Node *root)
 
 ![take U forward - L25  Check for Symmetrical Binary Trees C++ Java  nKggNAiEpBE - 1536x864 - 5m27s](https://user-images.githubusercontent.com/35686407/172306398-8eb87e07-1bc0-4188-9a04-b8c1cd8079df.png)
 
+1. TC : O(n)
+2. SC : in worst ~ O(n)
+
 - if we draw mirror on root,
 - hme pta hai mirror ki property, left ~ right dekhega
 - right ~ left dekhega,
