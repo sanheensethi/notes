@@ -785,7 +785,45 @@ vector<int> topView(Node *root)
 ## 19. Right/Left Side of Binary Tree.
 
 #### Right View:
-- Last node of every level.
+
+![take U forward - L24  RightLeft View of Binary Tree C++ Java  KV4mRzTjlAk - 1536x864 - 11m12s](https://user-images.githubusercontent.com/35686407/172302565-1ad48c4f-1604-4053-bb76-1b28f386cf53.png)
+
+> Worst Cast of Level Order: TC : O(n) and SC : O(n) , for full binary tree, stores level all nodes
+
+> In Recursive: Since we are moving recursve , TC : O(n) and SC : O(H) , Height of the tree, in skew , O(N). Recursive will used when we have less space provided.
+
+> Recursive : Code is short and crisp.
+
+- Recurson Method : `Reverse PreOrder Traversal`
+    - In PreOrder : Root , Left, Right
+    - In Reverse PreOrder : Root , Right , Left
+    - So, storing is the way, as vec.size() == level then vec.push_back(val) ,
+    - this works as , vec.size() == level tells, wheather you came to that level for the first time or not, if you came at that level for the first time,
+    - then add the value.
+
+```cpp
+    vector<int> ans;
+    
+    void rightView(Node* root,int level){
+        if(root == NULL) return;
+        if(ans.size() == level){
+            // it tells you came to that level for the first time or not,
+            // if yes, then push.
+            ans.push_back(root->data);
+        }
+        rightView(root->right,level+1);
+        rightView(root->left,level+1);
+    }
+    
+    vector<int> rightView(Node *root)
+    {
+        rightView(root,0);
+        return ans;
+    }
+```
+
+- Itreative Method : Level Order
+    - Last node of every level.
 
 ```cpp
 vector<int> rightView(Node *root)
@@ -814,4 +852,11 @@ vector<int> rightView(Node *root)
 ```
 
 #### Left View of Binary Tree
-- First Node of Every level.
+- Recursive: 
+    - Do PreOrder Traversal
+    - Root Left Right
+    - Push in ans vector, when you came to that level for the firs time.
+
+- Iterative
+    - Level Order Traversal
+    - First Node of Every level.
