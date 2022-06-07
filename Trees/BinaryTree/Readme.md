@@ -898,3 +898,45 @@ bool isSymmetric(TreeNode* root) {
         return isSymmetric(root->left,root->right);
 }
 ```
+## 21. Node to Root Path:
+
+![take U forward - L26  Print Root to Node Path in Binary Tree C++ Java  fmflMqVOC7k - 1536x864 - 7m12s](https://user-images.githubusercontent.com/35686407/172312209-95f5237e-f7ed-4c34-9256-5b0e76aa7ca4.png)
+
+- We will use inOrder Traversal,
+- The simple you use, the simple explanation will be and its simple to tell to interviewer
+- niche jate wkt add krte jao nodes ko
+- if node left and right dono jagah na mile to current val ko ans mae se remove kr do
+- if ek bhi jgh mil jaye either left or right , just return ans
+- ye pta lgane ke liye node mila ya nhi, hum bool ~ true,false ka use kr rhe hai.
+
+```cpp
+bool rootToNode(TreeNode* root,int target,vector<int>& ans){
+        if(root == NULL) return false;
+        
+        if(root->val == target){
+            ans.push_back(target);
+            return true;
+        }else{
+            ans.push_back(root->val);
+        }
+        
+        bool left = rootToNode(root->left,target,ans);
+        if(left == true) return true;
+        
+        bool right = rootToNode(root->right,target,ans);
+        if(right == true) return true;
+        
+        // if both false, pop back
+        
+        ans.pop_back();
+        
+        return false;
+        
+    }
+    
+    vector<int> rootToNodePath(TreeNode* root,int target){
+        vector<int> ans;
+        bool res = rootToNode(root,target,ans);
+        return ans;
+    }
+```
