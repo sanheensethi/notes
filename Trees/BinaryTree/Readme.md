@@ -1,5 +1,7 @@
 # Binary Tree
 
+[Lowest Common Ancestor](#LCA)
+
 ## 1. Termonologies
 
 - Root
@@ -976,3 +978,17 @@ vector<vector<int>> Paths(Node* root)
     return ans;
 }
 ```
+## LCA
+
+- Lowest Common Ancestor
+
+#### Brute Force
+
+![take U forward - L27  Lowest Common Ancestor in Binary Tree LCA C++ Java  _-QHfMDde90 - 1435x807 - 4m05s](https://user-images.githubusercontent.com/35686407/172331398-6e0d4d82-54b0-4b3e-aad4-6546ab550eee.png)
+
+Steps:
+    - Node to Root Path of each node,
+    - traverse from front of both path,
+    - if they are same, go head
+    - moment when two nodes didn't match , the LCA is just uske pichle wala
+
