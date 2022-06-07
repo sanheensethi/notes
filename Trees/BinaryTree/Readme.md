@@ -718,3 +718,10 @@ for(auto& vertical:ds){
             ans.push_back(smallAns);
         }
 ```
+
+## 17. Top View of Binary Tree (Vertical Order Traversal Line Concept)
+
+- Using Level Order
+- Not recursion because : 
+
+![take U forward - L22  Top View of Binary Tree C++ Java  Et9OCDNvJ78 - 885x498 - 1m23s](https://user-images.githubusercontent.com/35686407/172295794-bd451c52-7e84-49ab-931b-17560075a482.png)
