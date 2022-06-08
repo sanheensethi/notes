@@ -1584,3 +1584,11 @@ b) InOrder and PreOrder - Yes
 ![take U forward - L33  Requirements needed to construct a Unique Binary Tree Theory  9GMECGQgWrQ - 1536x864 - 6m35s](https://user-images.githubusercontent.com/35686407/172680315-e75dbada-987d-457c-b1d5-2c320e303555.png)
 
 c) InOrder and PostOrder - Yes, because Root is at last
+
+## 31. Construct Binary Tree From PreOrder and InOrder
+
+![take U forward - L34  Construct a Binary Tree from Preorder and Inorder Traversal C++ Java  aZNaLrVebKQ - 1536x864 - 6m41s](https://user-images.githubusercontent.com/35686407/172686750-2cf7e12b-76d8-4a50-9387-858529ea5227.png)
+![take U forward - L34  Construct a Binary Tree from Preorder and Inorder Traversal C++ Java  aZNaLrVebKQ - 1435x807 - 8m16s](https://user-images.githubusercontent.com/35686407/172686774-f26d06c5-f703-417a-8426-85d16441ba58.png)
+![take U forward - L34  Construct a Binary Tree from Preorder and Inorder Traversal C++ Java  aZNaLrVebKQ - 1435x807 - 9m42s](https://user-images.githubusercontent.com/35686407/172686788-ee24e424-bf10-47d6-9fbc-c85e94de68b0.png)
+![take U forward - L34  Construct a Binary Tree from Preorder and Inorder Traversal C++ Java  aZNaLrVebKQ - 885x498 - 10m52s](https://user-images.githubusercontent.com/35686407/172687024-c503a119-75d8-4df2-b7d2-db40a21bacdc.png)
+![take U forward - L34  Construct a Binary Tree from Preorder and Inorder Traversal C++ Java  aZNaLrVebKQ - 1536x864 - 12m37s](https://user-images.githubusercontent.com/35686407/172687231-de0ae290-8c1b-4259-8640-a0d4e64d5ae0.png)
