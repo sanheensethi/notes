@@ -1499,3 +1499,30 @@ class Solution {
     }
 };
 ```
+## 29. Count total number of nodes in `Complete Binary Tree`
+
+#### Approach 1:
+
+- Brute Force:
+        
+![take U forward - L32  Count total Nodes in a COMPLETE Binary Tree O(Log^2 N) Approach C++ Java  u-yWemKGWO0 - 885x498 - 3m10s](https://user-images.githubusercontent.com/35686407/172674823-438f2c38-edeb-4619-a6d0-124aba6e8003.png)
+
+- Optimized:
+    - In completer binary tree, hme ye pta hai ki total number of nodes is 2^(height) - 1 ,
+    - but problem ye hai ki, ho skta hai right side mae last level mae right vali node exists hi na krti ho,
+    - to hum smartly use krenge height of binary tree ke logic ko,
+    - if leftHeight == rightHeight , it means we have complete binary tree then nodes = 2^(height) - 1.
+    - but if leftHeight != rightHeight , it means we have to consider left subtree seperate and right subtree seperate and count nodes by doing same procedure again.
+    - now if leftHeight != righHeight ~ return 1 + leftNodes + rightNodes
+    - if leftHeight == rightHeight ~ return 2^(height) - 1
+    - ab question ye aata hai ki height kese calculate kre ? vhi recursion vale method se ?
+    - nhi, as hme complete binary tree given hai, to left vali nodes sari hogi , to height of left binary tree is node = node->left (mtlb left left left left jate rho) and count++ while node != null
+    - same ese hi right side ki height ke liye node = node->right (right right right right jate rho) and count++ while node != null
+    
+![take U forward - L32  Count total Nodes in a COMPLETE Binary Tree O(Log^2 N) Approach C++ Java  u-yWemKGWO0 - 853x480 - 6m24s](https://user-images.githubusercontent.com/35686407/172676242-a3be9f7c-ff58-4f18-8287-a0c412b40cb1.png)
+
+![take U forward - L32  Count total Nodes in a COMPLETE Binary Tree O(Log^2 N) Approach C++ Java  u-yWemKGWO0 - 853x480 - 10m23s](https://user-images.githubusercontent.com/35686407/172676318-c95c3f8d-52d1-4b9f-988f-91a2891677b4.png)
+
+```cpp
+
+```
