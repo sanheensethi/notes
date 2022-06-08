@@ -1167,5 +1167,32 @@ Steps:
 - This algorithm, does not gurantee that values are less incremented, 
 - but this guranted that, you will get children sum property value.
 
+```cpp
+void childrenSum(Node* root){
+    if(root == NULL) return;
 
+    int child = 0;
+
+    if(root->left) child += root->left->val;
+    if(root->right) child += root->right->val;
+
+    if(child >= root->val){
+        root->val = child;
+    }else{
+        if(root->left) root->left->val = root->val;
+        if(root->right) root->right->val = root->val;
+    }
+
+    childrenSum(root->left);
+    childrenSum(root->right);
+
+    int total = 0;
+
+    if(root->left) total += root->left->val;
+    if(root->right) total+= root->right->val;
+
+    if(root->left or root->right) root->val = total;
+
+}
+```
 
