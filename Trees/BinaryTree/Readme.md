@@ -1303,3 +1303,123 @@ public:
     }
 };
 ```
+#### Approach 2:
+
+- hum `node to root` tk ka path find krenge
+- fr `node to root` tk ke path mae ek ek traverse krke print k level down nodes ko print krenge
+- jisme k 1 se decrement hota rhega
+- example : print 5 distance nodes from node 7 in given finure example,
+- path = [7 2 5 3] , 
+    - ab 7 se 5 distance/level niche ki node ans mae dalenge, 
+    - 2 se 4 level down ke nodes ans mae dalenge, 
+    - 5 se 3 level down ke nodes ans mae dalenge, 
+    - 3 se 2 level down niche ke nodes ans mae dalenge
+ - ye hmara ans nhi aaya abhi , kyuki, 3 se agar 2 level niche dekhe to 6 and 2 is also nodes , jo ans mae aa skte hai, 
+ - to hme vo ans mae nhi chahiye, iske liye jb hum k level down bna rhe honge uske ek node pass krenge jo ek side ko block kr dega
+ - path[i-1] is blocker, example : 2 se jb 4 level niche print krenge to hme 7 ki trf nhi jana, kyuki 7 apna kaam kr chuka hai
+ - simmilarly 3 se jb 2 level niche ki trf print krnnge to hme 5 ki trf nhi jana kyuki 5 apna kaam already kr chuka hai.
+ - blocker node for i = 1 to n-1 is path[i-1]
+ - and for i == 0 is NULL
+ 
+ ```cpp
+ bool nodeToRootPath(TreeNode* root,TreeNode* target,vector<TreeNode*>& path){
+        if(root == NULL) return false;
+        
+        if(root == target){
+            path.push_back(target);
+            return true;
+        }
+        
+        bool left = nodeToRootPath(root->left,target,path);
+        if(left == true){
+            path.push_back(root);
+            return true;
+        }
+        bool right = nodeToRootPath(root->right,target,path);
+        if(right == true){
+            path.push_back(root);
+            return true;
+        }
+        return false;
+    }
+    
+    void saveKLevelDown(TreeNode* root,int k,TreeNode* blocker,vector<int>& ans){
+        if(root == NULL || root == blocker) return;
+        if(k == 0){
+            ans.push_back(root->val);
+            return;
+        }
+        saveKLevelDown(root->left,k-1,blocker,ans);
+        saveKLevelDown(root->right,k-1,blocker,ans);
+    }
+    
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        vector<TreeNode*> path;
+        nodeToRootPath(root,target,path);
+        int n = path.size();
+        vector<int> ans;
+        for(int i = 0;i < n; i++){
+            TreeNode* blocker = i == 0 ? NULL : path[i-1];
+            saveKLevelDown(path[i],k-i,blocker,ans);
+        }
+        return ans;
+    }
+ ```
+#### Approach 3: (More Optimized above code)
+
+- concept same hai, bs frk itna hia ki hum save nhi krenge path,
+- kyuki stack se jb return krenge to path vhi aayega jo vector mae save hai, to kyu na usi recursion call mae hum printKLevelDown ko call kr le
+- ab ye hoga kese ? , to
+- jb ROOT == NULL return -1, jo ye darshata hai ki hme node nhi mila
+- ab jb node mil jata hai, tb hm vha se printKLevelDown call kr denge, jisme niche ke k levels ke print kr denge
+- ab jb pichle ke paas jayenge jese 7 se 5 pr gya, ab 5 ko print krna hoga 4 level down, but hme pta kese chlega 4 level krna hai ?
+- to jb hum target found hone pr ans save kr kenge tb, hum return mae 1 bhejenge jo ye btayega ki ab jo pichli stack trace ka node hai vo 1 distance apart hai mujse
+- ese hi left+1 return krte rhenge, and k-left levels print krte rhenge
+- ab blocker node ki baat kre to vo vhi hoga jha se 1 aayega, either left or right.
+
+```cpp
+void saveKLevelDown(TreeNode* root,int k,TreeNode* blocker,vector<int>& ans){
+        if(root == NULL || root == blocker) return;
+        
+        if(k == 0){
+            ans.push_back(root->val);
+            return;
+        }
+        
+        saveKLevelDown(root->left,k-1,blocker,ans);
+        saveKLevelDown(root->right,k-1,blocker,ans);
+        
+    }
+    
+    int nodeToRootPath(TreeNode* root,TreeNode* target,int k,vector<int>& ans){
+        if(root == NULL) return -1;
+        
+        if(root == target){
+            saveKLevelDown(root,k,NULL,ans); // NULL is blocker
+            return 1;
+        }
+        
+        int left = nodeToRootPath(root->left,target,k,ans);
+        if(left != -1){
+            saveKLevelDown(root,k-left,root->left,ans); // root->left is blocker
+            return left+1;
+        }
+        int right = nodeToRootPath(root->right,target,k,ans);
+        if(right != -1){
+            saveKLevelDown(root,k-right,root->right,ans); // root->right is blocker
+            return right+1;
+        }
+        return -1;
+    }
+    
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        vector<int> ans;
+        if(root == NULL) return ans;
+        
+        nodeToRootPath(root,target,k,ans);
+        
+        return ans;
+    }
+```
+
+
