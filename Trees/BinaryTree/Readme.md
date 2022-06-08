@@ -1422,4 +1422,80 @@ void saveKLevelDown(TreeNode* root,int k,TreeNode* blocker,vector<int>& ans){
     }
 ```
 
+## 28. Burning Tree [Question](https://practice.geeksforgeeks.org/problems/burning-tree/1#)
 
+- Same as nodes at k distance apart from given node, 
+- just difference is that, we complete the while loop not breaking it , 
+- because we have to burn all nodes.
+- A node will burn its left child, right child and parent,
+- now to go to the parent we need pointer to the parent, so for that we put that in hashmap, because there is no upward pointer
+- then starting from the node, we burn all the tree.
+
+```cpp
+class Solution {
+  public:
+  
+    Node* makeParent(Node* root,int target,unordered_map<Node*,Node*>& parent){
+        Node* res = NULL;
+        queue<Node*> Q;
+        Q.push(root);
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                Node* node = Q.front();
+                Q.pop();
+                if(node->data == target) res = node;
+                if(node->left){
+                    parent[node->left] = node;
+                    Q.push(node->left);
+                }
+                if(node->right){
+                    parent[node->right] = node;
+                    Q.push(node->right);
+                }
+            }
+        }
+        return res;
+    }
+  
+    int minTime(Node* root, int target) 
+    {
+        unordered_map<Node*,Node*> parent;
+        Node* targetAd = makeParent(root,target,parent);
+        
+        unordered_map<Node*,bool> visited;
+        
+        queue<Node*> Q;
+        Q.push(targetAd);
+        visited[targetAd] = true;
+        
+        int t = 0;
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            bool flag = false;
+            while(size--){
+                Node* node = Q.front();
+                Q.pop();
+                if(node->left && !visited[node->left]){
+                    flag = true;
+                    Q.push(node->left);
+                    visited[node->left] = true;
+                }
+                if(node->right && !visited[node->right]){
+                    flag = true;
+                    Q.push(node->right);
+                    visited[node->right] = true;
+                }
+                if(parent.find(node) != parent.end() && !visited[parent[node]]){
+                    flag = true;
+                    Q.push(parent[node]);
+                    visited[parent[node]] = true;
+                }
+            }
+            if(flag) t++;
+        }
+        return t;
+    }
+};
+```
