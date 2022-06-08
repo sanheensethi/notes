@@ -1196,3 +1196,27 @@ void childrenSum(Node* root){
 }
 ```
 
+## 26.Check childern sum Property [Question](https://practice.geeksforgeeks.org/problems/children-sum-parent/1#)
+
+```cpp
+int isSumProperty(Node *root)
+    {
+     if(root == NULL) return 1;
+     if(!root->left and !root->right) return 1;
+     int child = 0;
+     if(root->left) child += root->left->data;
+     if(root->right) child += root->right->data;
+     
+     if(root->data != child) return 0;
+     
+     int left = isSumProperty(root->left);
+     
+     if(left == 0) return 0;
+     
+     int right = isSumProperty(root->right);
+     
+     if(right == 0) return 0;
+     
+     return 1;
+    }
+```
