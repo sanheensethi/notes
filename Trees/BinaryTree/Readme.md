@@ -1523,6 +1523,46 @@ class Solution {
 
 ![take U forward - L32  Count total Nodes in a COMPLETE Binary Tree O(Log^2 N) Approach C++ Java  u-yWemKGWO0 - 853x480 - 10m23s](https://user-images.githubusercontent.com/35686407/172676318-c95c3f8d-52d1-4b9f-988f-91a2891677b4.png)
 
-```cpp
 
+TC : O((logN)^2) ~ finding height is logN = Height, and at max we traverse logN nodes
+SC : O(logN) ~ Auxillary Stack Space
+
+![take U forward - L32  Count total Nodes in a COMPLETE Binary Tree O(Log^2 N) Approach C++ Java  u-yWemKGWO0 - 853x480 - 15m34s](https://user-images.githubusercontent.com/35686407/172678853-db8941c4-7100-4f2b-b212-1583f659b7b3.png)
+
+
+```cpp
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        if(root == NULL) return 0;
+        
+        int lHeight = findLeftHeight(root);
+        int rHeight = findRightHeight(root);
+        
+        if(lHeight == rHeight){
+            return (1<<lHeight) - 1; // pow(2,lHeight)-1
+        }else{
+            return 1 + countNodes(root->left) + countNodes(root->right);
+        }
+    }
+    
+    int findLeftHeight(TreeNode* node){
+        int height = 0;
+        while(node){
+            node = node->left;
+            height++;
+        }
+        return height;
+    }
+    
+    int findRightHeight(TreeNode* node){
+        int height = 0;
+        while(node){
+            node = node->right;
+            height++;
+        }
+        return height;
+    }
+    
+};
 ```
