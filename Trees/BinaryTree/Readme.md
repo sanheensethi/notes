@@ -1220,3 +1220,86 @@ int isSumProperty(Node *root)
      return 1;
     }
 ```
+## 27. All Nodes Distance K in Binary Tree [Question](https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/)
+
+#### Approach 1:
+
+![take U forward - L30  Print all the Nodes at a distance of K in Binary Tree C++ Java  i9ORlEy6EsI - 885x498 - 10m52s](https://user-images.githubusercontent.com/35686407/172534812-ba179ba2-7a93-4fbd-852e-6301e67a5342.png)
+
+- isme hmare paas niche ki trf jane ka to rasta hai lekin vapis parent ke paas jane ka nhi, 
+- to hum isme pehle nodes ke parent ko ek Map mae store kr lenge, level order ke through
+- and after that, hum level order se chlenge by maintainning int distance = 0 
+- ek visited node ka map bhi rkhna hoga, jo ye btayega , ki hum node pr already visit kr chuke hai ya nhi.
+- agar distance == k to break;
+- now, in level order , starting from given target (starting node)and visited[target] = true, hum uske `left, right and parent` pr `traverse krenge`, and jo visited nhi hoga, usko queue mae dalkr visited mark kr denge.
+- jese hi distance = k aauya we break;
+- ab jo queue mae pda hai vo hmara ans hai.
+
+```cpp
+class Solution {
+public:
+    void makeParent(TreeNode* root,unordered_map<TreeNode*,TreeNode*>& parent){
+        queue<TreeNode*> Q;
+        Q.push(root);
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                TreeNode* node = Q.front();Q.pop();
+                if(node->left){
+                    Q.push(node->left);
+                    parent[node->left] = node;
+                }
+                if(node->right){
+                    Q.push(node->right);
+                    parent[node->right] = node;
+                }
+            }
+        }
+    }
+    
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        vector<int> ans;
+        if(root == NULL) return ans;
+        
+        unordered_map<TreeNode*,TreeNode*> parent;
+        
+        makeParent(root,parent);
+        
+        unordered_map<TreeNode*,bool> visited;
+        
+        int dis = 0;
+        queue<TreeNode*> Q;
+        
+        Q.push(target);
+        visited[target] = true;
+
+        while(!Q.empty()){
+            int size = Q.size();
+            if(dis == k) break;
+            dis++;
+            while(size--){
+                TreeNode* node = Q.front();Q.pop();
+                
+                if(node->left && visited[node->left] == false){
+                    Q.push(node->left);
+                    visited[node->left] = true;
+                }
+                if(node->right && visited[node->right] == false){
+                    Q.push(node->right);
+                    visited[node->right] = true;
+                }
+                if(parent.find(node) != parent.end() && visited[parent[node]] == false){
+                    Q.push(parent[node]);
+                    visited[parent[node]] = true;
+                }
+            }
+        }
+        
+        while(!Q.empty()){
+            ans.push_back(Q.front()->val);
+            Q.pop();
+        }
+        return ans;
+    }
+};
+```
