@@ -1507,6 +1507,7 @@ class Solution {
         
 ![take U forward - L32  Count total Nodes in a COMPLETE Binary Tree O(Log^2 N) Approach C++ Java  u-yWemKGWO0 - 885x498 - 3m10s](https://user-images.githubusercontent.com/35686407/172674823-438f2c38-edeb-4619-a6d0-124aba6e8003.png)
 
+#### Approach 2:
 - Optimized:
     - In completer binary tree, hme ye pta hai ki total number of nodes is 2^(height) - 1 ,
     - but problem ye hai ki, ho skta hai right side mae last level mae right vali node exists hi na krti ho,
@@ -1566,3 +1567,20 @@ public:
     
 };
 ```
+
+## 30. What kind of Traversels required to construct a Unique binary tree ?
+
+a) PreOrder and PostOrder - We can't construct a unique binary tree.
+
+![take U forward - L33  Requirements needed to construct a Unique Binary Tree Theory  9GMECGQgWrQ - 885x498 - 4m15s](https://user-images.githubusercontent.com/35686407/172679878-49b6a9a5-e27f-415b-8c78-e73f73ed7ca5.png)
+
+b) InOrder and PreOrder - Yes
+    - In PreOrder root is at first position
+    - by Inorder we can figure out who is in left and who is in right of root.
+    - InOrder is more important, as we have to know what is on the left of root and right of root, after seeing root in Prerder
+
+![take U forward - L33  Requirements needed to construct a Unique Binary Tree Theory  9GMECGQgWrQ - 1536x864 - 5m30s](https://user-images.githubusercontent.com/35686407/172680132-862b936f-e9be-4afe-9126-eac05d6fab4d.png)
+
+![take U forward - L33  Requirements needed to construct a Unique Binary Tree Theory  9GMECGQgWrQ - 1536x864 - 6m35s](https://user-images.githubusercontent.com/35686407/172680315-e75dbada-987d-457c-b1d5-2c320e303555.png)
+
+c) InOrder and PostOrder - Yes, because Root is at last
