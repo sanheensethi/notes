@@ -1151,19 +1151,21 @@ int widthOfBinaryTree(TreeNode* root) {
 - use recursive traversal, go left, go right and come back
 
 Steps:
-    - niche jate hue sum kro `left child + right child` if, `< node value` then 
-    - `update` `left child` and `right child` with `node value`
-    - if `left child + right child > node value` then
-    - `update the node value`
-    - iske baad go to left and then right
-    - ab upar aate wkt values ko fr se update kro, `left value + right value = node value`,
-    - kyuki ho skta hai child change ho gye ho.
+   - niche jate hue sum kro `left child + right child` if, `< node value` then 
+   - `update` `left child` and `right child` with `node value`
+   - if `left child + right child > node value` then
+   - `update the node value`
+   - iske baad go to left and then right
+   - ab upar aate wkt values ko fr se update kro, `left value + right value = node value`,
+   - kyuki ho skta hai child change ho gye ho.
 
 - Intuation:
-    - while going down, hum make sure kr rhe hai, ki sum ki shortage na pde, to hum unko bda kr rhe hai niche jate hue taki jb upar vapis aaye to shortage na ho. 
-    - while going down, increase the values as max possible so not be short in sum, tbhi hum root ki value se change kr rhe hai, if hmara left child + right child < sum
-    - while comming back, add and update the value.
+   - while going down, hum make sure kr rhe hai, ki sum ki shortage na pde, to hum unko bda kr rhe hai niche jate hue taki jb upar vapis aaye to shortage na ho. 
+   - while going down, increase the values as max possible so not be short in sum, tbhi hum root ki value se change kr rhe hai, if hmara left child + right child < sum
+   - while comming back, add and update the value.
  
- - This algorithm, does not gurantee that values are less incremented, 
- - but this guranted that, you will get children sum property value.
+- This algorithm, does not gurantee that values are less incremented, 
+- but this guranted that, you will get children sum property value.
+
+
 
