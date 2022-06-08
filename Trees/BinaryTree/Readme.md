@@ -1130,3 +1130,40 @@ int widthOfBinaryTree(TreeNode* root) {
         return (int)ans;
     }
 ```
+
+## 25. Children Sum Property
+
+- left child + right child sum = node value
+- is problem mae hum upar vali condition follow krte hai,
+- if upar vali condition follow nhi hoti hai, to hme allow hia ki hum kisi bhi node ki value increase krde 1 se with any number of times but hum fr decrease ni kr skte.
+- Examoke:
+
+![take U forward - L29  Children Sum Property in Binary Tree O(N) Approach C++ Java  fnmisPM6cVo - 1536x864 - 3m24s](https://user-images.githubusercontent.com/35686407/172502461-a469a8ae-6177-4448-9001-3911f4074b3f.png)
+
+> you might think in this problem that what's the big deal, add 35 and 10 then update the node value to 45, pr ye problem dikhne mae jitni aasan lgti hai , utni hai nhi. niche vala testcase dekho
+
+![take U forward - L29  Children Sum Property in Binary Tree O(N) Approach C++ Java  fnmisPM6cVo - 1536x864 - 4m47s](https://user-images.githubusercontent.com/35686407/172502786-eeed2689-bc45-41e1-b00c-af3197b21296.png)
+
+> is testcase mae agar leaf se increment kre to nodes ki value change hui 8 and 31 mae, but but, root ki value 50 hai lekin, 31+8 = 40 , and 50 ko hum decrement nhi kr skte srf increment kr skte hai,
+
+- Question is convert binary tree to `any binary tree which follow children sum property` , we have to take advantage of that.
+
+- use recursive traversal, go left, go right and come back
+
+Steps:
+    - niche jate hue sum kro `left child + right child` if, `< node value` then 
+    - `update` `left child` and `right child` with `node value`
+    - if `left child + right child > node value` then
+    - `update the node value`
+    - iske baad go to left and then right
+    - ab upar aate wkt values ko fr se update kro, `left value + right value = node value`,
+    - kyuki ho skta hai child change ho gye ho.
+
+- Intuation:
+    - while going down, hum make sure kr rhe hai, ki sum ki shortage na pde, to hum unko bda kr rhe hai niche jate hue taki jb upar vapis aaye to shortage na ho. 
+    - while going down, increase the values as max possible so not be short in sum, tbhi hum root ki value se change kr rhe hai, if hmara left child + right child < sum
+    - while comming back, add and update the value.
+ 
+ - This algorithm, does not gurantee that values are less incremented, 
+ - but this guranted that, you will get children sum property value.
+
