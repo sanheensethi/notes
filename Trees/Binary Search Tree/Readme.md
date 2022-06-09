@@ -133,6 +133,8 @@ int floorInBST(TreeNode<int> * root, int x)
 ![take U forward - L43  Insert a given Node in Binary Search Tree BST C++ Java  FiFiNvM29ps - 885x498 - 2m09s](https://user-images.githubusercontent.com/35686407/172835534-f067707c-2658-4565-88fc-5178189dcabc.png)
 
 - Create any one Binary Tree.
+- Find Where node can be ? and insert it
+- Where is leaf position.
 
 > Recursive: 
 
