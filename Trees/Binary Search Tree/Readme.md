@@ -135,6 +135,7 @@ int floorInBST(TreeNode<int> * root, int x)
 - Create any one Binary Tree.
 - Find Where node can be ? and insert it
 - Where is leaf position.
+- TC : log_2 (N)
 
 > Recursive: 
 
