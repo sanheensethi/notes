@@ -420,6 +420,64 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 ```
 ## 11. Contruct BST from PreOrder Traversal
 
+#### Approach 1: (Naive)
+
+> vector ko traverse krte jao, and node ko insert krte jao, INSERT NODE IN BST
+
+- TC : o(N x N) first N is, traversing vector array and 2nd N is, searhing for the position and N is because in worst case, maybe a skewed tree.
+- SC : O(N), to store the tree and if not using auxillary stack
+
+#### Approach 2: (Better Appraoch from before)
+
+> hme ye hai ki, BST ka inorder sorted way mae aata hai, to hum, preorder ko sort kr denge jisse inorder mil jayega. or ab CREATE BT FROM PREORDER AND INORDER chlayenge jo ultimately hme BST dega
+
+- TC : O(NlogN) + O(N) ~ NlogN to sort and N to travese in tree
+- SC : O(n) to store tree
+
+### Approach 3: (Optimized Approach)
+
+> hme pta hai hm hr node ki upper bound and nikal skte hai, IS VALID BST question mae vhi kra hai, agar hum usi concept ka use krke BST bnaye to vhi hmari optimized approach hogi
+
+- vector ko traverse krte jao, and lower bound and upper bound pass krte jao
+- if lower and upper bound mae lie nhi krta to vo return NULL krega, 
+- even if hmare paas agar elements nhi bche to bhi vo return NULL krega.
+
+```cpp
+TreeNode* buildTree(vector<int>& preorder,int& idx,int minRange,int maxRange){
+    if(idx == preorder.size() || preorder[idx] < minRange || preorder[idx] > maxRange) return NULL;
+    TreeNode* root = new TreeNode(preorder[idx++]);
+    root->left = buildTree(preorder,idx,minRange,root->val);
+    root->right = buildTree(preorder,idx,root->val,maxRange);
+    return root;
+}
+
+TreeNode* bstFromPreorder(vector<int>& preorder) {
+    int idx = 0;
+    return buildTree(preorder,idx,INT_MIN,INT_MAX);
+}
+```
+
+#### Appraoch 3 Improvement
+
+- imprvement ye hai ki, hm srf upper bound se kaam chla skte hai
+- we dont need to give lower bound
+- left mae jb bna rhe hai to root->val bhejo as upper bound
+- and right mae jb bna rhe hai to maxRange bhejo as upper bound.
+
+```cpp
+TreeNode* buildTree(vector<int>& preorder,int& idx,int maxRange){
+    if(idx == preorder.size() ||  preorder[idx] > maxRange) return NULL;
+    TreeNode* root = new TreeNode(preorder[idx++]);
+    root->left = buildTree(preorder,idx,root->val);
+    root->right = buildTree(preorder,idx,maxRange);
+    return root;
+}
+
+TreeNode* bstFromPreorder(vector<int>& preorder) {
+    int idx = 0;
+    return buildTree(preorder,idx,INT_MAX);
+}
+```
 
 ![take U forward - L48  Construct a BST from a preorder traversal 3 Methods  UmJT3j26t1I - 1536x864 - 13m01s](https://user-images.githubusercontent.com/35686407/172865465-e51a6329-4e0d-47f3-a72f-5896280509eb.png)
 
