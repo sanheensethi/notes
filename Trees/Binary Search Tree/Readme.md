@@ -187,3 +187,50 @@ TreeNode* insertIntoBST(TreeNode* root, int val) {
         return root;
     }
 ```
+## 7. Delete Node in BST
+
+> Method:
+
+1. Search Node
+2. Delete Node
+
+- Node = 3 delele (Multiple answer exists)
+
+![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 885x498 - 2m08s](https://user-images.githubusercontent.com/35686407/172838701-4597d1a9-17df-478b-84ca-b0f0ffb197de.png)
+
+![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 853x480 - 3m17s](https://user-images.githubusercontent.com/35686407/172838906-fb86d290-f293-4629-bef8-5e3985ef2e7f.png)
+
+- Everything jo bhi left subtree mae hai, vo sare smaller hai right subtree se . We will use this stuff.
+- when delete 5,
+- 4 is the greatest element in the left subtree ? right, so 
+- take the right subtree,and attach it to extreme right of left subtree
+
+![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 853x480 - 5m01s](https://user-images.githubusercontent.com/35686407/172839242-bb6589c5-364d-4147-9409-57ccb6a84075.png)
+
+> Edge Cases ? Yes.
+
+> Another way ? Yes.
+
+![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 885x498 - 6m07s](https://user-images.githubusercontent.com/35686407/172839399-d55bbf62-d556-41b0-bb91-268155728f0b.png)
+
+- Everyting on the right subtree is greater then left subtree after deleting 5, so we take 2 and attach it to `right smallest guy's left side`
+
+![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 853x480 - 6m33s](https://user-images.githubusercontent.com/35686407/172839625-53746848-0548-415c-9952-aaa8bfb2f33b.png)
+
+2 Ways : 
+- Either cut link of right portion or left portion.
+
+> Edge Cases :
+
+delete node = 2
+
+![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 885x498 - 7m33s](https://user-images.githubusercontent.com/35686407/172839888-85426e4d-7213-4d5c-9fb5-733924558d63.png)
+
+- if there exists left , then reattach right part to the most right of left subtree
+- if there is no left , then reattach right part to deleted node's parent.
+
+![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 885x498 - 8m55s](https://user-images.githubusercontent.com/35686407/172840435-d5a42f44-b728-4c20-9e5d-3fa827c8d350.png)
+
+![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 885x498 - 14m51s](https://user-images.githubusercontent.com/35686407/172841619-793a3b68-cb7a-47ac-aee6-9af38018bdf1.png)
+
+
