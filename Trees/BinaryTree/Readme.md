@@ -1637,6 +1637,9 @@ public:
 
 ![take U forward - L35  Construct the Binary Tree from Postorder and Inorder Traversal C++ Java  LgLRTaEMRVc - 853x480 - 9m46s](https://user-images.githubusercontent.com/35686407/172763690-aca7d819-25c9-4481-94f5-282dab636b07.png)
 
+- TC: O(n) * O(1) ~ HashMap
+- SC: O(n) + O(n) ~ Tree + Hashmap
+
 ```cpp
 class Solution {
 public:
