@@ -567,3 +567,96 @@ private:
     }
 };
 ```
+## 14. Binary Search Iterator Reverse Direction (Decreasing Order)
+
+- This is similar to Binary Search Tree Iterator from Increasing Direction,
+- Just difference is that in normal BSTIteratpr, we push left left left left left if not left right then again left left left
+- here we push like right right right right if not right left then again right right right right [`Reverse InOrder`]
+- All Logic is same as above after that.
+- Implemented in next question Two Sum IV
+
+
+## 15. Two Sum IV (BST is given)
+
+- In this we have to find , v1 + v2 == value if yes return true elsse return false;
+
+#### Approach 1:
+
+- use inorder traversal in BST and store inorder traversal nodes
+- now use two sum question method 2 pointer to solve
+- TC : O(N) + O(N) ~ Traversing + 2 Pointer
+- SC : O(N) ~ storing inorder nodes
+
+#### Approach 2:
+
+- what if, hum iterator ka use kre, 
+- ek aage se chle ek piche se
+- to hum use krenge BinarySearchIterator
+- we set a flag reverse = true, so that we have not to code seperate for reverse order.
+- now simply use it as two pointer in Two Sum.
+
+```cpp
+class BSTIterator{
+private:
+    stack<TreeNode*> st;
+    bool reverse;
+public:
+    BSTIterator(TreeNode* root,bool rev){
+        this->reverse = rev;
+        putAll(root);
+    }
+    
+    int next(){
+        TreeNode* node = st.top();st.pop();
+        if(reverse != true){
+            if(node->right){
+                putAll(node->right);
+            }
+        }else{
+            if(node->left){
+                putAll(node->left);
+            }
+        }
+        return node->val;
+    }
+    
+    bool hasNext(){
+        return !st.empty();
+    }
+
+private:
+    void putAll(TreeNode* node){
+        while(node != NULL){
+            if(reverse != true){
+                st.push(node);
+                node = node->left;
+            }else{
+                st.push(node);
+                node = node->right;
+            }
+        }
+    }
+    
+};
+
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        BSTIterator p(root,false);
+        BSTIterator q(root,true);
+        
+        int i = p.next();
+        int j = q.next();
+        
+        while(i < j){
+            if(i + j == k) return true;
+            else if(i + j < k){
+                i = p.next();
+            }else if(i + j > k){
+                j = q.next();
+            }
+        }
+        return false;
+    }
+};
+```
