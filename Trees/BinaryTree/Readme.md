@@ -1672,3 +1672,99 @@ public:
     }
 };
 ```
+## 33. Serialize and De-Serialize a Binary Tree
+
+- Searialize : hme binary tree ko string mae convert krna hai
+- De-Searialize : hme string ko binary tree mae bnakr return krna hai
+- Serialize : isme hum Level Order Traversal use kr rhe hai, NULL -> # and node ki val ko string mae convert krke str mae add kr dia with ',' seperated.
+- De-Serialize : isme hum stringstream le rhe hai, jisse jariya hum input as cin jesa le payenge and input hum getline mae le rhe hai with ',' seperated, jese hi hum koi node bnate hai agar # nhi hai to usko queue mae push kr denge kyuki hum level order traversal jesa hi kaam kr rhe hai Serialize mae bhi level order hi kia tha.
+
+- `stringstream s(data)` : create string stream object s
+- `getline(s,str,',');` : s mae se str read kr rhe hai with ',' seperated
+- if str == '#' aaya to NULL join kr rhe hai
+- if str != '#' then , node bna rhe hai , join kr rhe hai, even queue mae bhi push kr rhe hai.
+
+```cpp
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        if(root == NULL) return "";
+        queue<TreeNode*> Q;
+        string str = "";
+        Q.push(root);
+        while(!Q.empty()){
+            TreeNode* node = Q.front();
+            Q.pop();
+            if(node == NULL){
+                str += "#,";
+            }else{
+                str += to_string(node->val) + ",";
+                Q.push(node->left);
+                Q.push(node->right);
+            }
+        }
+        str.pop_back();
+        cout<<str<<endl;
+        return str;
+    }
+#define debug(x) cout<<#x<<":"<<x<<endl;
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        if(data == "") return NULL;
+        
+        stringstream s(data); // stringstream object , it behave as we take input as cin
+        string str = "";
+        getline(s,str,','); // s mae se str read kro, and ',' mera seperator hai
+        
+        TreeNode* root = new TreeNode(stoi(str));
+        
+        queue<TreeNode*> Q;
+        Q.push(root);
+        
+        while(!Q.empty()){
+            TreeNode* node = Q.front();
+            Q.pop();
+            
+            getline(s,str,','); // this is my left
+            
+            if(str == "#"){
+                node->left = NULL;
+            }else{
+                node->left = new TreeNode(stoi(str));
+                Q.push(node->left);
+            }
+            
+            getline(s,str,','); // this is my right
+            
+            if(str == "#"){
+                node->right = NULL;
+            }else{
+                node->right = new TreeNode(stoi(str));
+                Q.push(node->right);
+            }
+        }
+        
+        return root;
+    }
+};
+```
+
+## 34. Morris Traversal (InOrder and PreOrder)
+
+- TC ~ O(N)
+- SC ~ O(1)
+
+- Morris Traversal work krta hai Threaded Binary Tree pr.
+- Tree mae parent ke paas jane ka rasta nhi hota, to hm parent ke paas jane ke liye ek thread jodte hai 
+
+![take U forward - L37  Morris Traversal Preorder Inorder C++ Java  80Zug6D1_r4 - 885x498 - 4m45s](https://user-images.githubusercontent.com/35686407/172776081-010efbd6-89a6-46a4-b244-73ae355469a5.png)
+
+- Now, how to traverse ?
+- InOrder : LEFT ROOT RIGHT
+- isme hmare paas 3 case arise hote hai:
+    1. `Case 1`: agar left null hai sirf right hai, suppose kro esa root, jiska left null hai right mae srf ek element hai, ~ to hum print krke right mae move krenge
+    2. `Case 2`: agar left mera null nhi hai, to uske extreme right mae jayenge
+
+- InOrder and PreOrder mae bs 1 line ka frk hai baki pura code same hai
