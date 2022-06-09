@@ -418,3 +418,9 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
     }
 }
 ```
+## 11. Contruct BST from PreOrder Traversal
+
+
+![take U forward - L48  Construct a BST from a preorder traversal 3 Methods  UmJT3j26t1I - 1536x864 - 13m01s](https://user-images.githubusercontent.com/35686407/172865465-e51a6329-4e0d-47f3-a72f-5896280509eb.png)
+
+![take U forward - L48  Construct a BST from a preorder traversal 3 Methods  UmJT3j26t1I - 1435x807 - 14m42s](https://user-images.githubusercontent.com/35686407/172865449-74517bf2-4a29-4a3d-bcc4-562e5679ee29.png)
