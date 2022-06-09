@@ -287,3 +287,41 @@ TreeNode* deleteNode(TreeNode* root, int key) {
     }
 ```
 
+## 8. Kth Smallest Element in BST
+
+#### Brute Force :
+- Do any traversal
+- Store in vector
+- Sort the vector
+- Find kth smallest and return
+
+#### Optimized : 
+- Property: Inorder Traversal give Sorted Numbers of Binary Search Tree
+- Do Inorder Traversal
+- Store in vector
+- find kth smallest and return
+
+#### Further Optimzed:
+- don't need to store the nodes
+- just maintain count variable
+- if count == k return node->val
+
+```cpp
+int inorder(TreeNode* root,int& count,int k){
+    if(root == NULL) return -1;
+    int v = inorder(root->left,count,k);
+    if(v!=-1) return v;
+    count++;
+    if(count == k){
+        return root->val;
+    }
+    int w = inorder(root->right,count,k);
+    return w;
+}
+int kthSmallest(TreeNode* root, int k) {
+    int count = 0;
+    return inorder(root,count,k);
+}
+```
+
+### More Further Optimized (Morris Traversal)
