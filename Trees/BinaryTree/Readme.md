@@ -1629,3 +1629,43 @@ public:
     }
 };
 ```
+## 32. Construct Binary Tree from PostOrder and InOrder
+
+![take U forward - L35  Construct the Binary Tree from Postorder and Inorder Traversal C++ Java  LgLRTaEMRVc - 1536x864 - 4m37s](https://user-images.githubusercontent.com/35686407/172761892-ed5acdb7-d2ca-4062-99ac-14e433af5b8c.png)
+
+![take U forward - L35  Construct the Binary Tree from Postorder and Inorder Traversal C++ Java  LgLRTaEMRVc - 885x498 - 7m26s](https://user-images.githubusercontent.com/35686407/172763657-501e678f-bc0b-47e8-9fe5-997514a61c09.png)
+
+![take U forward - L35  Construct the Binary Tree from Postorder and Inorder Traversal C++ Java  LgLRTaEMRVc - 853x480 - 9m46s](https://user-images.githubusercontent.com/35686407/172763690-aca7d819-25c9-4481-94f5-282dab636b07.png)
+
+```cpp
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& inorder,int inStart,int inEnd,vector<int>& postorder,int postStart,int postEnd,unordered_map<int,int>& umap){
+        if(postStart > postEnd || inStart > inEnd){
+            return NULL;
+        }
+        
+        TreeNode* root = new TreeNode(postorder[postEnd]);
+        
+        int idx = umap[postorder[postEnd]];
+        int num_ele = idx - inStart;
+        
+        root->left = buildTree(inorder,inStart,idx-1,postorder,postStart,postStart + num_ele - 1,umap);
+        root->right = buildTree(inorder,idx+1,inEnd,postorder,postStart + num_ele,postEnd-1,umap);
+        
+        return root;
+    }
+    
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n = inorder.size();
+        
+        unordered_map<int,int> umap;
+        
+        for(int i = 0;i < n;i++){
+            umap[inorder[i]] = i;
+        }
+        
+        return buildTree(inorder,0,n-1,postorder,0,n-1,umap);
+    }
+};
+```
