@@ -372,3 +372,27 @@ TreeNode* rightMostGuy(TreeNode* node,TreeNode* cur){
         return ans;
     }
 ```
+## 9. Validate BST
+
+- I provide range to each node, and check if it lies in it or not, if not lies then return false it's not valid BST
+- in left - everyone should be lesser then node val
+- in right - everyone should be greater then node val
+- Left and Right Subtree Should be valid to make whole tree valid BST.
+
+![take U forward - L46  Check if a tree is a BST or BT Validate a BST  f-sj7I5oXEI - 885x498 - 7m12s](https://user-images.githubusercontent.com/35686407/172859876-8d26f289-7fe6-48ff-91e5-c20b925964a0.png)
+
+
+```cpp
+bool isValidBST(TreeNode* root) {
+        return isValidBST(root,LONG_MIN,LONG_MAX);
+    }
+    
+bool isValidBST(TreeNode* root,long long minRange,long long maxRange){
+    if(root == NULL) return true;
+
+    if(root->val <= minRange || root->val >= maxRange) return false;
+
+    return isValidBST(root->left,minRange,root->val)
+        && isValidBST(root->right,root->val,maxRange);
+}
+```
