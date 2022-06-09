@@ -482,3 +482,9 @@ TreeNode* bstFromPreorder(vector<int>& preorder) {
 ![take U forward - L48  Construct a BST from a preorder traversal 3 Methods  UmJT3j26t1I - 1536x864 - 13m01s](https://user-images.githubusercontent.com/35686407/172865465-e51a6329-4e0d-47f3-a72f-5896280509eb.png)
 
 ![take U forward - L48  Construct a BST from a preorder traversal 3 Methods  UmJT3j26t1I - 1435x807 - 14m42s](https://user-images.githubusercontent.com/35686407/172865449-74517bf2-4a29-4a3d-bcc4-562e5679ee29.png)
+
+## 12. Inorder Successor/Predecessor in BSTof given node val
+
+![take U forward - L49  Inorder SuccessorPredecessor in BST 3 Methods  SXKAD2svfmI - 1536x864 - 7m47s](https://user-images.githubusercontent.com/35686407/172880960-5a46bf58-cecc-4eb7-b8c3-a0aabd52bfd7.png)
+
+![take U forward - L49  Inorder SuccessorPredecessor in BST 3 Methods  SXKAD2svfmI - 1435x807 - 9m18s](https://user-images.githubusercontent.com/35686407/172880972-0797c187-34d1-4220-a15a-ddee078c1d10.png)
