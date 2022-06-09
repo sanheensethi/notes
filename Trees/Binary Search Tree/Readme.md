@@ -528,3 +528,42 @@ void findPre(Node* root, Node*& pre, int key){
     }
 }
 ```
+## 13. Binary Search Tree Iterator
+
+- Isme hum INORDER TRAVERSAL ITERATIVE STACK APPROACH , use kre rhe hai, BINARY TREE vala
+- Inorder stack iterative traversal mae hum, kya krte then left left left left if left null, then right again left left left left
+- isme bhi yhi method lgana hai but 1 bari mae sara nhi bhrna hai stack.
+- stack lo, if node ka left hai to put left left left left left sare left daal do
+- if next() puche, to top ka element uthao, check kro uska right hai, if right hai to sare left left left left daal do, and return krdo stack ke top mae se jo uthaya tha uski value.
+- hasnext() puche, to true if stack is not empty otherwise `false if st.empty`
+
+```cpp
+class BSTIterator {
+public:
+    stack<TreeNode*> st;
+    BSTIterator(TreeNode* root) {
+        pushAll(root);
+    }
+    
+    int next() {
+        TreeNode* node = st.top();st.pop();
+        if(node->right){
+            pushAll(node->right);
+        }
+        return node->val;
+    }
+    
+    bool hasNext() {
+        return !st.empty();
+    }
+    
+private:
+    void pushAll(TreeNode* node){
+        // for(;node!=NULL,st.push(root),root = root->right)
+        while(node != NULL){
+            st.push(node);
+            node = node->left;
+        }
+    }
+};
+```
