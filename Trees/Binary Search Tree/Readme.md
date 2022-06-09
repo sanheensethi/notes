@@ -56,3 +56,75 @@ TreeNode* searchBST(TreeNode* root, int val) {
         return root;
     }
 ```
+## 4. Ceil in BST [Question](https://www.codingninjas.com/codestudio/problems/ceil-from-bst_920464?leftPanelTab=0)
+
+- find lowest value in tree , such that `val <= key`
+
+![take U forward - L41  Ceil in a Binary Search Tree BST C++ Java  KSsk8AhdOZA - 853x480 - 1m28s](https://user-images.githubusercontent.com/35686407/172831356-8dcbe8bf-90e7-4e0b-8fb6-7dd54ca20ee9.png)
+
+- if key = 8, Answer = 9
+- if key = 11, Answer = 11
+- if key = 12, Answer = 13
+
+> Ceil : Smallest Value >= key
+
+- we will solve this question by taking variable ceil,
+- if `key <= root->val` ceil = root->data , move left ~ agar root ki value bdi hai key se, to ho skta hai ki vo ceil ho.
+- else move right
+- if key == root->val ceil = root->data
+
+```cpp
+int findCeil(BinaryTreeNode<int> *node, int x){
+    int ceil = -1;
+    while(node){
+        if(node->data == x){
+            ceil = node->data;
+            return ceil;
+        }
+        
+        if(x <= node->data){
+            ceil = node->data;
+            node = node->left;
+        }else{
+            node = node->right;
+        }
+    }
+    return ceil;
+}
+```
+## 5. Floor in BST [Question](https://www.codingninjas.com/codestudio/problems/floor-from-bst_920457)
+
+- which value is the `greatest value` which is `smaller then or equal` to 7 if key is 7 Answer : 6
+- which is the greatest value which is smaller then or equal to 14 if key is 14 Answer : 10
+
+![take U forward - L42  Floor in a Binary Search Tree BST C++ Java  xm_W1ub-K-w - 885x498 - 1m48s](https://user-images.githubusercontent.com/35686407/172833376-19e492b5-bfbf-4dba-bfeb-f9f97fd8e4e7.png)
+
+> Floor =  Greatest Value <= key
+
+- Create a variable floor as ans
+- if key < root->val , move left
+- if key >= root->val , 5 is smaller then 9 here, and if we want to increase 5 we have to move right. (in above figure).
+- so , if key >= root->val : `floor = root->val` and move right;
+
+```cpp
+int floorInBST(TreeNode<int> * root, int x)
+{
+    int floor = -1;
+    while(root){
+        if(root->val == x){
+            floor = x;
+            return floor;
+        }
+        
+        if(x < root->val){
+            root = root->left;
+        }else{
+            floor = root->val;
+            root = root->right;
+        }
+    }
+    return floor;
+}
+
+
+```
