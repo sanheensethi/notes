@@ -1592,3 +1592,40 @@ c) InOrder and PostOrder - Yes, because Root is at last
 ![take U forward - L34  Construct a Binary Tree from Preorder and Inorder Traversal C++ Java  aZNaLrVebKQ - 1435x807 - 9m42s](https://user-images.githubusercontent.com/35686407/172686788-ee24e424-bf10-47d6-9fbc-c85e94de68b0.png)
 ![take U forward - L34  Construct a Binary Tree from Preorder and Inorder Traversal C++ Java  aZNaLrVebKQ - 885x498 - 10m52s](https://user-images.githubusercontent.com/35686407/172687024-c503a119-75d8-4df2-b7d2-db40a21bacdc.png)
 ![take U forward - L34  Construct a Binary Tree from Preorder and Inorder Traversal C++ Java  aZNaLrVebKQ - 1536x864 - 12m37s](https://user-images.githubusercontent.com/35686407/172687231-de0ae290-8c1b-4259-8640-a0d4e64d5ae0.png)
+
+```cpp
+class Solution {
+public:
+    
+    TreeNode* buildTree(vector<int>& preorder,vector<int>& inorder,int preStart,int preEnd,int inStart,int inEnd,unordered_map<int,int>& umap){
+        if(preStart > preEnd || inStart > inEnd) return NULL;
+        
+        TreeNode* root = new TreeNode(preorder[preStart]);
+        int idx = umap[preorder[preStart]];
+        int num_ele = idx - inStart;
+        
+        root->left = buildTree(preorder,inorder,preStart + 1,preStart + num_ele,inStart,idx-1,umap);
+            
+        root->right = buildTree(preorder,inorder,preStart + num_ele + 1,preEnd,idx+1,inEnd,umap);
+        
+        return root;
+        
+    }
+    
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        unordered_map<int,int> umap;
+        int n = inorder.size();
+        for(int i = 0;i < n; i++){
+            umap[inorder[i]] = i;
+        }
+        
+        int preStart = 0;
+        int inStart = 0;
+        int preEnd = n-1;
+        int inEnd = n-1;
+            
+        TreeNode* root = buildTree(preorder,inorder,preStart,preEnd,inStart,inEnd,umap);
+        return root;
+    }
+};
+```
