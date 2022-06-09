@@ -125,6 +125,62 @@ int floorInBST(TreeNode<int> * root, int x)
     }
     return floor;
 }
+```
+## 6. Insert Given Node in BST
 
+- Insert in such a way that leftSubtree remains BST and rightSubtree remains BST.
 
+![take U forward - L43  Insert a given Node in Binary Search Tree BST C++ Java  FiFiNvM29ps - 885x498 - 2m09s](https://user-images.githubusercontent.com/35686407/172835534-f067707c-2658-4565-88fc-5178189dcabc.png)
+
+- Create any one Binary Tree.
+
+> Recursive: 
+
+- if val < root->val, left mae jao
+- else right mae jao
+- jb null pr pohcho, new node bnao us value ki and return krdo node;
+
+```cpp
+TreeNode* insertIntoBST(TreeNode* root, int val) {
+        if(root == NULL) return new TreeNode(val);
+        if(val < root->val){
+            root->left = insertIntoBST(root->left,val);
+        }else{
+            root->right = insertIntoBST(root->right,val);
+        }
+        return root;
+    }
+```
+
+> Iterative:
+
+- take previous pointer because you will stop when you reach null,
+- and we have to attach the new node to prev node from where we came to null
+
+```cpp
+TreeNode* insertIntoBST(TreeNode* root, int val) {
+        TreeNode* newNode = new TreeNode(val);
+        
+        if(root == NULL) return newNode;
+        
+        TreeNode* prev = NULL;
+        TreeNode* node = root;
+        
+        while(node){
+            prev = node;
+            if(val < node->val){
+                node = node->left;
+            }else{
+                node = node->right;
+            }
+        }
+        
+        if(val < prev->val){
+            prev->left = newNode;
+        }else{
+            prev->right = newNode;
+        }
+        
+        return root;
+    }
 ```
