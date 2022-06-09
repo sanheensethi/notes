@@ -294,17 +294,23 @@ TreeNode* deleteNode(TreeNode* root, int key) {
 - Store in vector
 - Sort the vector
 - Find kth smallest and return
+- TC : O(n) for traversal + O(nlogn) for sorting
+- SC : O(n) to store in vector and O(n) ~ Auxillary Stack Space for Recursive Traversal
 
 #### Optimized : 
 - Property: Inorder Traversal give Sorted Numbers of Binary Search Tree
 - Do Inorder Traversal
 - Store in vector
 - find kth smallest and return
+- TC : O(n)
+- SC : O(n) to store in vector and O(n) ~ Auxillary Stack Space for Recursive Traversal
 
 #### Further Optimzed:
 - don't need to store the nodes
 - just maintain count variable
 - if count == k return node->val
+- TC : O(n)
+- SC : O(n) ~ Auxillary Stack Space ~ O(1)
 
 ```cpp
 int inorder(TreeNode* root,int& count,int k){
@@ -325,3 +331,44 @@ int kthSmallest(TreeNode* root, int k) {
 ```
 
 ### More Further Optimized (Morris Traversal)
+
+- But in this, we have to traverse entire tree, we can't leave it within traversing , because some of the links are updated and not reseted.
+- TC: O(n)
+- SC : O(1)
+
+```cpp
+TreeNode* rightMostGuy(TreeNode* node,TreeNode* cur){
+        while(node->right != NULL && node->right != cur){
+            node = node->right;
+        }
+        return node;
+    }
+    
+    int kthSmallest(TreeNode* root, int k) {
+        if(root == NULL) return -1;
+        
+        TreeNode* cur = root;
+        int count = 0;
+        int ans;
+        
+        while(cur != NULL){
+            if(cur->left == NULL){
+                count++;
+                if(count == k) ans = cur->val;
+                cur = cur->right;
+            }else if(cur->left != NULL){
+                TreeNode* rightMost = rightMostGuy(cur->left,cur);
+                if(rightMost->right == NULL){
+                    rightMost->right = cur;
+                    cur = cur->left;
+                }else if(rightMost->right == cur){
+                    rightMost->right = NULL;
+                    count++;
+                    if(count == k) ans = cur->val;
+                    cur = cur->right;
+                }
+            }
+        }
+        return ans;
+    }
+```
