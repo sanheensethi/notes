@@ -233,4 +233,57 @@ delete node = 2
 
 ![take U forward - L44  Delete a Node in Binary Search Tree BST C++ Java  kouxiP_H5WE - 885x498 - 14m51s](https://user-images.githubusercontent.com/35686407/172841619-793a3b68-cb7a-47ac-aee6-9af38018bdf1.png)
 
+> jis node ko delete krna hai, uska left dekha if null hai to right ko bhej do, if right null hai to left ko bhej do, if dono hai to left ke rightmost portion mae rightsubtree ko lga do and return krdo, jisse node attach ho jaye jha se call aai.
+
+- TC : O(Height of Tree)
+
+```cpp
+TreeNode* deleteNode(TreeNode* root, int key) {
+        if(root == NULL) return NULL;
+        if(root->val == key) return helper(root);
+        
+        TreeNode* dummy = root;
+        
+        while(root != NULL){
+            if(key < root->val){
+                if(root->left && root->left->val == key){
+                    root->left = helper(root->left);
+                    break;
+                }else{
+                    root = root->left;
+                }
+            }else if(key > root->val){
+                if(root->right && root->right->val == key){
+                    root->right = helper(root->right);
+                    break;
+                }else{
+                    root = root->right;
+                }
+            }
+        }
+        return dummy;
+    }
+    
+    TreeNode* helper(TreeNode* root){
+        TreeNode* left = root->left;
+        TreeNode* right = root->right;
+        
+        delete root;
+        
+        if(left == NULL) return right;
+        if(right == NULL) return left;
+        
+        TreeNode* extRight = extremeRight(left);
+        extRight->right = right;
+        
+        return left; 
+    }
+    
+    TreeNode* extremeRight(TreeNode* root){
+        while(root->right != NULL){
+            root = root->right;
+        }
+        return root;
+    }
+```
 
