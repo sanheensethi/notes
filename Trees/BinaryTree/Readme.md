@@ -1872,3 +1872,4 @@ void flatten(TreeNode* root) {
         
     }
 ```
+#### Approach 4: (using morris traversal)
