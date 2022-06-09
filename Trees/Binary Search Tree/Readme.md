@@ -488,3 +488,43 @@ TreeNode* bstFromPreorder(vector<int>& preorder) {
 ![take U forward - L49  Inorder SuccessorPredecessor in BST 3 Methods  SXKAD2svfmI - 1536x864 - 7m47s](https://user-images.githubusercontent.com/35686407/172880960-5a46bf58-cecc-4eb7-b8c3-a0aabd52bfd7.png)
 
 ![take U forward - L49  Inorder SuccessorPredecessor in BST 3 Methods  SXKAD2svfmI - 1435x807 - 9m18s](https://user-images.githubusercontent.com/35686407/172880972-0797c187-34d1-4220-a15a-ddee078c1d10.png)
+
+> Inorder Successor: node whose value is just/immediate greater then the given node value.
+
+- agar root ki value bdi hai, to possibility hai vo successor ho skta hai [its like searching first occurance of element in BS, as usme hum index ko update krte rehte hai]
+- isme hum successor ko update krte rhenge
+- if we found our first successor
+- next successor is jiski value just immediate greater hai given node val se and successor se km hai jo abhi tk tha
+
+```cpp
+Node * inOrderSuccessor(Node *root, Node *x){
+    Node* successor = NULL;
+    while(root){
+        if(x->data < root->data){
+            successor = root;
+            root = root->left;
+        }else{
+            root = root->right;
+        }
+    }
+
+    return successor;
+}
+```
+
+> Predecessor : vo node jiski value mere given node ki value se immediate choti hogi
+
+```cpp
+void findPre(Node* root, Node*& pre, int key){
+    pre = NULL;
+    node = root;
+    while(node){
+        if(key <= node->key){
+            node = node->left;
+        }else{
+            pre = node;
+            node = node->right;
+        }
+    }
+}
+```
