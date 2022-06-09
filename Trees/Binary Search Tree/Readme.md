@@ -401,10 +401,10 @@ bool isValidBST(TreeNode* root,long long minRange,long long maxRange){
 > lca vo hota hai jb hm path nikale node to root mtlb niche se dekh rhe hai ki konsa first intersection point hoga, and agar upar se dekhe to vo last intersection point hota hai. to jo last intersection point hota hai, vhi mera lca hai.
 
 Condition:
-    1. both lie on left ~ move left
-    2. both lie on right ~ move right
-    3. one in left and one in right ~ that node is LCA
-    4. root is one of p and q ~ that node is LCA
+  1. both lie on left ~ move left
+  2. both lie on right ~ move right
+  3. one in left and one in right ~ that node is LCA
+  4. root is one of p and q ~ that node is LCA
 
 ```cpp
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
