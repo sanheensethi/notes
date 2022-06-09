@@ -660,3 +660,89 @@ public:
     }
 };
 ```
+## 16. Recover BST 
+
+```cpp
+class Solution {
+private:
+    TreeNode* first;
+    TreeNode* middle;
+    TreeNode* last;
+    TreeNode* prev;
+    
+    void inorder(TreeNode* root){
+        if(root == NULL) return;
+        
+        inorder(root->left);
+        
+        if(root->val < prev->val){
+            if(first == NULL){
+                first = prev;
+                middle = root;
+            }else{
+                last = root;
+            }
+        }
+        
+        prev = root;
+        inorder(root->right);
+    }
+    
+public:
+    void recoverTree(TreeNode* root) {
+        first = middle = last = NULL;
+        prev = new TreeNode(INT_MIN);
+        inorder(root);
+        if(first && last) swap(first->val,last->val);
+        else if(first && middle) swap(first->val,middle->val);
+    }
+};
+```
+
+## 17. Largest BST in BT
+
+```cpp
+class NodeVal{
+public:
+     int size;
+     int largest;
+     int smallest;
+     NodeVal(int s,int l,int sm){
+         this->size = s;
+         this->largest = l;
+         this->smallest = sm;
+     }
+};
+
+class Solution{
+    public:
+    /*You are required to complete this method */
+    // Return the size of the largest sub-tree which is also a BST
+    
+    NodeVal postOrder(Node* root){
+        if(root == NULL){
+            return NodeVal(0,INT_MIN,INT_MAX);
+        }
+        
+        NodeVal left = postOrder(root->left);
+        NodeVal right = postOrder(root->right);
+        
+        if(root->data > left.largest && root->data < right.smallest){
+            // valid bst
+            int size = left.size + right.size + 1;
+            int largest = max(root->data,right.largest);
+            int smallest = min(root->data,left.smallest);
+            
+            return NodeVal(size,largest,smallest);
+        }
+        
+        int maxSize = max(left.size,right.size);
+        return NodeVal(maxSize,INT_MAX,INT_MIN);
+    }
+    
+    int largestBst(Node *root)
+    {
+    	return postOrder(root).size;
+    }
+};
+```
