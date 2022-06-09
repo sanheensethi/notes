@@ -1771,3 +1771,104 @@ public:
     3. do this untill cur != NULL
 
 - InOrder and PreOrder mae bs 1 line ka frk hai baki pura code same hai
+
+```cpp
+TreeNode* rightMostGuy(TreeNode* node,TreeNode* cur){
+        while(node->right != NULL && node->right != cur){
+            node = node->right;
+        }
+        return node;
+    }
+    
+    // Morris Traversal
+    #define debug(x) cout<<#x<<":"<<x<<endl;
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        if(root == NULL) return {};
+        TreeNode* cur = root;
+        while(cur != NULL){
+            if(cur->left == NULL){
+                ans.push_back(cur->val);
+                cur = cur->right;
+            }else if(cur->left != NULL){
+                TreeNode* rightMost = rightMostGuy(cur->left,cur);
+                if(rightMost->right == NULL){
+                    rightMost->right = cur;
+                    cur = cur->left;
+                }else if(rightMost->right == cur){
+                    rightMost->right = NULL;
+                    ans.push_back(cur->val);
+                    cur = cur->right;
+                }
+            }
+        }
+        return ans;
+    }
+```
+
+- In PreOrder, change only one line and add onle same line
+    - As we know preorder is Root Left Right
+    - so, we go to root first, therefore before moving to the left we have to push value in ans, therefore after rightMost-> right = cur type ans.push_back(cur->val) in rightMost->right == NULL
+    - and in rightMost->right == cur, remove the line ans.push_back(cur->val) , because that is for inorder traversal.
+
+## 35. Flatten a Binary Tree
+
+#### Approach 1: Brute Force (Create new TreeNodes, by traversing the Tree.)
+
+#### Approach 2: (Changing Pointers)
+
+![take U forward - L38  Flatten a Binary Tree to Linked List 3 Approaches C++ Java  sWf7k1x9XR4 - 885x498 - 9m12s](https://user-images.githubusercontent.com/35686407/172799605-04c5e557-8ec6-4007-a4d5-a88a8b82ca5c.png)
+
+- In this we move like `Right Left Root` (reverse postorder)
+- dry run krne se hi clear ho jayega logic or either watch [Youtube](https://youtu.be/sWf7k1x9XR4)
+- TC : O(n)
+- SC : ~ O(n) Auxillary Stack Space or O(H)
+
+```cpp
+TreeNode* prev = NULL;
+    void flat(TreeNode* node){
+        if(node == NULL) return;
+        
+        flat(node->right);
+        flat(node->left);
+        
+        node->right = prev;
+        node->left = NULL;
+        prev = node;
+    }
+    void flatten(TreeNode* root) {
+        flat(root);
+        root = prev;
+    }
+```
+
+#### Approach 3: (using stack) - dont tell to interviewer.
+
+```cpp
+void flatten(TreeNode* root) {
+        if(root == NULL) return;
+        
+        stack<TreeNode*> st;
+        st.push(root);
+        TreeNode* node = NULL;
+        
+        while(!st.empty()){
+            node = st.top();
+            st.pop();
+            
+            if(node->right){
+                st.push(node->right);
+            }
+            
+            if(node->left){
+                st.push(node->left);
+            }
+            
+            node->left = NULL;
+            if(!st.empty()){
+                node->right = st.top();
+            }
+        }
+        
+    }
+```
