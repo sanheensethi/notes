@@ -1766,5 +1766,8 @@ public:
 - isme hmare paas 3 case arise hote hai:
     1. `Case 1`: agar left null hai sirf right hai, suppose kro esa root, jiska left null hai right mae srf ek element hai, ~ to hum print krke right mae move krenge
     2. `Case 2`: agar left mera null nhi hai, to uske extreme right mae jayenge
+        - agar extremeRight -> right == NULL : add thread to cur (parent)
+        - agar extrementRight -> right == cur : break thread, add cur val in ans, move right
+    3. do this untill cur != NULL
 
 - InOrder and PreOrder mae bs 1 line ka frk hai baki pura code same hai
