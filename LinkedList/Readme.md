@@ -684,6 +684,72 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
 
 ![Fraz - Merge k Sorted Lists EP 14  RYJ3vs8qx10 - 1536x864 - 3m31s](https://user-images.githubusercontent.com/35686407/173045413-009450aa-57a2-415b-a34d-8bc7cc0aa0c0.png)
 
+#### Approach 2: Take two linked list at a time and merge
+- 2 / 2 linked list lekr merge kro
+- pehle first 2 ko krdo usse ke new linked list aayegi
+- us new linked list ko agle valo ke sath ek ek uthakr merge krte rho
+- we will do this in total k-1 times
+
+#### Approach 3: 
+- Sari Linked List ke starting pr pointers rkh denge
+- ab jo smallest element milega among all pointers,compare and smallest le lo
+- Total Nodes N*K hai
+
+![Fraz - Merge k Sorted Lists EP 14  RYJ3vs8qx10 - 885x498 - 5m46s](https://user-images.githubusercontent.com/35686407/173046363-f2bf00f3-a731-4579-ba9c-426bfa148cdd.png)
+
+![Fraz - Merge k Sorted Lists EP 14  RYJ3vs8qx10 - 885x498 - 6m55s](https://user-images.githubusercontent.com/35686407/173046525-1db2b7d3-6564-4296-81e9-5a88186c2492.png)
+
+#### Approach 4: Heap (Min Heap)
+- whenever we get question jisme hme har baar minimum chahiye to sorting bhi use kr skte hai, ya min heap bhi kr skte hai min heap mae insert bhi kr skte hai, vector mae sort krna pdta.
+- Heap mae dalo nikalo, top pr minimum element hi rehta hai
+- Insert : NlogN in Heap
+- Get : NlogN from Heap
+- Dekhne ke liye : O(1) time lgega,
+- We put all first K nodes in Heap, l1,l2,l3,l4 --- lk
+- ek element bhr nikala and uska next heap mae daal dia, jon= nikala usko join kr do.
+- TC : O(logK)
+- SC : O(K) ~ heap mae at max K nodes pdi hai.
+
+![Fraz - Merge k Sorted Lists EP 14  RYJ3vs8qx10 - 885x498 - 11m34s](https://user-images.githubusercontent.com/35686407/173047726-53449122-797a-4f9c-a928-794f314679cf.png)
+
+```cpp
+class myCompare{
+public:
+    bool operator()(const ListNode* a,ListNode* b){
+        return a->val > b->val;
+    }    
+};
+
+class Solution {
+public:
+    
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<ListNode*,vector<ListNode*>,myCompare> pq;
+        
+        for(int i = 0;i < lists.size(); i++){
+            if(lists[i]!=NULL){
+                pq.push(lists[i]);
+            }
+        }
+        
+        ListNode* dummy = new ListNode(-1);
+        ListNode* cur = dummy;
+        
+        while(!pq.empty()){
+            ListNode* node = pq.top();
+            pq.pop();
+            if(node->next != NULL) pq.push(node->next);
+            cur->next = node;
+            cur = cur->next;
+        }
+        cur->next = NULL;
+        return dummy->next;
+    }
+};
+```
+
+## 14. Remove Dublicates From Sorted Linked List
+
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
