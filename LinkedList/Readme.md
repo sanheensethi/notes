@@ -609,6 +609,40 @@ public:
     }
 };
 ```
+## 11. Merge Two Sorted Linked List
+
+#### If Allowed by Interviewer to change the structure.
+
+> Recursive:
+
+![Fraz - Merge Two Sorted Lists EP 13  0QPpgAsd4IY - 885x498 - 5m07s](https://user-images.githubusercontent.com/35686407/173037700-5d5fc3d8-4de7-4f75-b48f-0b6897f16b00.png)
+
+![Fraz - Merge Two Sorted Lists EP 13  0QPpgAsd4IY - 853x480 - 5m27s](https://user-images.githubusercontent.com/35686407/173037740-08ed41dd-0af9-4baa-840f-04769be7de41.png)
+
+- agar h1 chota hai to h1->next = call lgado jisme h1 ko aage bhadado, and h2 apni jagah rehne do
+- agar h2 chota hai to h2->next = call lgado jisme h2 ko aage bhadado and h1 apni jagah rehne do
+
+```cpp
+ListNode* merge(ListNode* h1,ListNode* h2){
+    if(h1 == NULL) return h2;
+    if(h2 == NULL) return h1;
+
+    if(h1->val <= h2->val){
+        h1->next = merge(h1->next,h2);
+        return h1;
+    }else{
+        h2->next = merge(h1,h2->next);
+        return h2;
+    }
+}
+
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    return merge(list1,list2);
+}
+```
+> Iterative:
+
+
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
