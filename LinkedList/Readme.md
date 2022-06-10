@@ -1156,3 +1156,71 @@ ListNode* removeElements(ListNode* head, int val) {
 - ab jo bhi recursion se ans/address of head aaya usko recAns mae store kr liya
 - ab, abhi vali value agar same hai given val ke, to return krdo recAns
 - otherwise, abhi vale address ke next mae recAns lgakr return krdo abhi vala address.
+
+```cpp
+ListNode* remove(ListNode* head,int val){
+        
+    if(head == NULL || head->val == NULL) return NULL;
+
+    ListNode* recAns = remove(head->next,val);
+
+    if(head->val == val){
+        return recAns;
+    }else{
+        head->next = recAns;
+        return head;
+    }
+
+}
+
+ListNode* removeElements(ListNode* head, int val) {
+    return remove(head,val);
+}
+```
+
+## 20. Design Browser History [Question](https://leetcode.com/problems/design-browser-history/)
+
+![Fraz - Design Browser History EP 21  SPDhPuMsM9A - 1536x864 - 3m02s](https://user-images.githubusercontent.com/35686407/173070911-270e2e77-8f7e-48ba-af7b-226890479827.png)
+
+- if same tabe se new website pr visit kre to forward history sari delete ho jati hai srf backward history rehti hai
+
+![Fraz - Design Browser History EP 21  SPDhPuMsM9A - 1435x807 - 4m41s](https://user-images.githubusercontent.com/35686407/173070933-be339b06-a1e0-4ce1-bb41-b3a132cbeb69.png)
+
+![Fraz - Design Browser History EP 21  SPDhPuMsM9A - 1435x807 - 4m44s](https://user-images.githubusercontent.com/35686407/173071049-d77eff41-8d72-43d4-9539-1ccc2996b475.png)
+
+- ek iterator bhi rkhna hoga, jo ye btaega current aap konc website pr ho.
+
+```cpp
+class BrowserHistory {
+public:
+    list<string> history;
+    list<string> :: iterator it;
+    
+    BrowserHistory(string homepage) {
+        history.push_back(homepage);
+        it = history.begin();
+    }
+    
+    void visit(string url) {
+        auto del = it;
+        del++;
+        history.erase(del,history.end());
+        history.push_back(url);
+        it++;
+    }
+    
+    string back(int steps) {
+        while(it != history.begin() && steps--){
+            it--;
+        }
+        return *it;
+    }
+    
+    string forward(int steps) {
+        while(it != (--history.end()) && steps--){
+            it++;
+        }
+        return *it;
+    }
+};
+```
