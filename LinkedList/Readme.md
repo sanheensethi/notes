@@ -641,7 +641,39 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
 }
 ```
 > Iterative:
+- Create a dummy node, and mark it also as cur pointer,
+- dummy->next will store ans head address
+- cur->next we will join pointers here.
+- agar `h1->val <= h2->val` then `cur->next = h1`, and h1 ko aage bhadao `h1 = h1->next`
+- agar `h1->val > h2->val` then `cur->next = h2`, and h1 ko aage bhadao `h2 = h2->next`
+- agar ek bhi null ho jati hai, to dusri ko join kr do cur ke next mae.
 
+![Fraz - Merge Two Sorted Lists EP 13  0QPpgAsd4IY - 885x498 - 13m42s](https://user-images.githubusercontent.com/35686407/173044045-c0eee150-0002-4fa3-a9fc-bd34db05aae9.png)
+
+```cpp
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    if(list1 == NULL) return list2;
+    if(list2 == NULL) return list1;
+
+    ListNode* dummy = new ListNode(-1);
+    ListNode* cur = dummy;
+
+
+    while(list1 && list2){
+        if(list1->val <= list2->val){
+            cur->next = list1;
+            list1 = list1->next;
+        }else{
+            cur->next = list2;
+            list2 = list2->next;
+        }
+        cur = cur->next;
+    }
+    if(list1 == NULL) cur->next = list2;
+    else cur->next = list1;
+    return dummy->next;
+}
+```
 
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
