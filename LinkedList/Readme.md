@@ -436,6 +436,17 @@ private:
 
 #### Approach 2: Chainging Pointers
 
+- node ke address same rhenge, bs connections reverse ho jayenge
+
+![Fraz - Reverse Linked List EP 10  MsIRa740mQY - 885x498 - 2m31s](https://user-images.githubusercontent.com/35686407/173003113-e649cf9e-a89a-4ff0-b409-491206e9719c.png)
+
+- 3 Pointers needed, Current, Prev, Next ,
+- Currnt jispr khade hai jiska link reverse krna hai
+- prev , jisse current ko jodna hai
+- jb jod denge cur->next = prev to aage bhadne ke lihye bhi address chahiye , if 3rd pointer nhi lenge so we loose aage ke nodes, so next pointer needed.
+
+![Fraz - Reverse Linked List EP 10  MsIRa740mQY - 885x498 - 7m51s](https://user-images.githubusercontent.com/35686407/173003643-0e6e10ff-a1c8-47b0-b531-443ea35d6f60.png)
+
 > Iterative:
 
 ```cpp
@@ -457,6 +468,11 @@ ListNode* reverseList(ListNode* head) {
 ```
 
 > Recursion:
+
+![Fraz - Reverse Linked List EP 10  MsIRa740mQY - 853x480 - 14m22s](https://user-images.githubusercontent.com/35686407/173004449-640a5a3b-881e-4bec-bf8b-901b2bae3710.png)
+
+- Recursion 2 se kaam krwakr le aaya.
+- newHead mne alag se store kr lia 
 
 ```cpp
 ListNode* newHead = NULL;
