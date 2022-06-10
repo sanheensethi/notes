@@ -750,6 +750,32 @@ public:
 
 ## 14. Remove Dublicates From Sorted Linked List
 
+> Recursive
+
+- mae recursion ko khunga merse aage sare dublicates hta de, to vo muje vo 1 2 3 return kr dega last vala 3 nhi krega hta dega.
+- ab jo recursion se aayega, usko mae compare krunga abhi vale head se, ki bhai tu mere equal hai ye nhi agar hota hai to head ko skip krke recursion vala ans de denge
+- otherwise, agar equal nhi hota to hum abhi vale head ko recursion se attach krke, return kr denge head ko
+
+![Fraz - Remove Duplicates from Sorted List EP 15  _Dc1IqY2WpQ - 885x498 - 3m20s](https://user-images.githubusercontent.com/35686407/173051930-b9612372-e215-4edc-ba71-783523ac551f.png)
+
+```cpp
+ListNode* remove(ListNode* head){
+    if(head->next == NULL) return head;
+
+    ListNode* recAns = remove(head->next);
+    if(recAns->val == head->val){
+        return recAns;
+    }else{
+        head->next = recAns;
+        return head;
+    }
+}
+
+ListNode* deleteDuplicates(ListNode* head) {
+    if(head == NULL) return NULL;
+    return remove(head);
+}
+```
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
