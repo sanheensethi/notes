@@ -224,6 +224,25 @@ int getDecimalValue(ListNode* head) {
     return ans;
 }
 ```
+## 7. Doubly Linked List (STL ALSO)
+
+- Deletion is Simple in Doubly Linked List,
+- Singly LL mae to fr bhi mne trick use krli thi int ke case mae, suppose image hoti to usme trick ni use krenge kuki 2 images ko swap krna is huge task, if we take real world example.
+
+![Fraz - Doubly Linked List and STLs EP 7  cTm0AR5_O54 - 1435x807 - 4m43s](https://user-images.githubusercontent.com/35686407/172993858-35a85c3a-6aa6-4f1b-b873-1cce18c96fa1.png)
+
+![Fraz - Doubly Linked List and STLs EP 7  cTm0AR5_O54 - 1435x807 - 5m01s](https://user-images.githubusercontent.com/35686407/172993860-3982f346-7ade-45a3-9f7d-c0f6af00e88a.png)
+
+- Singly Linked List is `forward list<datatype>` in STL
+- Doubly Linked List is `list<datatype>`in STL
+
+![Fraz - Doubly Linked List and STLs EP 7  cTm0AR5_O54 - 853x480 - 7m04s](https://user-images.githubusercontent.com/35686407/172994388-ff16af4c-98bf-4942-be1b-6a0612c582b6.png)
+
+
+![Fraz - Doubly Linked List and STLs EP 7  cTm0AR5_O54 - 1435x807 - 8m07s](https://user-images.githubusercontent.com/35686407/172994351-177ffb01-d13b-4367-9269-19f68f496124.png)
+
+![Fraz - Doubly Linked List and STLs EP 7  cTm0AR5_O54 - 1536x864 - 7m55s](https://user-images.githubusercontent.com/35686407/172994361-f9892bcb-c2b5-4622-8bea-d51b0f381725.png)
+
 
 ## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
