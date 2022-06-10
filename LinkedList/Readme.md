@@ -132,6 +132,99 @@ ListNode* middleNode(ListNode* head) {
 }
 ```
 
+## 6. Convert Binary Number in Linked List to Integer
+
+#### Approach 1: Reverse Linked List and convert
+
+- Not Efficient Approach,
+
+![Fraz - Convert Binary Number in a Linked List to Integer EP 6  rPbzUW7usJE - 1536x864 - 4m22s](https://user-images.githubusercontent.com/35686407/172991059-3f3abee1-cdfd-4bf8-b84f-d1021e920550.png)
+
+```cpp
+ListNode* newHead = NULL;
+ListNode* reverseLL(ListNode* head){
+    if(head->next == NULL){
+        newHead = head;
+        return newHead;
+    } 
+    ListNode* ll = reverseLL(head->next);
+    ll->next = head;
+    return head;
+}
+
+int getDecimalValue(ListNode* head) {
+    if(head == NULL) return 0;
+
+    ListNode* tail = reverseLL(head);
+    tail->next = NULL;
+
+    int p = 0;
+    int ans = 0;
+    while(newHead != NULL){
+        ans = ans + pow(2,p)*(newHead->val);
+        p++;
+        newHead = newHead->next;
+    }
+    return ans;
+}
+```
+
+#### Approach 2: Find Length of Linked List
+
+![Fraz - Convert Binary Number in a Linked List to Integer EP 6  rPbzUW7usJE - 853x480 - 5m10s](https://user-images.githubusercontent.com/35686407/172991160-22e0a574-8e99-4b6c-8612-cddd1f3aebcb.png)
+
+```cpp
+int size(ListNode* head){
+    if(head == NULL) return 0;
+    return 1 + size(head->next);
+}
+int getDecimalValue(ListNode* head) {
+    if(head == NULL) return 0;
+    int len = size(head);
+
+    int p = len-1;
+    int ans = 0;
+    while(head != NULL){
+        ans = ans + pow(2,p)*(head->val);
+        p--;
+        head = head->next;
+    }
+    return ans;
+}
+```
+
+#### Approach 3:
+
+- In this we assume that, our first node is last node, to vo 2^0 se multiply hona chahiye , koi ni, krdo and ans ko store kr do.
+- ab jese hi mae aage gya,use pta chla ki are nhi ye vali last node hai to isko 2^0 se multiply krna hai, to pichle sbhi ki power 1 se increment kr denge.
+- ab vha jakr increment nhi krenge, bs ans ko 2 se multuply kr denge and fr current value ko 2^0 se multiply krke add kr denge
+
+![Fraz - Convert Binary Number in a Linked List to Integer EP 6  rPbzUW7usJE - 1435x807 - 6m20s](https://user-images.githubusercontent.com/35686407/172991253-7df46775-6a25-4e6e-a669-d3d405542ae1.png)
+
+![Fraz - Convert Binary Number in a Linked List to Integer EP 6  rPbzUW7usJE - 1536x864 - 6m45s](https://user-images.githubusercontent.com/35686407/172991297-614b32ff-c8d4-43f5-99b2-2d81d4ee1c35.png)
+
+![Fraz - Convert Binary Number in a Linked List to Integer EP 6  rPbzUW7usJE - 1435x807 - 6m53s](https://user-images.githubusercontent.com/35686407/172991303-57bf4d21-8307-4501-8066-1f2ab9baf9b3.png)
+
+![Fraz - Convert Binary Number in a Linked List to Integer EP 6  rPbzUW7usJE - 885x498 - 8m32s](https://user-images.githubusercontent.com/35686407/172991460-1ac57454-5577-4857-829b-e9ffa7a88004.png)
+
+```cpp
+int getDecimalValue(ListNode* head) {
+    if(head == NULL) return 0;
+
+    int ans = 0;
+
+    ListNode* temp = head; 
+
+    while(temp != NULL){
+        ans = ans*2; // when discovered new node so previous all power increase by 1 i.e. each prev values * 2 => ans should be * 2
+        ans = ans + (temp->val); // *pow(2,0)
+        temp = temp->next;
+    }
+
+    return ans;
+}
+```
+
 ## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
 ![Fraz - Intersection of Two Linked List EP 18  DGEqY5rLyVc - 1536x864 - 5m00s](https://user-images.githubusercontent.com/35686407/172180060-3c3e8077-7cdb-41f0-80c1-72a7ed665d44.png)
