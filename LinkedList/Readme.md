@@ -502,6 +502,8 @@ ListNode* reverseList(ListNode* head) {
 
 ![Fraz - Reverse Nodes in k-Group EP 11  TeDcLjOOiK4 - 1536x864 - 3m54s](https://user-images.githubusercontent.com/35686407/173005382-82c02a09-1442-4571-b4de-c192490bbcad.png)
 
+> Recursive:
+
 ![Fraz - Reverse Nodes in k-Group EP 11  TeDcLjOOiK4 - 1435x807 - 10m42s](https://user-images.githubusercontent.com/35686407/173006816-3588aca6-93f5-4602-ab3a-b3e2b769c19d.png)
 
 - mae first 2 ko change krwaunga, baki recursion khud kaam krdega, first k nodes , if k = 2, then use muje reverse krwana aata hi hai. by iterative or recursive kese bhi krwa lu.
@@ -550,6 +552,9 @@ void reverse(ListNode* start,ListNode* end){
         return end;
     }
 ```
+> Iterative: (To Tell to the interviewer)
+
+
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
