@@ -798,6 +798,69 @@ ListNode* deleteDuplicates(ListNode* head) {
         return head;
     }
 ```
+## 15. Linked List Cycle
+
+#### Approach 1: (HashMap)
+
+![Fraz - Linked List Cycle (With Proof) EP 16  nbQUEN3IRFk - 853x480 - 3m02s](https://user-images.githubusercontent.com/35686407/173055735-a7f12e44-6cd9-4e35-b4c2-c3c20c3c61ee.png)
+
+- Linked List ko traverse krna start kro, if 1 bhi node 2 bari aa jaye to mtlb vha cycle hai
+- We can use any ds like `HashMap`
+- TC : O(n)
+- SC : O(n)
+
+#### Approach 2: (Slow and Fast Pointer)
+
+![Fraz - Linked List Cycle (With Proof) EP 16  nbQUEN3IRFk - 885x498 - 4m44s](https://user-images.githubusercontent.com/35686407/173056162-cd73efbc-a0fd-437f-9ccf-b08e52654019.png)
+
+```cpp
+bool hasCycle(ListNode *head) {
+    ListNode *slow = head,*fast = head;
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast) return true;
+    }
+    return false;
+}
+```
+
+> Proof:
+
+![Fraz - Linked List Cycle (With Proof) EP 16  nbQUEN3IRFk - 1536x864 - 12m34s](https://user-images.githubusercontent.com/35686407/173057323-49abe0af-5cbc-4d1a-ae2b-d59e5c74494f.png)
+
+## 16. Detect Starting Point of The Cycle in Linked List
+
+![Fraz - Linked List Cycle II (with proof) EP 17  tsQT0MT73Og - 885x498 - 2m02s](https://user-images.githubusercontent.com/35686407/173057896-d86f20b2-14ea-48b1-8663-fa6b587a5ec7.png)
+
+- d = n-k , if wjhole ciricle is n
+
+![Fraz - Linked List Cycle II (with proof) EP 17  tsQT0MT73Og - 885x498 - 6m46s](https://user-images.githubusercontent.com/35686407/173058625-729088af-ceed-49a5-9f33-0d54b77fe5dd.png)
+
+- pehle check kro, slow and fast milte hai aapas mae ya nhi, mtlb loop hai bhi ya nhi,
+- jb mile, fast ko dobara starting point pr rkho, ab dono ko 1 distance se chlao same speed se, to jha milenge vhi first point hoga cycle ka
+
+```cpp
+ListNode *detectCycle(ListNode *head) {
+    ListNode *slow = head,*fast = head;
+
+    while(fast!=NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast) break;
+    }
+
+    if(fast == NULL || fast->next == NULL) return NULL;
+
+    fast = head;
+
+    while(slow != fast){
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return slow;
+}
+```
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
