@@ -68,6 +68,42 @@ void deleteNode(ListNode* node) {
 
 ## 5. Middle of Linked List.
 
+#### Approach 1:
+
+- find length of LL,
+- traverse upto length/2,
+- where you land is Middle Node
+
+```cpp
+int llSize(ListNode* head){
+    if(head == NULL) return 0;
+    return 1 + llSize(head->next);
+}
+
+ListNode* middleNode(ListNode* head) {
+
+    if(head == NULL) return NULL;
+
+    int size = llSize(head);
+
+    ListNode* temp = head;
+    int k = size/2;
+    while(k--){
+        temp = temp->next;
+    }
+
+    return temp;
+}
+```
+
+#### Approach 2:
+
+
+
+```cpp
+
+```
+
 ## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
 ![Fraz - Intersection of Two Linked List EP 18  DGEqY5rLyVc - 1536x864 - 5m00s](https://user-images.githubusercontent.com/35686407/172180060-3c3e8077-7cdb-41f0-80c1-72a7ed665d44.png)
