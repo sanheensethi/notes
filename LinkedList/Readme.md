@@ -1116,4 +1116,43 @@ bool isPalindrome(ListNode* head) {
     return ans;
 }
 ```
+## 19. Remove Linked List Elements
 
+![Fraz - Remove Linked List Elements EP 20  JrRoR7ycM8U - 885x498 - 2m42s](https://user-images.githubusercontent.com/35686407/173065592-c6bf3164-6f3f-4938-a800-7a366a389e4b.png)
+
+> Iterative:
+
+- Take dummy, dummy->next = head
+- Now normal traverse and delete the nodes
+- Why Dummy ? maybe there is head also which as same value as val, we need prev to whom we update prev->next,
+- changing head again and again is complex part, that is why we take dummy node which have dummy->next as head of new LL after removing elements
+
+```cpp
+ListNode* removeElements(ListNode* head, int val) {
+        
+    ListNode* dummy = new ListNode(-1);
+    dummy->next = head;
+    ListNode* prev = dummy;
+    ListNode* cur = head;
+
+    while(cur != NULL){
+        if(cur->val == val){
+            ListNode* del = cur;
+            prev->next = cur->next;
+            cur = cur->next;
+            delete del;
+        }else{
+            prev = cur;
+            cur = cur->next;
+        }
+    }
+    return dummy->next;
+}
+```
+> Recursive:
+
+- hum mankr chlenge recursion aage ka kaam krke la dega, muje abhi current value pr kaam krna hai.
+- to recursion call lgadi head->next mae,
+- ab jo bhi recursion se ans/address of head aaya usko recAns mae store kr liya
+- ab, abhi vali value agar same hai given val ke, to return krdo recAns
+- otherwise, abhi vale address ke next mae recAns lgakr return krdo abhi vala address.
