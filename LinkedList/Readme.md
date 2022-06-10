@@ -1,6 +1,47 @@
 # Linked List
 
-## 1. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
+## 1. Uses
+![Fraz - Uses of Linked List ( Real Life ) EP 1  fxuVD1e66QA - 885x498 - 3m36s](https://user-images.githubusercontent.com/35686407/172987362-65e48efe-2c24-4eef-8b1e-e0112db5e904.png)
+
+## 2. Representation of Linked List
+
+- In Array , we can directly access the position of elements as internally there is mathematical calculation to find the address of element,
+- Array is stored in Contiguous memory.
+
+![Fraz - Representation of Linked List (C++ and JAVA) EP 2  Xtvo7Y2q4NA - 885x498 - 2m40s](https://user-images.githubusercontent.com/35686407/172987583-8deb85a0-7182-47bf-8a9f-e54b946e440b.png)
+
+- Whereas, Linked List need not to be in contiguous, in Linked List node, we store data and also the address of next node.
+
+![Fraz - Representation of Linked List (C++ and JAVA) EP 2  Xtvo7Y2q4NA - 885x498 - 5m44s](https://user-images.githubusercontent.com/35686407/172987800-fbae9255-c6a6-4e08-8e70-3eca6349a186.png)
+
+- 1 is head of linked list, we should never loose the head of the linked list, it is the starting point of the linked list, and below is the visulization how linked list is represented in memory.
+
+![Fraz - Representation of Linked List (C++ and JAVA) EP 2  Xtvo7Y2q4NA - 885x498 - 9m50s](https://user-images.githubusercontent.com/35686407/172987842-e90df05b-4dbf-4be0-ad9b-810dc3bc1432.png)
+
+## 3. Delete Node in Linked List (if you didn't given head of linked list, or the previous node of the deleted node)
+
+![Screenshot Capture - 2022-06-10 - 09-35-07](https://user-images.githubusercontent.com/35686407/172988213-da0f2711-257b-4d72-91a7-5143b49cc6c6.png)
+
+In this, given node is 5 , which has to be deleted.
+
+- isme jis dali pr bethe hai, usi ko katne ki koshish kr rhe hai, but agli dali kis-se jodoge pta hi nhi,
+- we use trick,
+- next node ki value current mae copy krke next node ko delete krenge.
+
+```cpp
+void deleteNode(ListNode* node) {
+    ListNode* temp = node->next;
+    ListNode* temp2 = temp->next;
+    swap(node->val,temp->val);
+    delete temp;
+    temp = NULL;
+    node->next = temp2;
+}
+```
+
+
+
+## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
 ![Fraz - Intersection of Two Linked List EP 18  DGEqY5rLyVc - 1536x864 - 5m00s](https://user-images.githubusercontent.com/35686407/172180060-3c3e8077-7cdb-41f0-80c1-72a7ed665d44.png)
 
