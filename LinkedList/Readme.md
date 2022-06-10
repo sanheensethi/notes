@@ -862,7 +862,7 @@ ListNode *detectCycle(ListNode *head) {
 }
 ```
 
-## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
+## 17. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
 ![Fraz - Intersection of Two Linked List EP 18  DGEqY5rLyVc - 1536x864 - 5m00s](https://user-images.githubusercontent.com/35686407/172180060-3c3e8077-7cdb-41f0-80c1-72a7ed665d44.png)
 
@@ -1048,3 +1048,72 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         return tempA;
     }
 ```
+## 18. Palindrome Linked List
+
+![Fraz - Palindrome Linked List EP 19  XYY2tc_8KDM - 1536x864 - 1m50s](https://user-images.githubusercontent.com/35686407/173061014-b8376ca9-b677-43bc-a700-34cb8a8edde8.png)
+
+#### Approach 1: vector mae dalo and check kro
+
+#### Approach 2: Reversal
+
+- Even :
+![Fraz - Palindrome Linked List EP 19  XYY2tc_8KDM - 885x498 - 3m09s](https://user-images.githubusercontent.com/35686407/173061111-27be92e0-204f-4c45-8c62-da1b77907fcc.png)
+
+- Odd:
+![Fraz - Palindrome Linked List EP 19  XYY2tc_8KDM - 853x480 - 4m17s](https://user-images.githubusercontent.com/35686407/173061289-6ff207e2-7291-43c4-9514-13d89e1a8e73.png)
+
+![Fraz - Palindrome Linked List EP 19  XYY2tc_8KDM - 885x498 - 3m57s](https://user-images.githubusercontent.com/35686407/173061242-b10e3706-6aa8-42bf-94a0-920dd592fbea.png)
+
+- Find midlle se pehle ka point
+- Do reversal after middle
+- check for palindrome
+- again reverse whom you reverse
+- connect pointers to maintain structure of LL.
+- return ans
+
+```cpp
+ListNode* reverse(ListNode* head){
+    ListNode* prev = NULL, *next = NULL;
+    ListNode* cur = head;
+    while(cur!=NULL){
+        next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    return prev; // newHead
+}
+
+ListNode* middle(ListNode* head){
+    ListNode* slow = head,*fast = head;
+    while(fast->next != NULL && fast->next->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+bool isPali(ListNode* h1,ListNode* h2){
+    while(h1 && h2){
+        if(h1->val != h2->val) return false;
+        h1 = h1->next;
+        h2 = h2->next;
+    }
+    return true;
+}
+
+bool isPalindrome(ListNode* head) {
+    ListNode* firstLLTail = middle(head);
+    ListNode* secondLL = firstLLTail->next;
+    firstLLTail->next = NULL;
+    secondLL = reverse(secondLL);
+
+    bool ans = isPali(head,secondLL);
+
+    secondLL = reverse(secondLL);
+    firstLLTail->next = secondLL;
+
+    return ans;
+}
+```
+
