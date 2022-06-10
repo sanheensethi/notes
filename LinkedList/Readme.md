@@ -427,6 +427,61 @@ private:
 ```
 ## 9. Reverse Linked List
 
+#### Approach 1: Reverse only values (but ye nhi krna hai.)
+- Not the good way to approach
+- agar krna hai to , ek vector bnao, usme sari values daal do traverse krke
+- ab vector ko traverse kro piche se, and linked list ko fr se traverse kro aage se and put those values
+
+![Fraz - Reverse Linked List EP 10  MsIRa740mQY - 1536x864 - 1m02s](https://user-images.githubusercontent.com/35686407/173001427-ab4879ea-4767-4766-87cd-b7218892c2e3.png)
+
+#### Approach 2: Chainging Pointers
+
+> Iterative:
+
+```cpp
+ListNode* reverseList(ListNode* head) {
+    if(head == NULL) return NULL;
+
+    ListNode* prev = NULL;
+    ListNode* cur = head;
+    ListNode* next = NULL;
+
+    while(cur != NULL){
+        next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    return prev;
+}
+```
+
+> Recursion:
+
+```cpp
+ListNode* newHead = NULL;
+    
+ListNode* reverseLL(ListNode* head){
+    if(head->next == NULL){
+        newHead = head;
+        return newHead;
+    }
+
+    ListNode* ll = reverseLL(head->next);
+    ll->next = head;
+    
+    return head;
+}
+
+ListNode* reverseList(ListNode* head) {
+    if(head == NULL) return NULL;
+
+    ListNode* tail = reverseLL(head);
+    tail->next = NULL;
+    
+    return newHead;
+}
+```
 
 ## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
