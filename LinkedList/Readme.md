@@ -77,6 +77,7 @@ void deleteNode(ListNode* node) {
 - find length of LL,
 - traverse upto length/2,
 - where you land is Middle Node
+- TC : O(n) + O(n/2)
 
 ```cpp
 int llSize(ListNode* head){
@@ -102,10 +103,33 @@ ListNode* middleNode(ListNode* head) {
 
 #### Approach 2:
 
+- suppose 2 person hai, ek x ki speed se chlta hai to ek 2x ki speed se,
+- dono ko simultaneously chlao, jb 2x vala bnda last mae poch jayega to hmara x vala bnda middle pr hoga.
+- TC : O(n)
+- SC : O(1)
 
+![Fraz - Middle of the Linked List EP 5  5blSG0JZNbg - 1536x864 - 7m03s](https://user-images.githubusercontent.com/35686407/172990315-8b1aa941-efcb-417f-9730-066d49f9d9fc.png)
+
+- Two Pointers : slow and fast.
+- slow = slow->next
+- fast = fast->next->next
+- `Odd and Even Lenght ki Linked List ka dhyan rkhe`
 
 ```cpp
+ListNode* middleNode(ListNode* head) {
+        
+    if(head == NULL) return NULL;
 
+    ListNode* slow = head;
+    ListNode* fast = head;
+
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
 ```
 
 ## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
