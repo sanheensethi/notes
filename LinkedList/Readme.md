@@ -68,6 +68,10 @@ void deleteNode(ListNode* node) {
 
 ## 5. Middle of Linked List.
 
+> 3 Cases : Odd length , Even Lenght LL and NULL pointer is given as input.
+
+![Screenshot Capture - 2022-06-10 - 09-54-26](https://user-images.githubusercontent.com/35686407/172990064-4ec946ce-1ceb-40cb-877b-544d3354b24f.png)
+
 #### Approach 1:
 
 - find length of LL,
