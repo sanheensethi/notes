@@ -39,7 +39,34 @@ void deleteNode(ListNode* node) {
 }
 ```
 
+## 4. Arrays vs Linked List
 
+#### A. LL is Memory Efficient
+- array suppose 7 size ka bna rhe hai, to system ko, 28 bytes (if int is of 4 byte) dhundni pdegi ikhate memory mae, tbhi array bn payega
+- suppose hme linked list 7 size ki bnani hia, and 1 linked list ka node approx 8 bytes hota hai, due to pointer. 56 bytes we need, and haan agar vo different different parts mae bhi present hai 56 bytes, then yes i can create a linked list of size 7, kyuki 8 bytes dhudna itna mushkil nhi hia
+- in array memory allocator 28 bytes ko search krega, where 8 byte ko search krega in linked list node
+- so 8 byte dhudna aasan hai w.r.t. 28 bytes.
+
+#### B. Array is of Fixed Size, and Linked List of Dynamic size
+
+#### C. Access in array O(1) and in LL O(n) - Random Access in ARRAY
+
+![Fraz - Arrays vs Linked List EP 4  KMc-B051ne8 - 885x498 - 6m08s](https://user-images.githubusercontent.com/35686407/172988981-57f05e1a-1cb9-4843-84bb-90ee9a6eb210.png)
+
+#### D. Deletion in Linked List is Easy, wheather in Array if we delete then right valo ko left mae shift krna hoga. 
+- Deletion in LL O(1) if Node pointer is given.
+- Deletion in Array O(n)
+
+![Fraz - Arrays vs Linked List EP 4  KMc-B051ne8 - 885x498 - 8m05s](https://user-images.githubusercontent.com/35686407/172989266-da93e120-9562-42b2-be5c-b9d1f157bbb8.png)
+
+
+> Both have its advantages and disadvantages, it depends on situation which we have to perform.
+
+- Sorting - Arrays
+- Image Gallery - Linked List
+
+
+## 5. Middle of Linked List.
 
 ## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
