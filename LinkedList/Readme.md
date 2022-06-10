@@ -287,6 +287,9 @@ vector<int> vec;
 - jis element pr khade hai vhi delete krna hai to list use krenge, forwardlist mae hme uske pehle vale ka address dena pdega.
 - we used doubly linked list
 
+![Fraz - Design HashSet EP 8  IjxkD8L2cOM - 885x498 - 15m28s](https://user-images.githubusercontent.com/35686407/172998764-2474b414-5c57-458c-9b9b-569129b4ccf5.png)
+
+
 ```cpp
 class MyHashSet {
 public:
