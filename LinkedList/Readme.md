@@ -776,6 +776,28 @@ ListNode* deleteDuplicates(ListNode* head) {
     return remove(head);
 }
 ```
+> Iterative:
+
+![Fraz - Remove Duplicates from Sorted List EP 15  _Dc1IqY2WpQ - 1536x864 - 6m36s](https://user-images.githubusercontent.com/35686407/173053686-229ee499-f519-42e2-9168-c5eb8fbc3827.png)
+
+- agar meri abhi vali value mere aage vale ke sath equal hui, to mae abhi ke next ko aage ke next ke sath join kr dunga and aage vala delete kr dunga
+- if value equal na hui to aage bhad jaunga
+
+```cpp
+ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* cur = head;
+        while(cur != NULL && cur->next != NULL){
+            if(cur->val == cur->next->val){
+                ListNode* del = cur->next;
+                cur->next = del->next;
+                delete del;
+            }else{
+                cur = cur->next;
+            }
+        }
+        return head;
+    }
+```
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
