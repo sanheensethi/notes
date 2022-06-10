@@ -498,8 +498,58 @@ ListNode* reverseList(ListNode* head) {
     return newHead;
 }
 ```
+## 10. Reverse Nodes in k-Group
 
-## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
+![Fraz - Reverse Nodes in k-Group EP 11  TeDcLjOOiK4 - 1536x864 - 3m54s](https://user-images.githubusercontent.com/35686407/173005382-82c02a09-1442-4571-b4de-c192490bbcad.png)
+
+![Fraz - Reverse Nodes in k-Group EP 11  TeDcLjOOiK4 - 1435x807 - 10m42s](https://user-images.githubusercontent.com/35686407/173006816-3588aca6-93f5-4602-ab3a-b3e2b769c19d.png)
+
+- mae first 2 ko change krwaunga, baki recursion khud kaam krdega, first k nodes , if k = 2, then use muje reverse krwana aata hi hai. by iterative or recursive kese bhi krwa lu.
+- kai baar jb end ko aage move kr rhe honge niche solution mae esa bhi ho skta hai ki, end null ho jaye lekin k group pure na ho, to us case mae hum head ko hi return kr denge.
+
+```cpp
+void reverse(ListNode* start,ListNode* end){
+        ListNode* prev = NULL;
+        ListNode* cur = start;
+        ListNode* next = NULL;
+        
+        while(prev != end){
+            // we know prev is becoming new Head and also end we know is new head , therefore we end while loop like this
+            
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+    }
+    
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(head == NULL || head->next == NULL || k == 1) return head;
+        
+        ListNode* start = head;
+        ListNode* end = head;
+        // now move head, k-1 times to know from where to where we have to reverse manualy.
+        
+        int inc = k-1;
+        
+        while(inc--){
+            end = end->next;
+            if(end == NULL) return head; // esa bhi ho skta hai, k group pure na ho
+        }
+        
+        ListNode* end_next = end->next;
+        
+        reverse(start,end); // when reverse, end become head and start become tail
+        
+        ListNode* aageKaHead = reverseKGroup(end_next,k);
+        
+        start->next = aageKaHead;
+        
+        return end;
+    }
+```
+
+## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
 ![Fraz - Intersection of Two Linked List EP 18  DGEqY5rLyVc - 1536x864 - 5m00s](https://user-images.githubusercontent.com/35686407/172180060-3c3e8077-7cdb-41f0-80c1-72a7ed665d44.png)
 
