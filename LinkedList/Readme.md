@@ -506,6 +506,8 @@ ListNode* reverseList(ListNode* head) {
 
 - mae first 2 ko change krwaunga, baki recursion khud kaam krdega, first k nodes , if k = 2, then use muje reverse krwana aata hi hai. by iterative or recursive kese bhi krwa lu.
 - kai baar jb end ko aage move kr rhe honge niche solution mae esa bhi ho skta hai ki, end null ho jaye lekin k group pure na ho, to us case mae hum head ko hi return kr denge.
+- TC : O(n)
+- SC : O(n/k) ~ Auxillary Recursion Stack Space
 
 ```cpp
 void reverse(ListNode* start,ListNode* end){
