@@ -552,9 +552,63 @@ void reverse(ListNode* start,ListNode* end){
         return end;
     }
 ```
-> Iterative: (To Tell to the interviewer)
+> Iterative: (To Tell to the interviewer) O(1) Memory Optimized.
 
+![Fraz - Reverse Nodes in k-Group (NO EXTRA SPACE) EP 12  dbRJFnQoKTI - 885x498 - 11m20s](https://user-images.githubusercontent.com/35686407/173027300-15d451a0-3754-4d9f-9635-e1005deaeb5b.png)
 
+- isme hum recursive solution ko iterative bnayenge,
+- ek dummy node bnaya usko next ko head pr lga dia,
+- ab, hum ek pointer bna rhe hai before start name ka usko dummy pr rkh dia,
+- and end ko head pr
+- to ab end ko k-1 tk move krenge jb move ho jayega to hmara start = beforestart ka next hoga,
+- ab start to end reverse krdo, lekin reverse krne se pehle ye dekh lo, uske baad kin kin pointers ko jodna hai, to kya unka address store hai tumhare paas ? if nhi hai to store kr lo, jese afterEnd store kr rha hai end->next, ye jb reverse ho jayega to next kaam afterEnd se hi start hoga.
+
+```cpp
+class Solution {
+public:
+    
+    void reverse(ListNode* start,ListNode* end){
+        ListNode* prev = NULL;
+        ListNode* cur = start;
+        ListNode* next = NULL;
+        
+        while(prev != end){
+            // we know prev is becoming new Head and also end we know is new head , therefore we end while loop like this
+            
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+    }
+    
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(head == NULL || head->next == NULL || k == 1) return head;
+        
+        ListNode* dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode* beforeStart = dummy;
+        ListNode* end = head;
+        
+        int i = 0;
+        while(end != NULL){
+            i++;
+            if(i%k != 0){
+                end = end->next;
+            }else{
+                ListNode* start = beforeStart->next;
+                ListNode* afterEnd = end->next;
+                reverse(start,end);
+                beforeStart->next = end;
+                start->next = afterEnd;
+                beforeStart = start;
+                end = afterEnd;
+            }
+        }
+        return dummy->next;
+    }
+};
+```
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
