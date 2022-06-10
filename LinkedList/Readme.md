@@ -243,6 +243,92 @@ int getDecimalValue(ListNode* head) {
 
 ![Fraz - Doubly Linked List and STLs EP 7  cTm0AR5_O54 - 1536x864 - 7m55s](https://user-images.githubusercontent.com/35686407/172994361-f9892bcb-c2b5-4622-8bea-d51b0f381725.png)
 
+## 8. HashSet
+
+![Fraz - Design HashSet EP 8  IjxkD8L2cOM - 885x498 - 3m28s](https://user-images.githubusercontent.com/35686407/172995890-0342cfcd-b264-41b5-8e1e-8b69e0e7f582.png)
+
+#### Approach 1: Brute - Make array of largest lenght as hash array
+
+![Fraz - Design HashSet EP 8  IjxkD8L2cOM - 853x480 - 5m09s](https://user-images.githubusercontent.com/35686407/172995870-baebc9b5-4842-4193-874e-b66b0d3a814b.png)
+
+- This will work if you can create array of maxRange.
+- but if range > 10^7 , it's difficult to create array.
+
+```cpp
+vector<int> vec;
+    int size;
+    MyHashSet() {
+        size = 10e6+1;
+        vec.resize(size,0);
+    }
+
+    void add(int key) {
+        vec[key] = 1;
+    }
+
+    void remove(int key) {
+        vec[key] = 0;
+    }
+
+    bool contains(int key) {
+        return vec[key] == 1;
+    }
+```
+
+#### Approach 2: Using Chaining Technique.
+
+- if I had to input 22 and vector array is of length 11, then generate index 22%11 = 0
+- 0 or store kr do
+- index = number%size
+- 0%11 = 0, 11%11 = 11, 22%11 = 0, 33%11 = 0 , Collisions
+- Collision Handle 1 method : Chaining method - hm ek list rkhenge and usme traverse krke dekhenge.
+- make vector of linked list
+- now doubly or singly ?
+- jis element pr khade hai vhi delete krna hai to list use krenge, forwardlist mae hme uske pehle vale ka address dena pdega.
+- we used doubly linked list
+
+```cpp
+class MyHashSet {
+public:
+    vector<list<int>> vec;
+    int size;
+    MyHashSet() {
+        size = 100;
+        vec.resize(size);
+    }
+    
+    void add(int key) {
+        if(contains(key)) return;
+        int idx = hash(key);
+        vec[idx].push_back(key);
+    }
+    
+    void remove(int key) {
+        if(!contains(key)) return;
+        list<int> :: iterator address = search(key);
+        int idx = hash(key);
+        vec[idx].erase(address);
+    }
+    
+    bool contains(int key) {
+        int idx = hash(key);
+        return search(key) != vec[idx].end();
+    }
+
+private:
+    int hash(int key){
+        return key%size;
+    }
+    
+    list<int> :: iterator search(int key){
+        int idx = hash(key);
+        return find(vec[idx].begin(),vec[idx].end(),key);
+    }
+};
+```
+## 9. HashMap
+
+
 
 ## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
