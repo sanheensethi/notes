@@ -331,7 +331,100 @@ private:
 ```
 ## 9. HashMap
 
+#### Approach 1: Brute - Use Array , key as index value as value in array at index = key
 
+```cpp
+class MyHashMap {
+public:
+    vector<int> vec;
+    int size;
+    MyHashMap() {
+        size = 10e6+1;
+        vec.resize(size);
+        fill(vec.begin(),vec.end(),-1)
+    }
+    
+    void put(int key, int value) {
+        vec[key] = value;
+    }
+    
+    int get(int key) {
+        return vec[key];
+    }
+    
+    void remove(int key) {
+        vec[key] = -1;
+    }
+};
+```
+#### Approach 2: Use Doubly Linked List to store key and value.
+
+```cpp
+class MyHashMap {
+public:
+    vector<list<pair<int,int>>> vec;
+    int size;
+    MyHashMap() {
+        size = 150;
+        vec.resize(size);
+    }
+    
+    void put(int key, int value) {
+        int idx = hash(key);
+        list<pair<int,int>> :: iterator address = search(key);
+        
+        if(address != vec[idx].end()){
+            // key already exists update value
+            address->second = value;
+        }else{
+            // key not exists
+            vec[idx].push_back({key,value});
+        }
+    }
+    
+    int get(int key) {
+        int idx = hash(key);
+        list<pair<int,int>> :: iterator address = search(key);
+        
+        if(address != vec[idx].end()){
+            return address->second;
+        }else{
+            return -1;
+        }
+    }
+    
+    void remove(int key) {
+        int idx = hash(key);
+        
+        auto address = search(key);
+        
+        if(address != vec[idx].end()){
+            // key exists
+            vec[idx].erase(address);
+        }
+        return;
+    }
+
+private:
+    int hash(int key){
+        return key%size;
+    }
+    
+    list<pair<int,int>> :: iterator search(int key){
+        int idx = hash(key);
+        
+        list<pair<int,int>> :: iterator it = vec[idx].begin();
+        
+        while(it != vec[idx].end()){
+            if(it->first == key){
+                return it;
+            }
+            it++;
+        }
+        return vec[idx].end();
+    }
+};
+```
 
 ## 11. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
