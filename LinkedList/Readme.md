@@ -1224,3 +1224,104 @@ public:
     }
 };
 ```
+## 21. Copy List with Random Pointer
+
+#### Approach 1: Using HashMap
+
+- we create hashmap of node and its copy node
+- now after creating hashmap,
+- for next pointer : a->next = b then, mp[a]->next = mp[a->next]
+- and for random pointer : a->random = d , then : mp[a]->random = mp[a->random]
+- TC : O(n)
+- SC : O(n)
+
+![Fraz - Copy List with Random Pointer ( with extra space ) EP 23  ctFmFbeyTVU - 885x498 - 9m03s](https://user-images.githubusercontent.com/35686407/173106639-8e8b4a82-e0ff-4b31-8713-2b3b2ae087fa.png)
+
+```cpp
+class Solution {
+public:
+    void fillMap(Node* head,unordered_map<Node*,Node*>& umap){
+        while(head != NULL){
+            Node* copy = new Node(head->val);
+            umap[head] = copy;
+            head = head->next;
+        }
+    }
+    
+    Node* setRandom(Node* head,unordered_map<Node*,Node*>& umap){
+        Node* newHead = umap[head];
+        while(head != NULL){
+            umap[head]->next = umap[head->next];
+            umap[head]->random  = umap[head->random];
+            head = head->next;
+        }
+        return newHead;
+    }
+    
+    Node* copyRandomList(Node* head) {
+        if(head == NULL) return NULL;
+        unordered_map<Node*,Node*> umap;
+        fillMap(head,umap);
+        return setRandom(head,umap);
+    }
+};
+```
+
+#### Approach 2:
+
+![Fraz - Copy List with Random Pointer ( NO extra space ) EP 24  uBjpRedaNKQ - 885x498 - 7m25s](https://user-images.githubusercontent.com/35686407/173106890-d17a8748-53ca-4d41-82b9-679e2061a26d.png)
+
+- TC : O(n)
+- SC : O(1)
+- first create copy node and attach it to real node
+- now a->next->random = a->random->next , if a->random != NULL
+- then detach nodes and restructure the given linked list and also, return new linked list.
+
+
+```cpp
+class Solution {
+public:
+    void CopyList(Node* head){
+        Node* temp = head;
+        while(temp){
+            Node* copy = new Node(temp->val);
+            Node* next = temp->next;
+            temp->next = copy;
+            copy->next = next;
+            temp = next;
+        }
+    }
+    
+    void setRandom(Node* head){
+        Node* temp = head;
+        while(temp){
+            if(temp->random != NULL){
+                temp->next->random = temp->random->next;    
+            }
+            temp = temp->next->next;
+        }
+    }
+    
+    Node* detach(Node* head){
+        Node* temp = head;
+        Node* dummy = new Node(-1);
+        Node* cur = dummy;
+        while(temp){
+            cur->next = temp->next;
+            cur = cur->next;
+            temp->next = cur->next;
+            temp = temp->next;
+        }
+        Node* ret = dummy->next;
+        delete dummy;
+        return ret;
+    }
+    
+    Node* copyRandomList(Node* head) {
+        if(head == NULL) return NULL;
+        CopyList(head);
+        setRandom(head);
+        return detach(head);
+    }
+};
+```
