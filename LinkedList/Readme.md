@@ -425,7 +425,7 @@ private:
     }
 };
 ```
-## 9. Reverse Linked List
+## 10. Reverse Linked List
 
 #### Approach 1: Reverse only values (but ye nhi krna hai.)
 - Not the good way to approach
@@ -498,7 +498,7 @@ ListNode* reverseList(ListNode* head) {
     return newHead;
 }
 ```
-## 10. Reverse Nodes in k-Group
+## 11. Reverse Nodes in k-Group
 
 ![Fraz - Reverse Nodes in k-Group EP 11  TeDcLjOOiK4 - 1536x864 - 3m54s](https://user-images.githubusercontent.com/35686407/173005382-82c02a09-1442-4571-b4de-c192490bbcad.png)
 
@@ -609,7 +609,7 @@ public:
     }
 };
 ```
-## 11. Merge Two Sorted Linked List
+## 12. Merge Two Sorted Linked List
 
 #### If Allowed by Interviewer to change the structure.
 
@@ -674,6 +674,15 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
     return dummy->next;
 }
 ```
+## 13. Merge K-sorted Linked List
+
+#### Appraoch 1: Brute Force
+- Store all elements in vector
+- sort and create new linked list and return
+- TC : NK*log(NK)
+- SC : NK
+
+![Fraz - Merge k Sorted Lists EP 14  RYJ3vs8qx10 - 1536x864 - 3m31s](https://user-images.githubusercontent.com/35686407/173045413-009450aa-57a2-415b-a34d-8bc7cc0aa0c0.png)
 
 
 ## 18. Intersection of two linked list [Question](https://leetcode.com/problems/intersection-of-two-linked-lists/)
