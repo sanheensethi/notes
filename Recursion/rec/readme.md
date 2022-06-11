@@ -127,3 +127,35 @@ vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
     return ans;
 }
 ```
+
+## 5. Subset Sum I [Question](https://practice.geeksforgeeks.org/problems/subset-sums2234/1)
+
+- `pick and non pick algorithm`
+- if pick add in sum and call aage lgao
+- if not puck sum ko function parameter vala hi rkho and call aage lgao
+- initial sum = 0
+- TC : 2^n + 2^n log(2^n) , 2^n for recursion and other for sorting 2^n elements
+- SC : O(2^n) ~ to store the ans, O(n) ~ recursion call stack
+
+```cpp
+void generate(vector<int>& arr,int i,int sum,vector<int>& ans){
+    if(i >= arr.size()){
+        ans.push_back(sum);
+        return;
+    }
+
+    // pick
+    generate(arr,i+1,sum+arr[i],ans);
+    // not pick
+    generate(arr,i+1,sum,ans);
+
+}
+
+vector<int> subsetSums(vector<int>& arr, int N){
+    vector<int> ans;
+    int sum = 0;
+    generate(arr,0,sum,ans);
+    sort(ans.begin(),ans.end());
+    return ans;
+}
+```
