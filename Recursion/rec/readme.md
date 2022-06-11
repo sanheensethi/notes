@@ -430,3 +430,6 @@ public:
     }
 };
 ```
+## 9. Suduko Solver
+
+![take U forward - L15  Sudoko Solver Backtracking  FWAIf_EVUKE - 1435x807 - 3m06s](https://user-images.githubusercontent.com/35686407/173184685-314f3c4a-29e9-4093-ac5c-fab24fb87077.png)
