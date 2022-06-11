@@ -100,6 +100,8 @@ vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
 - agar koi bhi element bda mila, hum usi time break kr denge kyuki, agar abhi vala element bda hai to aage vale sare bhi to bde honge target se, as array is sorted.
 - so this is the optimized way to handle dublicates.
 
+> Did not pick Dublicates
+
 ```cpp
 void comb(vector<int>& arr,int idx,int target,vector<int> ds,vector<vector<int>>& ans){
         
@@ -182,6 +184,11 @@ vector<int> subsetSums(vector<int>& arr, int N){
 - mae call lga deta hu.
 - TC : O(2^n) * O(n) , 2^n if every element is distinct then 2^n calls and O(n) is the stack space
 - SC : O(2^n) x O(k) , 2^n is number of subsets, and k is average length of each subset.
+
+> Did not pick dublicates
+
+![take U forward - L11  Subset Sum II Leetcode Recursion  RIn3gOkbhQE - 885x498 - 17m39s](https://user-images.githubusercontent.com/35686407/173181064-91feed81-7fbd-4353-94a8-270f25aa68f0.png)
+
 
 ```cpp
 void subset(vector<int>& arr,int idx,vector<int>& ds,vector<vector<int>>& ans){
