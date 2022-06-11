@@ -268,7 +268,55 @@ vector<vector<int>> permute(vector<int>& nums) {
 ```
 #### Approach 2: Without Map, Optimized Approach.
 
+- we gonna use bit different technique.
+- hme hr element ko hr index pr bethana hai.
+- first we try everyone at 0 index,
+- so we swap 1 with 1 , 1 with 2 , 1 with 3 in level 1 : 
+    - considering ki permutaion start ho rha hai 1 se if swap (1-1)
+    - considering ki permutation start ho rha hai 2 se if swap (1-2)
+    - considering ki permutation start ho rha hia 3 se if swap (1-3)
 
+![take U forward - L13  Print all Permutations of a StringArray Recursion Approach - 2  f2ic2Rsc9pU - 885x498 - 2m22s](https://user-images.githubusercontent.com/35686407/173182291-92d5c176-bbbd-42d6-8b80-dec5f37b2e44.png)
+
+- now, in 2nd level , 1 is done, now we left with 2 elements in 2 and 3, so we swap 2 with 2 and 2 with 3 because we want 2 be at position 2 and also 3 will also be at postion 2
+
+![take U forward - L13  Print all Permutations of a StringArray Recursion Approach - 2  f2ic2Rsc9pU - 853x480 - 3m15s](https://user-images.githubusercontent.com/35686407/173182339-ef55ab9b-c25e-487a-807d-fe2baabdf960.png)
+
+Now, on level 3:
+
+![take U forward - L13  Print all Permutations of a StringArray Recursion Approach - 2  f2ic2Rsc9pU - 853x480 - 5m00s](https://user-images.githubusercontent.com/35686407/173182351-188d1b85-1fab-48be-9187-eb8c22d242c4.png)
+
+Whole Tree : 
+
+![take U forward - L13  Print all Permutations of a StringArray Recursion Approach - 2  f2ic2Rsc9pU - 853x480 - 10m17s](https://user-images.githubusercontent.com/35686407/173182368-55857ecc-ebb8-473c-a196-0aec4fb14555.png)
+
+Pseudo code and TC :
+
+![take U forward - L13  Print all Permutations of a StringArray Recursion Approach - 2  f2ic2Rsc9pU - 853x480 - 14m32s](https://user-images.githubusercontent.com/35686407/173182399-ae61753a-075b-43e7-8b6a-d153e2981558.png)
 
 ![NewPermutation](https://user-images.githubusercontent.com/35686407/173182144-71138806-1488-49e4-89e8-7a283ad84a3b.gif)
 
+- TC : n! * n
+- SC : O(n) ~ store element and O(n) auxillary stack space.
+
+```cpp
+vector<vector<int>> ans;
+void generate(vector<int>& arr,int idx){
+    if(idx == arr.size()){
+        ans.push_back(arr);
+        return;
+    }
+
+    for(int i = idx; i<arr.size(); i++){
+
+        swap(arr[i],arr[idx]);
+        generate(arr,idx+1);
+        swap(arr[i],arr[idx]);
+
+    }
+}
+vector<vector<int>> permute(vector<int>& nums) {
+    generate(nums,0);
+    return ans;
+}
+```
