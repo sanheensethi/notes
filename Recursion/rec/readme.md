@@ -358,13 +358,13 @@ So, in above already 1 is there , so 2nd queen is not possible to place , we era
 
 - For Lower back Diagonal 
     - we make a map of size (2n-1)
-    - index = (row+col) to check
+    - `index = (row+col)` to check
 
 ![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 32m31s](https://user-images.githubusercontent.com/35686407/173183756-b888eac8-53a2-465b-b558-20e30cab2583.png)
 
 - Upper back Diagonal
     - Create hash of size (2n-1)
-    - Formula to check : `(n-1) + (col-row)`
+    - Formula to check index : `(n-1) + (col-row)`
 
 ![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 34m20s](https://user-images.githubusercontent.com/35686407/173183817-691cbb65-9793-417d-88d0-e51226eb91f1.png)
 
@@ -372,5 +372,61 @@ Code:
 ![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 35m41s](https://user-images.githubusercontent.com/35686407/173183847-e11a7cf7-fdbf-429d-b3dc-a8077728e684.png)
 
 ```cpp
+class Solution {
+public:
+    
+    bool isPossible(int row,int col,int n,vector<bool>& rowCheck,vector<bool>& lbDiagonal,vector<bool>& ubDiagonal){
+        if(rowCheck[row] == true) return false;
+        if(lbDiagonal[row+col] == true) return false;
+        if(ubDiagonal[n - 1 + col - row] == true) return false;
+        return true;
+    }
+    
+    #define debug(x) cout<<#x<<":"<<x<<endl;
+    void solve(vector<string>& board,int col,vector<vector<string>>& ans,vector<bool>& rowCheck,vector<bool>& lbDiagonal,vector<bool>& ubDiagonal,int n){
+        if(col == n){
+            ans.push_back(board);
+            return;
+        }
 
+        for(int row = 0; row < board.size() ; row++){
+            
+            bool isP = isPossible(row,col,n,rowCheck,lbDiagonal,ubDiagonal);
+            if(isP){
+                
+                board[row][col] = 'Q';
+                rowCheck[row] = true;
+                lbDiagonal[row + col] = true;
+                ubDiagonal[n - 1 + col - row] = true;
+                
+                solve(board,col+1,ans,rowCheck,lbDiagonal,ubDiagonal,n);
+                
+                board[row][col] = '.';
+                rowCheck[row] = false;
+                lbDiagonal[row + col] = false;
+                ubDiagonal[n - 1 + col - row] = false;
+                
+            }
+        }
+        
+    }
+    
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> ans;
+        
+        vector<string> board(n);
+        string s(n,'.');
+        for(int i = 0; i < n; i++){
+            board[i] = s;
+        }
+        
+        vector<bool> rowCheck(n,false);
+        vector<bool> lbDiagonal(2*n-1,false);
+        vector<bool> ubDiagonal(2*n-1,false);
+        
+        solve(board,0,ans,rowCheck,lbDiagonal,ubDiagonal,n);
+        
+        return ans;
+    }
+};
 ```
