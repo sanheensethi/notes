@@ -137,6 +137,9 @@ vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
 - TC : 2^n + 2^n log(2^n) , 2^n for recursion and other for sorting 2^n elements
 - SC : O(2^n) ~ to store the ans, O(n) ~ recursion call stack
 
+![take U forward - L10  Subset Sum I Recursion C++ Java  rYkfBRtMJr8 - 885x498 - 11m50s](https://user-images.githubusercontent.com/35686407/173180306-8f4ab0f6-2ced-4e06-91f5-1e03d026878d.png)
+
+
 ```cpp
 void generate(vector<int>& arr,int i,int sum,vector<int>& ans){
     if(i >= arr.size()){
@@ -157,5 +160,49 @@ vector<int> subsetSums(vector<int>& arr, int N){
     generate(arr,0,sum,ans);
     sort(ans.begin(),ans.end());
     return ans;
+}
+```
+## 6. Subset Sum 2 [Question](https://leetcode.com/problems/subsets-ii/)
+
+#### Approach 1: Brute force
+
+- sort the array
+- create a set and put created subsets in set for uniqueness
+- after all calls done, copy the set elements in array as ans
+- return ans
+- Not Optimal, we generate all
+
+#### Approach 2: Optimized
+
+- Same Logic as of combination sum, just we need to generate unique subsets
+- so , in subset we have extra {} - empty set, from subsequence
+- so ultimately we are generating subsequence with one exta {} , empty set
+- In this we use same approach to skip the elements that are same `on same level` of recursion tree.
+- jese hi ek element push krte hai, mae ans mae push kr deta hu, ye kehkr ki haan 1/2/3/... size vala subset bn gya hai, push krne ke baad ans mae,
+- mae call lga deta hu.
+
+```cpp
+void subset(vector<int>& arr,int idx,vector<int>& ds,vector<vector<int>>& ans){
+        
+  for(int i = idx ; i < arr.size(); i++){
+      if(i > idx && arr[i] == arr[i-1]) continue;
+      
+      ds.push_back(arr[i]);
+
+      ans.push_back(ds);
+
+      subset(arr,i+1,ds,ans);
+
+      ds.pop_back();
+  }
+
+}
+
+vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+  vector<vector<int>> ans;
+  vector<int> ds;
+  ans.push_back({});
+  sort(nums.begin(),nums.end());
+  subset(nums,0,ds,ans);
 }
 ```
