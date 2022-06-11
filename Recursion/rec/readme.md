@@ -45,6 +45,9 @@ void subseq(vector<int>& arr,int idx,vector<int>& ds){
 
 ![take U forward - L8  Combination Sum Recursion Leetcode C++ Java  OyZFFqQtu98 - 853x480 - 11m50s](https://user-images.githubusercontent.com/35686407/173178949-35e328e1-bf42-4c98-90ed-bd04234694f5.png)
 
+![take U forward - L8  Combination Sum Recursion Leetcode C++ Java  OyZFFqQtu98 - 885x498 - 20m16s](https://user-images.githubusercontent.com/35686407/173179043-4f482fa2-7096-4358-9014-5b02da8bb303.png)
+
+
 ```cpp
 void findComb(vector<int>& nums,int i,int target,vector<vector<int>>& ans,vector<int>& ds){
     if(target == 0){
