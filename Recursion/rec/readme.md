@@ -180,6 +180,8 @@ vector<int> subsetSums(vector<int>& arr, int N){
 - In this we use same approach to skip the elements that are same `on same level` of recursion tree.
 - jese hi ek element push krte hai, mae ans mae push kr deta hu, ye kehkr ki haan 1/2/3/... size vala subset bn gya hai, push krne ke baad ans mae,
 - mae call lga deta hu.
+- TC : O(2^n) * O(n) , 2^n if every element is distinct then 2^n calls and O(n) is the stack space
+- SC : O(2^n) x O(k) , 2^n is number of subsets, and k is average length of each subset.
 
 ```cpp
 void subset(vector<int>& arr,int idx,vector<int>& ds,vector<vector<int>>& ans){
