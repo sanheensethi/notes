@@ -217,3 +217,53 @@ vector<vector<int>> subsetsWithDup(vector<int>& nums) {
 ```
 ### There are 2 variations only of this - pick - non pick and for loop vali ki agar dublicates hia to same level pr mt uthao
 
+## 7. Print all Permutations [Important]
+
+#### Approach 1: Extra Space - Map
+
+- isme hum , ek khali map rkhenge and khali ds starting mae
+- jb hum pehle level pr hai, to hum dekhenge ki 1st position pr konse konse element aa skte hai to jo mark nhi hai map mae vo aa skte hai, ek ek krke 3no ko 1st position pr layenge , pehle ek rkhkr aage call lgayenge 1 ka kaam pura krenge
+- fr jb 2nd level pr hai, to vha dekh rhe hia 2nd position pr kon ko  aa skta hai:
+    - if in 1st level map marked as 1 : then 2nd postion : 2 3
+    - if in 1st level map marked as 2 : then 2nd position : 1 3
+    - if in 1st level map marked as 3 : then 2nd position : 1 2
+- 2nd postion told by 2nd recursion call.
+- `by this hum hr element ko hr index pr betha rhe hai.`
+
+![take U forward - L12  Print all Permutations of a StringArray Recursion Approach - 1  YK78FU5Ffjw - 885x498 - 4m17s](https://user-images.githubusercontent.com/35686407/173182049-b46195fc-5c7d-40e9-a087-7b5a258e664a.png)
+
+![take U forward - L12  Print all Permutations of a StringArray Recursion Approach - 1  YK78FU5Ffjw - 853x480 - 8m22s](https://user-images.githubusercontent.com/35686407/173182056-93459ff1-c30f-405b-8e4f-881e30e269b7.png)
+
+![take U forward - L12  Print all Permutations of a StringArray Recursion Approach - 1  YK78FU5Ffjw - 853x480 - 10m52s](https://user-images.githubusercontent.com/35686407/173182069-14d3e3f4-a019-4c54-97cb-74c1e6ce394c.png)
+
+
+```cpp
+vector<vector<int>> ans;
+void generate(vector<int>& arr,vector<int>& ds,unordered_map<int,bool>& umap){
+    if(arr.size() == ds.size()){
+        ans.push_back(ds);
+        return;
+    }
+
+    for(int i = 0;i < arr.size(); i++){
+        if(umap.find(i) == umap.end()){
+
+            umap[i] = true;
+            ds.push_back(arr[i]);
+
+            generate(arr,ds,umap);
+
+            ds.pop_back();
+            umap.erase(i);
+
+        }
+    }
+
+}
+vector<vector<int>> permute(vector<int>& nums) {
+    vector<int> ds;
+    unordered_map<int,bool> umap;
+    generate(nums,ds,umap);
+    return ans;
+}
+```
