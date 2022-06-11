@@ -320,3 +320,57 @@ vector<vector<int>> permute(vector<int>& nums) {
     return ans;
 }
 ```
+## 8. N-Queens
+
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 1536x864 - 10m20s](https://user-images.githubusercontent.com/35686407/173183404-e374a7e6-618f-41cb-a652-cf809ea84b7f.png)
+
+- column mae move kro, check kro kya possible hai rkhna queen ko,
+- if yes then next column mae move kr jao rkhkr,
+- if no anywhere in column, to piche vapis chle jao , jha queen rkhi thi pichli stage mae hta do vha se, backTrack
+
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 853x480 - 13m52s](https://user-images.githubusercontent.com/35686407/173183483-f6db4781-26e0-441f-a324-8d7e9bfb77b9.png)
+
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 853x480 - 15m54s](https://user-images.githubusercontent.com/35686407/173183491-d59b2bd2-6e00-4f85-9e89-46af6dd87dc0.png)
+
+Pseudo Code:
+
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 19m44s](https://user-images.githubusercontent.com/35686407/173183513-8026e821-d22a-44b0-a4e8-6b6e5db6be80.png)
+
+- We have to check 3 direction only in isPossible() boolean function to place Queen, code
+- upper backward
+- lower backward
+- and in same row but col before current col
+
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 26m21s](https://user-images.githubusercontent.com/35686407/173183591-8107f69a-d404-4985-84e5-c0a037a2bfbe.png)
+
+- But this Gives TLE
+
+#### Optimized IsPossible() code:
+
+- For row, 
+    - we take map, that 
+    - if Queen is already in some row, 
+    - its not possible to place queen there.
+
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 29m12s](https://user-images.githubusercontent.com/35686407/173183675-517d1505-2992-436e-83b1-9c89c7f525dd.png)
+
+So, in above already 1 is there , so 2nd queen is not possible to place , we erase it.
+
+- For Lower back Diagonal 
+    - we make a map of size (2n-1)
+    - index = (row+col) to check
+
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 32m31s](https://user-images.githubusercontent.com/35686407/173183756-b888eac8-53a2-465b-b558-20e30cab2583.png)
+
+- Upper back Diagonal
+    - Create hash of size (2n-1)
+    - Formula to check : `(n-1) + (col-row)`
+
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 34m20s](https://user-images.githubusercontent.com/35686407/173183817-691cbb65-9793-417d-88d0-e51226eb91f1.png)
+
+Code:
+![take U forward - L14  N-Queens Leetcode Hard Backtracking  i05Ju7AftcM - 885x498 - 35m41s](https://user-images.githubusercontent.com/35686407/173183847-e11a7cf7-fdbf-429d-b3dc-a8077728e684.png)
+
+```cpp
+
+```
