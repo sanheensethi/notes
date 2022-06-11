@@ -215,3 +215,5 @@ vector<vector<int>> subsetsWithDup(vector<int>& nums) {
   subset(nums,0,ds,ans);
 }
 ```
+### There are 2 variations only of this - pick - non pick and for loop vali ki agar dublicates hia to same level pr mt uthao
+
