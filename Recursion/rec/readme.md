@@ -73,3 +73,57 @@ vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
     return ans;
 }
 ```
+## 4. Combination Sum II [Question](https://leetcode.com/problems/combination-sum-ii/)
+
+#### Approach 1: Brute Force:
+
+- `pick and non pick algo`
+- put ans in SET, then while returning copy elements from SET to VECTOR and return ans vector;
+- TC : 2^n * k * log(something) - something is size of set
+- `GIVES TLE`
+![take U forward - L9  Combination Sum II Leetcode Recursion Java C++  G1fRTGRxXU8 - 885x498 - 4m29s](https://user-images.githubusercontent.com/35686407/173179767-b4bdfc1d-d3ea-4309-b08e-d290118eaa00.png)
+
+#### Approach 2: Optimized
+
+- Same algo of pick and not pick but in different manner
+- first sort the array
+- then pass it to function
+- ab jb hum 1 utha rhe hai 1st position ke liye, agar aage bhi 1 aata hai to use nhi uthayenge 1st position ke liye kuki 1 vala kaam apna krke aa chuka hai already then why we take again 1 which will do the same work and produce dublicates dont call recursion on that
+- simmilarly agar 1 bari 2 utha lia hai `a level` to again 2 nhi uthayenge `on same level`.
+- but inko agle level mae utha skte hai, kuki ab position changee hogyi na bethane ki
+- position kehne ka mtlb ye hia ki agar hum ds 1 store kr rhe hai 0 index vala jb vo kaam kr aayega to pop back ho jayega and ds khali ho jayega us level pr vapis aakr kaam krke, then aage 1 aaya ds khali hoga to agar 1 bhr denge usme 1st index vala to vo 0 index vala same kaam krke aayega, jo ki glt hai , isliye skip kr rhe hai.
+
+![take U forward - L9  Combination Sum II Leetcode Recursion Java C++  G1fRTGRxXU8 - 853x480 - 9m55s](https://user-images.githubusercontent.com/35686407/173179900-fc8984e0-347d-4b68-a519-f3c64bdadfdc.png)
+
+![take U forward - L9  Combination Sum II Leetcode Recursion Java C++  G1fRTGRxXU8 - 853x480 - 15m45s](https://user-images.githubusercontent.com/35686407/173179976-896b2c4a-59d8-44cb-990e-3e5c00dcb9fb.png)
+
+- agar koi bhi element bda mila, hum usi time break kr denge kyuki, agar abhi vala element bda hai to aage vale sare bhi to bde honge target se, as array is sorted.
+- so this is the optimized way to handle dublicates.
+
+```cpp
+void comb(vector<int>& arr,int idx,int target,vector<int> ds,vector<vector<int>>& ans){
+        
+    if(target == 0){
+        ans.push_back(ds);
+        return;
+    }
+
+    for(int i = idx ; i < arr.size() ; i++){
+    // agar mera element, idx vala nhi hai usse jada hai, and vo pichle vale se same hai to mt uthao 
+        if( i > idx && arr[i] == arr[i-1]) continue; 
+        if(arr[i] > target) break;
+        ds.push_back(arr[i]);
+        comb(arr,i+1,target-arr[i],ds,ans);
+        ds.pop_back();
+    }
+
+}
+
+vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    vector<vector<int>> ans;
+    vector<int> ds;
+    sort(candidates.begin(),candidates.end());
+    comb(candidates,0,target,ds,ans);
+    return ans;
+}
+```
