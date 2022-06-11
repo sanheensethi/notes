@@ -234,8 +234,7 @@ vector<vector<int>> subsetsWithDup(vector<int>& nums) {
 
 ![take U forward - L12  Print all Permutations of a StringArray Recursion Approach - 1  YK78FU5Ffjw - 853x480 - 8m22s](https://user-images.githubusercontent.com/35686407/173182056-93459ff1-c30f-405b-8e4f-881e30e269b7.png)
 
-![take U forward - L12  Print all Permutations of a StringArray Recursion Approach - 1  YK78FU5Ffjw - 853x480 - 10m52s](https://user-images.githubusercontent.com/35686407/173182069-14d3e3f4-a019-4c54-97cb-74c1e6ce394c.png)
-
+![take U forward - L12  Print all Permutations of a StringArray Recursion Approach - 1  YK78FU5Ffjw - 885x498 - 13m38s](https://user-images.githubusercontent.com/35686407/173182110-2514ffb5-a3ae-4bdf-a21c-616b1517edb1.png)
 
 ```cpp
 vector<vector<int>> ans;
@@ -267,3 +266,9 @@ vector<vector<int>> permute(vector<int>& nums) {
     return ans;
 }
 ```
+#### Approach 2: Without Map, Optimized Approach.
+
+
+
+![NewPermutation](https://user-images.githubusercontent.com/35686407/173182144-71138806-1488-49e4-89e8-7a283ad84a3b.gif)
+
