@@ -433,3 +433,86 @@ public:
 ## 9. Suduko Solver
 
 ![take U forward - L15  Sudoko Solver Backtracking  FWAIf_EVUKE - 1435x807 - 3m06s](https://user-images.githubusercontent.com/35686407/173184685-314f3c4a-29e9-4093-ac5c-fab24fb87077.png)
+
+- Whenever, there is a question of trying all possible way, so, its about trying `every` possible way
+- isme hr khali box mae try krenge kya 1 rkh skte agar rkh skte to recursion call lgao aage check kro ki jha khali hai fill krke dekho, agar nhi rkh skte backtrack kr jao and fr se check kro 1 ko 2 krke aage i kya ab aage bhr skte hai.
+- if board mera poora ho jata hai, to return true kr do
+- if 1 to 9 kuch bhi fill nhi kr skte khali space mae return false krdo,
+- hr possible bhrne ki koshsih kro, ek se bhi agar pura bn gya that our ans.
+
+![take U forward - L15  Sudoko Solver Backtracking  FWAIf_EVUKE - 853x480 - 9m58s](https://user-images.githubusercontent.com/35686407/173219183-a9da79a9-489a-4d98-93e4-a8959ab07db0.png)
+
+![take U forward - L15  Sudoko Solver Backtracking  FWAIf_EVUKE - 853x480 - 10m58s](https://user-images.githubusercontent.com/35686407/173219269-54cf1e25-a7b4-45a0-8521-125f83462b75.png)
+
+![take U forward - L15  Sudoko Solver Backtracking  FWAIf_EVUKE - 853x480 - 11m36s](https://user-images.githubusercontent.com/35686407/173219274-b6e44a2f-f884-47ce-b3e8-30d25064a004.png)
+
+![take U forward - L15  Sudoko Solver Backtracking  FWAIf_EVUKE - 853x480 - 12m21s](https://user-images.githubusercontent.com/35686407/173219278-bcf57238-8618-4228-896d-d51782e6eef5.png)
+
+- Formula to check 3x3 matrix :
+    - 3 x (row/3) - it tells which 3x3 matrix vertically you are present
+    - 3 x (col/3) - it tells which 3x3 matrix horizontally you are present
+    - now, for each cell
+        - 3 x (row/3) + i/3
+        - 3 x (col/3) + i%3
+
+we are checking row, col, and 3x3 matrix simultaneously to know value is already present or not.
+
+![take U forward - L15  Sudoko Solver Backtracking  FWAIf_EVUKE - 885x498 - 23m33s](https://user-images.githubusercontent.com/35686407/173219311-7df68b19-e9af-46ac-8f50-41da82875f31.png)
+
+```cpp
+class Solution {
+public:
+    void solveSudoku(vector<vector<char>>& board) {
+        solve(board);
+    }
+    
+    bool solve(vector<vector<char>>& board){
+        int n = board.size();
+        
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                
+                if(board[i][j] == '.'){
+                    
+                    for(char num = '1' ; num <= '9' ; num++){
+                        
+                        if(isPossible(board,i,j,num)){
+                            
+                            board[i][j] = num;
+                            
+                            bool res = solve(board);
+                            if(res == true) return true;
+                            board[i][j] = '.';
+                            
+                        }
+                        
+                    }
+                    return false;
+                    
+                }
+                
+            }
+        }
+        return true;
+    }
+    
+    bool isPossible(vector<vector<char>>& board,int row,int col,char c){
+        
+        for(int i = 0; i < 9; i++){
+            
+            // col check
+            if(board[i][col] == c) return false;
+            
+            // row check
+            if(board[row][i] == c) return false;
+            
+            if(board[3* (row/3) + (i/3)][3 * (col/3) + (i%3)] == c){
+                return false;
+            }
+            
+        }
+        return true;
+    }
+    
+};
+```
