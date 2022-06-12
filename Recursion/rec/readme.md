@@ -516,3 +516,35 @@ public:
     
 };
 ```
+## 10. M-Coloring Problem
+
+```cpp
+bool isPossible(bool graph[101][101],int color[],int node,int col,int n){
+    for(int i = 0;i < n; i++){
+        if(i != node && graph[i][node] == 1 && color[i] == col) return false;
+    }
+    return true;
+}
+
+bool solve(bool graph[101][101],int node,int m,int n,int color[]){
+    if(node == n){
+        return true;
+    }
+    
+    for(int i = 1; i<=m; i++){
+        if(isPossible(graph,color,node,i,n)){
+            color[node] = i;
+            bool res = solve(graph,node+1,m,n,color);
+            if(res == true) return true;
+            color[node] = 0;
+        }
+    }
+    
+    return false;
+}
+
+bool graphColoring(bool graph[101][101], int m, int n) {
+    int color[n] = {0};
+    return solve(graph,0,m,n,color);
+}
+```
