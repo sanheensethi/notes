@@ -10,6 +10,17 @@
 
 ![CodeBeyond - Introduction to SQL - 1 L 1 Master SQL Arpit Jain  wAbVXW93WBk - 885x498 - 38m27s](https://user-images.githubusercontent.com/35686407/173471687-635cdf34-8357-4881-92ae-b7340d040353.png)
 
+![CodeBeyond - Introduction to SQL - 2 L 2 Master SQL Arpit Jain  uCMFsrkvJRw - 1536x864 - 19m45s](https://user-images.githubusercontent.com/35686407/173472661-927d44fc-1c50-4410-84b4-1349124d5be3.png)
+
+![CodeBeyond - Introduction to SQL - 2 L 2 Master SQL Arpit Jain  uCMFsrkvJRw - 885x498 - 26m34s](https://user-images.githubusercontent.com/35686407/173473096-c8c53494-6920-4aa8-8093-1ab45bbbae2b.png)
+
+![CodeBeyond - Introduction to SQL - 2 L 2 Master SQL Arpit Jain  uCMFsrkvJRw - 885x498 - 31m28s](https://user-images.githubusercontent.com/35686407/173473394-7e9923ce-7204-4dfc-822b-27e77ffd00e7.png)
+
+![CodeBeyond - Introduction to SQL - 2 L 2 Master SQL Arpit Jain  uCMFsrkvJRw - 853x480 - 35m42s](https://user-images.githubusercontent.com/35686407/173473426-a56ff028-6a15-4951-a303-a14c43300ff6.png)
+
+
+
+
 
 
 
