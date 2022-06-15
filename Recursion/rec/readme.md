@@ -918,6 +918,53 @@ public:
 
 ## 19. Print N-Bit Binary Number having More 1's then 0's in Prefix
 
+- generate all paranthesis jesa hi similar hai
+- if ones == zeros , then only 1 will be pushed back
+- else if ones > zeros , then 2 options, 1 and 0 both will be possible to push
+
+![Aditya Verma - Print N-bit binary numbers having more 1’s than 0’s for any prefix  U81n0UYtk98 - 885x498 - 20m24s](https://user-images.githubusercontent.com/35686407/173839087-bd6d2a03-76ae-4b99-814d-9bd501a16585.png)
+
+```cpp
+class Solution{
+public:	
+    
+    void solve(int ones,int zeros,int n,string& ds,vector<string>& ans){
+        if(n == 0){
+            ans.push_back(ds);
+            return;
+        }
+        
+        if(ones == zeros){
+            // push only 1
+            ds.push_back('1');
+            
+            solve(ones+1,zeros,n-1,ds,ans);
+            
+            ds.pop_back();
+        }else if(ones > zeros){
+            // 2 options 0 and 1
+            
+            ds.push_back('1');
+            solve(ones+1,zeros,n-1,ds,ans);
+            ds.pop_back();
+            
+            ds.push_back('0');
+            solve(ones,zeros+1,n-1,ds,ans);
+            ds.pop_back();
+            
+        }
+        
+    }
+
+	vector<string> NBitBinary(int N)
+	{
+	    vector<string> ans;
+	    string ds = "";
+	    solve(0,0,N,ds,ans);
+	    return ans;
+	}
+};
+```
 
 ## 20. Josephus Problem
 
