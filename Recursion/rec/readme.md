@@ -548,3 +548,33 @@ bool graphColoring(bool graph[101][101], int m, int n) {
     return solve(graph,0,m,n,color);
 }
 ```
+
+## 11. Palindrome Partitioning
+
+## 12. Rat in a Maze
+
+## 13. K-th Permutation
+
+## 14. Kth Symbol in Grammer
+
+## 15. Permutations with spaces
+
+## 16. Permutation with Case Change
+
+## 17. Letter Case Permutation
+
+## 18. Generate all Paranthesis
+
+## 19. Print N-Bit Binary Number having More 1's then 0's in Prefix
+
+## 20. Josephus Problem
+
+## 21. Get KeyPad Combination
+
+## 22. Get Maze Paths
+
+## 23. Maximum Score of Words Problem
+
+## 24. Print In LexoGraphical Order
+
+## 25. GoldMine
