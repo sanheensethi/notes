@@ -979,3 +979,50 @@ public:
 ## 25. GoldMine
 
 ## 26. WordBreak Problem (Print, Backtracking vali - Dynamic Programming vali bhi hai)
+
+- isme hme ek dictionary di hui hai and ek string dia hua hia,
+- hme print krna hai ki konse konse sentence create kiye ja skte hai
+
+![Screenshot Capture - 2022-06-15 - 19-05-34](https://user-images.githubusercontent.com/35686407/173840618-93093035-61db-4274-b390-a665559d2683.png)
+
+- ab hum apne string pr traverse krege and substr find krenge , 0-0 , 0 - 1, 0 - 2, 0 - 3, etc., if substr dictionary mae huam usko ds mae space ke sath jodkr aage bhej denge and left string jo bchi usko as main string bhej denge
+- jb main string khali ho jayegi, hum posans(possible ans) apne ans vector mae daal denge.
+- 
+![Pepcoding - Word Break Problem using Backtracking Word Break Solution in JAVA  LmHWIsBQBU4 - 885x498 - 2m25s](https://user-images.githubusercontent.com/35686407/173841316-e2ef9685-b714-4e34-b2ef-44d54606ea27.png)
+
+```cpp
+class Solution{
+public:
+
+    void solve(string s,string posans,unordered_map<string,bool>& umap,vector<string>& ans){
+        if(s == ""){
+            posans.pop_back(); // last mae bhi space aayega usko popback krdo
+            ans.push_back(posans);
+            return;
+        }
+        
+        for(int i = 0;i < s.size(); i++){
+            string possible = s.substr(0,i+1);
+            if(umap.find(possible) != umap.end()){
+                string left = s.substr(i+1);
+                string sendaage = posans + possible;
+                sendaage += ' '; // space jodo
+                solve(left,sendaage,umap,ans);
+            }
+        }
+        
+    }
+
+    vector<string> wordBreak(int n, vector<string>& dict, string s)
+    {
+        vector<string> ans;
+        unordered_map<string,bool> umap;
+        for(auto& word:dict){
+            umap[word] = true;
+        }
+        solve(s,"",umap,ans);
+        return ans;
+    }
+};
+```
+
