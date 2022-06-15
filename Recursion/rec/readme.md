@@ -568,13 +568,139 @@ bool graphColoring(bool graph[101][101], int m, int n) {
 
 ![take U forward - L17  Palindrome Partitioning Leetcode Recursion C++ Java  WBgsABoClE0 - 853x480 - 23m16s](https://user-images.githubusercontent.com/35686407/173820520-5be14923-f725-40a9-a247-2b20aa643fbe.png)
 
-
+```cpp
+class Solution {
+public:
+    
+    bool isPalindrome(string& s,int start,int end){
+        while(start <= end){
+            if(s[start] != s[end]){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+    
+    void solve(string& s,int idx,vector<string>& ds,vector<vector<string>>& ans){
+        if(idx == s.size()){
+            ans.push_back(ds);
+            return;
+        }
+        
+        for(int i = idx;i < s.size(); i++){
+            if(isPalindrome(s,idx,i)){
+                string toadd = s.substr(idx,i-idx+1); // i-idx+1 is len and idx se start kro 
+                ds.push_back(toadd);
+                solve(s,i+1,ds,ans);
+                ds.pop_back();
+            }
+        }
+        
+    }
+    
+    vector<vector<string>> partition(string s) {
+        vector<string> ds;
+        vector<vector<string>> ans;
+        solve(s,0,ds,ans);
+        return ans;
+    }
+};
+```
 
 ## 12. Rat in a Maze
+
+![take U forward - L19  Rat in A Maze Backtracking  bLGZhJlt4y0 - 885x498 - 8m51s](https://user-images.githubusercontent.com/35686407/173822409-8c7c2fb6-e25e-412d-8e1b-684106b60678.png)
+
+- question mae kha hai lexographically print krna hia to , move krenge Down | Left | Right | Vertical
+- ek visited array bhi rkhna hoga jo ye btayega ki is cell pr already poch chuke ho, mt jao ispr.
+- ya same given matrix ko visited jese bhi use kr skte hai
+
+```cpp
+class Solution{
+    public:
+    
+    bool isPossible(vector<vector<int>>& m,int row,int col,int n){
+        if(row < 0 || col < 0 || row >= n || col >= n || m[row][col] == 0) return false;
+        return true;
+    }
+    
+    void solve(vector<vector<int>>& m,int row,int col,int n,string& ds,vector<string>& ans){
+        if(row == n-1 && col == n-1){
+            ans.push_back(ds);
+            return;
+        }
+        
+        // down
+        if(isPossible(m,row+1,col,n)){
+            
+            m[row][col] = 0;
+            
+            ds += 'D';
+            solve(m,row+1,col,n,ds,ans);
+            ds.pop_back();
+            
+            m[row][col] = 1;
+            
+        }
+        // left
+        if(isPossible(m,row,col-1,n)){
+            
+            m[row][col] = 0;
+            
+            ds+='L';
+            solve(m,row,col-1,n,ds,ans);
+            ds.pop_back();
+            
+            m[row][col] = 1;
+            
+        }
+        
+        // right
+        if(isPossible(m,row,col+1,n)){
+            
+            m[row][col] = 0;
+            
+            ds+= 'R';
+            solve(m,row,col+1,n,ds,ans);
+            ds.pop_back();
+            
+            m[row][col] = 1;
+            
+        }
+        
+        // up
+        if(isPossible(m,row-1,col,n)){
+            
+            m[row][col] = 0;
+            
+            ds+='U';
+            solve(m,row-1,col,n,ds,ans);
+            ds.pop_back();
+            
+            m[row][col] = 1;
+            
+        }
+        
+    }
+    
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        // Your code goes here
+        vector<string> ans;
+        string ds= "";
+        if(m[0][0] == 0) return {};
+        map<pair<int,int>,bool> visited;
+        solve(m,0,0,n,ds,ans);
+        return ans;
+    }
+};
+```
 
 ## 13. K-th Permutation
 
 ## 14. Kth Symbol in Grammer
+
 
 ## 15. Permutations with spaces
 
