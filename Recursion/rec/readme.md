@@ -1025,4 +1025,69 @@ public:
     }
 };
 ```
+## 27. Remove Invalid Parantheses
 
+- isme hme remove krne hai invalid parantheses ko and all possible result dene hai
+- remove krne se pehle count krlo kitne invalid char / braces '(' or ')' hai
+- ab hme pta hoga hme total kitne remove krne hai
+- to hum srf utne hi remove krenge string mae se
+- hr parantheses '(' , ')' , ke paas 2 option hongge ya to muje remove kro ya na kro, if krte ho to, ek kum krke aage calculation ko bhej do
+- jb base case pr poch jayenge, tb hme string ko ans mae tbhi dalna hai agar vo valid hoga to
+- or jayeda time complexity se bchne ke liye dublicate case handle krlo,
+- umap[s] == true then return , ye sbse upar isliye lhgaya hai kyuki if koi pehle se generated hai, agli baar bhi same type ka pattern milta hai to pehle hi return krde solve krne se pehle.
+- hr state mae jo new s hai vo daal rhe hai map mae.
+
+```cpp
+class Solution {
+public:
+    
+    unordered_map<string,bool> umap;
+    
+    void solve(string s,int invalid,vector<string>& ans){
+        if(umap[s] == true) return;
+        umap[s] = true;
+        
+        if(invalid == 0){
+            if(!invalidCount(s)){
+                ans.push_back(s);
+            }
+            return;
+        }
+        
+        for(int i = 0;i < s.size() ; i++){
+            if(!isalpha(s[i])){
+                string left = s.substr(0,i);
+                string right = s.substr(i+1);
+                string leftright = left + right;
+                solve(leftright,invalid-1,ans);
+            }
+        }
+        
+    }
+    
+    int invalidCount(string& s){
+        stack<char> st;
+        int ans = 0;
+        for(auto& ch:s){
+            if(ch == '('){
+                st.push('(');
+            }else if(ch == ')'){
+                if(st.empty()){
+                    ans += 1;
+                }else{
+                    st.pop();
+                }
+            }
+        }
+        ans+=st.size();
+        return ans;
+    }
+    
+    vector<string> removeInvalidParentheses(string s) {
+        vector<string> ans;
+        int invalid = invalidCount(s);
+        solve(s,invalid,ans);
+        return ans;
+    }
+};
+```
