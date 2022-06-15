@@ -726,7 +726,54 @@ int kthGrammar(int n, int k) {
 
 ## 15. Permutations with spaces
 
+- pehle char ko chordkr, aage ke sare char ke paas option hai, ya to space ke sath jaye ya fr bina space ke sath jaye
+- option: with space and without space
 
+![Aditya Verma - Permutation with spaces  1cspuQ6qHW0 - 885x498 - 8m06s](https://user-images.githubusercontent.com/35686407/173829057-81fe8260-86f7-490b-8d32-236c7fd9262a.png)
+
+![Aditya Verma - Permutation with spaces  1cspuQ6qHW0 - 853x480 - 9m43s](https://user-images.githubusercontent.com/35686407/173829107-0bc17986-df5c-4355-a6aa-5e3d36d7f04e.png)
+
+```cpp
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution{
+public:
+
+    void solve(string& s,int idx,string& ds,vector<string>& ans){
+        if(idx == s.size()){
+            ans.push_back(ds);
+            return;
+        }
+        
+        char ch = s[idx];
+        
+        ds.push_back(' ');
+        ds.push_back(ch);
+        
+        solve(s,idx+1,ds,ans);
+        
+        ds.pop_back();
+        ds.pop_back();
+        
+        ds.push_back(ch);
+        solve(s,idx+1,ds,ans);
+        ds.pop_back();
+        
+    }
+    
+    vector<string> permutation(string S){
+        vector<string> ans;
+        string ds = "";
+        ds += S[0];
+        solve(S,1,ds,ans);
+        return ans;
+    }
+};
+```
 ## 16. Permutation with Case Change
 
 ## 17. Letter Case Permutation
