@@ -866,6 +866,8 @@ public:
 
 2. Better/Optimized:
 
+![Aditya Verma - Generate all Balanced Parentheses  eyCj_u3PoJE - 885x498 - 24m12s](https://user-images.githubusercontent.com/35686407/173837369-86c925a3-530b-4257-a728-4f0ff463adea.png)
+
 - srf vhi rkho jo possible hai
 - mtlb ye ki agar recursion tree mae dekhe, to open bracket '(' hr jagah possible hai
 - when open < close, both possible open '(' and ')'
