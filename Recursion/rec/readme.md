@@ -701,8 +701,31 @@ class Solution{
 
 ## 14. Kth Symbol in Grammer
 
+- observation skill test
+- n = 4 vale row ka first half, same hai n = 3 ke and second half first half ka complement hai
+- if (k <= mid) return solve(n-1,k);
+- else return !solve(n-1,k-mid);
+
+![Aditya Verma - Kth Symbol in Grammar  5P84A0YCo_Y - 885x498 - 11m39s](https://user-images.githubusercontent.com/35686407/173826469-6e7adb18-2a4e-41c3-8c5e-76a36e4aa819.png)
+
+![Aditya Verma - Kth Symbol in Grammar  5P84A0YCo_Y - 853x480 - 13m03s](https://user-images.githubusercontent.com/35686407/173826730-ff988067-6993-424c-a8a7-66e75c4ce661.png)
+
+![Aditya Verma - Kth Symbol in Grammar  5P84A0YCo_Y - 853x480 - 16m46s](https://user-images.githubusercontent.com/35686407/173826739-85fd256e-0f82-4f1c-abe6-79bf709f6ef6.png)
+
+```cpp
+int kthGrammar(int n, int k) {
+    if(n == 0) return 0;
+    int mid = pow(2,n) - 1;
+    if(k <= mid){
+        return kthGrammar(n-1,k);
+    }else{
+        return !kthGrammar(n-1,k-mid);
+    }
+}
+```
 
 ## 15. Permutations with spaces
+
 
 ## 16. Permutation with Case Change
 
