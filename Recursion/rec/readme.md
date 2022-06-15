@@ -1091,3 +1091,46 @@ public:
     }
 };
 ```
+## 28. Partition Equal Subset Sum (Part of DP)
+
+- array ko 2 subset mae divide kro jinka sum equal ho
+- agar possible hai to return 1
+- else return 0
+- same as subset sum
+- bs target = sum/2
+- and if sum os odd then not possible
+- hr number ke paas 2 option hai, ya to subset mae aaye ya na aaye
+- memoization use hui hai otherwise TLE aarha tha
+
+```cpp
+class Solution{
+public:
+
+    int find(int arr[],int index,int target,int n,vector<vector<int>>& memo){
+        if(target == 0) return 1;
+        if(index == n) return 0;
+        
+        if(memo[index][target] != -1) return memo[index][target];
+                
+        // take
+        int v1 = find(arr,index+1,target-arr[index],n,memo);
+        if(v1 == 1) return memo[index][target] = 1;
+        
+        // not take
+        int v2 = find(arr,index+1,target,n,memo);
+        if(v2 == 1) return memo[index][target] = 1;
+
+        return memo[index][target] = 0;
+    }
+
+    int equalPartition(int N, int arr[])
+    {
+        int sum = accumulate(arr,arr+N,0);
+        if((sum&1)) return 0;
+        int target = sum/2;
+        int index = 0;
+        vector<vector<int>> memo(N+1,vector<int>(target+1,-1));
+        return find(arr,index,target,N,memo);
+    }
+};
+```
