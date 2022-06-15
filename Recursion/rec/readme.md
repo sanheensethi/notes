@@ -734,12 +734,6 @@ int kthGrammar(int n, int k) {
 ![Aditya Verma - Permutation with spaces  1cspuQ6qHW0 - 853x480 - 9m43s](https://user-images.githubusercontent.com/35686407/173829107-0bc17986-df5c-4355-a6aa-5e3d36d7f04e.png)
 
 ```cpp
-// { Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-
-
- // } Driver Code Ends
 class Solution{
 public:
 
@@ -776,11 +770,152 @@ public:
 ```
 ## 16. Permutation with Case Change
 
+- hr char ke paas 2 option hai,
+    1. vo chota ho jaye
+    2. vo bda ho jaye
+
+```cpp
+void solve(string& s,int idx,string& ds,vector<string>& ans){
+    if(idx == s.size()){
+        ans.push_back(ds);
+        return;
+    }
+
+    char ch = s[idx];
+
+    // lower
+    ch = tolower(ch);
+
+    ds.push_back(ch);
+
+    solve(s,idx+1,ds,ans);
+
+    ds.pop_back();
+
+    // upper
+    ch = toupper(ch);
+
+    ds.push_back(ch);
+
+    solve(s,idx+1,ds,ans);
+
+    ds.pop_back();
+}
+
+vector<string> permuteAString(string& s){
+    vector<string> ans;
+    string ds;
+    solve(s,0,ds,ans);
+    return ans;
+}
+```
+
 ## 17. Letter Case Permutation
+
+- same as permutation with case change, just difference is that it include numeric value also,
+- alpha char have 2 options
+    1. chota ho jaye
+    2. bda ho jaye
+
+```cpp
+class Solution {
+public:
+    
+    void solve(string& s,int idx,string& ds,vector<string>& ans){
+        if(idx == s.size()){
+            ans.push_back(ds);
+            return;
+        }
+        
+        char ch = s[idx];
+        if(isalpha(ch)){
+            
+            // lower
+            ds.push_back(tolower(ch));
+            solve(s,idx+1,ds,ans);
+            ds.pop_back();
+            
+            //upper
+            ds.push_back(toupper(ch));
+            solve(s,idx+1,ds,ans);
+            ds.pop_back();
+            
+        }else{
+            ds.push_back(ch);
+            solve(s,idx+1,ds,ans);
+            ds.pop_back();
+        }
+        
+    }
+    
+    vector<string> letterCasePermutation(string s) {
+        vector<string> ans;
+        string ds = "";
+        solve(s,0,ds,ans);
+        return ans;
+    }
+};
+```
 
 ## 18. Generate all Paranthesis
 
+1. Brute Force:
+
+- sare possible solution bnao, mtlb hr position pr closing bhi aa skti hai and opening bhi
+- to fr jb open and close bracket khtm ho jayenge open = 0 and close = 0 then check krlo, jo paranthesis bni hai vo valid hia ya nhi
+
+2. Better/Optimized:
+
+- srf vhi rkho jo possible hai
+- mtlb ye ki agar recursion tree mae dekhe, to open bracket '(' hr jagah possible hai
+- when open < close, both possible open '(' and ')'
+- jb open == close only 1 possible open '('
+- when open = 0 but close != 0, tb close close lgate jao
+
+```cpp
+class Solution {
+public:
+    
+    void solve(int open,int close,string& ds,vector<string>& ans){
+        if(open == 0 && close == 0){
+            ans.push_back(ds);
+            return;
+        }
+        
+        if(open == close){
+            ds += '(';
+            solve(open-1,close,ds,ans);
+            ds.pop_back();
+        }else if(open < close){
+            if(open != 0){
+                ds+='(';
+                solve(open-1,close,ds,ans);
+                ds.pop_back();
+                ds+=')';
+                solve(open,close-1,ds,ans);
+                ds.pop_back();
+            }else{
+                ds+=')';
+                solve(open,close-1,ds,ans);
+                ds.pop_back();
+            }
+        }
+        
+    }
+    
+    vector<string> generateParenthesis(int n) {
+        vector<string> ans;
+        string ds = "";
+        int open = n;
+        int close = n;
+        solve(open,close,ds,ans);
+        return ans;
+    }
+};
+```
+
 ## 19. Print N-Bit Binary Number having More 1's then 0's in Prefix
+
 
 ## 20. Josephus Problem
 
