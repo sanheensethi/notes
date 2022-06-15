@@ -551,6 +551,25 @@ bool graphColoring(bool graph[101][101], int m, int n) {
 
 ## 11. Palindrome Partitioning
 
+- Which is the first position wherer you start partition, its palindrome substring ~ a and aa are palindrome but aab is not palindrome so , from that we can't create partition , simmillarly, aabb is not palindrome , so we can not partition it.
+
+- `Substring should be Palindrome`
+- Try to do partition, where it is possible
+
+![take U forward - L17  Palindrome Partitioning Leetcode Recursion C++ Java  WBgsABoClE0 - 885x498 - 5m47s](https://user-images.githubusercontent.com/35686407/173818922-ef08c221-d85d-4e78-8fc3-54401dc6869e.png)
+
+- So when we partition with first palindrome, abb is left string, now again do the same work, a is palindrome,partition it, and left with bb, here b is palindrome and bb is also palindrome, we partition it, moment when we left with nothing, we add our ans and backtrack to see more solutions.
+
+![take U forward - L17  Palindrome Partitioning Leetcode Recursion C++ Java  WBgsABoClE0 - 885x498 - 7m53s](https://user-images.githubusercontent.com/35686407/173819808-3b735d97-c5eb-4178-86bf-960681756a3f.png)
+
+![take U forward - L17  Palindrome Partitioning Leetcode Recursion C++ Java  WBgsABoClE0 - 853x480 - 11m07s](https://user-images.githubusercontent.com/35686407/173820322-049a2bb6-487b-44da-bf0b-4ce830dcbed1.png)
+
+![take U forward - L17  Palindrome Partitioning Leetcode Recursion C++ Java  WBgsABoClE0 - 885x498 - 17m07s](https://user-images.githubusercontent.com/35686407/173820466-08493370-fa8b-4d67-9bde-4ca86f95afb8.png)
+
+![take U forward - L17  Palindrome Partitioning Leetcode Recursion C++ Java  WBgsABoClE0 - 853x480 - 23m16s](https://user-images.githubusercontent.com/35686407/173820520-5be14923-f725-40a9-a247-2b20aa643fbe.png)
+
+
+
 ## 12. Rat in a Maze
 
 ## 13. K-th Permutation
