@@ -89,17 +89,19 @@ DROP DATABASE Student;
 DROP DATABASE Database_Name1, [ Database_Name2, ......., Database_NameN ];
 ```
 
+- IF EXISTS is optional
+
+```oracle
+DROP DATABASE [IF EXISTS] database_name;    
+```
+
+
 ## 4. Rename Database
 
 > In MySql
+
 ```sql
 RENAME DATABASE old_database_name TO new_database_name;   
-```
-
-> In Sql
-
-```sql
-ALTER DATABASE old_database_name MODIFY NAME = new_database_name;  
 ```
 
 ## 5. Select Database
