@@ -1,22 +1,62 @@
 # SQL
 
-![CodeBeyond - Introduction to SQL - 1 L 1 Master SQL Arpit Jain  wAbVXW93WBk - 885x498 - 27m41s](https://user-images.githubusercontent.com/35686407/173470763-3df748e9-2133-46a1-8400-370527b1e345.png)
+## Defination
 
-![CodeBeyond - Introduction to SQL - 1 L 1 Master SQL Arpit Jain  wAbVXW93WBk - 853x480 - 28m47s](https://user-images.githubusercontent.com/35686407/173470773-fab4a9cc-37ec-4358-9fc7-d6d9352577a0.png)
+> **Structure Query Language(SQL)** is a database query language **used for storing and managing data** in **Relational DBMS**. 
 
-![CodeBeyond - Introduction to SQL - 1 L 1 Master SQL Arpit Jain  wAbVXW93WBk - 885x498 - 31m48s](https://user-images.githubusercontent.com/35686407/173471036-c5769c2f-9406-49c4-a1dd-e754511098e4.png)
+- SQL was the first commercial language introduced for E.F Codd's Relational model of database. 
+- Today almost all RDBMS(MySql, Oracle, Infomix, Sybase, MS Access) use SQL as the standard database query language.
+- SQL is used to perform all types of data operations in RDBMS.
 
-![CodeBeyond - Introduction to SQL - 1 L 1 Master SQL Arpit Jain  wAbVXW93WBk - 885x498 - 34m09s](https://user-images.githubusercontent.com/35686407/173471264-4c454a62-097c-422e-a448-b229caede382.png)
+## DDL: Data Definition Language
 
-![CodeBeyond - Introduction to SQL - 1 L 1 Master SQL Arpit Jain  wAbVXW93WBk - 885x498 - 38m27s](https://user-images.githubusercontent.com/35686407/173471687-635cdf34-8357-4881-92ae-b7340d040353.png)
+- This includes changes to the structure of the table like creation of table, altering table, deleting a table etc.
+- All DDL commands are auto-committed. That means it saves all the changes permanently in the database.
 
-![CodeBeyond - Introduction to SQL - 2 L 2 Master SQL Arpit Jain  uCMFsrkvJRw - 1536x864 - 19m45s](https://user-images.githubusercontent.com/35686407/173472661-927d44fc-1c50-4410-84b4-1349124d5be3.png)
+![Screenshot Capture - 2022-06-16 - 09-17-58](https://user-images.githubusercontent.com/35686407/173987012-7a34ca37-e8f3-44fb-9742-28b78525df4d.png)
 
-![CodeBeyond - Introduction to SQL - 2 L 2 Master SQL Arpit Jain  uCMFsrkvJRw - 885x498 - 26m34s](https://user-images.githubusercontent.com/35686407/173473096-c8c53494-6920-4aa8-8093-1ab45bbbae2b.png)
+## DML: Data Manipulation Language
+- DML commands are used for manipulating the data stored in the table and not the table itself.
+- DML commands are not auto-committed. It means changes are not permanent to database, they can be rolled back.
 
-![CodeBeyond - Introduction to SQL - 2 L 2 Master SQL Arpit Jain  uCMFsrkvJRw - 885x498 - 31m28s](https://user-images.githubusercontent.com/35686407/173473394-7e9923ce-7204-4dfc-822b-27e77ffd00e7.png)
+![Screenshot Capture - 2022-06-16 - 09-19-10](https://user-images.githubusercontent.com/35686407/173987136-735d7933-77f1-4987-b01b-07372ef3e2c4.png)
 
-![CodeBeyond - Introduction to SQL - 2 L 2 Master SQL Arpit Jain  uCMFsrkvJRw - 853x480 - 35m42s](https://user-images.githubusercontent.com/35686407/173473426-a56ff028-6a15-4951-a303-a14c43300ff6.png)
+## TCL: Transaction Control Language
+- These commands are to keep a check on other commands and their affect on the database.
+- These commands can annul changes made by other commands by rolling the data back to its original state.
+- It can also make any temporary change permanent.
+
+![Screenshot Capture - 2022-06-16 - 09-20-05](https://user-images.githubusercontent.com/35686407/173987289-2ac6475b-0edf-4d25-ad87-23aac3205157.png)
+
+## DCL: Data Control Language
+- Data control language are the commands to grant and take back authority from any database user.
+
+![Screenshot Capture - 2022-06-16 - 09-20-50](https://user-images.githubusercontent.com/35686407/173987375-b562ef8e-b0ae-413e-a3a5-54d9a9060f6c.png)
+
+## DQL: Data Query Language
+- Data query language is used to fetch data from tables based on conditions that we can easily apply.
+
+![Screenshot Capture - 2022-06-16 - 09-21-43](https://user-images.githubusercontent.com/35686407/173987438-0e589dac-d91e-4423-9693-c4906e06c31d.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
