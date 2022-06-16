@@ -170,4 +170,4 @@ Note for Insertion Sort:
 
 ## Quick Sort
 
-> Basic Idea : The element is in sorted position if below
+> Basic Idea : The element is in sorted position if before it all elements are smaller then it and after that element all elements are greater from it
