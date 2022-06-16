@@ -61,18 +61,30 @@
 CREATE DATABASE Database_Name;  
 ```
 
-- SQL not allow  to create the database with the existing database name
-- if you want to create another Student database in the same database system,  firstly you have to delete the existing database by using the Drop Statement
-- You can also replace the existing database with the help of Replace keyword.
-
 ```sql
-CREATE OR REPLACE DATABASE Student;  
+CREATE DATABASE [IF NOT EXISTS] database_name  
+[CHARACTER SET charset_name]  
+[COLLATE collation_name];  
 ```
+
+![Screenshot Capture - 2022-06-16 - 10-01-30](https://user-images.githubusercontent.com/35686407/173991717-e4fb961a-7a64-46f2-b100-15977d1060ab.png)
 
 ## 2. Show Databases
 
 ```sql
 SHOW DATABASE; 
+```
+
+```sql
+SHOW DATABASES WHERE expression;
+```
+
+```sql
+SELECT schema_name FROM information_schema.schemata;  
+```
+
+```sql
+SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE 's%';  
 ```
 
 ## 3. Drop Database
@@ -91,7 +103,7 @@ DROP DATABASE Database_Name1, [ Database_Name2, ......., Database_NameN ];
 
 - IF EXISTS is optional
 
-```oracle
+```sql
 DROP DATABASE [IF EXISTS] database_name;    
 ```
 
@@ -110,6 +122,24 @@ RENAME DATABASE old_database_name TO new_database_name;
 USE database_name;
 ```
 
+## 6. Copy Database
+
+- duplicate copy of an existing database, including the table structure, indexes, constraints, default values, etc.
+- very useful when accidentally our database is lost or failure.
+- The most common use of making a duplicate copy of the database is for data backups.
+- It is also useful when planning the major changes to the structure of the original database.
+
+> Three Step Process:
+
+1. First, use the CREATE DATABASE statement to create a new database.
+2. Second, store the data to an SQL file. We can give any name to this file, but it must end with a .sql extension.
+3. Third, export all the database objects along with its data to copy using the mysqldump tool and then import this file into the new database.
+
+```sql
+CREATE DATABASE testdb_copy;  
+mysqldump -u root -p testdb > D:\Database_backup\testdb.sql  
+mysql -u root -p testdb_copy < D:\Database_backup\testdb.sql  
+```
 
 
 
