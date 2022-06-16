@@ -138,3 +138,9 @@ Note for Insertion Sort:
 - K pass is not useful there, because in 1st pass, we didnt get the biggest element
 - in 2nd pass we didn't get the second biggest element
 - there are intermediate elements.
+
+
+## Comparison Between Insertion and Bubble Sort.
+
+![Screenshot 2022-06-16 124821](https://user-images.githubusercontent.com/35686407/174015004-9ec99927-02d3-4631-b9a2-250014694901.png)
+
