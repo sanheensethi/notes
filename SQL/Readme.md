@@ -1,6 +1,6 @@
 # SQL
 
-## Defination
+# Defination
 
 > **Structure Query Language(SQL)** is a database query language **used for storing and managing data** in **Relational DBMS**. 
 
@@ -38,6 +38,75 @@
 
 ![Screenshot Capture - 2022-06-16 - 09-21-43](https://user-images.githubusercontent.com/35686407/173987438-0e589dac-d91e-4423-9693-c4906e06c31d.png)
 
+# DataTypes
+
+## String DataTypes
+
+![Yahoo Baba - MySQL Create Table Tutorial in Hindi Urdu  tN3B0F24fJs - 885x498 - 6m30s](https://user-images.githubusercontent.com/35686407/173989143-fd04a110-cdbd-40f4-91e8-8282ea7cb732.png)
+
+## Numeric DataTypes
+
+![Yahoo Baba - MySQL Create Table Tutorial in Hindi Urdu  tN3B0F24fJs - 885x498 - 8m49s](https://user-images.githubusercontent.com/35686407/173989211-b8ef6f97-66ed-4102-9b00-d11541933a87.png)
+
+## Date and Time
+
+![Yahoo Baba - MySQL Create Table Tutorial in Hindi Urdu  tN3B0F24fJs - 853x480 - 10m15s](https://user-images.githubusercontent.com/35686407/173989268-de14afcd-ccb4-4d09-b825-715558c3c9a9.png)
+
+
+# DATABASE COMMANDS
+
+## 1. Create Database
+
+```sql
+CREATE DATABASE Database_Name;  
+```
+
+- SQL not allow  to create the database with the existing database name
+- if you want to create another Student database in the same database system,  firstly you have to delete the existing database by using the Drop Statement
+- You can also replace the existing database with the help of Replace keyword.
+
+```sql
+CREATE OR REPLACE DATABASE Student;  
+```
+
+## 2. Show Databases
+
+```sql
+SHOW DATABASE; 
+```
+
+## 3. Drop Database
+
+1. Single
+
+```sql
+DROP DATABASE Student;  
+```
+
+2. Multiple
+
+```sql
+DROP DATABASE Database_Name1, [ Database_Name2, ......., Database_NameN ];
+```
+
+## 4. Rename Database
+
+> In MySql
+```sql
+RENAME DATABASE old_database_name TO new_database_name;   
+```
+
+> In Sql
+
+```sql
+ALTER DATABASE old_database_name MODIFY NAME = new_database_name;  
+```
+
+## 5. Select Database
+
+```sql
+USE database_name;
+```
 
 
 
