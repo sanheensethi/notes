@@ -121,9 +121,9 @@ void insertionSort(vector<int>& nums){
 
 Note for Insertion Sort:
 
-- Worst Case Time Complexity [ Big-O ]: O(n2)
+- Worst Case Time Complexity [ Big-O ]: O(n^2)
 - Best Case Time Complexity [Big-omega]: O(n)
-- Average Time Complexity [Big-theta]: O(n2)
+- Average Time Complexity [Big-theta]: O(n^2)
 - Space Complexity: O(1)
 - Adaptive : Yes
 - Stable : Yes
@@ -152,3 +152,16 @@ Note for Insertion Sort:
 - it repeatedly selects the next-smallest element and swaps it into the right place.
 
 ![Screenshot Capture - 2022-06-16 - 14-09-29](https://user-images.githubusercontent.com/35686407/174030234-b2269b9c-8a3b-4720-8cb1-06814f7501c5.png)
+
+![vlcsnap-2022-06-16-16h37m08s356](https://user-images.githubusercontent.com/35686407/174057449-e8c06458-3880-4189-8741-47859094cfab.png)
+
+![Screenshot 2022-06-16 163727](https://user-images.githubusercontent.com/35686407/174057469-3f3ed31c-0804-4db0-a1e2-2f97dc9d0a2f.png)
+
+![Screenshot Capture - 2022-06-16 - 16-38-58](https://user-images.githubusercontent.com/35686407/174057566-08dd9b33-f784-48c9-a881-1f5224008949.png)
+
+> Note for Selection Sort
+
+- Worst Case Time Complexity [ Big-O ]: O(n^2)
+- Best Case Time Complexity [Big-omega]: O(n^2)
+- Average Time Complexity [Big-theta]: O(n^2)
+- Space Complexity: O(1)
