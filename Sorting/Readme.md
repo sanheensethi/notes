@@ -167,3 +167,7 @@ Note for Insertion Sort:
 - Space Complexity: O(1)
 - Not Adaptive
 - Not Stable
+
+## Quick Sort
+
+> Basic Idea : The element is in sorted position if below
