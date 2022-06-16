@@ -74,3 +74,14 @@ void bubble_sort(vector<int>& arr){
 - Adaptive : By default no, we make it forcely by taking flag
 - Stable : Yes
 
+## Insertion Sort
+
+1. What is Insertion ?
+    - Inserting the element in its sorted position
+
+- In case of array we shift the elements to the right
+- we started comparing from the last postion, is 30 > 12 ? yes , shift 30 to right , simillarly we did that untill we find correct position
+- In case of Linked List, we have only head, so we traverse from start and compare then insert.
+
+![vlcsnap-2022-06-16-11h31m46s956](https://user-images.githubusercontent.com/35686407/174002609-af92c121-10eb-40e2-baf0-d19a44544f69.png)
+
