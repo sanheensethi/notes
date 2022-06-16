@@ -92,8 +92,6 @@ void bubble_sort(vector<int>& arr){
 - we have to put the 1st index in sorted list in correct position, as we do in insertion
 - we will compare from index-1 to 0 , where we got correct place to sort, we will put that element in that position.
 
-![Screenshot Capture - 2022-06-16 - 12-32-35](https://user-images.githubusercontent.com/35686407/174011557-442cc066-2595-49d2-b98e-830c4fcd22b5.png)
-
 ![vlcsnap-2022-06-16-11h49m33s268](https://user-images.githubusercontent.com/35686407/174011592-400443c1-298c-40c9-84af-75cab0924c84.png)
 
 ![Screenshot 2022-06-16 122909](https://user-images.githubusercontent.com/35686407/174011617-aaae7aeb-44bf-4e99-b9c6-4c62b047a0c0.png)
