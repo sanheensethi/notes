@@ -165,3 +165,5 @@ Note for Insertion Sort:
 - Best Case Time Complexity [Big-omega]: O(n^2)
 - Average Time Complexity [Big-theta]: O(n^2)
 - Space Complexity: O(1)
+- Not Adaptive
+- Not Stable
