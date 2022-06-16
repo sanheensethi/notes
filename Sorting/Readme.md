@@ -96,3 +96,27 @@ void bubble_sort(vector<int>& arr){
 
 ![Screenshot 2022-06-16 122909](https://user-images.githubusercontent.com/35686407/174011617-aaae7aeb-44bf-4e99-b9c6-4c62b047a0c0.png)
 
+![vlcsnap-2022-06-16-12h38m35s127](https://user-images.githubusercontent.com/35686407/174012712-8022b4d6-c5dc-482f-98ab-b2f8634a7250.png)
+
+![Screenshot 2022-06-16 124037](https://user-images.githubusercontent.com/35686407/174012960-269df998-c7fc-48ce-a461-ca03c8cd0cea.png)
+
+```cpp
+
+```
+
+Note for Insertion Sort:
+
+- Worst Case Time Complexity [ Big-O ]: O(n2)
+- Best Case Time Complexity [Big-omega]: O(n)
+- Average Time Complexity [Big-theta]: O(n2)
+- Space Complexity: O(1)
+- Adaptive : Yes
+- Stable : Yes
+
+> Characterstics : 
+
+- It is efficient for smaller data sets, but very inefficient for larger lists.
+- Insertion Sort is adaptive, that means it reduces its total number of steps if a partially sorted array is provided as input, making it efficient.
+- It is better than Selection Sort and Bubble Sort algorithms.
+- Its space complexity is less. Like bubble Sort, insertion sort also requires a single additional memory space.
+- It is a stable sorting technique, as it does not change the relative order of elements which are equal.
