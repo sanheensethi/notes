@@ -15,6 +15,12 @@
 
 ## Bubble Sort
 
+- we perform n-1 passes,
+- in each pass we move 1 element i.e. greatest element to the Last.
+
+![Screenshot Capture - 2022-06-16 - 11-19-36](https://user-images.githubusercontent.com/35686407/174000547-e93fb29e-da50-49d7-a0e9-e02b0d6223b4.png)
+
+
 ![vlcsnap-2022-06-16-10h46m08s194](https://user-images.githubusercontent.com/35686407/173998986-0f3171ac-a8cc-4f35-bcc9-e76f80b51ded.png)
 
 ```cpp
@@ -61,8 +67,10 @@ void bubble_sort(vector<int>& arr){
 
 > Note About Bubble Sort
 
-- Min TC : O(n) , if array is sorted and we make the algo adaptive
-- Max TC : O(n^2)
+- Best TC : O(n) , if array is sorted and we make the algo adaptive
+- Worst TC : O(n^2)
+- Average TC : O(n^2)
+- SC : O(1)
 - Adaptive : By default no, we make it forcely by taking flag
 - Stable : Yes
 
