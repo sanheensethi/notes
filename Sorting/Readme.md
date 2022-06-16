@@ -101,7 +101,18 @@ void bubble_sort(vector<int>& arr){
 ![Screenshot 2022-06-16 124037](https://user-images.githubusercontent.com/35686407/174012960-269df998-c7fc-48ce-a461-ca03c8cd0cea.png)
 
 ```cpp
-
+void insertionSort(vector<int>& nums){
+        int n = nums.size();
+        for(int i = 1; i < n; i++){
+            int val = nums[i];
+            int j = i-1;
+            while(j >= 0 && val < nums[j]){
+                swap(nums[j],nums[j+1]);
+                j--;
+            }
+            nums[j+1] = val;
+        }
+    }
 ```
 
 Note for Insertion Sort:
