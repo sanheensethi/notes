@@ -75,3 +75,23 @@ IF(employee_id%2=1 AND name NOT LIKE 'M%' , salary ,0) AS bonus
 FROM Employees
 ORDER BY employee_id;
 ```
+
+## 627. Swap Salary [Question](https://leetcode.com/problems/swap-salary/)
+
+> IF Statement
+
+```sql
+UPDATE salary SET sex = IF(sex = 'm' , 'f' , 'm');
+```
+> CASE WHEN Statement
+
+[Link](https://www.javatpoint.com/mysql-case-expression)
+
+```sql
+UPDATE salary
+SET
+    sex = CASE sex
+        WHEN 'm' THEN 'f'
+        ELSE 'm'
+    END;
+```
