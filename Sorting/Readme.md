@@ -170,4 +170,109 @@ Note for Insertion Sort:
 
 ## Quick Sort
 
-> Basic Idea : The element is in sorted position if before it all elements are smaller then it and after that element all elements are greater from it
+> Basic Idea : The element is in sorted position, if before it all elements are smaller and after it all elements are greater
+
+- `Recursion` is there
+- 3 Step Process
+    - Partition the Array, find pivot index , such that element left to pivot are smaller and eleemtn right to pivot are greater
+    - Recrusive in start to pivotIndex - 1
+    - Recursive in pivotIndex + 1 to end
+
+![mycodeschool - Quicksort algorithm  COk73cpQbFQ - 1045x436 - 3m06s](https://user-images.githubusercontent.com/35686407/174101023-22158de1-96e7-4032-aeb0-69338dd1dd55.png)
+
+![mycodeschool - Quicksort algorithm  COk73cpQbFQ - 1045x436 - 11m16s](https://user-images.githubusercontent.com/35686407/174101395-fa4a55bc-0f49-4f0c-9a0d-02176d2e76ae.png)
+
+> Partitoning The Array
+
+- In this, we make pivot element as last element, and place it in it's correct position,
+- such that before it smaller elements and after it greater elements
+- we make one variable as pIndex and from other we move in array upto end-1
+- if current value is smaller, we swap it with pIndex and pIndex++
+
+![mycodeschool - Quicksort algorithm  COk73cpQbFQ - 1045x436 - 18m11s](https://user-images.githubusercontent.com/35686407/174101664-e0d7b0f1-18b6-4b06-b04e-a784f010194b.png)
+
+```cpp
+int partition(vector<int>& nums,int start,int end){
+        int pivot = nums[end];
+        int pIndex = start;
+        for(int i = start; i <= end-1; i++){
+            if(nums[i] <= pivot){
+                swap(nums[i],nums[pIndex]);
+                pIndex++;
+            }
+        }
+        swap(nums[pIndex],nums[end]);
+        return pIndex;
+    }
+    
+    void quickSort(vector<int>& nums,int start,int end){
+        if(start < end){
+            int pivotIndex = partition(nums,start,end);
+            quickSort(nums,start,pivotIndex-1);
+            quickSort(nums,pivotIndex+1,end);
+        }
+    }
+```
+
+> Note for Quick Sort Algorithm:
+
+- Worst Case Time Complexity [ Big-O ]: O(n^2) , if already sorted
+- Best Case Time Complexity [Big-omega]: O(n*log n)
+- Average Time Complexity [Big-theta]: O(n*log n)
+- Space Complexity: O(n*log n)
+- Space Complexity (Worst) : O(n)
+
+## Merge Sort
+
+#### Merging Two List
+
+- Combining Two List into one Sorted List
+
+![Screenshot 2022-06-16 204559](https://user-images.githubusercontent.com/35686407/174103132-98d03b36-867e-4bb8-aa8d-06ff9c8f715d.png)
+
+- Traverse Both List and Fill the empty array
+
+![vlcsnap-2022-06-16-20h46m41s296](https://user-images.githubusercontent.com/35686407/174103343-f748ac80-0518-425f-bbd6-88f7174dd2e2.png)
+
+> Code:
+
+![vlcsnap-2022-06-16-20h46m41s296](https://user-images.githubusercontent.com/35686407/174103445-7d731833-726d-4998-95b1-098deede373c.png)
+
+![vlcsnap-2022-06-16-20h49m10s297](https://user-images.githubusercontent.com/35686407/174103829-0f4d6f75-0509-4b60-92a3-841cd748dfae.png)
+
+#### Merging M Lists
+
+![vlcsnap-2022-06-16-20h49m58s782](https://user-images.githubusercontent.com/35686407/174103998-0e8e940b-a182-411c-8a60-7986c491a093.png)
+
+
+#### Merge Sort (Iterative)
+
+- Each Element is itself is sorted and list
+- Step 1: We merge two list, i.e. 2 elements of 1 list
+- Steo 2: We mege two list, i.e., 4 elements of 1 list
+- Step 3: do same process utill we find final merge
+
+![vlcsnap-2022-06-16-20h53m07s955](https://user-images.githubusercontent.com/35686407/174104644-e8e6238c-1d29-474f-b689-d1533e01bed9.png)
+
+> Code : 
+
+![vlcsnap-2022-06-16-20h54m09s560](https://user-images.githubusercontent.com/35686407/174104863-b9e549ea-0326-47ec-b859-4a643bf24e39.png)
+
+
+#### Merge Sort (Recursive)
+
+- Divide and Conquor Rule
+- We divide the array in 2 halfs and call the recursion
+- while comming back, we will call merge two list
+
+![Screenshot Capture - 2022-06-16 - 21-00-27](https://user-images.githubusercontent.com/35686407/174106097-e54c5f73-00da-4dc9-9747-bcf0ba0c44a8.png)
+
+![merge-sort-working](https://user-images.githubusercontent.com/35686407/174106340-af3522aa-017f-493d-ae0f-fc4ec7c1e733.jpg)
+
+- Worst Case Time Complexity [ Big-O ]: O(n*log n)
+- Best Case Time Complexity [Big-omega]: O(n*log n)
+- Average Time Complexity [Big-theta]: O(n*log n)
+- Space Complexity: O(n)
+- Time complexity of Merge Sort is O(n*Log n) in all the 3 cases (worst, average and best) as merge sort always divides the array in two halves and takes linear time to merge two halves.
+- It requires equal amount of additional space as the unsorted array. Hence its not at all recommended for searching large unsorted arrays.
+- It is the best Sorting technique used for sorting Linked Lists.
