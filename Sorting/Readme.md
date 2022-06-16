@@ -85,3 +85,16 @@ void bubble_sort(vector<int>& arr){
 
 ![vlcsnap-2022-06-16-11h31m46s956](https://user-images.githubusercontent.com/35686407/174002609-af92c121-10eb-40e2-baf0-d19a44544f69.png)
 
+> Insertion Sort
+
+- we consider 0th element is already sorted,
+- means before 1st index list is sorted and after 1 index list is unsorted,
+- we have to put the 1st index in sorted list in correct position, as we do in insertion
+- we will compare from index-1 to 0 , where we got correct place to sort, we will put that element in that position.
+
+![Screenshot Capture - 2022-06-16 - 12-32-35](https://user-images.githubusercontent.com/35686407/174011557-442cc066-2595-49d2-b98e-830c4fcd22b5.png)
+
+![vlcsnap-2022-06-16-11h49m33s268](https://user-images.githubusercontent.com/35686407/174011592-400443c1-298c-40c9-84af-75cab0924c84.png)
+
+![Screenshot 2022-06-16 122909](https://user-images.githubusercontent.com/35686407/174011617-aaae7aeb-44bf-4e99-b9c6-4c62b047a0c0.png)
+
