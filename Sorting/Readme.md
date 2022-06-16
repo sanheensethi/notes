@@ -372,3 +372,17 @@ void countSort(vector<int>& nums){
 
 }
 ```
+
+> Note For Counting Sort : For scanning the input array elements, the loop iterates n times, thus taking O(n) running time. The sorted array B[] also gets computed in n iterations, thus requiring O(n) running time. The count array also uses k iterations, thus has a running time of O(k). Thus the total running time for counting sort algorithm is O(n+k).
+
+> Advantages of Counting Sort:
+
+- It is quite fast
+- It is a stable algorithm
+
+> Note: For a sorting algorithm to be stable, the order of elements with equal keys (values) in the sorted array should be the same as that of the input array.
+
+> Disadvantages of Counting Sort:
+
+- It is not suitable for sorting large data sets
+- It is not suitable for sorting string values
