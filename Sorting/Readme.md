@@ -73,6 +73,10 @@ void bubble_sort(vector<int>& arr){
 - SC : O(1)
 - Adaptive : By default no, we make it forcely by taking flag
 - Stable : Yes
+- In this, if kth biggest element is required , then do k passes.
+- 1st biggest element is found only in 1 pass
+- 2nd biggest element is found only in 2 pass, and so on,
+- therefore k pass is useful here.
 
 ## Insertion Sort
 
@@ -131,3 +135,6 @@ Note for Insertion Sort:
 - It is better than Selection Sort and Bubble Sort algorithms.
 - Its space complexity is less. Like bubble Sort, insertion sort also requires a single additional memory space.
 - It is a stable sorting technique, as it does not change the relative order of elements which are equal.
+- K pass is not useful there, because in 1st pass, we didnt get the biggest element
+- in 2nd pass we didn't get the second biggest element
+- there are intermediate elements.
