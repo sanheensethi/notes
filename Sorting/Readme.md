@@ -333,3 +333,42 @@ void mergeSort(vector<int>& nums,int start,int end){
 - Time complexity of Merge Sort is O(n*Log n) in all the 3 cases (worst, average and best) as merge sort always divides the array in two halves and takes linear time to merge two halves.
 - It requires equal amount of additional space as the unsorted array. Hence its not at all recommended for searching large unsorted arrays.
 - It is the best Sorting technique used for sorting Linked Lists.
+
+## Count Sort
+
+- Counting Sort Algorithm is an efficient sorting algorithm that can be used for sorting elements within a specific range.
+- based on the frequency/count of each element to be sorted
+- array bnao frequency ka, and if count > 0 tb tk vo elements copy krte rho jb 0 ho jaye aage move kr jao
+
+> Create Freq/Count element array
+
+![vlcsnap-2022-06-16-21h22m33s785](https://user-images.githubusercontent.com/35686407/174113088-573c094c-ff89-43e4-b652-7f9fc5e6edd0.png)
+
+> Now, copy the element according to freq to main array.
+
+![vlcsnap-2022-06-16-21h22m48s282](https://user-images.githubusercontent.com/35686407/174113130-a453888c-0fb1-4536-9726-2de09722c49f.png)
+
+```cpp
+void countSort(vector<int>& nums){
+    int n = nums.size();
+    int maxi = *max_element(nums.begin(),nums.end());
+
+    vector<int> count(maxi+1,0);
+
+    for(auto& val:nums){
+        count[val]++;
+    }
+
+    int j = 0;
+    for(int i = 0; i < maxi+1; i++){
+        if(count[i] == 0) continue;
+
+        while(count[i] != 0){
+            nums[j] = i;
+            j++;
+            count[i]--;
+        }
+    }
+
+}
+```
