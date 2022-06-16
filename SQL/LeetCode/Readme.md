@@ -61,3 +61,17 @@ where customers.id not in
     select customerid from orders
 );
 ```
+## 1873. Calculate Special Bonus
+
+- ORDER BY Clause is used to sort the records in ascending or descending order. By Default ASC
+- IF ( expression 1, expression 2, expression 3)  
+    - Expression 1	Required	It is a value, which is used for validation.
+    - Expression 2	Optional	It returns a value when the condition evaluates to true.
+    - Expression 3	Optional	It returns a value when the condition evaluates to false.
+
+```sql
+SELECT employee_id, 
+IF(employee_id%2=1 AND name NOT LIKE 'M%' , salary ,0) AS bonus
+FROM Employees
+ORDER BY employee_id;
+```
