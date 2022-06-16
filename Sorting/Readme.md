@@ -269,6 +269,63 @@ int partition(vector<int>& nums,int start,int end){
 
 ![merge-sort-working](https://user-images.githubusercontent.com/35686407/174106340-af3522aa-017f-493d-ae0f-fc4ec7c1e733.jpg)
 
+```cpp
+void merge(vector<int>& nums,int start,int mid,int end){
+    if(start == end) return;
+    int i = start;
+    int l1e = mid;
+    int j = mid+1;
+    int l2e = end;
+
+    vector<int> B(end-start+1);
+    int k = 0;
+
+    while(i <= l1e && j <= l2e){
+        if(nums[i] <= nums[j]){
+            B[k] = nums[i];
+            k++;
+            i++;
+        }else{
+            B[k] = nums[j];
+            k++;
+            j++;
+        }
+    }
+
+    while(i <= l1e){
+        B[k] = nums[i];
+        i++;
+        k++;
+    }
+
+    while(j <= l2e){
+        B[k] = nums[j];
+        j++;
+        k++;
+    }
+
+    // copy elements
+    k = 0;
+    for(int l = start; l <= end ; l++){
+        nums[l] = B[k];
+        k++;
+    }
+
+}
+
+void mergeSort(vector<int>& nums,int start,int end){
+
+    if(start < end){
+        int mid = (start + end)/2;
+        mergeSort(nums,start,mid);
+        mergeSort(nums,mid+1,end);
+        merge(nums,start,mid,end);
+    }
+}
+```
+
+> Note for Merge Sort
+
 - Worst Case Time Complexity [ Big-O ]: O(n*log n)
 - Best Case Time Complexity [Big-omega]: O(n*log n)
 - Average Time Complexity [Big-theta]: O(n*log n)
