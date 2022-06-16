@@ -144,3 +144,11 @@ Note for Insertion Sort:
 
 ![Screenshot 2022-06-16 124821](https://user-images.githubusercontent.com/35686407/174015004-9ec99927-02d3-4631-b9a2-250014694901.png)
 
+## Selection Dort
+
+- This algorithm will first find the smallest element in the array and swap it with the element in the first position
+- then it will find the second smallest element and swap it with the element in the second position,
+- and it will keep on doing this until the entire array is sorted.
+- it repeatedly selects the next-smallest element and swaps it into the right place.
+
+![Screenshot Capture - 2022-06-16 - 14-09-29](https://user-images.githubusercontent.com/35686407/174030234-b2269b9c-8a3b-4720-8cb1-06814f7501c5.png)
