@@ -257,3 +257,28 @@ ORDER BY SUBSTR(Name,-3),ID ASC;
 SELECT name FROM Employee
 ORDER BY name ASC;
 ```
+
+## 17. Triangle Names According to Data
+
+![Screenshot Capture - 2022-06-17 - 14-08-49](https://user-images.githubusercontent.com/35686407/174261174-b8b0db6f-6d72-4e21-82f6-82803c97c022.png)
+
+- First, check whether the values satisfies the requirement of a triangle(i.e sum of two sides must be greater than the other side)
+- If above condition is true then, look for the type of the triangle
+    - Equilateral - All sides are equal
+    - Isosceles - Any two sides are equal
+    - Scalene - All three sides are different
+- If above condition is false then
+    - Not A Triangle
+
+```sql
+SELECT
+  CASE
+    WHEN A + B > C AND A+C>B AND B+C>A THEN 
+      CASE
+        WHEN A = B AND B = C THEN 'Equilateral' 
+        WHEN A = B OR B = C OR A = C THEN 'Isosceles' 
+        ELSE 'Scalene' 
+      END 
+    ELSE 'Not A Triangle' 
+  END FROM TRIANGLES;
+```
