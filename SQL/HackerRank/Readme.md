@@ -234,6 +234,8 @@ REGEXP '^[^aeiou].*[^aeiou]$';
 
 ## 14. Get Last 3 Char of Name
 
+- We can also use `RIGHT(Name,3)`
+
 ```sql
 SELECT SUBSTR(Name,-3) AS Last3 FROM TABLE
 ```
@@ -241,6 +243,7 @@ SELECT SUBSTR(Name,-3) AS Last3 FROM TABLE
 ## 15. Sort According to the last 3 Char of Name
 
 - if last 3 char of name are same eg. bobby,Robby, then sort them by id in asc order
+- We can also use `RIGHT(Name,3)`
 
 ```sql
 SELECT Name FROM STUDENTS
