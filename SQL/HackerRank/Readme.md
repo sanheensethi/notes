@@ -223,3 +223,10 @@ SELECT DISTINCT CITY FROM STATION
 WHERE
 CITY REGEXP '^[^aeiou].*|.*[^aeiou]$';
 ```
+## 13. Select Names that do not start and end with Vowels (a,e,i,o,u)
+
+```sql
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY
+REGEXP '^[^aeiou].*[^aeiou]$';
+```
