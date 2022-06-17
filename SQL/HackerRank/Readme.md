@@ -3,6 +3,8 @@
 ## 1. Even ID Number
 
 - mod(id,2) = 0
+- id % 2 = 0
+- id MOD 2 = 0
 
 ```sql
 SELECT DISTINCT CITY FROM STATION WHERE mod(ID,2) = 0;
@@ -332,7 +334,9 @@ GROUP BY Occupation
 ORDER BY COUNT(Occupation) ASC , Occupation ASC;
 ```
 
-## 20. Remove 0's In Number
+## 20. REPLACE() Function Remove 0's In Number
+
+- REPLACE() function replaces all occurrences of a substring within a string, with a new substring.
 
 ![Screenshot Capture - 2022-06-17 - 22-04-15](https://user-images.githubusercontent.com/35686407/174339916-9e656c33-c1cd-4fce-98a7-32ca9c9c65f2.png)
 
@@ -342,9 +346,9 @@ ORDER BY COUNT(Occupation) ASC , Occupation ASC;
 SELECT REPLACE(COLUMN_NAME,0,'') FROM TABLE_NAME;
 ```
 
-## 21. Round to Next Integer
+## 21. CEIL() Function 
 
-- use CEIL
+- Round to Next Integer
 
 ```sql
 SELECT CEIL(COLUMN_NAME) FROM TABLE_NAME;
@@ -382,3 +386,61 @@ WHERE
 ```sql
  SELECT SUM(working_hours) AS "Total working hours" FROM employees;  
 ```
+## 23. AVG() Function
+
+-  return the average value of an expression in various records
+
+```sql
+SELECT emp_name, occupation,   
+AVG(working_hours) Avg_working_hours   
+FROM employees   
+GROUP BY occupation   
+HAVING AVG(working_hours)>9; 
+```
+
+## 24. MIN() Function
+
+- return the minimum value in a set of values from the table
+
+```sql
+SELECT emp_age, MIN(income) AS Minimum_Income   
+FROM employees   
+GROUP BY emp_age;  
+```
+
+## 25. MAX() Function
+
+- return the maximum value in a set of values of an expression
+
+```sql
+SELECT emp_age, MAX(income) AS "Maximum Income"   
+FROM employees   
+GROUP BY emp_age;  
+```
+
+## 26. ABS() Function
+
+- returns the absolute (positive) value of a number.
+
+```sql
+SELECT ABS(MAX(POPULATION) - MIN(POPULATION)) FROM CITY;
+```
+
+## 27. FLOOR() Function
+
+- returns the largest integer value that is smaller than or equal to a number.
+
+```sql
+
+```
+
+## 28. ROUND() Function
+
+- rounds a number to a specified number of decimal places.
+- `ROUND(number,decimals)` , decimals are optional | SELECT ROUND(135.375, 2); ~ 135.38
+
+```sql
+SELECT ROUND(135.375, 2);
+```
+
+## 29. 
