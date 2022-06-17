@@ -75,6 +75,8 @@ UNION
 (SELECT CITY,LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) DESC,CITY ASC LIMIT 1);
 ```
 
+> Note: We can aslo use RLIKE insetead of REGEXP
+
 ## 7. SELECT Names Which Start with Vowels (a,e,i,o,u)
 
 > Using [LIKE](https://www.w3schools.com/mysql/mysql_like.asp)
@@ -203,4 +205,21 @@ CITY NOT LIKE '%u';
 SELECT DISTINCT CITY FROM STATION 
 WHERE CITY
 REGEXP '[^aeiou]$'
+```
+
+## 12. Select Names that do not start with Vowels OR End with vowels
+
+> Note: | operator work as OR in RegExp
+
+```sql
+SELECT DISTINCT CITY FROM STATION 
+WHERE
+CITY REGEXP '^[^aeiou].*' OR
+CITY REGEXP '.*[^aeiou]$';
+```
+
+```sql
+SELECT DISTINCT CITY FROM STATION 
+WHERE
+CITY REGEXP '^[^aeiou].*|.*[^aeiou]$';
 ```
