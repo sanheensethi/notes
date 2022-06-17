@@ -250,3 +250,10 @@ SELECT Name FROM STUDENTS
 WHERE
 ORDER BY SUBSTR(Name,-3),ID ASC;
 ```
+
+## 16. Select names in Alphabetical Order
+
+```sql
+SELECT name FROM Employee
+ORDER BY name ASC;
+```
