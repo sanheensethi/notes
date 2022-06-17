@@ -126,3 +126,26 @@ DELETE p1 FROM Person p1,
 WHERE
     p1.Email = p2.Email AND p1.Id > p2.Id
 ```
+
+## 1667. Fix Names in Tables
+
+- Firstly we need to fetch the first letter and convert it to upperCase
+- Secondly we need to fetch the remaing string to lowerCase and then concat them
+- We will be using four functions here that are present in SQL
+    - UPPER(A) where A is string
+    - LOWER(A) where A is string
+    - SUBSTR(A,index,length) where A is string index is starting index(1 index insead of 0 index) and length which is optional
+- So to get first letter we can use SUBSTR(name,1,1)
+- To get the remaining string we can use SUBSTR(name,2) // length is not required here
+- CONCAT(A,B) where we concat two strings A+B
+
+1. UPPER : [Link](https://www.w3schools.com/mysql/func_mysql_upper.asp)
+2. LOWER : [Link](https://www.w3schools.com/mysql/func_mysql_lower.asp)
+3. SUBSTR : [Link](https://www.w3schools.com/mysql/func_mysql_substr.asp)
+4. CONCAT : [Link](https://www.w3schools.com/mysql/func_mysql_concat.asp)
+
+```sql
+SELECT Users.user_id, 
+(CONCAT(UPPER(SUBSTR(name,1,1)),LOWER(SUBSTR(name,2)))) as name
+FROM Users ORDER BY Users.user_id ASC;
+```
