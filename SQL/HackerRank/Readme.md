@@ -162,3 +162,23 @@ SELECt CITY FROM STATION
 WHERE CITY
 REGEXP '^[aeiou].*[aeiou]$';
 ```
+## 10. Select Name which do not start with vowels (a,e,i,o,u)
+
+> Like Statement
+
+```sql
+SELECT DISTINCT CITY FROM STATION
+WHERE 
+CITY NOT LIKE 'a%' AND
+CITY NOT LIKE 'e%' AND
+CITY NOT LIKE 'i%' AND
+CITY NOT LIKE 'o%' AND
+CITY NOT LIKE 'u%';
+```
+> RegExp
+
+```sql
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY
+REGEXP '^[^aeiou]';
+```
