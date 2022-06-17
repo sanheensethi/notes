@@ -331,3 +331,13 @@ FROM OCCUPATIONS
 GROUP BY Occupation 
 ORDER BY COUNT(Occupation) ASC , Occupation ASC;
 ```
+
+## 20. Remove 0's In Number
+
+![Screenshot Capture - 2022-06-17 - 22-04-15](https://user-images.githubusercontent.com/35686407/174339916-9e656c33-c1cd-4fce-98a7-32ca9c9c65f2.png)
+
+![Screenshot Capture - 2022-06-17 - 22-06-36](https://user-images.githubusercontent.com/35686407/174340194-4d177c03-d8fb-4086-a5bc-6736b25d9fd2.png)
+
+```sql
+SELECT REPLACE(columnName,0,'') FROM tableName;
+```
