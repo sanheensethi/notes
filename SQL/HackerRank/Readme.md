@@ -282,3 +282,52 @@ SELECT
     ELSE 'Not A Triangle' 
   END FROM TRIANGLES;
 ```
+## 18. Concatenate Name with Their Occupation Shorthand
+
+-For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+
+![Screenshot Capture - 2022-06-17 - 14-39-36](https://user-images.githubusercontent.com/35686407/174266920-317f649d-6aa4-44f9-b1e4-0f748de81922.png)
+
+> Use Case When
+
+```sql
+SELECT
+CONCAT(
+    Name,
+    CASE Occupation
+        WHEN 'Doctor' THEN '(D)'
+        WHEN 'Actor' THEN '(A)'
+        WHEN 'Singer' THEN '(S)'
+        WHEN 'Professor' THEN '(P)'
+        END
+) AS Name FROM OCCUPATIONS ORDER BY NAME ASC;
+```
+
+> USE SubStr in Occupation
+
+```sql
+SELECT
+CONCAT(
+    Name,
+    CONCAT(
+        "(",
+        SUBSTR(Occupation,1,1),
+        ")"
+    )
+) AS Name FROM OCCUPATIONS ORDER BY NAME ASC;
+```
+
+## 19. Print Line as `There are a total of [occupation_count] [occupation]s.`
+
+```sql
+SELECT CONCAT(
+    "There are a total of ",
+    COUNT(Occupation),
+    " ",
+    LOWER(Occupation),
+    "s."
+) 
+FROM OCCUPATIONS 
+GROUP BY Occupation 
+ORDER BY COUNT(Occupation) ASC , Occupation ASC;
+```
