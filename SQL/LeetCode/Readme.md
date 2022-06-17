@@ -95,3 +95,34 @@ SET
         ELSE 'm'
     END;
 ```
+
+## 196. Delete Duplicate Emails [Question](https://leetcode.com/problems/delete-duplicate-emails/)
+
+- Joining The Table with itself on Email Column
+
+```sql
+SELECT p1.*
+FROM Person p1,
+    Person p2
+WHERE
+    p1.Email = p2.Email
+;
+```
+- Then we need to find the bigger id having same email address with other records.
+
+```sql
+SELECT p1.*
+FROM Person p1,
+    Person p2
+WHERE
+    p1.Email = p2.Email AND p1.Id > p2.Id
+;
+```
+- Now write DELETE Command
+
+```sql
+DELETE p1 FROM Person p1,
+    Person p2
+WHERE
+    p1.Email = p2.Email AND p1.Id > p2.Id
+```
