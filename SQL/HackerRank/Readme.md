@@ -339,5 +339,13 @@ ORDER BY COUNT(Occupation) ASC , Occupation ASC;
 ![Screenshot Capture - 2022-06-17 - 22-06-36](https://user-images.githubusercontent.com/35686407/174340194-4d177c03-d8fb-4086-a5bc-6736b25d9fd2.png)
 
 ```sql
-SELECT REPLACE(columnName,0,'') FROM tableName;
+SELECT REPLACE(COLUMN_NAME,0,'') FROM TABLE_NAME;
+```
+
+## 21. Round to Next Integer
+
+- use CEIL
+
+```sql
+SELECT CEIL(COLUMN_NAME) FROM TABLE_NAME;
 ```
