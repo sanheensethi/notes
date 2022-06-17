@@ -41,3 +41,36 @@ SELECT ABS(COUNT(CITY) - COUNT(DISTINCT CITY)) FROM STATION
 ```
 
 - above statement gives total number of dublicate values.
+
+## Shortest and Longest Name According to length of Name [Question](https://www.hackerrank.com/challenges/weather-observation-station-5/problem?isFullScreen=true)
+
+- If Someone, Collide, then print lexographically order
+
+- The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+- Length ke according sort kr do, ORDER BY ASC | DESC 
+- CITY ko ASC order mae rkho
+- Shortest nikalne ke liye, length ke according sort kr dia, and city ko bhi asc order mae sort kr dia and Limit 1 lgakr 1st select kr lia
+- Longest nikalne ke liye length ke accroding dec order mae sort kr dia and city ko asc mae hi rkha kyulo
+
+> Using two statememnts
+
+```sql
+SELECT CITY,LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) ASC ,CITY ASC LIMIT 1; /*Shortest City Name*/
+SELECT CITY,LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) DESC,CITY DESC LIMIT 1; /*Longest City Name*/
+```
+
+
+> Using One Statement
+
+- UNION operator is used to combine the result-set of two or more SELECT statements.
+- Every SELECT statement within UNION must have the same number of columns
+- The columns must also have similar data types
+- The columns in every SELECT statement must also be in the same order
+
+[Link](https://www.w3schools.com/mysql/mysql_union.asp)
+
+```sql
+(SELECT CITY,LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) ASC ,CITY ASC LIMIT 1)
+UNION 
+(SELECT CITY,LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) DESC,CITY ASC LIMIT 1);
+```
