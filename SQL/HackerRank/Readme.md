@@ -349,3 +349,25 @@ SELECT REPLACE(COLUMN_NAME,0,'') FROM TABLE_NAME;
 ```sql
 SELECT CEIL(COLUMN_NAME) FROM TABLE_NAME;
 ```
+## 21. Count() Function
+
+- count() function is used to returns the count of an expression
+- We can use the count function in three forms, which are explained below:
+    - Count (*) : The result set contains all Non-Null, Null, and duplicates rows.
+    - Count (expression) : the result set without containing Null rows
+    - Count (distinct) : the count of distinct rows without containing NULL values
+
+```sql
+SELECT COUNT (aggregate_expression)    
+FROM table_name    
+[WHERE conditions];    
+```
+
+```sql
+SELECT 
+    COUNT(*)
+FROM 
+    CITY
+WHERE 
+    POPULATION > 100000;
+```
