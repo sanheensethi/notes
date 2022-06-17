@@ -223,10 +223,27 @@ SELECT DISTINCT CITY FROM STATION
 WHERE
 CITY REGEXP '^[^aeiou].*|.*[^aeiou]$';
 ```
+
 ## 13. Select Names that do not start and end with Vowels (a,e,i,o,u)
 
 ```sql
 SELECT DISTINCT CITY FROM STATION
 WHERE CITY
 REGEXP '^[^aeiou].*[^aeiou]$';
+```
+
+## 14. Get Last 3 Char of Name
+
+```sql
+SELECT SUBSTR(Name,-3) AS Last3 FROM TABLE
+```
+
+## 15. Sort According to the last 3 Char of Name
+
+- if last 3 char of name are same eg. bobby,Robby, then sort them by id in asc order
+
+```sql
+SELECT Name FROM STUDENTS
+WHERE
+ORDER BY SUBSTR(Name,-3),ID ASC;
 ```
