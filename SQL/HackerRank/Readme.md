@@ -97,3 +97,26 @@ WHERE
 CITY
 REGEXP '^[aeiou]';
 ```
+## 8. SELECT Names ending with Vowels (a,e,i,o,u)
+
+> Using Like
+
+```sql
+SELECT DISTINCT CITY FROM STATION 
+WHERE 
+CITY LIKE '%a' OR
+CITY LIKE '%e' OR
+CITY LIKE '%i' OR
+CITY LIKE '%o' OR
+CITY LIKE '%u';
+```
+
+> Using RegExp
+
+- DISTINCT used to get unique results, discarding dublicates
+
+```sql
+SELECT DISTINCT CITY FROM STATION 
+WHERE CITY 
+REGEXP '[aeiou]$';
+```
