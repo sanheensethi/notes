@@ -42,7 +42,7 @@ SELECT ABS(COUNT(CITY) - COUNT(DISTINCT CITY)) FROM STATION
 
 - above statement gives total number of dublicate values.
 
-## Shortest and Longest Name According to length of Name [Question](https://www.hackerrank.com/challenges/weather-observation-station-5/problem?isFullScreen=true)
+## 6. Shortest and Longest Name According to length of Name [Question](https://www.hackerrank.com/challenges/weather-observation-station-5/problem?isFullScreen=true)
 
 - If Someone, Collide, then print lexographically order
 
@@ -73,4 +73,27 @@ SELECT CITY,LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) DESC,CITY DESC LIMIT
 (SELECT CITY,LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) ASC ,CITY ASC LIMIT 1)
 UNION 
 (SELECT CITY,LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) DESC,CITY ASC LIMIT 1);
+```
+
+## 7. SELECT Names Which Start with Vowels (a,e,i,o,u)
+
+> Using [LIKE](https://www.w3schools.com/mysql/mysql_like.asp)
+
+```sql
+SELECT CITY FROM STATION
+WHERE
+CITY LIKE 'a%' OR
+CITY LIKE 'e%' OR
+CITY LIKE 'i%' OR
+CITY LIKE 'o%' OR
+CITY LIKE 'u%';
+```
+
+> Usign REGEXP (Regular Expression)
+
+```sql
+SELECT CITY FROM STATION
+WHERE
+CITY
+REGEXP '^[aeiou]';
 ```
