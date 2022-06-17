@@ -371,3 +371,14 @@ FROM
 WHERE 
     POPULATION > 100000;
 ```
+
+## 22. SUM() Function
+
+- used to return the total summed value of an expression
+- It returns NULL if the result set does not have any rows
+
+[Examples](https://www.javatpoint.com/mysql-sum)
+
+```sql
+ SELECT SUM(working_hours) AS "Total working hours" FROM employees;  
+```
