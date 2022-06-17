@@ -8,7 +8,7 @@
 SELECT DISTINCT CITY FROM STATION WHERE mod(ID,2) = 0;
 ```
 
-## Exclude Dublicate / Distinct Values
+## 2. Exclude Dublicate / Distinct Values
 
 - DISTINCT
 
@@ -16,7 +16,7 @@ SELECT DISTINCT CITY FROM STATION WHERE mod(ID,2) = 0;
 SELECT DISTINCT CITY FROM STATION;
 ```
 
-## Count Total Values
+## 3. Count Total Values
 
 - COUNT(*) / COUNT(COL_NAME) 
 
@@ -24,7 +24,7 @@ SELECT DISTINCT CITY FROM STATION;
 SELECT COUNT(*) FROM TABLE;
 ```
 
-## Count Distinct Values from Column
+## 4. Count Distinct Values from Column
 
 - COUNT(DISTINCT COL_NAME)
 
@@ -32,7 +32,7 @@ SELECT COUNT(*) FROM TABLE;
 SELECT COUNT(DISTINCT CITY) FROM STATION;
 ```
 
-## Find Absolute Difference
+## 5. Find Absolute Difference
 
 - ABS
 
