@@ -200,3 +200,11 @@ vector<vector<int>> generate(int numRows) {
 - if col = 2, then C(4,2) = (4x3)/(1x2) = (4/1) x (3/2)
 - if col = 3, then C(4,3) = (4x3x2)/(1x2x3) = (4x3)/(1x2) x (2/3)
 - see the pattern, when col = 2, then we multiply col = 2 in denomenator, and prev-val - 1 = 4-1 = 3 in numerator
+- TC : for 1 col - O(1)
+- TC : for row - O(n)
+- SC : O(n)
+
+> TC and SC for 3 Types:
+
+![Screenshot Capture - 2022-06-18 - 11-13-00](https://user-images.githubusercontent.com/35686407/174424637-28330e68-81e3-4d28-92be-4a141821ca15.png)
+
