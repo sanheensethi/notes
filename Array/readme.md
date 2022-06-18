@@ -285,3 +285,58 @@ void nextPermutation(vector<int>& nums) {
 
 }
 ```
+
+## 4. Kadane's Algorithm (Max Subarray Sum)
+
+#### Brute Force O(n^3)
+
+![take U forward - Maximum Subarray Sum Leetcode Kadane's Algorithm Brute-Better-Optimal CPPJava  w_KEocd__20 - 885x498 - 1m50s](https://user-images.githubusercontent.com/35686407/174427442-eaefebba-8d7d-4148-a019-899bd3690ba0.png)
+
+#### Better Brute Force O(n^2)
+
+- we loop again to calculate sum from i to j in Brute Force, instead while moving j,we will calculate sum and update it.
+
+![take U forward - Maximum Subarray Sum Leetcode Kadane's Algorithm Brute-Better-Optimal CPPJava  w_KEocd__20 - 853x480 - 2m50s](https://user-images.githubusercontent.com/35686407/174427471-3a214196-c450-4c66-9e92-90bf190c1e31.png)
+
+#### Optimized Solution (Kadane's Algorithm)
+
+[Archives](https://www.geeksforgeeks.org/tag/kadane/)
+
+- Is algo mae hum, ek sum variable le rhe hai 
+- and ek ans variable jo max sum value store krega
+- ans ko mabhi arr[0] rkho, because question mae kha hai min 1 element jaror hai array mae
+- ab, pointer ko bhadao and sum krte jao, and ans ko update krte jao,
+- agle step pr jane se pehle if sum < 0 hai t0 sum = 0 krdo, kyuki negative number aage le jane se sum or jayeda kum hi hoga, na ki bhadega.
+
+> Algo Work
+
+- Initialize: local_max = 0 global_max = INT_MIN // local_max ~ sum, global_max ~ ans
+- For each element we will follow these steps:
+    - local_max = local_max + a[i]
+    - if (local_max > global_max ) set global_max = local_max
+    - if (local_max < 0) set local_max = 0
+
+```cpp
+int maxSubArray(vector<int>& nums) {
+    int sum = 0;
+    int ans = nums[0];
+    for(int i = 0; i < nums.size(); i++){
+        sum += nums[i];
+        ans = max(ans,sum);
+        if(sum < 0) sum = 0;
+    }
+    return maxi;
+}
+```
+
+[Article](https://www.scaler.com/topics/kadanes-algorithm/)
+
+> Note: The above algorithm will fail for the case, when there are only negative elements in the array, because our global_max is already set to 0. So, to handle that case we have to modify our algorithm. We will add current element to the previous subarray only if it results in a greater sum, else we will start the new subarray from that element.
+
+- Initialize: local_max = 0 global_max = INT_MIN
+- For each element we will follow these steps:
+    1. if (a[i] <= local_max + a[i]) local_max = local_max + a[i]
+    2. else local_max = a[i]
+    3. global_max = max(global_max, local_max)
+
+
