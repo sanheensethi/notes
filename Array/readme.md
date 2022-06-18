@@ -246,3 +246,42 @@ Eample : 1 3 5 4 2
 - ab indono ko jb swap krenge hmare paas bnega 1 4 5 3 2
 - ab swap krne ke baad agar hum 4 se aage 5 to 2 reverse krde to vo inc order mae ho jayega it becomes 1 4 2 3 5 , which is the next permutation.
 
+> For more clear: write down permutation for 1 2 3 5
+
+> TC and SC : 
+
+![Screenshot Capture - 2022-06-18 - 12-21-08](https://user-images.githubusercontent.com/35686407/174426522-e9b35c62-6e18-42d2-9a54-c19f9574ac99.png)
+
+```cpp
+void nextPermutation(vector<int>& nums) {
+    int n = nums.size();
+        
+    int idx1,idx2;
+
+    for(idx1 = n-2; idx1 >= 0; idx1--){
+        if(nums[idx1] < nums[idx1+1]){
+            break;
+        }
+    }
+
+
+    if(idx1 < 0){
+        // means we are in last permutation 5 4 3 2 1
+        // just reverse array
+        reverse(nums.begin(),nums.end());
+    }else{
+
+        for(idx2 = n-1; idx2 >= 0; idx2--){
+            if(nums[idx2] > nums[idx1]){
+                break;
+            }
+        }
+
+        swap(nums[idx1],nums[idx2]);
+
+        reverse(nums.begin()+ idx1 + 1,nums.end());
+
+    }
+
+}
+```
