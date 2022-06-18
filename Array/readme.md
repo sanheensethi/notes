@@ -43,3 +43,45 @@ void setZeroes(vector<vector<int>>& matrix) {
     
 ![Screenshot Capture - 2022-06-18 - 08-53-09](https://user-images.githubusercontent.com/35686407/174420987-bc17defe-401f-4bd8-8871-9062a34005ba.png)
 
+
+#### Optimized
+
+- Approach 1: (Taking 2 Extra arrays as row and col)
+    - jha bhi 0 dikhe to, uske correspoding row vale and col vale array mae 0 daal do
+    - Now Traverse the matrix again, and check if row array and col array have same 0 if yes then change it to 0
+    - TC : O(NxM) + O(NxM)
+    - SC : O(N) + O(M)
+    
+![Screenshot Capture - 2022-06-18 - 08-56-19](https://user-images.githubusercontent.com/35686407/174421107-bf624fc7-b09e-45b3-abc7-5244fdc14acb.png)
+
+![Screenshot Capture - 2022-06-18 - 08-57-12](https://user-images.githubusercontent.com/35686407/174421131-c3ac86f5-8ded-4d48-ad64-8dba9ac3dfe0.png)
+
+#### Most Optimal Approach
+
+- we take 2 dummy array as above inside the matrix
+- 1st row as row dummy array and 1st col as col dummy matrix
+- niche vali figure mae (0,0) position pr jo 0 aayega vo 1st col ke last element jo 0 hai uske krn aayega, to agar vo 0 hota hai , to uske krn hum uski row ko 0 nhi hone denge, because uske pehle se 0 nhi tha, vo 0 bna hai apne col ke last element ki madad se
+
+![Screenshot Capture - 2022-06-18 - 09-00-10](https://user-images.githubusercontent.com/35686407/174421230-d49c5c7f-9d4c-4864-81dd-7515d66409b9.png)
+
+- Therefore, hum row ke liye assume krenge ki jo (0,0) position hai vha 0 mark kia gya hai(mtlb 0 bnaya gya hai) by last element of 1st col, and col ke liye mark = true, means if col have 0 then col = false it means we have to set col = 0;
+- jb pehli 0 milegi, tb hum dummy row col mae 0 daal denge, as marker
+
+![Screenshot Capture - 2022-06-18 - 09-04-47](https://user-images.githubusercontent.com/35686407/174421362-9686924a-eec8-4a6d-bc4a-38e528d7a5b9.png)
+
+- ab hum jb mark krte krte, 1st col ke 0 ke paas poche, hme pta chla ki ye 0 hme 1st col mae milta hai to hum col = false kr denge
+
+![Screenshot Capture - 2022-06-18 - 09-05-39](https://user-images.githubusercontent.com/35686407/174421392-aad8bd5d-f674-43ee-98c4-551e8a057d5f.png)
+
+- ye sb krne ke baad hum, piche se traverse krenge in all row , but for col >= 1 and check krenge ki koi ek 0 hai dummy mae ? if yes then 0 bna denge us position mae
+
+![Screenshot Capture - 2022-06-18 - 09-07-37](https://user-images.githubusercontent.com/35686407/174421424-374d72e3-9630-46b4-8b92-85541486602f.png)
+
+- ab jb hum 1st row mae pohchenge hme pta chlega ki (0,0) to 1 hai, to hum change nhi krenge 1st row ke last element ko,
+- and jb hum (0,0) pr pochenge , tb col = false ke krn hum use bhi 0 krdenge
+
+![Screenshot Capture - 2022-06-18 - 09-11-36](https://user-images.githubusercontent.com/35686407/174421543-22cbdcb8-da67-4360-abf5-20e77a30ed62.png)
+
+- Hum piche se isliye traverse kre hai kyuki, agar aage se krte to dummy row, and col update ho jate, but vesa nhi krna hia ,
+- pehle dummy row col ko chordkr baki ke update krne hai baad mae dummy.
+
