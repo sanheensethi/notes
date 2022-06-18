@@ -464,3 +464,53 @@ void rotate(vector<vector<int>>& matrix) {
     }
 }
 ```
+## 8. Merge Intervals 
+
+#### Approach 1: Brute Force
+- First check whether the array is sorted or not.
+- If not sort the array.
+- Now linearly iterate over the array and then check for all of its next intervals whether they are overlapping with the interval at the current index. 
+- Take a new data structure and insert the overlapped interval. 
+- If while iterating if the interval lies in the interval present in the data structure simply continue and move to the next interval.
+- TC : O(NlogN)+O(N*N). O(NlogN) for sorting the array, and O(N*N) because we are checking to the right for each index which is a nested loop.
+- SC : O(N), as we are using a separate data structure.
+
+#### Approach 2: Optimal
+
+- sort the intervals
+- take ds = interval[0]
+- traverse inteval
+- if current idx is able to merge with ds , then merge it and go to next interval
+- if not possible then, push the ds in ans, and change the ds to current idx
+- in last push the ds as last element left
+- then return ans
+
+> Intuation:  Since we have sorted the intervals, the intervals which will be merging are bound to be adjacent. We kept on merging simultaneously as we were traversing through the array and when the element was non-overlapping we simply inserted the element in our data structure.
+
+- we can do this problem with stack also, by taking ds as stack and comparing with stack top.
+
+```cpp
+vector<vector<int>> merge(vector<vector<int>>& intervals) {
+    vector<vector<int>> ans;
+    vector<int> ds(2);
+
+    int n = intervals.size();
+
+    sort(intervals.begin(),intervals.end());
+    ds = intervals[0];
+
+    for(int i = 0; i < n; i++){
+
+        if(intervals[i][0] >= ds[0] && intervals[i][0] <= ds[1]){
+            // merge
+            ds[1] = max(ds[1],intervals[i][1]);
+        }else{
+            ans.push_back(ds);
+            ds = intervals[i];
+        }
+    }
+
+    ans.push_back(ds);
+    return ans;
+}
+```
