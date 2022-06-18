@@ -386,3 +386,37 @@ void sortColors(vector<int>& arr) {
         
     }
 ```
+## 6. Minimum Time to Buy and Sell Stock
+
+#### Approach 1: Brute Force:
+
+- use 2 loops
+- start i = 0 to n - 1
+- start j = i to n-1
+- if arr[i] < arr[j], profit = max(profit,arr[j] - arr[i])
+- TC : O(n^2)
+- SC : O(1)
+
+
+#### Apprach 2: Optimal Approach
+
+- hme pta hai ki profit max tbhi hoga agar hum min stock buy krenge
+- to left ka minimum rkhe and current element if bda hai to hum uske sath difference nikale
+- if abhi vala profit bda aaya to update krdo ans vale profit ko
+- taking minimum element while runnning, which is the minimum of left from current element
+
+![Screenshot Capture - 2022-06-18 - 15-49-06](https://user-images.githubusercontent.com/35686407/174433455-0d5f040a-6346-4b2b-9022-499c5544684b.png)
+
+- jb hum 3 pr hai , to left ka mini = 1 hai, ese left ka min 1 rhega and hum aage bhdte jayenge and profit calc krte jayenge.
+
+```cpp
+int maxProfit(vector<int>& prices) {
+    int profit = 0;
+    int mini = prices[0];
+    for(int i = 0; i < prices.size(); i++){
+        mini = min(mini,prices[i]);
+        profit = max(profit,prices[i] - mini);
+    }
+    return profit;
+}
+```
