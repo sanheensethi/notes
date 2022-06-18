@@ -489,6 +489,9 @@ void rotate(vector<vector<int>>& matrix) {
 
 - we can do this problem with stack also, by taking ds as stack and comparing with stack top.
 
+![take U forward - Merge Intervals Leetcode Problem-6 Brute-Optimal C++Java  2JzRBPFYbKE - 853x480 - 6m31s](https://user-images.githubusercontent.com/35686407/174434732-b1ae70b0-55e7-4c8d-96e2-2dacf474a927.png)
+
+
 ```cpp
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
     vector<vector<int>> ans;
