@@ -56,6 +56,34 @@ void setZeroes(vector<vector<int>>& matrix) {
 
 ![Screenshot Capture - 2022-06-18 - 08-57-12](https://user-images.githubusercontent.com/35686407/174421131-c3ac86f5-8ded-4d48-ad64-8dba9ac3dfe0.png)
 
+```cpp
+void setZeroes(vector<vector<int>>& matrix) {
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+
+    vector<int> rowA(rows,-1);
+    vector<int> colA(cols,-1);
+
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            if(matrix[i][j] == 0){
+                rowA[i] = 0;
+                colA[j] = 0;
+            }
+        }
+    }
+
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols ; j++){
+            if(rowA[i] == 0 || colA[j] == 0){
+                matrix[i][j] = 0;
+            }
+        }
+    }
+
+}
+```
+
 #### Most Optimal Approach
 
 - we take 2 dummy array as above inside the matrix
@@ -85,4 +113,30 @@ void setZeroes(vector<vector<int>>& matrix) {
 - Hum piche se isliye traverse kre hai kyuki, agar aage se krte to dummy row, and col update ho jate, but vesa nhi krna hia ,
 - pehle dummy row col ko chordkr baki ke update krne hai baad mae dummy.
 
-> More Clear: Col = TRUE (flag) ye bta rha hai ki 1st col ko 0 krna hai ya nhi.
+> More Clear: Col = TRUE (flag) ye bta rha hai ki 1st col ko 0 krna hai ya nhi, mtlb 1st col mae 0 exist krta hai ye nhi
+
+```cpp
+void setZeroes(vector<vector<int>>& matrix) {
+    bool colFlag = false; // there is no zero in dummy col
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+
+    for(int i = 0; i < rows; i++){
+        if(matrix[i][0] == 0) colFlag = true; // it means first col have 0
+        for(int j = 1; j < cols; j++){
+            if(matrix[i][j] == 0){
+                matrix[i][0] = matrix[0][j] = 0;
+            }
+        }
+    }
+
+    for(int i = rows-1; i >= 0 ; i--){
+        for(int j = cols-1; j >= 1; j--){
+            if(matrix[i][0] == 0 || matrix[0][j] == 0){
+                matrix[i][j] = 0;
+            }
+        }
+        if(colFlag == true) matrix[i][0] = 0;
+    }
+}
+```
