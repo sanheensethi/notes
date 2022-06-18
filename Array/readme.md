@@ -519,3 +519,56 @@ vector<vector<int>> merge(vector<vector<int>>& intervals) {
 ```
 ## 9. Merge Two Sorte Arrays in O(1) Space
 
+## 10. Find the Dublicate Number
+
+- Assuming only 1 dublicate is there
+
+#### Appraoch 1 : Sort, and find dublicate
+
+![Screenshot Capture - 2022-06-18 - 23-03-07](https://user-images.githubusercontent.com/35686407/174450023-c542481e-af84-4926-868e-12e6fc006c0c.png)
+
+- TC : O(nLogn)
+- SC : O(1)
+
+#### Approach 2: Frequency Array / Map
+
+![Screenshot Capture - 2022-06-18 - 23-04-54](https://user-images.githubusercontent.com/35686407/174450087-f8ba5ae9-60e4-4f70-aa15-65ea5d182ad0.png)
+
+TC : O(n)
+SC : O(n)
+
+#### Approach 3: Linked List Cycle Method
+
+- On first we have 2, then at 2nd index we have 9, then at 9th index we have 1, then at 1st index we have 5
+- and hum ese hi values ko index maan kr aage bhad rhe hai , isse ek cycle create hoga is number dublicate hoga to,
+- ab hum LinKed List jese slow and fast pointer move kr rhe hai
+- We have to find the stating node of linked list cycle
+- Move Slow and fast Pointer by 1 and 2 speed respectively
+- ab move krne ke baad jb vo meet kre, fast ko first position pr rkho and dobara chlao by 1 speed both, 
+- jb mile vhi dublicate number hai.
+
+> Intuation: if there is a dublicate, then its sure that it have a cycle.
+
+![take U forward - Find the duplicate number Leetcode C++ and Java Brute-Better-Optimal  32Ll35mhWg0 - 1536x864 - 4m38s](https://user-images.githubusercontent.com/35686407/174450208-c568180a-22be-46d4-91a1-f02cefe0c228.png)
+
+![take U forward - Find the duplicate number Leetcode C++ and Java Brute-Better-Optimal  32Ll35mhWg0 - 1435x807 - 5m03s](https://user-images.githubusercontent.com/35686407/174450211-f6325e93-a6b2-4d1e-a525-1f116469c593.png)
+
+```cpp
+int findDuplicate(vector<int>& nums) {
+    int slow = nums[0];
+    int fast = nums[0];
+
+    do{
+        slow = nums[slow];
+        fast = nums[nums[fast]];
+    }while(slow != fast);
+
+
+    fast = nums[0];
+    while(slow != fast){
+        slow = nums[slow];
+        fast = nums[fast];
+    }
+    return slow;
+}
+```
