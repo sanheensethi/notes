@@ -339,4 +339,50 @@ int maxSubArray(vector<int>& nums) {
     2. else local_max = a[i]
     3. global_max = max(global_max, local_max)
 
+## 5. Sort 0's 1's and 2's (Dutch National Flag Algo)
 
+#### 3 Way Quick Sort
+
+![take U forward - Sort an array of 0's 1's   2's Leetcode C++ and Java Brute-Better-Optimal  oaVa-9wmpns - 885x498 - 6m51s](https://user-images.githubusercontent.com/35686407/174431768-5fc65aab-5172-4396-a237-3bb5ffb36655.png)
+
+> ALGORITHM -
+
+- Take three-pointers, namely - low, mid, high.
+- We use low and mid pointers at the start, and the high pointer will point at the end of the given array.
+
+
+> Idea : Left of low : all are 0's , Right of High : all are 2's and between low and high : all are 1's
+
+a) arr[l..i] elements less than pivot.
+b) arr[i+1..j-1] elements equal to pivot.
+c) arr[j..r] elements greater than pivot.
+
+In our Quetion we take pivot = 1
+
+> CASES -
+
+- array [mid] = 0 : swap arr[mid] and arr[low] , low++ , mid++
+- array [mid] = 2 : swap arr[mid] and arr[high], high--
+- array [mid] = 1 : mid++
+
+> `NOTE` : Jarori nhi hai ki hmesha 0 1 2 hi honge, 2 3 4 , 5 6 7 , any 3 repeated numbers ho skte hai , e.g. {1, 4, 2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4}
+
+```cpp
+void sortColors(vector<int>& arr) {
+        int low = 0,mid = 0,high = arr.size()-1;
+        
+        while(mid <= high){
+            if(arr[mid] == 0){
+                swap(arr[low],arr[mid]);
+                mid++;
+                low++;
+            }else if(arr[mid] == 1){
+                mid++;
+            }else if(arr[mid] == 2){
+                swap(arr[high],arr[mid]);
+                high--;
+            }
+        }
+        
+    }
+```
