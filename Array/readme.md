@@ -140,3 +140,63 @@ void setZeroes(vector<vector<int>>& matrix) {
     }
 }
 ```
+## 2. Pascal Triagnle [Leetcode](https://leetcode.com/problems/pascals-triangle/)
+
+#### Variation 1: Generate Pascal Triangle (N is given)
+
+![PascalTriangleAnimated2](https://user-images.githubusercontent.com/35686407/174424122-3260e741-d26c-4a4d-aca6-abff01448516.gif)
+
+- Observe Pattern :
+    - n = 1 , 1 element
+    - n = 2 , 2 element, and so on.
+    - 1st and last element of each row is 1
+    - bich vale element upar vale ka sum left and right se
+    - therefore, in code hum pehle (i+1) size ka vector bnayenge , because of 0 based indexing
+    - ab, first and last positon pr 1 rkh denge
+    - and bchi hui position mae jb n=3 hoga tb dikhegi ye positions, `vec[j] = matrix[i-1][j-1] + matrix[i-1][j]` krenge
+
+```cpp
+vector<vector<int>> generate(int numRows) {
+    vector<vector<int>> mat;
+
+    for(int i = 0; i < numRows; i++){
+        int size = i+1;
+        vector<int> vec(i+1);
+
+        vec[0] = vec[i] = 1;
+
+        for(int j = 1; j < i; j++){
+            vec[j] = mat[i-1][j-1] + mat[i-1][j];
+        }
+
+        mat.push_back(vec);
+    }
+
+    return mat;
+}
+```
+
+#### Variation 2: N/R and C dia hoga
+
+- Row and Col number dia hoga, hme find krna hai vo element ki value,
+- direct formula : C(R-1,C-1) , combination ~ permutation vala
+
+![Screenshot Capture - 2022-06-18 - 11-00-05](https://user-images.githubusercontent.com/35686407/174424302-5ff36bb4-1d16-45eb-a05c-d0c5e53684fe.png)
+
+#### Variation 3: N/R dia hua hai and kha hai puri row print kro [Question](https://leetcode.com/problems/pascals-triangle-ii/)
+
+`Approach 1:` Compute factorial for every column 
+- It is very costly, worst TC : O(N^2)
+
+`Approach 2:` 
+
+![take U forward - PASCAL Triangle Leetcode C++ Java 3 problems asked in Interviews related to Pascal discussed  6FLvhQjZqvM - 853x480 - 5m49s](https://user-images.githubusercontent.com/35686407/174424591-243752b5-10b1-44e4-87b2-18e155651b3d.png)
+
+> Technique to find C(N,R) for every column
+
+- See above, if Row = 4, we have to generate,
+- if col = 0, then C(4,0) = 1
+- if col = 1, then C(4,1) = 4 = 4/1
+- if col = 2, then C(4,2) = (4x3)/(1x2) = (4/1) x (3/2)
+- if col = 3, then C(4,3) = (4x3x2)/(1x2x3) = (4x3)/(1x2) x (2/3)
+- see the pattern, when col = 2, then we multiply col = 2 in denomenator, and prev-val - 1 = 4-1 = 3 in numerator
