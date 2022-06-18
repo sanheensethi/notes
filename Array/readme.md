@@ -448,4 +448,19 @@ int maxProfit(vector<int>& prices) {
 
 ![Screenshot Capture - 2022-06-18 - 15-55-06](https://user-images.githubusercontent.com/35686407/174433651-488ce2c0-554f-4e2e-aeb3-6e7460b315d5.png)
 
+```cpp
+void Transporse(vector<vector<int>>& matrix){
+    for(int i = 0; i < matrix.size(); i++){
+        for(int j = 0; j < i ; j++){
+            swap(matrix[i][j] , matrix[j][i]);
+        }
+    }    
+}
 
+void rotate(vector<vector<int>>& matrix) {
+    Transporse(matrix);
+    for(int i = 0; i < matrix.size(); i++){
+        reverse(matrix[i].begin(),matrix[i].end());
+    }
+}
+```
