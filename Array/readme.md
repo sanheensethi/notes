@@ -422,3 +422,30 @@ int maxProfit(vector<int>& prices) {
     return profit;
 }
 ```
+
+## 7. Rotate Matrix by 90 degree
+
+![Screenshot Capture - 2022-06-18 - 15-51-07](https://user-images.githubusercontent.com/35686407/174433518-b7ec510a-c209-4191-8cc0-7794d43ce80d.png)
+
+#### Approach 1 : Brute
+
+- Take 1 more matrix,
+- take 1st row, put in last col
+- take 2nd row , put in 2nd last col ans so on
+- TC : O(N^2)
+- Sc : O(N^2)
+
+#### Appraoch 2 : Optimal , Inplace
+
+- Step 1: Transporse Matrix , ROWS <=> COLS
+- Step 2: Reverse Every Row of the Resultant of Step 1 Matrix
+
+![Screenshot Capture - 2022-06-18 - 15-53-06](https://user-images.githubusercontent.com/35686407/174433610-bb4b87c6-954d-4756-9e4f-e705a0b6761e.png)
+
+> Intuation: 7 4 1 in result is reversal of the 1st col , 8 5 2 in result is reversal of the 2nd col, so to get 1st col as row, we transpose and then reverse it
+
+- Transporse:
+
+![Screenshot Capture - 2022-06-18 - 15-55-06](https://user-images.githubusercontent.com/35686407/174433651-488ce2c0-554f-4e2e-aeb3-6e7460b315d5.png)
+
+
