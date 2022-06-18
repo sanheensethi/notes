@@ -85,3 +85,4 @@ void setZeroes(vector<vector<int>>& matrix) {
 - Hum piche se isliye traverse kre hai kyuki, agar aage se krte to dummy row, and col update ho jate, but vesa nhi krna hia ,
 - pehle dummy row col ko chordkr baki ke update krne hai baad mae dummy.
 
+> More Clear: Col = TRUE (flag) ye bta rha hai ki 1st col ko 0 krna hai ya nhi.
