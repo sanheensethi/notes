@@ -408,6 +408,8 @@ void sortColors(vector<int>& arr) {
 ![Screenshot Capture - 2022-06-18 - 15-49-06](https://user-images.githubusercontent.com/35686407/174433455-0d5f040a-6346-4b2b-9022-499c5544684b.png)
 
 - jb hum 3 pr hai , to left ka mini = 1 hai, ese left ka min 1 rhega and hum aage bhdte jayenge and profit calc krte jayenge.
+- TC : O(n)
+- SC : O(1)
 
 ```cpp
 int maxProfit(vector<int>& prices) {
