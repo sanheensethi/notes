@@ -208,3 +208,41 @@ vector<vector<int>> generate(int numRows) {
 
 ![Screenshot Capture - 2022-06-18 - 11-13-00](https://user-images.githubusercontent.com/35686407/174424637-28330e68-81e3-4d28-92be-4a141821ca15.png)
 
+```cpp
+vector<int> getRow(int n) {
+   int k = n+1;
+    vector<int> ans;
+
+    long long int res = 1;
+    for(int i = 0; i < k; i++){
+        ans.push_back((int)res);
+        res = res * (n-i);
+        res = res / (i+1);
+    }
+    return ans;
+}
+```
+
+## 3. Next Permutation
+
+![take U forward - NEXT PERMUTATION Leetcode Know the Intuition behind the Algorithm C++ Java Brute-Optimal  LuLCLgMElus - 853x480 - 7m19s](https://user-images.githubusercontent.com/35686407/174426073-5f360bf9-087e-404d-9f69-6fe0a37dd753.png)
+
+- Algo:
+    1. Find an index such that : a[i] < a[i+1], in reverse Let it be idx1
+    2. Find an index such that : a[idx1] < a[i], in reverse Let it be idx2
+    3. Swap idx1 , idx2
+    4. reverse idx1+1 to end
+
+`Intuation`
+
+Eample : 1 3 5 4 2
+
+![Screenshot Capture - 2022-06-18 - 12-01-48](https://user-images.githubusercontent.com/35686407/174425969-57c51ba8-78c3-42d0-b95a-217ead6e05c8.png)
+
+- From , behind, its always in inc order, if we take case 1 2 3 , 3 is the number which is itself in inc order.
+- So, have to find the next permutation,
+- hum 3 se next greater dhundenge, 3 ko dhudne ke liye, hme sbse pehle 3 ki position chahiye, jo hogi , 3 < 5 vali ~ a[i] < a[i+1] 
+- ab hum 3 se just bda element dhundenge , taki 2nd element of number hmara bda ho, iske liye dobara traverse krenge piche se and find 4 first number > 3
+- ab indono ko jb swap krenge hmare paas bnega 1 4 5 3 2
+- ab swap krne ke baad agar hum 4 se aage 5 to 2 reverse krde to vo inc order mae ho jayega it becomes 1 4 2 3 5 , which is the next permutation.
+
