@@ -606,6 +606,46 @@ int findDuplicate(vector<int>& nums) {
 TC : O(N)
 SC : O(1)
 
+```cpp
+vector<int> Solution::repeatedNumber(const vector<int> &Arr) {
+    #define debug(x) cout<<#x<<":"<<x<<endl;
+    long long int A,B;
+    long long int Asum = 0;
+    long long int ASqSum = 0;
+    for(long long int val:Arr){
+        Asum += val;
+        ASqSum += (val*val);
+    }
+    long long int n = Arr.size();
+    
+    long long int sum = (n*(n+1)) / 2;
+    long long int sqsum = (n*(n+1)*(2*n + 1)) / 6;
+    
+    long long int x_minus_y = sum - Asum;
+    long long int xsq_minus_ysq = sqsum - ASqSum;
+    
+    long long int x_plus_y = (xsq_minus_ysq)/(x_minus_y);
+    
+    A = (x_plus_y + x_minus_y) / 2;
+    B = (x_plus_y-x_minus_y) / 2;
+    // debug(A);
+    // debug(B);
+    long long int repeated,missing;
+    for(int i = 0; i < n; i++){
+        if(Arr[i] == (int)A){
+            repeated = A;
+            missing = B;
+            return {repeated,missing};
+        }
+        if(Arr[i] == (int)B){
+            repeated = B;
+            missing = A;
+            return {repeated,missing};
+        }
+    }
+}
+```
+
 #### Approach 3: XOR Property
 
 - Take XOR of Array, Initialize XOR = 0
