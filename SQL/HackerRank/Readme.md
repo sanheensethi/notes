@@ -468,13 +468,24 @@ ROUND(SQRT(
 ),4) FROM STATION;
 ```
 
-## 31. INNER JOIN [Question](https://www.hackerrank.com/challenges/asian-population/problem?isFullScreen=true)
+## 31. INNER JOIN 
 
 > Inner JOIN
+
+1. [Question](https://www.hackerrank.com/challenges/asian-population/problem?isFullScreen=true)
 
 ```sql
 SELECT SUM(c.POPULATION) FROM CITY as c
 INNER JOIN COUNTRY as CT
 ON c.COUNTRYCODE = CT.CODE
 WHERE CT.CONTINENT = "Asia";
+```
+
+2. [Question](https://www.hackerrank.com/challenges/african-cities/problem?isFullScreen=true)
+
+```sql
+SELECT CITY.NAME FROM CITY
+INNER JOIN COUNTRY
+ON CITY.COUNTRYCODE = COUNTRY.CODE
+WHERE COUNTRY.CONTINENT = "Africa";
 ```
