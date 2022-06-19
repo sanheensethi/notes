@@ -703,7 +703,7 @@ SC : O(1)
 TC : O(N x LogM)
 SC : O(1)
 
-#### Approach 3 : Optimal Appraoch
+#### Approach 3 : Optimal Appraoch (For GFG)
 
 - we use property, row wise sorted and col wise sorted
 - target = 25
@@ -729,3 +729,120 @@ SC : O(1)
 ```cpp
 
 ```
+
+#### Approach 4 : Optimal Appraoch (for LeetCode)
+
+- 10 > 7
+
+![Screenshot Capture - 2022-06-19 - 15-07-29](https://user-images.githubusercontent.com/35686407/174474828-775a12cf-fa35-4688-adfe-f46f047bee67.png)
+
+- Easy do binary search
+
+1. Using Extra Space, all elements are sorted, do with binary search
+    - TC : O(log_(mxn))
+    - SC : O(mxn)
+  
+2. Binary Search first to find the row ~ `target >= m[mid][0] && target <= m[mid][cols-1]` , then binary search to find the col , simple binary search
+    - TC : O(log M x log N)
+    - Sc : O(1) 
+
+```cpp
+int findRow(vector<vector<int>>& matrix,int target){
+        int low = 0;
+        int high = matrix.size()-1;
+        int n = matrix[0].size()-1;
+        while(low <= high){
+            int mid = (low + high)>>1;
+            if(matrix[mid][n] >= target && matrix[mid][0] <= target){
+                return mid;
+            }else if(matrix[mid][n] < target){
+                low = mid+1;
+            }else if(matrix[mid][n] > target){
+                high = mid-1;
+            }
+        }
+        return -1;
+    }
+    
+    bool findCol(vector<int>& vec,int target){
+        int low = 0;
+        int high = vec.size()-1;
+        while(low <= high){
+            int mid = (low+high) >> 1;
+            if(vec[mid] == target){
+                return true;
+            }else if(vec[mid] > target){
+                high = mid-1;
+            }else if(vec[mid] < target){
+                low = mid+1;
+            }
+        }
+        return false;
+    }
+    
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if(matrix.size()==1 && matrix[0].size()==1){
+            return matrix[0][0] == target;
+        }
+        int row = findRow(matrix,target);
+        debug(row);
+        if(row == -1){
+            return false;
+        }
+        debug(row);
+        bool ans = findCol(matrix[row],target);
+        return ans;
+    }
+```
+
+> 3. Manually write index/ Imagenary Index
+
+![Screenshot Capture - 2022-06-19 - 15-08-15](https://user-images.githubusercontent.com/35686407/174474847-56edd192-94e1-420c-977c-bd7803e8144c.png)
+
+![Screenshot Capture - 2022-06-19 - 15-09-28](https://user-images.githubusercontent.com/35686407/174474880-a3e36688-0b07-4784-8024-f41de6c12ad9.png)
+
+- From mid, if row = mid%col and col = mid/col
+
+![take U forward - Search in 2D-MATRIX Leetcode GFG C++ Java Brute-Better-Better-Optimal  ZYpYur0znng - 797x498 - 11m30s](https://user-images.githubusercontent.com/35686407/174475077-163638a6-4a29-45bc-a6d4-7337eab3ddc9.png)
+
+- TC : O(log_2(N x M))
+- SC : O(1)
+
+```cpp
+
+```
+
+## 14. POW(X,N)
+
+![Screenshot Capture - 2022-06-19 - 15-16-47](https://user-images.githubusercontent.com/35686407/174475232-4876a34e-4718-4e02-9470-545c1a99aa21.png)
+
+- Can value of N is negative ?
+- N is integer
+
+#### Brute Force 
+
+- Looping from 1 to n and keeping a ans(double) variable. Now every time your loop runs, multiply x with ans. At last, we will return the ans.
+
+> For Negative Number
+
+![Screenshot Capture - 2022-06-19 - 15-19-02](https://user-images.githubusercontent.com/35686407/174475305-078feb1e-ead6-460b-83d3-19b2b97819dc.png)
+
+Limitation : 
+
+![Screenshot Capture - 2022-06-19 - 15-19-37](https://user-images.githubusercontent.com/35686407/174475335-2646821e-8553-4586-9a7c-c99ae7f7aa26.png)
+
+- if negative n is given INT_MIN, and if you make it positive, OVERFLOW ERROR EDGE CASE, Take long or long long
+
+TC : O(n)
+SC : O(1)
+
+#### Optimal (Binary Exponention)
+
+![Screenshot Capture - 2022-06-19 - 15-22-28](https://user-images.githubusercontent.com/35686407/174475452-f978d8a8-c703-41a8-86d6-407f4cdcfdd9.png)
+
+![Screenshot Capture - 2022-06-19 - 15-23-58](https://user-images.githubusercontent.com/35686407/174475509-57e46306-d14a-46b9-b1a8-8a972e6b429c.png)
+
+![Screenshot Capture - 2022-06-19 - 15-24-16](https://user-images.githubusercontent.com/35686407/174475520-33725f74-6922-4580-843f-4a9cda66d168.png)
+
+- n == 0, return 1
+- TC : log_2(N)
