@@ -988,3 +988,56 @@ SC : O(1)
 
 - n == 0, return 1
 - TC : log_2(N)
+
+> Recursive:
+
+```cpp
+double pow(double x,int n){
+    if(n == 0) return 1.0;
+
+    if((n&1)){
+        return x*pow(x,n-1);
+    }else{
+        double p = pow(x,n/2);
+        return p*p;
+    }
+}
+
+double myPow(double x, int n) {
+
+    if(x == 1) return x;
+    if(x == -1) return (n&1) ? -1 : 1;
+
+    if(n <= INT_MIN || n >= INT_MAX) return 0;
+
+    if(n > 0) return pow(x,n);
+
+    return 1.0/pow(x,-n);
+
+}
+```
+
+> Iterative:
+
+- n ~ odd :  ans*x ; n = n-1 
+- n ~ even : x = x*x ; n = n/2
+
+```cpp
+double pow(double x,int n){
+    if(n == 0) return 1;
+
+    double res = 1.0;
+    while(n!=0){
+        if((n&1)){
+            // odd
+            res = res * x;
+            n = n-1;
+        }else{
+            // even
+            x = x * x;
+            n = n/2;
+        }
+    }
+    return res;
+}
+```
