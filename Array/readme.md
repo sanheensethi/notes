@@ -721,7 +721,64 @@ SC : O()
 ![take U forward - COUNT INVERSIONS in an ARRAY Leetcode C++ Java Brute-Optimal  kQ1mJlwW-c0 - 1536x864 - 11m26s](https://user-images.githubusercontent.com/35686407/174474269-491b1800-d500-45fe-9f21-76eb2af15538.png)
 
 ```cpp
+#include <bits/stdc++.h> 
+#define debug(x) cout<<#x<<":"<<x<<endl;
+long long merge(long long* arr,int n,int start,int mid,int end){
+    int N = end-start+1;
+    long long B[N];
+    int left = start;
+    int leftEnd = mid;
+    int right = mid+1;
+    int rightEnd = end;
+ 
+    int k = 0;
+    long long inversion = 0;
+    while(left <= leftEnd && right <= rightEnd){
+        if(arr[left] <= arr[right]){
+            B[k] = arr[left];
+            left++;
+            k++;
+        }else if(arr[right] < arr[left]){
+            B[k] = arr[right];
+            k++;
+            right++;
+            inversion = inversion + (leftEnd - left + 1);
+        }
+    }
+  
+    while(left <= leftEnd){
+        B[k] = arr[left];
+        k++;
+        left++;
+    }
+    
+    while(right <= rightEnd){
+        B[k++] = arr[right++];
+    }
+    
+    k = 0;
+    for(int i = start;i <= end;i++){
+        arr[i] = B[k++];
+    }
+    return inversion;
+}
 
+long long mergeSort(long long* arr,int start,int end,int n){
+    if(start < end){
+        long long inversion = 0;
+        int mid = start + (end-start) / 2;
+        inversion = inversion + mergeSort(arr,start,mid,n);
+        inversion = inversion + mergeSort(arr,mid+1,end,n);
+        inversion = inversion + merge(arr,n,start,mid,end);
+        return inversion;
+    }else{
+        return 0;
+    }
+}
+
+long long getInversions(long long *arr, int n){
+    return mergeSort(arr,0,n-1,n);
+}
 ```
 
 ## 13. Search in a 2D Matrix
