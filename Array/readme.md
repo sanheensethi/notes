@@ -572,3 +572,112 @@ int findDuplicate(vector<int>& nums) {
     return slow;
 }
 ```
+## 11. Repeat and Missing Number from array
+
+- Find missing and repeating number
+
+![Screenshot Capture - 2022-06-19 - 14-02-21](https://user-images.githubusercontent.com/35686407/174472643-8b4aa926-dda9-419a-a995-5a661181c8c2.png)
+
+#### Approach 1: Freq Array
+- Number is between 1 to 6 as array size is 6
+- Count Freq, if freq > 2, it's repeateded and if freq = 0 , that is missing number
+- TC : O(N) + O(N) = O(2N)
+- SC : O(N)
+
+![Screenshot Capture - 2022-06-19 - 14-03-59](https://user-images.githubusercontent.com/35686407/174472695-8ba8257e-b33a-4727-868c-e55fbdb2b3b0.png)
+
+<!-- #### Appraoch 2: Negation of Index (In Interview, avoid this appraoch) -->
+
+#### Approach 2:
+
+- Sum from 1 to N = n(n+1)/2
+- Sum from 1^2 to N^2 = (n)(n+1)(2n+1)/6
+- Now, Sum 1 to N - Array Sum
+- Sum 1^2 to N^2 - Array Square Element Sum
+- `X missing Number , Y repeating Number then X - Y = S` S is summition of 1 to N
+-  `X^2 - Y^2 = S^2`
+
+![take U forward - Find the Missing and Repeating Number GFG C++ and Java Brute-Better-Optimal-Optimal  5nMGY4VUoRY - 885x498 - 4m36s](https://user-images.githubusercontent.com/35686407/174472840-5ca01407-c651-4e3e-8bbb-02bce047c96a.png)
+
+![take U forward - Find the Missing and Repeating Number GFG C++ and Java Brute-Better-Optimal-Optimal  5nMGY4VUoRY - 853x480 - 5m42s](https://user-images.githubusercontent.com/35686407/174472869-99a00177-f3df-4fe1-824e-6c3f13f9e5b9.png)
+
+> Limitations : As using square, Summition might Exceed.
+
+TC : O(N)
+SC : O(1)
+
+#### Approach 3: XOR Property
+
+- Take XOR of Array, Initialize XOR = 0
+- Then XOR the result with 1 to N number we get some result
+- XOR result is the result = X ^ Y , X = missing and Y is repeating
+
+Intuation: XOR ARRAY and 1 TO N, you will find X ^ Y = Number, X = missing and Y = repeating
+
+![take U forward - Find the Missing and Repeating Number GFG C++ and Java Brute-Better-Optimal-Optimal  5nMGY4VUoRY - 885x498 - 7m28s](https://user-images.githubusercontent.com/35686407/174473005-445a2abe-c33d-4f67-ac2d-510e6579b528.png)
+
+- Now we seperate the numbers,
+- we are sure that both numbers are different
+- result - 4 means 1 0 0 
+- so either x = 0/1 as first bit from right , or y = 1/0 first bit from right
+- So we are sure about that we have some index where bits are different.
+- Task is to find set bit rightmost in 4, we know that in result = 4, rightmost set bit is on 2nd index, 
+- now we will traverse the array and find whose 2nd bit is set if set then put in one bucket , if not then put it in bucket 2
+- Linearly traverse 1 to 6 and again find the 2nd set bit as in 4 2nd bit is set, we put that numbers in bucket.
+- then find the xor of buckets,
+- one give missing number and one gives repeated number.
+- how to find which one is which ? , traverse array again and find.
+
+TC : O()
+SC : O()
+
+![take U forward - Find the Missing and Repeating Number GFG C++ and Java Brute-Better-Optimal-Optimal  5nMGY4VUoRY - 885x498 - 11m49s](https://user-images.githubusercontent.com/35686407/174473394-ebaeac6b-9a6f-4114-9e0f-b496962ea093.png)
+
+![take U forward - Find the Missing and Repeating Number GFG C++ and Java Brute-Better-Optimal-Optimal  5nMGY4VUoRY - 853x480 - 13m14s](https://user-images.githubusercontent.com/35686407/174473397-123100b1-3bdd-4a69-bded-07c25f8f6b48.png)
+
+```cpp
+
+```
+
+## 12. Inversion of An Array
+
+![Screenshot Capture - 2022-06-19 - 14-29-09](https://user-images.githubusercontent.com/35686407/174473476-741b4ba2-73de-42ef-a8f3-733b46a418dd.png)
+
+![Screenshot Capture - 2022-06-19 - 14-29-28](https://user-images.githubusercontent.com/35686407/174473493-7b7d8987-ee69-470b-b126-8e2936239b3c.png)
+
+#### Approach 1: Brute Force
+
+
+#### Approach 2: Merge Sort Technique
+
+![take U forward - COUNT INVERSIONS in an ARRAY Leetcode C++ Java Brute-Optimal  kQ1mJlwW-c0 - 885x498 - 3m18s](https://user-images.githubusercontent.com/35686407/174473593-65482bf7-6374-4554-afb5-4e086ab1990b.png)
+
+- While Meging we modify merge algp
+
+![Screenshot Capture - 2022-06-19 - 14-36-39](https://user-images.githubusercontent.com/35686407/174473735-a22cc3f3-af0c-4204-9d08-fb88576884bb.png)
+
+- while merging 5 and 3, we write 3 and 5, it means 3 is the jth index element which comes first before 5, so every thing on the right of 5 will be greater then 3
+- so 3 can be j , and everything on the right of 5 can also be pairs
+- here 5,3 is a pair we get 1 inversion
+
+- If you are taking something from the right, so every number right from 3 can make pair with 2
+
+![Screenshot Capture - 2022-06-19 - 14-40-15](https://user-images.githubusercontent.com/35686407/174473873-b7e2d3ca-19b9-4b94-868b-de5f0a812e17.png)
+
+![take U forward - COUNT INVERSIONS in an ARRAY Leetcode C++ Java Brute-Optimal  kQ1mJlwW-c0 - 853x480 - 8m42s](https://user-images.githubusercontent.com/35686407/174473929-5907b79e-1751-4bfe-89ae-8a28ec9fce05.png)
+
+> Note: Jb bhi hum right mae se utha rhe hai merge sort mae se, to jo left vale array ka pointer pda hai, vo or usse aage vale sare pair bnayenge, because right vale index j hai and left vale array ke i hai.
+
+![pasted image 0 (1)](https://user-images.githubusercontent.com/35686407/174473981-0d8871da-46ef-49cc-bf8d-1cd06baf0bac.png)
+
+- The single element is always sorted after slicing to the bottom and getting them on an element as an array. Before returning the merged array with sorted numbers, we will count the inversion from there. How?
+- 1st condition i < j above in the image, you can see that the right element’s index is always greater, so while computing the inversion, we should take care only 2nd condition, which is if i < j then A[j] < A[i] to make a pair and add one to the count.
+- In the above example i < j as i is the 5’s index and j is 3’s index and (A[i] == 5) > (A[j] == 3) so we got our first inversion pair (5,3) after that merge then into one array [3,5] and return it for further computations now lets take another example:
+- [2,3,5] and [1,4] and count = 3. How to calculate it further? 
+- Compare elements in 1st array with the 2nd array’s all elements if 1’s array’s element is greater than 2’s array then we will count it as inversion pair as 1st condition for inversion will always satisfy with right arrays. 2 > [1], 3 > [1], 5 > [1,4] so we will get 4 inversion pairs from this. and total inversion pair from [5,3,2,1,4] is 7.
+
+![pasted image 0](https://user-images.githubusercontent.com/35686407/174473963-a24b8bd4-6140-4b10-b88f-834865f43b2c.png)
+
+```cpp
+
+```
