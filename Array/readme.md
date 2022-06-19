@@ -678,6 +678,54 @@ SC : O()
 
 ![pasted image 0](https://user-images.githubusercontent.com/35686407/174473963-a24b8bd4-6140-4b10-b88f-834865f43b2c.png)
 
+![take U forward - COUNT INVERSIONS in an ARRAY Leetcode C++ Java Brute-Optimal  kQ1mJlwW-c0 - 1536x864 - 11m26s](https://user-images.githubusercontent.com/35686407/174474269-491b1800-d500-45fe-9f21-76eb2af15538.png)
+
+```cpp
+
+```
+
+## 13. Search in a 2D Matrix
+
+> Leetcode Problem Statement , last Element of previous row is samller then first element of current row
+
+> GFS - Row and Col wise Sorted
+
+#### Brute Force : Linear Traversal
+
+TC : O(N x M)
+SC : O(1)
+
+#### Appraoch 2: Rows are Sorted,
+
+- Do binary search in each row, 
+- if found return true
+
+TC : O(N x LogM)
+SC : O(1)
+
+#### Approach 3 : Optimal Appraoch
+
+- we use property, row wise sorted and col wise sorted
+- target = 25
+- we know everything left from 40 is smaller and bottom its greater
+- move pointer to left, 25 < 30 , move pointer to left
+- 25 > 20, so move bottom
+- 25 > 21, move bottom
+- 25 < 29, move left
+- Print index or return true
+
+![Screenshot Capture - 2022-06-19 - 15-00-57](https://user-images.githubusercontent.com/35686407/174474603-fe30f568-84cc-4c14-9444-92dec3ba9cf9.png)
+
+- Target = 42
+- 42 > 40 , move down
+- 42 < 43 , move left
+- 42 > 36 , move down
+- 42 > 39 , move down
+- 42 < 70, move left
+- 42 < 60 , move left
+- 42 < 50 , move left
+- out of bound, no element found
+
 ```cpp
 
 ```
