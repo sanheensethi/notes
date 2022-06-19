@@ -823,8 +823,26 @@ SC : O(1)
 - 42 < 50 , move left
 - out of bound, no element found
 
-```cpp
+- TC : O(m + n) 
+- SC : O(1)
 
+```cpp
+int matSearch (int N, int M, int matrix[][M], int x)
+{
+    int row = 0;
+    int col = M-1;
+    
+    while(row < N && col >= 0){
+        if(matrix[row][col] == x){
+            return 1;
+        }else if(matrix[row][col] < x){
+            row++;
+        }else if(matrix[row][col] > x){
+            col--;
+        }
+    }
+    return 0;
+}
 ```
 
 #### Approach 4 : Optimal Appraoch (for LeetCode)
@@ -892,13 +910,13 @@ int findRow(vector<vector<int>>& matrix,int target){
     }
 ```
 
-> 3. Manually write index/ Imagenary Index
+> 3. Manually write index/ Imagenary Index [IMPORTANT] (Work in LeetCode)
 
 ![Screenshot Capture - 2022-06-19 - 15-08-15](https://user-images.githubusercontent.com/35686407/174474847-56edd192-94e1-420c-977c-bd7803e8144c.png)
 
 ![Screenshot Capture - 2022-06-19 - 15-09-28](https://user-images.githubusercontent.com/35686407/174474880-a3e36688-0b07-4784-8024-f41de6c12ad9.png)
 
-- From mid, if row = mid%col and col = mid/col
+- From mid, if `row = mid / Tcol` and `col = mid % Tcol`
 
 ![take U forward - Search in 2D-MATRIX Leetcode GFG C++ Java Brute-Better-Better-Optimal  ZYpYur0znng - 797x498 - 11m30s](https://user-images.githubusercontent.com/35686407/174475077-163638a6-4a29-45bc-a6d4-7337eab3ddc9.png)
 
@@ -906,7 +924,34 @@ int findRow(vector<vector<int>>& matrix,int target){
 - SC : O(1)
 
 ```cpp
-
+class Solution {
+public:
+    #define debug(x) cout<<#x<<":"<<x<<endl;
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        
+        int n = matrix.size();
+        int m = matrix[0].size();
+        
+        int low = 0;
+        int high = n*m - 1;
+        
+        while(low <= high){
+            int mid = low + (high-low)/2;
+            
+            int row = mid/m;
+            int col = mid%m;
+            
+            if(matrix[row][col] == target){
+                return true;
+            }else if(matrix[row][col] > target){
+                high = mid-1;
+            }else{
+                low = mid+1;
+            }
+        }
+        return false;
+    }
+};
 ```
 
 ## 14. POW(X,N)
