@@ -489,3 +489,13 @@ INNER JOIN COUNTRY
 ON CITY.COUNTRYCODE = COUNTRY.CODE
 WHERE COUNTRY.CONTINENT = "Africa";
 ```
+
+3. [Question](https://www.hackerrank.com/challenges/average-population-of-each-continent/problem?isFullScreen=true)
+
+```sql
+SELECT COUNTRY.CONTINENT , FLOOR(AVG(CITY.POPULATION))
+FROM CITY
+INNER JOIN COUNTRY
+ON CITY.COUNTRYCODE = COUNTRY.CODE
+GROUP BY COUNTRY.CONTINENT;
+```
