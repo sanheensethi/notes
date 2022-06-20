@@ -1632,3 +1632,29 @@ int uniquePaths(int m, int n) {
 > Shortcut to find Combinations
 
 ![Screenshot Capture - 2022-06-20 - 17-25-19](https://user-images.githubusercontent.com/35686407/174596334-b130664e-1c6e-4b4e-8432-1a3d89f32f82.png)
+
+```cpp
+int C(int N,int R){
+    long long int ans = 1;
+    int i = 1;
+    while(R--){
+        ans *= N;
+        ans /= i;
+        N--;
+        i++;
+    }
+    return ans;
+}
+
+int uniquePaths(int m, int n) {
+    int steps = m + n - 2;
+    int right = n - 1;
+    int down = m - 1;
+
+    if(m < n){
+        return C(steps,down);
+    }else{
+        return C(steps,right);
+    }
+}
+```
