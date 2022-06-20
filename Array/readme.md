@@ -1343,3 +1343,115 @@ int longestConsecutive(vector<int>& nums) {
     return ans;
 }
 ```
+## 19. Largest Subarray with Sum K
+
+> if , K = 0 ~ Largest Subarray with sum 0
+
+TestCase : 2 , 10 -10 , isi testcase ke liye umap[0] = true krna pda, kyuki, at -10 prefix 0 ho jayega, but 0 exists nhi krta map mae , lekin 0 aa rha hai.
+
+#### Variation 1: Subarray with 0 sum exits ?
+
+```cpp
+bool subArrayExists(int arr[], int n){
+    unordered_map<int,bool> umap;
+    umap[0] = true;
+    int prefix = 0;
+    for(int i = 0; i < n; i++){
+        prefix += arr[i];
+        if(umap.find(prefix) == umap.end()){ // we are finding prefix - 0
+            umap[prefix] = true;
+        }else{
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+#### Variation 2: Largest Subarray with Sum = 0
+
+```cpp
+int maxLen(vector<int>&A, int n){   
+    unordered_map<int,int> umap;
+    int prefix = 0;
+    int ans = 0;
+    umap[0] = -1;
+    for(int i = 0; i < n; i++){
+        prefix += A[i];
+        if(umap.find(prefix) == umap.end()){ // we are finding prefix - 0
+            umap[prefix] = i;
+        }else{
+            int len = i - umap[prefix];
+            ans = max(ans,len);
+        }
+    }
+    return ans;
+}
+```
+
+#### Vatiation 3: Count Subarray with sum = K
+
+```cpp
+int subarraySum(vector<int>& nums, int k) {
+    unordered_map<int,int> umap;
+    int prefix = 0;
+    int ans = 0;
+    for(int i = 0; i < nums.size(); i++){
+        prefix += nums[i];
+        if(prefix == k) ans++;
+        int find = prefix - k;
+        if(umap.find(find)!= umap.end()){
+            ans += umap[find];
+        }
+        umap[prefix]++;
+    }
+    return ans;
+}
+```
+
+#### Variation 4 : Count Subarray with XOR = K
+
+```cpp
+int Solution::solve(vector<int> &A, int B) {
+    unordered_map<int,int> umap;
+    int prefixXor = 0;
+    int ans = 0;
+    for(int i = 0; i < A.size(); i++){
+        prefixXor ^= A[i];
+        if(prefixXor == B){
+            ans++;
+        }
+        int find = prefixXor ^ B;
+        if(umap.find(find) != umap.end()){
+            ans += umap[find];
+        }
+        umap[prefixXor]++;
+    }
+    return ans;
+}
+```
+
+#### VAriation 5 : Largest Subarray with equal number of 0's and 1's
+
+```cpp
+int maxLen(int nums[], int N){
+   unordered_map<int,int> umap;
+   // treat 0 as -1;
+   int prefixSum = 0;
+   int ans = 0;
+   for(int i = 0; i < N; i++){
+       prefixSum = nums[i] == 1 ? prefixSum + 1 : prefixSum - 1; // treat 0 as -1
+       if(prefixSum == 0){
+           ans = i+1; // problem reduces to find longest subarray with sum = 0
+       }
+       int find = prefixSum - 0;
+       if(umap.find(find) == umap.end()){
+           umap[prefixSum] = i;
+       }else{
+           int len = i - umap[prefixSum];
+           ans = max(ans,len);
+       }
+   }
+   return ans;
+}
+```
