@@ -1581,3 +1581,27 @@ public:
     }
 };
 ```
+
+## 21. Grid Unique Paths
+
+- Robot move only in right or bottom, 
+- we have to move in n-1,m-1
+
+> Recursion + Memoization : Dynamic Programming
+
+```cpp
+int solve(int row,int col,int m,int n,vector<vector<int>>& memo){
+    if(row == m-1 && col == n-1) return 1;
+    if(row > m || col > n) return 0;
+    if(memo[row][col] != -1) return memo[row][col];
+    int v1 = solve(row+1,col,m,n,memo);
+    int v2 = solve(row,col+1,m,n,memo);
+
+    return memo[row][col] = v1 + v2;
+
+}
+int uniquePaths(int m, int n) {
+    vector<vector<int>> memo(m+1,vector<int>(n+1,-1));
+    return solve(0,0,m,n,memo);
+}
+```
