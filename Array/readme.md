@@ -1658,3 +1658,4 @@ int uniquePaths(int m, int n) {
     }
 }
 ```
+## 22. Majority Element 2 (baar baar kro is question ko)
