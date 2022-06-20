@@ -1075,7 +1075,8 @@ double pow(double x,int n){
 - is algo mae hum , distinct elements ka pair bnane ki koshish kr rhe hai
 - ![Screenshot Capture - 2022-06-20 - 10-57-38](https://user-images.githubusercontent.com/35686407/174531150-0ec01e11-7003-4c6b-92d5-ffb81bb8baf3.png)
 - ab hum ye maan kr chl rhe hai ki current element is majority element, to count++ se vo increase ho rhe hai,
-- or jb koi alag element milta hai to count-- kr rhe hai, isse ye pta chlta hai ki , jitne bhi abhi tk element mile hai, usme majority element = minority element hai, to jb bhi 0 aata hai, to iska mtlb mera majority element suffix mae present hai current 0 se, kyuki, majority element > n/2 hai, to agar vo ek moment pr 0 ho rha hai to iska mtlb vha tk majority = minority the, and majority element ki bhi surity hai ki vo hoga, to iska mtlb vo current count 0 ke aage vale suffix mae present krta hai.
+- or jb koi alag element milta hai to count-- kr rhe hai, isse ye pta chlta hai ki , jitne bhi abhi tk element mile hai, majority vale use hum map kr rhe hai distinct ke sath, to ab kitne rehgye map krne ke loye uska count store hai count mae
+- count == 0 , usme majority element = minority element hai, to jb bhi 0 aata hai, to iska mtlb mera majority element suffix mae present hai current 0 se, kyuki, majority element > n/2 hai, to agar vo ek moment pr 0 ho rha hai to iska mtlb vha tk majority = minority the, and majority element ki bhi surity hai ki vo hoga, to iska mtlb vo current count 0 ke aage vale suffix mae present krta hai.
 
 ![take U forward - Majority Element Leetcode C++ Java Brute-Better-Optimal Moore's Voting Algorithm  AoX3BPWNnoE - 797x498 - 9m41s](https://user-images.githubusercontent.com/35686407/174532935-8d30f911-c452-4405-936a-5eb4bc9473d9.png)
 
