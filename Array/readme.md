@@ -1092,3 +1092,56 @@ int majorityElement(vector<int>& nums) {
     return ele;
 }
 ```
+## 16. 2 Sum Problem
+
+> If Array is not sorted and they want in return the index number
+
+#### Approach : Use HashMap
+
+- if target - current element map mae hai to index nikalkr return kr do
+- nhi to current element ko map mae daal do,
+- hr element ke liye esa kro
+- TC : O(n) + O(1) ~ for hashmap unordered wala, if map vala then O(n) + O(nlogn)
+- SC : O(n)
+
+```cpp
+vector<int> twoSum(vector<int>& nums, int target) {
+        
+    unordered_map<int,int> umap;
+    for(int i = 0; i < nums.size(); i++){
+        int find = target - nums[i];
+        if(umap.find(find) != umap.end()){
+            return {umap[find],i};
+        }else{
+            umap[nums[i]] = i;
+        }
+    }
+    return {-1,-1};
+}
+```
+
+> If Array is sorted given or not sorted given but want is target exists as sum of 2 elements ?
+
+- do sorting
+- apply two pointers
+- i = 0, j = n-1
+- if arr[i] + arr[j] < target , it means sum bhadana hoga , i++
+- if arr[i] + arr[j] > target , it means sum km krna hoga, j--
+- if equal return true
+
+```cpp
+vector<int> twoSum(vector<int>& numbers, int target) {
+    int i = 0;
+    int j = numbers.size()-1;
+
+    int sum;
+    while(i < j){
+        sum = numbers[i] + numbers[j];
+        if(sum == target) return {i+1,j+1};
+        else if(sum < target) i++;
+        else if(sum > target) j--;
+    }
+    return {};
+}
+```
+
