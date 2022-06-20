@@ -1493,3 +1493,91 @@ int maxLen(int nums[], int N){
    return ans;
 }
 ```
+
+## 20. Count Reverse Pairs
+
+> Intutaion : ~ Similar like inversion count question , We will be using the Merge Sort Algorithm to solve this problem. We split the whole array into 2  parts creating a Merge Sort Tree-like structure. During the conquer step we do the following task : 
+
+1. We take the left half of the Array and Right half of the Array, both are sorted in themselves. 
+2. ab for each i , we check for j such that a(i) < 2*arr(j) as given condition , j++;
+3. now, while check , suppose j stops in between then number of pairs for current index i on left array is = j - (mid+1) // j - start of right array
+4. ab hum agle index i ke liye dobara se check nhi kr rhe hai, because niche dekh skte hia ki, jb 12 ke liye dekhenge to srf hme 2 milega, but when we see for 19, tb hme 2 se dobara start krne ki jarorat nhi hai, kyki, if 2 * 2 < 12 then it is obvious that 2 * 2 < 19 as ~  2 * 2 < 12 < 19,
+5. therefore, left array sorted hone ke krn hme dobara se j ko start se start nhi krna pd rha hai.
+6. jb j end  se bhr chla jayega, mtlb mere sare elements pair bna rhe hai i index ke elements ke sath, why sare ? , esa isliye kyuki, jb mera j khtm hua, j khtm hone ka mtlb ye hai ki mere right vale sare element ke sath koi pairup kr chuka hai left vale array mae, and iska mtlb, left vale array mae usse bde number ke sare element j vale array ke elements ke sath pair bnayenge as we see in point 4. 
+7. for 12 : 2*2 < 12
+8. for 19 : 2*2 < 19 , 2 * 6 < 19 , 2 * 19 < 19
+9. for 25 : 2*2 < 25 , 2 * 6 < 25 , 2 * 9  < 25
+10. same for 40
+
+![Screenshot Capture - 2022-06-20 - 16-32-05](https://user-images.githubusercontent.com/35686407/174587949-02c0b254-ccea-47b0-b793-16fe6470e146.png)
+
+
+![image2](https://user-images.githubusercontent.com/35686407/174587895-55cba4df-5d5c-4ada-98e1-46ed7fb0fe99.jpg)
+
+
+```cpp
+class Solution {
+public:
+    
+    int merge(vector<int>& nums,int start,int mid,int end){
+        vector<int> B(end-start+1);
+        
+        // reverse pair count
+        int count = 0;
+        int j = mid+1; // right side array
+        for(int i = start; i <= mid; i++){
+            while(j <= end && nums[i] > 2LL * nums[j]){
+                j++;
+            }
+            count += (j - (mid + 1));
+        }
+        
+        int k = 0;
+        int i = start;
+        j = mid+1;
+        while(i <= mid && j <= end){
+            if(nums[i] <= nums[j]){
+                B[k++] = nums[i++];
+            }else{
+                B[k++] = nums[j++];
+            }
+        }
+        
+        while(i <= mid){
+            B[k++] = nums[i++];
+        }
+        
+        while(j <= end){
+            B[k++] = nums[j++];
+        }
+        
+        k = 0;
+        for(int i = start; i <= end;i++){
+            nums[i] = B[k];
+            k++;
+        }
+        
+        return count;
+        
+    }
+    
+    int mergeSort(vector<int>& nums,int start,int end){
+        if(start < end){
+            int mid = start + (end-start)/2;
+            int rev = 0;
+            rev += mergeSort(nums,start,mid);
+            rev += mergeSort(nums,mid+1,end);
+            rev += merge(nums,start,mid,end);
+            return rev;
+        }else{
+            return 0;
+        } 
+    }
+    
+    int reversePairs(vector<int>& nums) {
+        int start = 0;
+        int end = nums.size()-1;
+        return mergeSort(nums,start,end);
+    }
+};
+```
