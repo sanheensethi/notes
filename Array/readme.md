@@ -1298,3 +1298,48 @@ vector<vector<int>> fourSum(vector<int>& num, int target) {
     }
 };
 ```
+## 18. Longest Consequtive Sequence
+
+
+#### Optimal
+
+- We will first push all are elements in the HashSet.
+- ab hum arr ko traverse kr rhe hai, dekh rhe hai ki current element start point to nhi hai sequence ka ?
+    - start point check krne ke liye uske niche vala element exists nhi krna chahiye,
+    - for example if start point is 100, then 99 exists nhi krna chaihiye hashmap mae
+    - isse ye fayeda hoga ki jb 100 se start hoga suppose 103 tk gye, sequence length = 4
+    - to , jb hum aage kbhi 102 milega array mae uske liye 101 check krenge, but 101 exists krega, to kaam 101 smbhal lega isme kuch nhi krenge agar chota element exists krta hai
+- if chota element exist nhi krta hai to hum 1-1 krke aage bhadenge and check krenge ki kya vo exist krta hai and length bhadate jayenge.
+
+![take U forward - Longest Consecutive Sequence Leetcode(Hard) GooGLe  qgizvmgeyUM - 885x498 - 5m08s](https://user-images.githubusercontent.com/35686407/174559988-67cdfd19-6441-477f-bfcd-089601d79010.png)
+
+![take U forward - Longest Consecutive Sequence Leetcode(Hard) GooGLe  qgizvmgeyUM - 853x480 - 6m34s](https://user-images.githubusercontent.com/35686407/174559994-9ae3ff4f-34ad-4574-b52b-d63fe493286b.png)
+
+> Testcase:
+
+1. 6,5,4,3,2,1
+2. 2,5,6,7,9,11
+
+```cpp
+int longestConsecutive(vector<int>& nums) {
+    unordered_map<int,bool> umap;
+    for(auto& val:nums){
+        umap[val] = true;
+    }
+
+    int ans = 0;
+    for(auto& val:nums){
+        if(umap[val-1] == true){ }
+        else{
+            int count = 1;
+            int k = val;
+            while(umap[k+1] == true){
+                count++;
+                k++;
+            }
+            ans = max(ans,count);
+        }
+    }
+    return ans;
+}
+```
