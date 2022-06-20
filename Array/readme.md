@@ -1345,9 +1345,24 @@ int longestConsecutive(vector<int>& nums) {
 ```
 ## 19. Largest Subarray with Sum K
 
+### Brute Force : Generate All Subarray, and find the given condition
+
+### Optimal : (HashMap)
+
+> Intuation : Now let’s say we know that the sum of subarray(i, j) = S, and we also know that sum of subarray(i, x) = S where i < x < j. We can conclude that the sum of subarray(x+1, j) = 0.
+
+![Screenshot Capture - 2022-06-20 - 15-27-23](https://user-images.githubusercontent.com/35686407/174577195-fe4f7bc5-c1dc-4fa0-808c-a70d4893e1d2.png)
+
+- So in this problem, we’ll store the prefix sum of every element, and if we observe that 2 elements have same prefix sum, we can conclude that the 2nd part of this subarray sums to zero.
+- agar kisi bhi S(i,j) ka sum = S hai, and piche bhi S aa rha hai khi to iska mtlb unke bich ka sum 0 hi hoga tbhi to S(i,j) ka bhi sum S aa rha hai
+- actually we are finding `sum-0` in pichli vali side mae.
+- agar k = some another integer, then we find `sum-k` pichli side mae, for to find subarray with sum = k
+
+
 > if , K = 0 ~ Largest Subarray with sum 0
 
 TestCase : 2 , 10 -10 , isi testcase ke liye umap[0] = true krna pda, kyuki, at -10 prefix 0 ho jayega, but 0 exists nhi krta map mae , lekin 0 aa rha hai.
+- Another way to handle is just type in for loop , if(prefix == 0) return true
 
 #### Variation 1: Subarray with 0 sum exits ?
 
@@ -1370,12 +1385,15 @@ bool subArrayExists(int arr[], int n){
 
 #### Variation 2: Largest Subarray with Sum = 0
 
+- same concept, bs prefix sum ke corresponding index store krenge
+- and if same prefix sum dobara aata hai to index ko update nhi krna hai , kyuki hme largest banan hai, to jitna piche hoga utna fayeda hoga.
+
 ```cpp
 int maxLen(vector<int>&A, int n){   
     unordered_map<int,int> umap;
     int prefix = 0;
     int ans = 0;
-    umap[0] = -1;
+    umap[0] = -1; // or we can write if(prefix == 0) ans = i+1; in for loop
     for(int i = 0; i < n; i++){
         prefix += A[i];
         if(umap.find(prefix) == umap.end()){ // we are finding prefix - 0
@@ -1390,6 +1408,10 @@ int maxLen(vector<int>&A, int n){
 ```
 
 #### Vatiation 3: Count Subarray with sum = K
+
+- yha pr prefix sum ke count store krenge because suppose hme sum = k chhaiye
+- to piche hum find krenge hashmap se ki sum-k aa rha hai ? 
+- agar haan aa rha hai to kitni baar aa rha ahi, kyuki vo sbhi subarary bnayenge for sum = k
 
 ```cpp
 int subarraySum(vector<int>& nums, int k) {
@@ -1411,6 +1433,13 @@ int subarraySum(vector<int>& nums, int k) {
 
 #### Variation 4 : Count Subarray with XOR = K
 
+- Lagbhag same concept hai bs yah pr xor hai
+- if arr(i,j) = S and arr(x,j) = K and arr(i,x) = Y
+- then K^Y = S , where S is prefix xor
+- then we have to find piche Y = S ^ K from map.
+
+![take U forward - Count Subarrays with Xor as K This problem clears a lot of concepts  lO9R5CaGRPY - 853x480 - 4m02s](https://user-images.githubusercontent.com/35686407/174578334-c775871c-0df0-4f79-bd49-f73b49774e44.png)
+
 ```cpp
 int Solution::solve(vector<int> &A, int B) {
     unordered_map<int,int> umap;
@@ -1431,7 +1460,16 @@ int Solution::solve(vector<int> &A, int B) {
 }
 ```
 
-#### VAriation 5 : Largest Subarray with equal number of 0's and 1's
+#### Variation 5 : Largest Subarray with equal number of 0's and 1's
+
+- Example: [1 0 1 1 1 0 0]
+- isme pattern dekho, agar hum ek sum lekr chle jb num = 1 hai, to sum++ kre
+- and jb num = 0 hai to sum-- kre , if ye krte hai to sum = 0 hoga, or jha sum = 0 hoga vo hmara length of subarray hoga jisme equal 0 and 1 honge,index = [0 1]
+- thoda or aage bhade to hm vhi same pattern dekh pate hai jo upar kra hai,
+- to sum = 0 bnane ke liye hum 0 ko -1 maan rhe ahi temperoary taki hme jayeda dikkat na ho, and bs add krte chle jaye prefix sum ko.
+
+![WhatsApp Image 2022-06-20 at 3 40 26 PM](https://user-images.githubusercontent.com/35686407/174579731-a29d369b-26a1-41f8-ac97-9492b4f505a6.jpeg)
+
 
 ```cpp
 int maxLen(int nums[], int N){
