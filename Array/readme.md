@@ -1605,3 +1605,30 @@ int uniquePaths(int m, int n) {
     return solve(0,0,m,n,memo);
 }
 ```
+
+> Combinatorics Solution:
+
+![Screenshot Capture - 2022-06-20 - 17-17-37](https://user-images.githubusercontent.com/35686407/174595139-3ea2871f-8693-44a6-b97e-02a0da917802.png)
+
+> Intuition: If we observe examples there is a similarity in paths from start to end. Each time we are taking an exactly m+n-2 number of steps to reach the end.
+
+![take U forward - Grid Unique Paths GOOGLE interview question Brute-Better-Optimal  t_f0nwwdg5o - 1536x864 - 14m43s](https://user-images.githubusercontent.com/35686407/174595250-4d1e4684-817b-49f8-ac92-6e08f22590ae.png)
+
+- as we see, RRD , RDR , DRR are the 3 paths, therefore from that we see, there are total 3 steps in which we reach to the end. 2 Right and 1 Down = 3 Steps in every combination of RRD.
+- From start to reach the end we need a certain number of rightward directions and a certain number of downward directions.
+- So, in above example, if number of cols = 3, then right direction = 2, and number of rows = 2 , down direction = 1
+- So we can figure out we need n-1 no. of rightward direction and m-1 no. of downward direction to reach the endpoint.
+- So, from total steps , we need to take eiter rightward direction step or downward direction step, choose any one, because if you choose rightward steps, down will automatically arrange itself
+- _ _ _ ~ R R _ , so blank is for down, therefore we choose 2 positions for the right, C(3,2) = 3 = total number of paths
+- _ _ _ ~ R _ R , so blank is for down
+- _ _ _ ~ _ R R , so blank is for down
+
+- Since we need an m+n-2 number of steps to reach the end among those steps if we choose n-1 rightward direction or m-1 downward direction and calculate the combinations ( ie: C(m+n-2,n-1) or C(m+n-2,m-1) we’ll get the total number of paths.
+
+![Screenshot Capture - 2022-06-20 - 17-25-08](https://user-images.githubusercontent.com/35686407/174596316-8063b1e4-761c-4dc7-ad58-8984c13a1589.png)
+
+![Screenshot Capture - 2022-06-20 - 17-25-14](https://user-images.githubusercontent.com/35686407/174596321-8aa78b35-a6b3-4800-a214-6f9ded787c4d.png)
+
+> Shortcut to find Combinations
+
+![Screenshot Capture - 2022-06-20 - 17-25-19](https://user-images.githubusercontent.com/35686407/174596334-b130664e-1c6e-4b4e-8432-1a3d89f32f82.png)
