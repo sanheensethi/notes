@@ -1145,3 +1145,156 @@ vector<int> twoSum(vector<int>& numbers, int target) {
 }
 ```
 
+## 17. 4 Sum
+
+- problem ko pehle 3 sum mae todo
+- and 3 sum se 2 sum mae
+- dublicate value ko 1 bari uthao and baki ko skip krte jao
+
+Important TestCases:
+
+1. [1000000000,1000000000,1000000000,1000000000] , -294967296
+2. [0] , 0
+3. [0 0 0 0] , 1
+4. [2 2 2 2] , 8
+
+> One way to write:
+
+```cpp
+class Solution {
+public:
+    #define debug(x) cout<<#x<<":"<<x<<endl;
+    void twoSum(vector<int>& nums,int start,long long target,vector<vector<int>>& ans,vector<int>& ds){
+        int i = start;
+        int j = nums.size()-1;
+        
+        while(i < j){
+            int sum = nums[i] + nums[j];
+            if(sum < target){
+                while(i+1 < nums.size() && nums[i+1] == nums[i]){
+                    i++;
+                }
+                i++;
+            }else if(sum > target){
+                while(j-1 >= 0 && nums[j-1] == nums[j]){
+                    j--;
+                }
+                j--;
+            }else if(sum == target){
+                ds.push_back(nums[i]);
+                ds.push_back(nums[j]);
+                ans.push_back(ds);
+                ds.pop_back();
+                ds.pop_back();
+                while( i+1 < nums.size() && nums[i+1] == nums[i]){
+                    i++;
+                }
+                i++;
+                while(j-1 >= 0 && nums[j-1] == nums[j]){
+                    j--;
+                }
+                j--;
+            }
+        }
+        
+    }
+    
+    void threeSum(vector<int>& nums,int start,long long target,vector<vector<int>>& ans,vector<int>& ds){
+        
+        for(int b = start;b <= nums.size()-3;){
+            ds.push_back(nums[b]);
+            long long find = target - nums[b];
+            twoSum(nums,b+1,find,ans,ds);
+            ds.pop_back();
+            
+            while(b <= nums.size()-3 && nums[b] == nums[b+1]){
+                b++;
+            }
+            b++;
+        }
+    }
+    
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        
+        vector<vector<int>> ans;
+        if(nums.size() < 4) return ans;
+        sort(nums.begin(),nums.end());
+        
+        vector<int> ds;
+        for(int a = 0; a <= nums.size()-4;){
+            ds.push_back(nums[a]);
+            long long find = target - nums[a];
+            threeSum(nums,a+1,find,ans,ds);
+            ds.pop_back();
+            
+            while(a <= nums.size()-4 && nums[a] == nums[a+1]){
+                a++;
+            }
+            a++;
+        }
+        return ans;
+    }
+};
+```
+
+> Another way to write
+
+```cpp
+vector<vector<int>> fourSum(vector<int>& num, int target) {
+         vector<vector<int> > res;
+        
+        if (num.empty())
+            return res;
+        int n = num.size(); 
+        sort(num.begin(),num.end());
+    
+        for (int i = 0; i < n; i++) {
+        
+            int target_3 = target - num[i];
+        
+            for (int j = i + 1; j < n; j++) {
+            
+                int target_2 = target_3 - num[j];
+            
+                int front = j + 1;
+                int back = n - 1;
+            
+                while(front < back) {
+                
+                    int two_sum = num[front] + num[back];
+                
+                    if (two_sum < target_2) front++;
+                
+                    else if (two_sum > target_2) back--;
+                
+                    else {
+                    
+                        vector<int> quadruplet(4, 0);
+                        quadruplet[0] = num[i];
+                        quadruplet[1] = num[j];
+                        quadruplet[2] = num[front];
+                        quadruplet[3] = num[back];
+                        res.push_back(quadruplet);
+                    
+                        // Processing the duplicates of number 3
+                        while (front < back && num[front] == quadruplet[2]) ++front;
+                    
+                        // Processing the duplicates of number 4
+                        while (front < back && num[back] == quadruplet[3]) --back;
+                
+                    }
+                }
+                
+                // Processing the duplicates of number 2
+                while(j + 1 < n && num[j + 1] == num[j]) ++j;
+            }
+        
+            // Processing the duplicates of number 1
+            while (i + 1 < n && num[i + 1] == num[i]) ++i;
+        
+        }
+    
+        return res;
+    }
+};
+```
