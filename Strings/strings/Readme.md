@@ -66,3 +66,58 @@ bool areRotations(string s1,string s2){
     return false;
 }
  ```
+
+## 2. Check if the given string is shuffled substring of another string [Question](https://www.geeksforgeeks.org/check-if-the-given-string-is-shuffled-substring-of-another-string/)
+
+NOTE: As it is substring, so it is obvious that they will be continuous surely.
+
+> Input : str1 = “onetwofour”, str2 = “hellofourtwooneworld” 
+
+> Output: YES 
+
+> Explanation: str1 is substring in shuffled form of str2 as 
+str2 = “hello” + “fourtwoone” + “world” 
+str2 = “hello” + str1 + “world”, where str1 = “fourtwoone” (shuffled form) 
+Hence, str1 is a substring of str2 in shuffled form.
+
+#### Method 1: Sorting
+
+> hum str1 ke size ki str2 mae se substring kaat ke match kr rhe hai hr index se, agar khi pr bhi hme uske sort ke equal mila hum return kr denge true
+
+1. Sort string str1
+2. Traverse str2 and take substring of size str1 and sort it
+3. compare it, if equal then return true
+4. if all ends then return false
+5. just like 2 string are anagram if there sort matches with each other
+
+- TC : O(nlogn) + O(m*nlogn) , sorting str1 and for each index we are creating string and sorting them.
+- SC : O(m*n) , for each index of bigger string we are making new substring of length n 
+
+```cpp
+bool isShuffledSubstring(string& str1, string& str2){
+
+    // we have to check str1 is substring of str2 or not
+
+    sort(str1.begin(),str1.end());
+
+    // str2.size() - str1.size() is because if i reaches at that index
+    // from where we are not able to make a substring of size str1.size()
+    // therefore we have to loop untill we will make such substrings
+
+    for(int i = 0;i <= str2.size() - str1.size(); i++){
+        string str = str2.substr(i,str1.size());
+        sort(str.begin(),str.end());
+        if(str1 == str) return true;
+    }
+    return false;
+}
+```
+
+#### Method 2: Anagram matching using sliding window
+
+1. Make a sliding window of size str1
+2. and compare it with str1 as anagram matchig, that all characters should be of same size
+
+```cpp
+
+```
