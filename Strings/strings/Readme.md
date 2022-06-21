@@ -117,7 +117,55 @@ bool isShuffledSubstring(string& str1, string& str2){
 
 1. Make a sliding window of size str1
 2. and compare it with str1 as anagram matchig, that all characters should be of same size
+3. dhyan dene vali chij hai ki jb >= 0 hai to hi -1 krna hai count ko
+4. and jb i ke case mae agar koi 0 se upar jata hai to hi +1 krna hai.
+
+- TC : O(n + m) ~ n for putting str1 in hashmap and O(m) for traversing str2, if in case of map then it takes logn time for access and insert
+- SC : O(n)
 
 ```cpp
+bool isShuffledSubstring(string& str1, string& str2){
+    bool found = false;
 
+    unordered_map<char,int> umap;
+
+    for(auto& ch:str1){
+        umap[ch]++;
+    }
+
+    int count = str1.size();
+    int k = str1.size();
+
+    int i = 0,j = 0;
+    int n = str2.size();
+
+    while( j < n ){
+        char ch = str2[j];
+        if(umap.find(ch) != umap.end()){
+            
+            umap[ch]--;
+            if(umap[ch] >= 0){
+                count--;
+            }
+        }
+        if(count == 0) return true;
+
+        if(j - i + 1 < k){
+            j++;
+        }else if(j - i + 1 == k){
+            if(count == 0) return true;
+            char ich = str2[i];
+            if(umap.find(ich) != umap.end()){
+                umap[ich]++;
+                if(umap[ich] > 0){
+                    count++;
+                }
+            }
+            i++;
+            j++;
+        }
+    }
+
+    return false;
+}
 ```
