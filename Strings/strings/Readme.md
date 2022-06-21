@@ -23,6 +23,13 @@
 
 ![undefined-1655807719136](https://user-images.githubusercontent.com/35686407/174780556-0a65898c-026e-43d3-bf25-0ce786a24d48.jpg)
 
+```cpp
+bool areRotations(string s1,string s2){
+    if(s1.size() != s2.size()) return false;
+    string temp = s1 + s1;
+    return (temp.find(s2) != string::npos);
+}
+```
 
 #### Approach 3:
 
@@ -35,3 +42,27 @@
 - when k == 0 and same bhi nhi aaye to return false;
 
 ![undefined-1655807730726](https://user-images.githubusercontent.com/35686407/174780571-7230ac30-5c40-4aa6-a9dc-6ea3d0075861.jpg)
+
+```cpp
+bool areRotations(string s1,string s2){
+    if(s1.size() != s2.size()) return false;
+
+    queue<char> q1;
+    queue<char> q2;
+    for(auto& ch:s1){
+        q1.push(ch);
+    }
+    for(auto& ch:s2){
+        q2.push(ch);
+    }
+
+    int k = q2.size();
+    while(k--){
+        auto ch = q2.front();
+        q2.pop();
+        q2.push(ch);
+        if(q1 == q2) return true;
+    }
+    return false;
+}
+ ```
