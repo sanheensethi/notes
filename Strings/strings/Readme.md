@@ -229,3 +229,29 @@ bool validShuffle(string str1,string str2,string str3){
     return true;
  }
 ```
+
+## 4. Count and Say 
+
+```cpp
+string say(string& str){
+    string ans = "";
+    int i = 0;
+    while(i < str.size()){
+        int count = 1;
+        while(i+1 < str.size() && str[i] == str[i+1]){
+            count++;
+            i++;
+        }
+        ans.push_back(count+'0');
+        ans.push_back(str[i]);
+        i++;
+    }
+    return ans;
+} 
+
+string countAndSay(int n) {
+    if( n == 1) return "1";
+    string str = countAndSay(n-1);
+    return say(str);
+}
+```
