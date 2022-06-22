@@ -279,3 +279,38 @@ string countAndSay(int n) {
     return s;
 }
 ```
+## 5. Count Palindromic Substrings
+
+> Recursion
+
+- Store the results of already checked palindrome substrings.
+
+```cpp
+bool isPalindrome(string& str,int i,int j,vector<vector<int>>& memo){
+        
+    if( i > j ) return true;
+
+    if(memo[i][j] != -1) return memo[i][j];
+
+    if(str[i] != str[j]){
+        return memo[i][j] = false;
+    }
+
+    return memo[i][j] = isPalindrome(str,i+1,j-1,memo);
+}   
+
+int countSubstrings(string str) {
+    int count = 0;
+    int n = str.size();
+    vector<vector<int>> memo(n,vector<int>(n,-1));
+    // generate all substrings
+    for(int i = 0; i < str.size(); i++){
+        for(int j = i; j < str.size(); j++){
+            if(isPalindrome(str,i,j,memo)){
+                count++;
+            }
+        }
+    }
+    return count;
+}
+```
