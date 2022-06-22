@@ -1659,3 +1659,16 @@ int uniquePaths(int m, int n) {
 }
 ```
 ## 22. Majority Element 2 (baar baar kro is question ko)
+
+
+## 23. Kth Largest Element in an Array
+
+#### Approach 1: Sorting in Decreasing Order
+
+```cpp
+int findKthLargest(vector<int>& nums, int k) {
+    sort(nums.begin(),nums.end(),greater<int>());
+    return nums[k-1];
+}
+```
+
