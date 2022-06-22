@@ -236,6 +236,9 @@ bool validShuffle(string str1,string str2,string str3){
 
 - Just count the occurance of char and push back in string count + char
 
+> Recursion:
+
+
 ```cpp
 string say(string& str){
     string ans = "";
@@ -257,5 +260,19 @@ string countAndSay(int n) {
     if( n == 1) return "1";
     string str = countAndSay(n-1);
     return say(str);
+}
+```
+
+> Iterative:
+
+```cpp
+string countAndSay(int n) {
+    string s = "1";
+
+    for(int i = 1; i < n; i++){
+        s = say(s);    
+    }
+
+    return s;
 }
 ```
