@@ -169,3 +169,63 @@ bool isShuffledSubstring(string& str1, string& str2){
     return false;
 }
 ```
+## 3. String is a valid shuffle of two distinct strings
+
+- 1XY2 is a valid shuffle of XY and 12
+- Y1X2 is a valid shuffle of XY and 12 
+- Y21XX is not a valid shuffle of XY and 12
+
+#### Approach 1: SORTING
+
+- make new string temp = str1 + str2
+- sort temp
+- sort given string
+- if they are equal the it is valid shuffle
+- TC : O((n+m)log(n+m)) + O(k) , where n and m are length of str1 and str2 ~ temp = str1 + str1 , and sorting input string of length k O(k)
+- SC : O(n+m)
+
+```cpp
+bool validShuffle(string str1,string str2,string str3){
+    
+    string temp = str1 + str2;
+
+    sort(temp.begin(),temp.end());
+    sort(str3.begin(),str3.end());
+
+    return temp == str3;
+ }
+```
+ 
+#### Appraoch 2: SORTING, TWO POINTERS TO COMPARE
+
+- sort given string
+- sort str1 and str2
+- Compare them with 2 pointers
+- TC : O(nlogn) + O(mlogm) + O(klogk)
+- SC : O(1)
+
+```cpp
+bool validShuffle(string str1,string str2,string str3){
+    sort(str1.begin(),str1.end());
+    sort(str2.begin(),str2.end());
+    sort(str3.begin(),str3.end());
+
+    int i = 0,j = 0;
+    int k = 0;
+    int n = str1.size();
+    int m = str2.size();
+    int len = str3.size();
+
+    while(k < len){
+        if(i < n && str1[i] == str3[k]) i++;
+        else if(j < m && str2[j] == str3[k]) j++;
+        else return false;
+        k++;
+    }
+
+    // if match krta hai to dono ko khtm hona hi pdega simultaneosly
+    if( i < n || j < m) return false;
+
+    return true;
+ }
+```
