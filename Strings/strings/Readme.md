@@ -284,6 +284,7 @@ string countAndSay(int n) {
 > Recursion
 
 - Store the results of already checked palindrome substrings.
+- if it says, palindrome is of length 2 or more then we start j = i+1 not i, because when i = 0, then j = 0, it means only 1 char, but we have asked min of length 2.
 
 ```cpp
 bool isPalindrome(string& str,int i,int j,vector<vector<int>>& memo){
