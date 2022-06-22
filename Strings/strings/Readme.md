@@ -232,6 +232,10 @@ bool validShuffle(string str1,string str2,string str3){
 
 ## 4. Count and Say 
 
+![undefined-1655890184090](https://user-images.githubusercontent.com/35686407/174995460-d9de66e5-7dd8-48f3-b784-96ab6946135a.jpg)
+
+- Just count the occurance of char and push back in string count + char
+
 ```cpp
 string say(string& str){
     string ans = "";
