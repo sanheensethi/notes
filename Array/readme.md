@@ -1671,4 +1671,21 @@ int findKthLargest(vector<int>& nums, int k) {
     return nums[k-1];
 }
 ```
+#### Approach 2: Maintain k size of min heap
 
+- top most element is minimum
+- maintain only k elements in heap
+- when size of heap > k pop
+
+```cpp
+int findKthLargest(vector<int>& nums, int k) {
+    priority_queue<int,vector<int>,greater<int>> pq;
+    for(auto& val:nums){
+        pq.push(val);
+        if(pq.size() > k){
+            pq.pop();
+        }
+    }
+    return pq.top();
+}
+```
