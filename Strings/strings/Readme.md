@@ -315,7 +315,7 @@ int countSubstrings(string str) {
     return count;
 }
 ```
-## 6. Faulty Keyboard [Question](https://leetcode.com/problems/long-pressed-name/)
+## 6. Faulty Keyboard / Long Pressed Name [Question](https://leetcode.com/problems/long-pressed-name/)
 
 - Two Pointer Appraoch, one on name and another on typed string
 - if s[i] == s[j] , i++,j++
