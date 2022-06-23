@@ -315,3 +315,24 @@ int countSubstrings(string str) {
     return count;
 }
 ```
+## 6. Faulty Keyboard [Question](https://leetcode.com/problems/long-pressed-name/)
+
+- Two Pointer Appraoch, one on name and another on typed string
+- if s[i] == s[j] , i++,j++
+- if not equal , usse just pichle vala check krenge, agar equal hua to j++ else return false
+- ab loop se bhr aane pr niche vale kuch edge testcases hai vo check krne hai.
+
+> EDGE Testcases
+
+![Screenshot Capture - 2022-06-23 - 10-35-25](https://user-images.githubusercontent.com/35686407/175219082-9a683f85-d5f7-4e23-aaa1-7587816e20aa.png)
+
+![Screenshot Capture - 2022-06-23 - 10-36-04](https://user-images.githubusercontent.com/35686407/175219104-f6e97ddf-be4a-455c-8c2d-5045c70ed237.png)
+
+![Screenshot Capture - 2022-06-23 - 10-37-11](https://user-images.githubusercontent.com/35686407/175219135-1a3dfe0f-c6d0-4c0f-8cfb-e95a0e16c0f9.png)
+
+![Screenshot Capture - 2022-06-23 - 10-43-43](https://user-images.githubusercontent.com/35686407/175220323-ba5f9775-fd68-464b-9d61-336b68232608.png)
+
+1. j khtm ho gya and i abhi baki hai
+2. i and j starting mae hi equal nhi hai
+3. j khtm ni hua and i khtm ho gya, ab hum jko n-1 last char ke sath hi compare krte rhenge, if khi equal nhi aaya to return false else return true
+4. name length > type length, to kbhi nhi bna payenge. return false
