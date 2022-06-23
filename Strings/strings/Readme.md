@@ -510,6 +510,8 @@ string addStrings(string num1, string num2) {
 - atmost ek char ko skip kr skte ho, if koi portion palindrome nhi lga to
 - ya to left ka chord skte ho, ya fr right ka portion chord skte ho. 2 options, kisi se bhi true aaya to return true;
 
+![Pepcoding - Valid Palindrome 2 Leetcode 680 Solution in Hindi  nMjhRtYg2_A - 885x498 - 4m46s](https://user-images.githubusercontent.com/35686407/175357858-0980bdc4-0e11-41d9-b2f0-fbb4cd8710a0.png)
+
 > Avoid To Write like below : It Gives `TLE`
 
 ![Screenshot Capture - 2022-06-23 - 22-48-48](https://user-images.githubusercontent.com/35686407/175357394-dbcea394-6716-4153-a504-b1cb989fcda4.png)
