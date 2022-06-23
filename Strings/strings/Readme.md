@@ -541,3 +541,51 @@ bool validPalindrome(string s) {
     return true;
 }
 ```
+## 11. Find and Replace [Question](https://leetcode.com/problems/find-and-replace-pattern/)
+
+- Isme hum hr word ki mapping krenge hmare pattern ke sath, if vo shi mapping ho pati hai to match kr rhe hai return true else return false;
+
+- hum pattern ke char ko map kr rhe hai , string ke char se, 1 char pattern ka 1 hi word ke char se map hoga, if already mapped and is baar vhi same char ke corresponding koi alag char aaya to return false;
+
+![Pepcoding - Find And Replace Pattern Leetcode 442 (Medium) Solution in Hindi  4Ze_vLq5tPQ - 884x498 - 10m47s](https://user-images.githubusercontent.com/35686407/175374521-a81c93ec-8771-4d80-a075-863606bf022a.png)
+
+- edge case, isme hum dekh skte hai ki r - a se map hai, if agar m aaya as new pattern string to vo bhi a se map hone ko aayga, but a pehle se map ho chuka hai and we dont want it to be mapped again. so, uske liye hmne alag se map le liya jo ye btayega ki map ho chuka hai ya nhi. word ka char bhi
+
+![Pepcoding - Find And Replace Pattern Leetcode 442 (Medium) Solution in Hindi  4Ze_vLq5tPQ - 852x480 - 18m50s](https://user-images.githubusercontent.com/35686407/175374535-cb55a398-d3a8-4c60-ad88-1aa4384f3522.png)
+
+- in conclusion: hum pattern and word , dono ke uniqueness ko match kr rhe hai.
+
+```cpp
+class Solution {
+public:
+    bool isMatching(string& word,string& pattern){
+        unordered_map<char,char> umap;
+        unordered_map<char,bool> wchar_map; // word char should also be unique
+        
+        for(int i = 0; i < word.size(); i++){
+            if(umap.find(pattern[i]) != umap.end()){
+                // found element in umap
+                if(umap[pattern[i]] !=  word[i]){
+                    return false;
+                }
+            }else{
+                // not found element insert in map
+                if(wchar_map[word[i]] == true) return false;
+                umap[pattern[i]] = word[i];
+                wchar_map[word[i]] = true;
+            }
+        }
+        return true;
+    }
+    
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        vector<string> ans;
+        for(auto& word:words){
+            if(isMatching(word,pattern)){
+                ans.push_back(word);
+            }
+        }
+        return ans;
+    }
+};
+```
