@@ -366,3 +366,35 @@ bool isLongPressedName(string name, string typed) {
     return true;
 }
 ```
+## 7. Patition Labels [Question](https://leetcode.com/problems/partition-labels/)
+
+![Screenshot Capture - 2022-06-23 - 22-00-19](https://user-images.githubusercontent.com/35686407/175349117-775d2f69-be38-4db1-9efb-4ce4502e238d.png)
+
+- hr char ka max index store kr lo, 
+- and string mae jb dobara traverse krenge to dekhenge ki kiska max aa rha hai, jb maxindex == index ke equal hoga hum ans mae push kr denge length
+- length ke liye prev pointer rkha hai ek taki length direct nikal sake
+
+```cpp
+vector<int> partitionLabels(string s) {
+    unordered_map<char,int> umap;
+    for(int i = 0; i < s.size(); i++){
+        umap[s[i]] = i;
+    }
+
+    vector<int> ans;
+    int prev = -1;
+    int max_index = 0;
+
+    for(int i = 0; i < s.size(); i++){
+        char ch = s[i];
+
+        max_index = max(max_index,umap[ch]);
+
+        if(max_index == i){
+            ans.push_back(max_index-prev);
+            prev = max_index;
+        }
+    }
+    return ans;
+}
+```
