@@ -455,3 +455,52 @@ string reverseVowels(string s) {
     return s;
 }
 ```
+## 9. Add Two Strings
+
+![Screenshot Capture - 2022-06-23 - 22-35-21](https://user-images.githubusercontent.com/35686407/175355167-81649839-dd9f-421b-a7e6-2e6412c30741.png)
+
+- piche se add krte jao, and carry bhi lete jao.
+- chote bche jese krte hai vese kri addition.
+
+```cpp
+string addStrings(string num1, string num2) {
+        
+    string &bigger = num1.size() >= num2.size() ? num1 : num2;
+    string& small = num2.size() <= num1.size() ? num2 : num1;
+
+    int i = bigger.size()-1;
+    int j = small.size()-1;
+
+    int carry = 0,sum = 0;
+
+    string ans = "";
+
+    while(i >= 0 && j >= 0){
+        sum = (bigger[i]-'0') + (small[j]-'0') + carry;
+        ans.push_back(((sum%10) + '0'));
+        carry = sum/10;
+        i--;
+        j--;
+    }
+
+    while(i >= 0){
+        sum = ((bigger[i] - '0') + carry);
+        ans.push_back(((sum%10) + '0'));
+        carry = sum/10;
+        i--;
+    }
+
+    reverse(ans.begin(),ans.end());
+
+    string carr = "";
+    while(carry!=0){
+        carr += (carry%10 + '0');
+        carry = carry/10;
+    }
+
+    reverse(carr.begin(),carr.end());
+    ans = carr + ans;
+
+    return ans;
+}
+```
