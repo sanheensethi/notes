@@ -504,3 +504,38 @@ string addStrings(string num1, string num2) {
     return ans;
 }
 ```
+
+## 10. Valid Palindrome II
+
+- atmost ek char ko skip kr skte ho, if koi portion palindrome nhi lga to
+- ya to left ka chord skte ho, ya fr right ka portion chord skte ho. 2 options, kisi se bhi true aaya to return true;
+
+> Avoid To Write like below : It Gives `TLE`
+
+![Screenshot Capture - 2022-06-23 - 22-48-48](https://user-images.githubusercontent.com/35686407/175357394-dbcea394-6716-4153-a504-b1cb989fcda4.png)
+
+> Write like this :
+
+```cpp
+bool check(string& s,int i,int j){
+    while(i < j){
+        if(s[i] != s[j]) return false;
+        i++;j--;
+    }
+    return true;
+}
+
+bool validPalindrome(string s) {
+    int i = 0;
+    int j = s.size()-1;
+    while(i < j){
+        if(s[i] == s[j]){
+            i++;
+            j--;
+        }else{
+            return check(s,i+1,j) || check(s,i,j-1);
+        }
+    }
+    return true;
+}
+```
