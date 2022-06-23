@@ -336,3 +336,33 @@ int countSubstrings(string str) {
 2. i and j starting mae hi equal nhi hai
 3. j khtm ni hua and i khtm ho gya, ab hum jko n-1 last char ke sath hi compare krte rhenge, if khi equal nhi aaya to return false else return true
 4. name length > type length, to kbhi nhi bna payenge. return false
+
+```cpp
+bool isLongPressedName(string name, string typed) {
+    int i = 0;
+    int j = 0;
+    int n = name.size();
+    int m = typed.size();
+
+    if(m < n) return false;
+
+    while(i < n && j < m){
+        if(name[i] == typed[j]){
+            i++;
+            j++;
+        }else if(i-1>=0 && name[i-1] == typed[j]){
+            j++;
+        }else{
+            return false;
+        }
+    }
+
+    if(i < n) return false;
+
+    while(j < m){
+        if(name[n-1] != typed[j]) return false;
+        j++;
+    }
+    return true;
+}
+```
