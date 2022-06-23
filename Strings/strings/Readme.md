@@ -398,3 +398,60 @@ vector<int> partitionLabels(string s) {
     return ans;
 }
 ```
+
+## 8. Reverse Vowels of a String
+
+> Stack:
+
+- jb vowel mila stack mae dalte jao, and dobara traverse krke jb vowel mila stack ke top se nikalo or daldo.
+- TC : O(n) + O(n)
+- SC : O(n)
+
+```cpp
+string reverseVowels(string s) {
+    stack<char> st;
+    for(auto& ch:s){
+        if(isVowel(ch)) st.push(ch);
+    }
+
+    for(int i = 0; i < s.size(); i++){
+        if(isVowel(s[i])){
+            s[i] = st.top();
+            st.pop();
+        }
+    }
+    return s;
+}
+```
+
+> Two Pointers:
+
+- left and right pointer rkho, jb vowel mile tb ruk jao otherwise bhadao
+- vowel milne pr swap krke, dono ko bhada do left++,right--;
+
+TC : O(n)
+SC : O(1)
+
+```cpp
+bool isVowel(char ch){
+    if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U'){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+string reverseVowels(string s) {
+    int left = 0;
+    int right = s.size()-1 ;
+
+    while(left < right){
+        while(left < s.size() && left < right && !isVowel(s[left])) left++;
+        while(right >= 0 && left < right && !isVowel(s[right])) right--;
+        swap(s[left],s[right]);
+        left++;
+        right--;
+    }
+    return s;
+}
+```
