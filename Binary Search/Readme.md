@@ -160,3 +160,22 @@ else return -1;
 
 TC : O(N x log_2(m x 10^d)), n times we multiply.
 SC : O(1)
+
+## 7. Median of Row wise Sorted Matrix
+
+![Screenshot Capture - 2022-06-24 - 12-40-17](https://user-images.githubusercontent.com/35686407/175482464-abeec89c-e360-48b8-ad7e-4be10d7b190a.png)
+
+- write all the intergers in sorted order, middle element is 6,
+- constraint : all array elements is 1 to 10^9 , it can vary.
+
+![Screenshot Capture - 2022-06-24 - 12-41-17](https://user-images.githubusercontent.com/35686407/175482577-e6326ace-88ed-4f4b-8ef0-579643b4a4d9.png)
+
+#### Appraoch 1: Iteratre and Extra DS
+
+- Create a ds, and put every element
+- then sort
+- middle index = median of matrix
+- TC : O(n x m) + (n x m) log(n x m)
+- SC : O(n x m)
+
+#### Approach 2: Binary Search
