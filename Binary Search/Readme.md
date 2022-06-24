@@ -119,9 +119,44 @@ if(index < n) return index;
 else return -1;
 ```
 
+> Note : Binary Search is not limited to finding an element, It is implemented to any search space where it is monotonic in nature, linearly increasing or decreasing.
+
 ## 6. Nth root of a number
+
+![Screenshot Capture - 2022-06-24 - 11-27-59](https://user-images.githubusercontent.com/35686407/175471987-8d2638ac-d30e-4ded-9b4a-9a8c72d910d3.png)
+
+- Above is monotonic increasing, here we can apply binary search.
 
 ![take U forward - Nth Root of a Number Using Binary Search  WjpswYrS2nY - 1536x864 - 0m18s](https://user-images.githubusercontent.com/35686407/175467366-ca9976e3-54a9-4db3-b32e-4157ac60f9ef.png)
 
 - Nth root of M, and number of decimal places will be given
 
+- Find the search space
+
+![Screenshot Capture - 2022-06-24 - 11-28-49](https://user-images.githubusercontent.com/35686407/175472115-08795248-f021-4a7c-8b7b-471a7d50cc29.png)
+
+![Screenshot Capture - 2022-06-24 - 11-29-05](https://user-images.githubusercontent.com/35686407/175472146-e5cf0c3d-0a0b-4bf9-9cf5-8df84aafd3c7.png)
+
+- Now apply Binary Search
+
+![Screenshot Capture - 2022-06-24 - 11-29-54](https://user-images.githubusercontent.com/35686407/175472257-ad0e505d-f31a-43f4-89cc-69c9d3523cd5.png)
+
+
+- find the search space
+- applhy binary search, find mid,
+- reduce search space if 3rd root mid*mid*mid > targer ~ [1 ... mid]
+
+![Screenshot Capture - 2022-06-24 - 11-31-40](https://user-images.githubusercontent.com/35686407/175472485-639c3798-e170-46df-b35a-1ff98c893347.png)
+
+> How long we have to shrik search space ?
+
+![Screenshot Capture - 2022-06-24 - 11-32-57](https://user-images.githubusercontent.com/35686407/175472670-a200ce54-e49c-45c8-b854-04479e6103bc.png)
+
+- shrik search space untill difference between high and low if 5 decimal places, |high-low| > 10e-6
+
+![Screenshot Capture - 2022-06-24 - 11-34-36](https://user-images.githubusercontent.com/35686407/175472855-3e7e8701-1d37-4a43-bd91-3d3fe203f9a4.png)
+
+![take U forward - Nth Root of a Number Using Binary Search  WjpswYrS2nY - 885x498 - 15m39s](https://user-images.githubusercontent.com/35686407/175473522-51b0a367-0556-43d9-ac32-b507d50f570d.png)
+
+TC : O(N x log_2(m x 10^d)), n times we multiply.
+SC : O(1)
