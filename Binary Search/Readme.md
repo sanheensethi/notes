@@ -55,3 +55,15 @@ upper_bound(a,a+n,10); // end iterator , 10 not exists big element is 9, 10 lies
 
 /* Finding index and for vectors , it is same as lower bound. */
 ```
+
+## 2. Find the first occurace of X in a sorted array. If it does not exists, print -1.
+
+```cpp
+a[] = {1,4,4,4,4,9,9,10,11};
+
+int x = 4;
+
+int index = lower_bound(a,a+n,x) - a;
+if(index != n && a[index] == x) cout<<index<<endl;
+else cout<<-1<<endl;
+```
