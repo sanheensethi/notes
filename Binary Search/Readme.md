@@ -64,6 +64,17 @@ a[] = {1,4,4,4,4,9,9,10,11};
 int x = 4;
 
 int index = lower_bound(a,a+n,x) - a;
-if(index != n && a[index] == x) cout<<index<<endl;
+if(index != n && a[index] == x) cout<<index<<endl; /* index = 1 */
 else cout<<-1<<endl;
+```
+
+```cpp
+a[] = {1,4,4,4,4,9,9,10,11};
+
+int x = 2;
+
+int index = lower_bound(a,a+n,x) - a;
+
+/* lower bound of 2 gives iterator of 4 , it means 2 does not exists, therefore we apply check */
+/* a[index] == x */
 ```
