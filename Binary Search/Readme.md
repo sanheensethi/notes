@@ -179,3 +179,49 @@ SC : O(1)
 - SC : O(n x m)
 
 #### Approach 2: Binary Search
+
+> binary search can be implemented in any search space if it is monotonic in nature
+
+- median will be an integer between 1 to 10^9
+- this is search space
+
+- as there are 9 elements in total, 1 2 3 3 5 6 6 9 9
+- median = 5, here you can see, left of median there are 4 elements and in right of median there are 4 elements
+- so number of elements < 5 = 9/2 = 4
+- so, what if we can figure out number of smaller elements from a number which is considered to be median,
+- if number of elements > 4, it means, that will not be our median kyuki hme median ke left mae n elements and median ke right mae n elements chahiye, where n = r*c/2, so high = mid-1
+- else low = mid+1
+- ans is low.
+
+![Screenshot Capture - 2022-06-24 - 12-46-07](https://user-images.githubusercontent.com/35686407/175483348-8577f3a8-5e3f-42eb-8070-a4a2c58260ea.png)
+
+```cpp
+class Solution{   
+public:
+    
+    int numEle(vector<vector<int>>& matrix,int& num){
+        int n = matrix.size();
+        int sum = 0;
+        for(int i = 0; i < n; i++){
+            sum += upper_bound(matrix[i].begin(),matrix[i].end(),num)-matrix[i].begin();
+        }
+        return sum;
+    }
+
+    int median(vector<vector<int>> &matrix, int r, int c){
+        int low = 0;
+        int high = 2000;
+        int n = (r*c)/2;
+        while(low <= high){
+            int mid = (low + high)/2;
+            int nele = numEle(matrix,mid);
+            if(nele <= n){
+                low = mid+1;
+            }else{
+                high = mid-1;
+            }
+        }
+        return low;
+    }
+};
+```
