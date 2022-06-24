@@ -77,4 +77,6 @@ int index = lower_bound(a,a+n,x) - a;
 
 /* lower bound of 2 gives iterator of 4 , it means 2 does not exists, therefore we apply check */
 /* a[index] == x */
+
+/* for x = 12, it gives idex = n, we have to print -1, therefore we put check index != n */
 ```
