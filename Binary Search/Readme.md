@@ -64,8 +64,8 @@ a[] = {1,4,4,4,4,9,9,10,11};
 int x = 4;
 
 int index = lower_bound(a,a+n,x) - a;
-if(index != n && a[index] == x) cout<<index<<endl; /* index = 1 */
-else cout<<-1<<endl;
+if(index != n && a[index] == x) return index /* index = 1 */
+else return -1;
 ```
 
 ```cpp
@@ -79,4 +79,42 @@ int index = lower_bound(a,a+n,x) - a;
 /* a[index] == x */
 
 /* for x = 12, it gives idex = n, we have to print -1, therefore we put check index != n */
+```
+
+## 3. Find the last occurance of X in a sorted array. If it does not exists, print -1. (STL)
+
+```cpp
+a[]  = {1,4,4,4,4,9,9,10,11};
+
+int x = 4;
+int index = upper_bound(a,a+n,x) - a; // upper bound gives the index of next greater element to it, i.e., 9, therefore we have to do index--;
+index--;
+if(index >= 0 && a[index] == x) return index;
+else return -1;
+
+/* x = 0, it might happen that upper bound point to index = 0, so when index--, it goes to -1 point, which gives runtime error, so index >= 0 is check*/
+/* x = 2 , it points to 4 move back ie., 1 but not equal to 2 therefore check for a[index] == x*/
+```
+
+## 4. Find the largest Number which is smaller then x (STL)
+
+```cpp
+a[] = {1,4,4,4,4,9,9,10,11};
+
+int x = 4
+int index = lower_bound(a,a+n,x) - a;
+index--; // a[index] is largest number, as before it, all numbers are small as array is sorted.
+if(index >= 0) return a[index];
+else return -1;
+```
+
+## 5. Find the smallest Number greater then x (STL)
+
+```cpp
+a[] = {1,4,4,4,4,9,9,10,11};
+
+int x = 4;
+int index = upper_bound(a,a+n,x) - a; // upper bound always points to next greater element
+if(index < n) return index;
+else return -1;
 ```
