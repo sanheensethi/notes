@@ -333,3 +333,50 @@ int singleNonDuplicate(vector<int>& arr) {
     return arr[low]; 
 }
 ```
+
+## 9. Search Element in Rotated Sorted Array !
+
+![Screenshot Capture - 2022-06-24 - 16-41-04](https://user-images.githubusercontent.com/35686407/175525480-b7c0da34-a292-46ef-bd32-4f4908eca96b.png)
+
+![Screenshot Capture - 2022-06-24 - 16-42-42](https://user-images.githubusercontent.com/35686407/175525312-d5f95fd0-6204-490a-8153-acfc2e8f03aa.png)
+
+- isme rotated sorted array hai,
+- to ek trf se jb hum mid niaklenge, ya to left half sorted hoga ya fr right half sorted hogga.
+- to conditions esi hia :
+    1. mid hi target hai, to return mid
+    2. check left half is sorted ? , a[low] <= a[mid] , if yes, then check target lies in left half ? , target >= a[low] && target <= a[mid] , if yes, then high = mid-1 else low = mid+1
+    3. if left half is not sorted ,  then it means right half is sorted, so just check target lies in right half ? target >= a[mid] && target ,= a[high]. if yes then low = mid+1 , else high = mid-1; 
+
+
+
+```cpp
+int search(vector<int>& nums, int target) {
+    int low = 0;
+    int high = nums.size()-1;
+    while(low <= high){
+        int mid = (low+high) >> 1;
+
+        if(nums[mid] == target) return mid;
+
+        // check left half is sorted 
+        if(nums[low] <= nums[mid]){
+            // left half sorted. check target lies in it ?
+            if(nums[low] <= target && target <= nums[mid]){
+                high = mid-1;
+            }else{
+                low = mid+1;
+            }
+        }
+        // right half is sorted
+        else{
+            // right half, check target lies in it ?
+            if(nums[mid] <= target && target <= nums[high]){
+                low = mid+1;
+            }else{
+                high = mid-1;
+            }
+        }
+    }
+    return -1;
+}
+```
