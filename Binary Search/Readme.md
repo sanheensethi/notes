@@ -118,3 +118,10 @@ int index = upper_bound(a,a+n,x) - a; // upper bound always points to next great
 if(index < n) return index;
 else return -1;
 ```
+
+## 6. Nth root of a number
+
+![take U forward - Nth Root of a Number Using Binary Search  WjpswYrS2nY - 1536x864 - 0m18s](https://user-images.githubusercontent.com/35686407/175467366-ca9976e3-54a9-4db3-b32e-4157ac60f9ef.png)
+
+- Nth root of M, and number of decimal places will be given
+
