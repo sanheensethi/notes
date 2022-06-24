@@ -225,3 +225,111 @@ public:
     }
 };
 ```
+> Q1) Why r and c are always odd?
+
+- If r and c both are odd then this means that number of elements int the matrix will also be odd which is actually necessary for binary search to be applicable here(only in this problem, binary serach works for both even and odd elements arrays when the array is linear but not here). Because here we are judging by considering the fact that no of elements less than or equal to current number, which in case of even no of elements can be a number which is not present in the matrix. Having odd number of elements has a property that the middle element is cleary defined (a single mid) so number of elements to the left of it and right of it will be equal but in case of even population we can sometime have a median element which is 
+not present in the array which will not be possible to find in case of a matrix like this without traversing all the elements.
+
+This method will give wrong result for even number of elements so let's not worry about it.
+
+> Q2) Why half = (r * c) / 2 and not (r * c + 1) / 2 as no of elements are odd and we know middle for odd is (n + 1) / 2 ?
+
+- To this I will reply that the condition if (cnt <= half) { low = mid + 1;  } will move the search space to the right even if we get a mid for which cnt == half this means it will never consider the element just left of the median and since we are considering the low as our answer after we break out of the loop it will always give us the right median as when we are less then median  we are pushed to right and when we have more than half then we are pushed to the left even when we have already found out the median element still loop will not terminate until our search space has only one elment left i.e the median itself.
+
+## 8. Single Element in Sorted Array
+
+#### Appraoch 1: XOR all elements and find the ans.
+
+#### Approach 2: If elements are already sorted, we can use binary search
+
+- we have to find the break point, break point is yellow line
+- left of break point , all the elements appear twice
+- right of break point, single element is there, and then all the elements to right appear twice.
+
+![take U forward - Single Element In Sorted Array Leetcode  PzszoiY5XMQ - 885x498 - 3m16s](https://user-images.githubusercontent.com/35686407/175515422-d60fd372-eaaa-4568-8046-5b85b6850059.png)
+
+> Observation:
+
+- Right
+    - 4 first instance at odd index
+    - 4 second instance at even index
+
+- Left
+    - 1 first instance at even index
+    - 1 second instacnce at odd index
+
+![take U forward - Single Element In Sorted Array Leetcode  PzszoiY5XMQ - 853x480 - 3m08s](https://user-images.githubusercontent.com/35686407/175515865-a4a6538b-cea7-4bf7-b834-374199fcdd79.png)
+
+
+- we will check for left half,
+- if it is left half , low = mid+1;
+- else if it is right half , high = mid-1;
+
+> Why high = size-2;
+
+![Screenshot Capture - 2022-06-24 - 15-52-23](https://user-images.githubusercontent.com/35686407/175516048-ff640816-24da-4d7e-9aa1-6efaf30f1ac0.png)
+
+- in above, while shrinking the left half, automatically low goes to the last element which is single element, hence we start it with 2;
+- if we take high = size-1 , then low goes out of bound, which is wrong as we consider low is our ans.
+
+```cpp
+int singleNonDuplicate(vector<int>& arr) {
+    int low = 0;
+    int high = arr.size()-2;
+    while(low <= high){
+
+        int mid = (low+high)/2;
+
+        // check for left half
+        if(mid%2 == 1){
+            // odd
+            if(arr[mid-1] == arr[mid]){
+                // it is left half
+                low = mid+1;
+            }else{
+                // it is right half
+                high = mid-1;
+            }
+        }else if(mid%2 == 0){
+            // even
+            if(arr[mid+1] == arr[mid]){
+                // it is left half
+                low = mid+1;
+            }else{
+                // it is right half
+                high = mid-1;
+            }
+        }
+    }
+    return arr[low]; 
+}
+```
+#### Simple Trick to avoid Multiple IF ELSE Statements (Usign ^ xor operator)
+
+if mid = 4 , then 4 ^ 1 = 5
+if mid = 5, then 5 ^ 1 = 4
+if mid = 3, then 3 ^ 1 = 2
+if mid = 2, then 2 ^ 1 = 3
+
+- we have to check this actually, if mid is odd, then it is 2nd occurance, then first occuranve is prev even index, mid^1 give prev even index
+- if mid is even , then it is 1st occufrance, then second occurance is next odd index , mid^1 also gives next odd index, if mid is even
+
+```cpp
+int singleNonDuplicate(vector<int>& arr) {
+    int low = 0;
+    int high = arr.size()-2;
+    while(low <= high){
+
+        int mid = (low+high)/2;
+
+        // check for left half
+        if(arr[mid] == arr[mid^1]){
+            low = mid+1;
+        }else{
+            high = mid-1;
+        }
+    }
+
+    return arr[low]; 
+}
+```
