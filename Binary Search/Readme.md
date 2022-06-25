@@ -479,7 +479,7 @@ public:
     }
 };
 ```
-## K-th Element of Two Sorted Arrays
+## 11. K-th Element of Two Sorted Arrays
 
 #### Better Naive : Megring Two Sorted arrays, as we do in merge sort
 
@@ -528,6 +528,48 @@ class Solution{
     
         }
         return -1;
+    }
+};
+```
+## 12. Allocate Minimum Number of Pages 
+
+```cpp
+class Solution 
+{
+    private:
+    bool isPossible(int A[],int N,int maxPages,int students){
+        int stu = 1;
+        int pages = 0;
+        for(int i = 0; i < N; i++){
+            if(A[i] > maxPages) return false;
+            if(pages + A[i] <= maxPages){
+                pages += A[i];
+            }else{
+                stu++;
+                pages = A[i];
+            }
+        }
+        if(stu <= students) return true;
+        return false;
+    }
+    public:
+    //Function to find minimum number of pages.
+    int findPages(int A[], int N, int M) 
+    {
+        int low = A[0];
+        int high = 0;
+        for(int i = 0 ; i < N;i++) high += A[i];
+        int ans;
+        while(low <= high){
+            int mid = low + (high-low)/2;
+            if(isPossible(A,N,mid,M)){
+                ans = mid;
+                high = mid-1;
+            }else{
+                low = mid+1;
+            }
+        }
+        return ans;
     }
 };
 ```
