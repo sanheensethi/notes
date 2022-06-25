@@ -380,3 +380,102 @@ int search(vector<int>& nums, int target) {
     return -1;
 }
 ```
+
+## 10. Median of Two Sorted Arrays
+
+#### Naive Solution: Merging same as merge sort
+
+- mege the two sorted arrays, in another ds/vector
+- then find the median
+- TC : O(m+n) + O(1)
+- SC : O(m+n)
+
+#### Better Naive :
+
+- Instead of storing in another ds, we know at which position numbers i have to take for median,
+- so create a count variable, by taking an element just count that , when you got required count, find the median and return
+- TC : O(m+n)
+- SC : O(1)
+
+#### Optimized Solution : Binary Search
+
+- isme hum partitions krenge,
+- median nikalne ke liye agar total element even hai, to left half and right half mae same number of elements hote hai
+- if total elements odd hai to left half mae element jayeda hota hai as compared to right half
+- jo sorted array hota hai after merging, uska left half ka max and right half ka min agar inka average nikale to vo hme median deta hai, in case of total element even
+- if total element = odd , jo sorted array hota hai after merging usme keft half ka jo max element hota hai vo hme median deta hai.
+
+> -
+
+- ab hum bina merge kre ye try krne ki koshish kr rhe hai ki , hum left half and right half nikal paye, such that in left half, all elements are smaller then right half
+- to esa krne ke liye sbse pehle hme dekhna hoga ki left half mae max kitne element rkh skte hai, ~ totalElement / 2 in case of even , totalElement / 2 + 1 in case of odd
+- to ek to trika hai, ki smaller array mae se hum, 1 / 1 krke element bhadaye and check kre ki kya valid partition ho gyi hai ?
+- ya dusra trika hai ki hum binary search se pehle find kre ki kha partition krna hai, fr check kre kya shi partition to hai na.
+
+![undefined-1656139317755](https://user-images.githubusercontent.com/35686407/175761883-86d6bace-bea2-4f55-9d42-d0d2aa5d356d.jpg)
+
+![undefined-1656139336654](https://user-images.githubusercontent.com/35686407/175761888-db09a4e5-6a77-4f97-8b0d-eec73c703a61.jpg)
+
+- Upar linearly elements utha rhe hai.
+- for valid partition, we have to cross checks some condition, in picture below:
+- if valud return the median
+
+![undefined-1656139606434](https://user-images.githubusercontent.com/35686407/175762017-934549f7-e1fe-4bbd-b847-4dfc60a041b2.jpg)
+
+![Pepcoding - Median of Two Sorted Arrays - Optimised Approach Leetcode 4 Solution Searching and Sorting  jDJuW7tSxio - 853x480 - 29m00s](https://user-images.githubusercontent.com/35686407/175762072-ecbc2874-b109-41f7-8d9a-fd73932e1c01.png)
+
+> Important Note
+
+- Do the binary search on smaller size array
+- before accessing mid-1 / mid / bel / bel - 1, check that they are valid index or not,
+- if not, for left partition , l1 and l2 set it to INT_MIN
+- and for right partititon, r1 and r2 set it to INT_MAX
+
+```cpp
+class Solution {
+public:
+    #define debug(x) cout<<#x<<":"<<x<<endl;
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        
+        if(nums1.size() > nums2.size()){
+            swap(nums1,nums2);
+        }
+        
+        // nums1 always has smaller
+        
+        // binary search on smaller;
+        
+        int low = 0;
+        int high = nums1.size();
+        int total = nums1.size() + nums2.size();
+        
+        while(low <= high){
+            
+            int mid = (low + high)/2; // no. of elements in left part
+            int bel = (total+1)/2 - mid; // index before all elements are in left part
+            
+            // valid partition / segregate
+            
+            int l1 = mid-1 >= 0 ? nums1[mid-1] : INT_MIN;
+            int l2 = bel-1 >= 0 ? nums2[bel-1] : INT_MIN;
+            int r1 = mid < nums1.size() ? nums1[mid] : INT_MAX;
+            int r2 = bel < nums2.size() ? nums2[bel] : INT_MAX;
+
+            
+            if(l1 <= r2 && l2 <= r1){
+                //find median
+                if((total&1)){
+                    return (double)max(l1,l2);
+                }else{
+                    return ((double)(max(l1,l2) + min(r1,r2)))/2.0;
+                }
+            }else if(l1 > r2){
+                high = mid-1;
+            }else if(l2 > r1){
+                low = mid+1;
+            }
+        }
+        return 0;
+    }
+};
+```
