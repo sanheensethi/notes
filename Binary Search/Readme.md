@@ -496,3 +496,38 @@ public:
 #### Approach 3: log(min(n,m)) solution , Same concept of merge two sorted arrays
 
 - in this K is given, so we make partiton such that in left partiton there are K elements.
+
+```cpp
+class Solution{
+    public:
+    int kthElement(int nums1[], int nums2[], int n, int m, int K)
+    {
+        if( n > m ){
+            return kthElement(nums2,nums1,m,n,K);
+        }
+        // num1 is smaller
+        int low = max(0,K-m);
+        int high = min(K,n);
+    
+        while(low <= high){
+            int mid = (low+high)/2;
+            int bel = K - mid;
+    
+            int l1 = mid-1 >= 0 ? nums1[mid-1] : INT_MIN;
+            int l2 = bel-1 >= 0 ? nums2[bel-1] : INT_MIN;
+            int r1 = mid < n ? nums1[mid] : INT_MAX;
+            int r2 = bel < m ? nums2[bel] : INT_MAX;
+    
+            if(l1 <= r2 && l2 <= r1){
+                return max(l1,l2);
+            }else if(l1 > r2){
+                high = mid-1;
+            }else if(l2 > r1){
+                low = mid+1;
+            }
+    
+        }
+        return -1;
+    }
+};
+```
