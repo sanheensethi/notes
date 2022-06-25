@@ -479,3 +479,20 @@ public:
     }
 };
 ```
+## K-th Element of Two Sorted Arrays
+
+#### Better Naive : Megring Two Sorted arrays, as we do in merge sort
+
+- Instead of storing in another ds, we know at which position numbers i have to take for median,
+- so create a count variable, by taking an element just count that , when you got required count, find the median and return
+- TC : O(k)
+- SC : O(1)
+![Screenshot Capture - 2022-06-25 - 12-22-48](https://user-images.githubusercontent.com/35686407/175762253-2a4368f0-4ccc-4478-9a38-cc0a385652b2.png)
+
+![Screenshot Capture - 2022-06-25 - 12-23-01](https://user-images.githubusercontent.com/35686407/175762256-11239a6b-1305-489f-9f5a-cb373007a60c.png)
+
+#### Appraoch 2 : GFG Blog
+
+#### Approach 3: log(min(n,m)) solution , Same concept of merge two sorted arrays
+
+- in this K is given, so we make partiton such that in left partiton there are K elements.
