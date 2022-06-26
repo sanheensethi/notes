@@ -38,3 +38,23 @@ int kthSmallest(int arr[], int l, int r, int k) {
       return pq.top();
   }
 ```
+## 2. K-th Largest Element in array
+
+- k given, Largest Ask ~ min Heap
+
+![Screenshot of Welcome Board _ Sketchboard (2)](https://user-images.githubusercontent.com/35686407/175804056-d623597f-cb75-40cf-8c61-af7017bdccad.jpg)
+
+```cpp
+int findKthLargest(vector<int>& nums, int k) {
+  // max heap
+
+  priority_queue<int,vector<int>,greater<int>> pq;
+
+  for(auto& val:nums){
+      pq.push(val);
+      if(pq.size() > k) pq.pop();
+  }
+
+  return pq.top();
+}
+```
