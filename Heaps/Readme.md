@@ -96,3 +96,34 @@ vector <int> nearlySorted(int arr[], int n, int k){
   return ans;
 }
 ```
+## 4. Find K Closest Elements
+
+- as closest element manga hai, to mtlb x and array element ke bich ka difference as min as possible
+- to jinka difference jada hai unhe ignore krna hai
+
+#### Approach 1 : Sort vector accoding to the distance from x , min to max distance 
+
+#### Appraoch 2: Make a heap with size K, now, which heap ?
+
+- as minimum distance chahiye, to minimum distance valo ko bchana hai, to hum max heap bnayege, jisse jada distance vale khtm ho jaye
+
+```cpp
+vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+  priority_queue<pair<int,int>> pq; // max heap
+
+  for(auto& val:arr){
+      int distance = abs(x-val);
+      pq.push({distance,val});
+      if(pq.size() > k) pq.pop();
+  }
+
+  vector<int> ans;
+  while(!pq.empty()){
+      ans.push_back(pq.top().second);
+      pq.pop();
+  }
+
+  sort(ans.begin(),ans.end());
+  return ans;
+}
+```
