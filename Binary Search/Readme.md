@@ -666,3 +666,46 @@ int count(int arr[], int n, int x) {
     return l-f+1;
 }
 ```
+## 17. How Many Times Array is rotated:
+
+TestCases:
+- [3,4,5,1,2]
+- [4,5,6,7,0,1,2]
+
+```cpp
+int pivotIndex(vector<int>& arr){
+    int low = 0;
+    int high = arr.size()-1;
+    int ans;
+    int n = arr.size();
+
+    while(low <= high){
+        if(arr[low] <= arr[high]) return low; // important line
+
+        int mid = (low + high) >> 1;
+        int prev = (mid+n-1) % n;
+        int next = (mid + 1)% n;
+
+        if(arr[mid] < arr[prev] && arr[mid] < arr[next]){
+            return mid;
+        }else if(arr[low] <= arr[mid]){
+            low = mid+1;
+        }else if(arr[mid] <= arr[high]){
+            high = mid-1;
+        }
+    }
+
+    return -1;
+}
+```
+
+## 18. Minimum element in rotated sorted array
+
+```cpp
+int findMin(vector<int>& nums) {
+    int idx = pivotIndex(nums);
+    return nums[idx];
+}
+```
+
+## 19.
