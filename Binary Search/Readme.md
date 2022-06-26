@@ -573,3 +573,39 @@ class Solution
     }
 };
 ```
+## 13. Aggressive Cows
+
+```cpp
+bool canPlace(vector<int>& stalls,int minDist,int k){
+    int cow = 1;
+    int cord = stalls[0];
+    for(int i = 1; i < stalls.size(); i++){
+        if(stalls[i] - cord >= minDist){
+            cow++;
+            cord = stalls[i];
+        }
+        if(cow == k) return true;
+    }
+    return false;
+}
+
+int aggressiveCows(vector<int> &stalls, int k)
+{
+    sort(stalls.begin(),stalls.end());
+    int n = stalls.size();
+    int low = 0;
+    int high = stalls[n-1] - stalls[0];
+    
+    int ans;
+    while(low <= high){
+        int mid = (low + high) >> 1;
+        if(canPlace(stalls,mid,k)){
+            ans = mid;
+            low = mid+1;
+        }else{
+            high = mid-1;
+        }
+    }
+    return ans;
+}
+```
