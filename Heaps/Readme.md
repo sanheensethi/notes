@@ -98,10 +98,14 @@ vector <int> nearlySorted(int arr[], int n, int k){
 ```
 ## 4. Find K Closest Elements
 
+![Screenshot Capture - 2022-06-26 - 13-25-03](https://user-images.githubusercontent.com/35686407/175805073-f52122f7-ded0-444c-903c-e70a0ef353af.png)
+
 - as closest element manga hai, to mtlb x and array element ke bich ka difference as min as possible
 - to jinka difference jada hai unhe ignore krna hai
 
 #### Approach 1 : Sort vector accoding to the distance from x , min to max distance 
+
+![Screenshot of Welcome Board _ Sketchboard (6)](https://user-images.githubusercontent.com/35686407/175805191-ecc373da-8094-427a-8ccf-8d20f36c8e6a.jpg)
 
 #### Appraoch 2: Make a heap with size K, now, which heap ?
 
