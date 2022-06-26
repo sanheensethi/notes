@@ -184,3 +184,58 @@ vector<int> topKFrequent(vector<int>& nums, int k) {
   return ans;
 }
 ```
+
+## 6. Sort array by increasing order of Frequency
+
+- ye upar jesa hi hai question , bs isme k given nhi hai,
+- isme hum pehle umap mae daal lenge frequency
+- then min-heap(freq,ele) bnayenge
+- ab ye banane ke baad hme bs sare elements ko dalna hai
+- and fr bhr nikal kr vector mae dalna hai
+
+> Note : Read about compare function.
+
+### Class Compare (Important) , Min Heap, if pair first element are same, sort in inc order by second element
+
+```cpp
+class compare
+    {    
+        public:
+        // Since as you can see we have to sort decreasing order if frequency of two elements
+        // is same, so we need *Custom Comparator Function* which is this 👇
+        bool operator()(pair<int, int> p1, pair<int, int> p2) 
+        {    
+            if(p1.first==p2.first)
+                return p1.second < p2.second;
+            return p1.first > p2.first;
+        }
+    };
+    
+    vector<int> frequencySort(vector<int>& nums) {
+        unordered_map<int,int> umap;
+        
+        for(auto& val:nums){
+            umap[val]++;
+        }
+        
+        // min freq should be on top
+        priority_queue<pair<int,int>,vector<pair<int,int>>,compare> pq;
+        
+        for(auto& pr:umap){
+            pq.push({pr.second,pr.first});
+        }
+        
+        vector<int> ans(nums.size());
+        int i = 0;
+        while(!pq.empty()){
+            auto pr = pq.top();pq.pop();
+            int freq = pr.first;
+            int ele = pr.second;
+            while(freq--){
+                ans[i] = ele;
+                i++;
+            }
+        }
+        return ans;
+    }
+```
