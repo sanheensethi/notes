@@ -103,7 +103,7 @@ vector <int> nearlySorted(int arr[], int n, int k){
 - as closest element manga hai, to mtlb x and array element ke bich ka difference as min as possible
 - to jinka difference jada hai unhe ignore krna hai
 
-#### Approach 1 : Sort vector accoding to the distance from x , min to max distance 
+#### Approach 1 : Sort vector according to the distance from x , min to max distance 
 
 ![Screenshot of Welcome Board _ Sketchboard (6)](https://user-images.githubusercontent.com/35686407/175805191-ecc373da-8094-427a-8ccf-8d20f36c8e6a.jpg)
 
@@ -139,3 +139,48 @@ vector<int> findClosestElements(vector<int>& arr, int k, int x) {
 
 ## 5. Top K Frequent Elements
 
+#### Approach 1 : Count Frequency, Sort Complete Array
+
+- Count frequency put in map
+- now put {freq,ele} in vector again
+- sort the vector according to freq
+- select first K elements
+
+#### Appraoch 2: Priority Queue
+
+- Same as question 4, just in that we are sorting with frequency key
+- first count the frequency in unordered_map
+- then, treat unordered_map as vector and do the question same as we did
+- but which heap we have to use,
+- as it said top K frequent elements,
+- means we have to choose elements whose frequency is high, so
+- hme jada frequency vale element bchane hai, to mtlb hum minimum ko uda skte hai,
+- to min heap use krenge
+- when size of min heap > k pop;
+- the left elements are my ans.
+
+![Screenshot of Welcome Board _ Sketchboard (8)](https://user-images.githubusercontent.com/35686407/175807883-7b8202ad-30e0-4de8-aeb3-5acb8ee86c5e.jpg)
+
+```cpp
+vector<int> topKFrequent(vector<int>& nums, int k) {
+  unordered_map<int,int> umap;
+
+  for(auto&val : nums){
+      umap[val]++;
+  }
+
+  priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+
+  for(auto& pr:umap){
+      pq.push({pr.second,pr.first});
+      if(pq.size() > k) pq.pop();
+  }
+
+  vector<int> ans;
+  while(!pq.empty()){
+      ans.push_back(pq.top().second);
+      pq.pop();
+  }
+  return ans;
+}
+```
