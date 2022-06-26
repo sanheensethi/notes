@@ -239,3 +239,64 @@ class compare
         return ans;
     }
 ```
+## 7. K-Closest Point to Origin 
+
+- Minimize the distance ,
+- so we take heap of max heap, kyuki minimum distance vale bchane hai
+- maintain krenge K size ka heap
+- jo last mae bcha vo hmara ans.
+
+```cpp
+vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+  // closest point to origin
+  // min distance valo ko bchana hai
+  // to min niche hoga to acha hai, max upar hoga to chlega
+  // max heap
+
+  priority_queue<pair<int,int>> pq; // distance,index
+
+  int i = 0;
+  for(auto& point:points){
+      int x = point[0];
+      int y = point[1];
+
+      int dist = x*x + y*y;
+
+      pq.push({dist,i});
+      i++;
+      if(pq.size() > k) pq.pop();
+
+  }
+
+  vector<vector<int>> ans;
+  while(!pq.empty()){
+      int idx = pq.top().second;
+      pq.pop();
+      ans.push_back(points[idx]);
+  }
+  return ans;
+}
+```
+
+## 8. Minimum Cost of ropes [Question](https://practice.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1#)
+
+
+
+```cpp
+long long minCost(long long arr[], long long n) {
+  long long cost = 0;
+  priority_queue<long long,vector<long long>,greater<long long>> pq;
+
+  for(long long i = 0; i < n; i++){
+      pq.push(arr[i]);
+  }
+
+  while(pq.size() != 1){
+      auto first = pq.top();pq.pop();
+      auto second = pq.top();pq.pop();
+      cost = cost + first + second;
+      pq.push({first+second});
+  }
+  return cost;
+}
+```
