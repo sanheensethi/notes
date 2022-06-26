@@ -656,3 +656,13 @@ int lastIndex(vector<int>& arr,int target){
     return ans;
 }
 ```
+## 16. Count Occurance of Element in sorted array
+
+```cpp
+int count(int arr[], int n, int x) {
+    int f = firstIndex(arr,n,x);
+    if(f == -1) return 0;
+    int l = lastIndex(arr,n,x);
+    return l-f+1;
+}
+```
