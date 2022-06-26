@@ -305,3 +305,28 @@ long long minCost(long long arr[], long long n) {
   return cost;
 }
 ```
+## 9. Sum of elements between k1'th and k2'th smallest elements [Question](https://practice.geeksforgeeks.org/problems/sum-of-elements-between-k1th-and-k2th-smallest-elements3133/1/#)
+
+```cpp
+long long kthSmallest(long long A[],long long N,long long K){
+  priority_queue<int> pq;
+  for(long long i = 0; i < N; i++){
+      pq.push(A[i]);
+      if(pq.size() > K) pq.pop();
+  }
+  return pq.top();
+}
+
+long long sumBetweenTwoKth( long long A[], long long N, long long K1, long long K2)
+{
+  long long left = kthSmallest(A,N,K1);
+  long long right = kthSmallest(A,N,K2);
+
+  long long sum = 0;
+
+  for(long long i = 0; i < N; i++){
+      if(A[i] > left && A[i] < right) sum += A[i];
+  }
+  return sum;
+}
+```
