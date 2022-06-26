@@ -609,3 +609,50 @@ int aggressiveCows(vector<int> &stalls, int k)
     return ans;
 }
 ```
+## 14. First Index of an Element
+
+```cpp
+int firstIndex(vector<int>& arr,int target){
+    int n = arr.size();
+    int low = 0;
+    int high = arr.size()-1;
+    int ans = -1;
+
+    while(low <= high){
+        int mid = (low+high)>>1;
+        if(arr[mid] == target){
+            ans = mid;
+            high = mid-1;
+        }else if(arr[mid] > target){
+            high = mid-1;
+        }else if(arr[mid] < target){
+            low = mid+1;
+        }
+    }
+    return ans;
+}
+```
+
+## 15. Last Index of an Element
+
+```cpp
+int lastIndex(vector<int>& arr,int target){
+    int n = arr.size();
+    int low = 0;
+    int high = arr.size()-1;
+    int ans = -1;
+
+    while(low <= high){
+        int mid = (low+high)>>1;
+        if(arr[mid] == target){
+            ans = mid;
+            low = mid+1;
+        }else if(arr[mid] > target){
+            high = mid-1;
+        }else if(arr[mid] < target){
+            low = mid+1;
+        }
+    }
+    return ans;
+}
+```
