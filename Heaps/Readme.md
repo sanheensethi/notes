@@ -109,8 +109,12 @@ vector <int> nearlySorted(int arr[], int n, int k){
 
 #### Appraoch 2: Make a heap with size K, now, which heap ?
 
+![Screenshot Capture - 2022-06-26 - 14-34-02](https://user-images.githubusercontent.com/35686407/175807204-63d64e61-29c9-4057-b535-13e4ef7051d6.png)
+
 - as minimum distance chahiye, to minimum distance valo ko bchana hai, to hum max heap bnayege, jisse jada distance vale khtm ho jaye
 - use heap of size k, then if pq.size > k, pop, same as find the kth smallest element
+
+![Screenshot of Welcome Board _ Sketchboard (7)](https://user-images.githubusercontent.com/35686407/175807325-e0b900c3-dfd2-444c-a01c-f8a58477e5fe.jpg)
 
 ```cpp
 vector<int> findClosestElements(vector<int>& arr, int k, int x) {
@@ -132,3 +136,6 @@ vector<int> findClosestElements(vector<int>& arr, int k, int x) {
   return ans;
 }
 ```
+
+## 5. Top K Frequent Elements
+
