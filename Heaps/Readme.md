@@ -58,3 +58,41 @@ int findKthLargest(vector<int>& nums, int k) {
   return pq.top();
 }
 ```
+## 3. Sort Nearly Sorted Array / K Sorted Array
+
+- isme bola hai ki each element is at most k away from its target position, 
+- mtlb element true position is between [i-k,i+k] anywhere.
+- we have to sort the array
+
+#### Appoach 1: Sort array : nlogn
+
+![Screenshot of Welcome Board _ Sketchboard (3)](https://user-images.githubusercontent.com/35686407/175804322-8f4b74f9-fc0c-4d62-ae7f-1dc5c7736116.jpg)
+
+#### Approach 2: Heap of size K,
+
+- isme bola hai ki K distance ke andar aa skta hai, to kyu na pehle k elements ko compare krle, usme jo small hai use daal de
+- hum isme k size ka heap lenge, min heap, because we want to sort, and pehle chota element hi aayega asc order mae
+
+![Screenshot of Welcome Board _ Sketchboard (4)](https://user-images.githubusercontent.com/35686407/175804387-1c99d258-e195-470f-9bbe-f26bda60fec3.jpg)
+
+![Screenshot of Welcome Board _ Sketchboard (5)](https://user-images.githubusercontent.com/35686407/175804513-05c6c62a-3c35-46bd-9974-619ff7e8388c.jpg)
+
+
+```cpp
+vector <int> nearlySorted(int arr[], int n, int k){
+  vector<int> ans;
+  priority_queue<int,vector<int>,greater<int>> pq;
+  for(int i = 0; i < n; i++){
+      pq.push(arr[i]);
+      if(pq.size() > k){
+          ans.push_back(pq.top());
+          pq.pop();
+      }
+  }
+  while(!pq.empty()){
+      ans.push_back(pq.top());
+      pq.pop();
+  }
+  return ans;
+}
+```
