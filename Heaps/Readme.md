@@ -280,7 +280,12 @@ vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
 
 ## 8. Minimum Cost of ropes [Question](https://practice.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1#)
 
-
+- isme hme ropes di gyi hai, hme un ropes ko join krna hai and ek new bdi rope bnani hai, such that, cost is minimium
+- cost of rope = new length of rope
+- agar hum random uthakr kese bhi add krke rope bna rhe hai , to cost hmesha max aa rhi hai
+- greedly soche, to minimum ropes ko hi merge krte ja rhe hai,
+- make min heap priority queue, 2 ropes ki lenght nikal0, add kro cost mae add kro, and lenght ko heap mae daldo
+- jo new rope bnti hai use bhi to merge krna hai isliye heap mae dali hai
 
 ```cpp
 long long minCost(long long arr[], long long n) {
