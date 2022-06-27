@@ -238,7 +238,7 @@ void BFSDriver(vector<int>* graph,int nodes){
 
 ![image](https://user-images.githubusercontent.com/35686407/175879446-f372f361-7c92-448c-ac94-f351fc4d3c17.png)
 
-## Number of Proviences (Count Connected Components)
+## 1. Number of Proviences (Count Connected Components)
 
 > Adjacency Matrix is Given :
 
