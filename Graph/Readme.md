@@ -186,6 +186,98 @@ void disconnectedComponentes(int nodes){
 }
 ```
 
+## BFS Traversal
+
+- if we start from any given node
+- we visit all its neighbour nodes, then take neighbour node, and explore again it adjacent nodes
+- Data Structre Used : `Queue` , FIFO operation
+
+![image](https://user-images.githubusercontent.com/35686407/175871283-9a3acf22-a095-4bf4-bd97-6f712c583804.png)
+
+> Important : This is the code snippet we have to write before writing the bfs also, it will handle the dis-connected components.
+
+![image](https://user-images.githubusercontent.com/35686407/175873895-c001fe03-cf8f-4052-bebb-42a2fbd69e96.png)
+
+- Create visited array also, so you dont come to same node again.
+![image](https://user-images.githubusercontent.com/35686407/175874803-808e1ed9-2af5-4d4b-8843-3e5a1c547b47.png)
+
+```cpp
+void bfs(int node,vector<int>* graph,vector<bool>& visited,vector<int>& ans){
+
+    queue<int> Q;
+    Q.push(node);
+    visited[node] = true;
+
+    while(!Q.empty()){
+        auto node = Q.front();Q.pop();
+        ans.push_back(node);
+        for(auto& nbr : graph[node]){
+            if(visited[nbr] == false){
+                Q.push(nbr);
+                visited[nbr] = true;
+            }
+        }
+    }
+
+}
+
+/* This code is important to write, maybe there are disconnected components. */
+void BFSDriver(vector<int>* graph,int nodes){
+    
+    vector<bool> visited(nodes,false);
+    vector<int> ans;
+    for(int i = 0; i < nodes; i++){
+        if(visited[i] == false){
+            bfs(i,graph,visited,ans);
+        }
+    }
+    print(ans);
+}
+```
+![undefined-1656313382781](https://user-images.githubusercontent.com/35686407/175879303-e1d89a2e-f336-428d-80c1-d08d33f32b65.jpg)
+
+![image](https://user-images.githubusercontent.com/35686407/175879446-f372f361-7c92-448c-ac94-f351fc4d3c17.png)
+
+## Number of Proviences (Count Connected Components)
+
+> Adjacency Matrix is Given :
+
+```cpp
+void BFS(int node,vector<bool>& visited,vector<vector<int>>& matrix,int V){
+        queue<int> Q;
+        Q.push(node);
+        visited[node] = true;
+        
+        while(!Q.empty()){
+            auto node = Q.front();Q.pop();
+            vector<int>& nbrs = matrix[node];
+            for(int i = 0; i < V; i++){
+                if(nbrs[i] == 1 && !visited[i]){
+                    Q.push(i);
+                    visited[i] = true;
+                }
+            }
+        }
+    }
+  
+    int BFSDriver(vector<vector<int>>& matrix,int V){
+        vector<bool> visited(V,false);
+        int count = 0;
+        for(int i = 0; i < V; i++){
+            if(!visited[i]){
+                BFS(i,visited,matrix,V);
+                count++;
+            }
+        }
+        return count;
+    }
+```
+
+
+
+
+
+
 
 
 
