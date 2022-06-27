@@ -79,3 +79,4 @@
     - In-Degree : No. edges comning towards node.
     - Out-Degree : No. of edges going outwards from node.
 
+## Note : If Weights are not given but weights are necessary in question then assume weights = 1
