@@ -55,6 +55,11 @@
 
 ![1601624690-76844](https://user-images.githubusercontent.com/35686407/175863321-923ed0bf-358c-4727-9d8b-f10a30874df8.png)
 
+> Bipartite Graph :
+
+![Bipartite-Graph-Example-1](https://user-images.githubusercontent.com/35686407/175863700-ab3aca7d-0b56-4151-b05a-2aaa5776d1bf.png)
+
+![Screenshot Capture - 2022-06-27 - 10-33-53](https://user-images.githubusercontent.com/35686407/175863751-54b6cd26-60a9-4a92-b7a9-f8968efcf628.png)
 
 ## Graph Terminologies 
 
@@ -66,4 +71,11 @@
 6. **Tree** - A connected graph that doesn't have any cycles.
 7. **Degree** - The degree in a graph is the number of edges that are incident on a particular node.
 8. **Neighbour** - We say vertex "A" and "B" are neighbours if there exists an edge between them.
+
+## Degree of Graph
+
+1. Undirected : No. of edges connected to it
+2. Directed :
+    - In-Degree : No. edges comning towards node.
+    - Out-Degree : No. of edges going outwards from node.
 
