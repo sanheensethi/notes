@@ -80,3 +80,132 @@
     - Out-Degree : No. of edges going outwards from node.
 
 ## Note : If Weights are not given but weights are necessary in question then assume weights = 1
+
+## Representation of Graph
+
+> Input Format
+
+- No. of Nodes (n) , No. of edges (m)
+- in m lines there are u and v, which tells , there is edge between u and v
+
+![Screenshot 2022-06-27 104322](https://user-images.githubusercontent.com/35686407/175865084-38e1e277-5221-4a32-a635-3df67333f4f1.png)
+
+#### Method 1 : Adjacency matrix
+
+![1601728714-76844](https://user-images.githubusercontent.com/35686407/175865763-8dfd6b23-b12e-4ada-ba1c-aa758fc1c553.png)
+
+![1601702196-76844](https://user-images.githubusercontent.com/35686407/175865764-603b7fa4-d887-4894-adc3-65e124f4f80c.png)
+
+![image](https://user-images.githubusercontent.com/35686407/175865908-abef3f26-90f6-4fd4-adf3-bb929dacac38.png)
+
+```cpp
+void adjacencyMatrix(){
+    int nodes,edges;
+    cin>>nodes>>edges;
+    print(nodes);
+    print(edges);
+    vector<vector<int>> graph(nodes+1,vector<int>(nodes+1));
+
+    while(edges--){
+        int u,v;
+        cin>>u>>v;
+        graph[u][v] = 1; // in case of weighted, we write weight instead of 1
+        graph[v][u] = 1;
+    }
+
+    for(auto& vec:graph){
+        print(vec);
+    }
+}
+```
+![image](https://user-images.githubusercontent.com/35686407/175867282-5e2b4a67-62c0-4e33-9e0e-66b35571db5e.png)
+
+> Disadvantes :
+No. of nodes : 10^5 , can't create 2D array of 10^5 X 10^5 , space complexity O(N X N)
+
+#### Method 2: Adjacency List
+
+![1601728714-76844 (1)](https://user-images.githubusercontent.com/35686407/175866396-ff42beae-9532-409b-8b40-8574dc8db0ab.png)
+
+![1601727391-76844](https://user-images.githubusercontent.com/35686407/175866433-ccc26f27-8488-4d6e-b56d-7cf3e2944d3d.png)
+
+![image](https://user-images.githubusercontent.com/35686407/175866054-1053642f-47d7-4475-b698-a5dd3edfa8c9.png)
+
+
+![image](https://user-images.githubusercontent.com/35686407/175866183-9a0b9e0f-08fc-43d8-b146-880a27679df3.png)
+
+> If weights are also given then we have to make use of pairs in which first is node and second is weight.
+
+![image](https://user-images.githubusercontent.com/35686407/175866304-d1d374d1-b0f3-4b3c-87da-57d2dfb5234b.png)
+
+```cpp
+void adjacencyList(){
+    int nodes,edges;
+    cin>>nodes>>edges;
+    
+    vector<int> graph[nodes+1]; // vector<pair<int,int>> in case of weighted graph
+
+    while(edges--){
+        int u,v;
+        cin>>u>>v;
+        graph[u].push_back(v); // {v,w} in case of weighted graph
+        graph[v].push_back(u); // {u,w} in case of weighted graph
+    }
+
+    for(int i = 1; i < nodes+1; i++){
+        print(i);
+        print(graph[i]);
+    }
+}
+```
+![image](https://user-images.githubusercontent.com/35686407/175867744-3f23aa31-e254-4fb3-97a9-3fad01e3509d.png)
+
+## Connected Components
+
+- if in question this type of graph is given, these are not 3 graph this is single graph and it is called dis-connected graph
+- we hever code we have to write , we have to write for multiple components
+
+![image](https://user-images.githubusercontent.com/35686407/175868067-4838a85f-2153-4e7c-802d-92e72372e264.png)
+
+- take visited array, let below we have 10 nodes, 10 size visited array
+- when for loop runs, it seems that 1 is not visited, so it goes to 1 as dfs or bfs and mark all the nodes connected directly or indirectly with 1
+- so when you again came back to the for loop, it seems that some of them are not visited as it is dis-connected graph, some componentes left and their mark value is false, so in for loop when checked it when it found to be false, it calls the dfs from that node and apply dfs/bfs
+
+![image](https://user-images.githubusercontent.com/35686407/175868575-a9ca9884-923e-4187-8795-1940efe4fdb2.png)
+
+![image](https://user-images.githubusercontent.com/35686407/175868480-c0070f78-63ac-468a-b417-286d92dd31e1.png)
+
+```cpp
+void disconnectedComponentes(int nodes){
+    vector<bool> visited(nodes+1,false);
+    for(int i = 0; i < nodes+1; i++){
+        if(!visited[i]){
+            // apply dfs or bfs , dfs(i) / bfs(i);
+        }
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
