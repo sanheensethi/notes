@@ -309,59 +309,64 @@ void DFSDriver(vector<int> graph[],int nodes){
 }
 ```
 
+## 9. Cycle Detection in Graph [BFS]
+
+- isme hum queue lenge pair<int,int> such that, first is node and second is node's parent
+- why we did this ? , because when node check for its neighbours, tb use uska parent bhi milega, agar visited[nbr] == true hai and vo nbr parent hai to koi dikkat nhi,
+- but agar , visited[nbr] == true hai, and vo parent bhi nhi hai, iska mtlb usko kisi or nae visit kia hai and mae bhi visit krne ja rha hu , and vo pehle se visited tha, iska mtlb vha cycle hai.
+- niche picture mae, 9, 8 ko queue me daal chuka hai such that {8,9} in queue and 8 visited bhi mark ho chuka hai,
+- ab jb 7, 8 ko dalne ki koshish krega to use dekhega ki 8 visited mark hai, to kya vo mera parent hai ? jisse mae aaya hu , nhi mae to ({7,6}) 6 se aaya hu, iska mtlb 8 ko muje dalna chahiye but vo visited hai and mera parent nhi hai, iska mtlb vha cycle hai.
+![image](https://user-images.githubusercontent.com/35686407/176100269-bec23310-b552-4419-a0d1-edd1e5d59f86.png)
 
 
+```cpp
+bool detectCycleBFS(int node,vector<int> graph[],vector<bool>& visited){
+    queue<pair<int,int>> Q;
+    Q.push({node,-1});
+    visited[node] = true;
+    
+    while(!Q.empty()){
+        int size = Q.size();
+        while(size--){
+            auto& pr = Q.front();
+            int node = pr.first;
+            int parent = pr.second;
+            Q.pop();
+            
+            auto& nbrs = graph[node]; // list of node's neighbours
+            
+            for(auto& nbr : nbrs){
+                if(visited[nbr] == true && nbr != parent){
+                    // cycle detect
+                    return true;
+                }
+                if(!visited[nbr]){
+                    Q.push({nbr,node});
+                    visited[nbr] = true;
+                }
+            }
+            
+        }
+    }
+    return false;
+}
 
+bool bfsDriver(vector<int> graph[],int nodes){
+    vector<bool> visited(nodes,false);
+    for(int i = 0; i < nodes; i++){
+        if(visited[i] == false){
+            if(detectCycleBFS(i,graph,visited)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Function to detect cycle in an undirected graph.
+bool isCycle(int V, vector<int> adj[]) {
+    return bfsDriver(adj,V);
+}
+```
 
 
