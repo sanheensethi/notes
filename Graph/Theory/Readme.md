@@ -683,3 +683,67 @@ class Solution
 	}
 };
 ```
+## 15. Topological Sort [BFS]
+
+- indegree concept
+
+```cpp
+class Solution
+{
+    private:
+    
+    void Indegree(vector<int> graph[],int nodes,vector<int>& indegree){
+        for(int i = 0 ; i < nodes; i++){
+            for(auto& val:graph[i]){
+                indegree[val]++;
+            }
+        }
+    }
+    
+    void bfs(int nodes,vector<int> graph[],vector<int>& indegree,vector<int>& ans){
+        // initialize
+        queue<int> Q;
+        for(int i = 0; i < nodes; i++){
+            if(indegree[i] == 0){
+                Q.push(i);
+            }
+        }
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                int node = Q.front();
+                ans.push_back(node); // part of topo sort
+                Q.pop();
+                
+                auto& nbrs = graph[node];
+                
+                for(auto& nbr : nbrs){
+                    indegree[nbr]--;
+                    if(indegree[nbr] == 0){
+                        Q.push(nbr);
+                    }
+                }
+                
+            }
+        }
+        
+    }
+    
+    void bfsDriver(vector<int> graph[],int nodes,vector<int>& ans){
+        vector<int> indegree(nodes,0);
+        Indegree(graph,nodes,indegree);
+        
+        bfs(nodes,graph,indegree,ans);
+    }
+    
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{   
+	    vector<int> ans;
+	    bfsDriver(adj,V,ans);
+	    return ans;
+	}
+};
+```
