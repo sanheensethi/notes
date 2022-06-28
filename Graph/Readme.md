@@ -1,6 +1,6 @@
 # Graph
 
-## Introduction
+## 1. Introduction
 
 - A graph is an advanced data structure that is used to organize items in an interconnected network.
 - Each item in a graph is known as a node(or vertex) and these nodes are connected by edges.
@@ -61,7 +61,7 @@
 
 ![Screenshot Capture - 2022-06-27 - 10-33-53](https://user-images.githubusercontent.com/35686407/175863751-54b6cd26-60a9-4a92-b7a9-f8968efcf628.png)
 
-## Graph Terminologies 
+## 2. Graph Terminologies 
 
 1. **Path** - A sequence of alternating nodes and edges such that each of the successive nodes are connected by the edge.
 2. **Cycle** - A path where the starting and the ending node is the same.
@@ -72,16 +72,16 @@
 7. **Degree** - The degree in a graph is the number of edges that are incident on a particular node.
 8. **Neighbour** - We say vertex "A" and "B" are neighbours if there exists an edge between them.
 
-## Degree of Graph
+## 3. Degree of Graph
 
 1. Undirected : No. of edges connected to it
 2. Directed :
     - In-Degree : No. edges comning towards node.
     - Out-Degree : No. of edges going outwards from node.
 
-## Note : If Weights are not given but weights are necessary in question then assume weights = 1
+## 4. Note : If Weights are not given but weights are necessary in question then assume weights = 1
 
-## Representation of Graph
+## 5. Representation of Graph
 
 > Input Format
 
@@ -160,7 +160,7 @@ void adjacencyList(){
 ```
 ![image](https://user-images.githubusercontent.com/35686407/175867744-3f23aa31-e254-4fb3-97a9-3fad01e3509d.png)
 
-## Connected Components
+## 6. Connected Components
 
 - if in question this type of graph is given, these are not 3 graph this is single graph and it is called dis-connected graph
 - we hever code we have to write , we have to write for multiple components
@@ -186,7 +186,7 @@ void disconnectedComponentes(int nodes){
 }
 ```
 
-## BFS Traversal
+## 7. BFS Traversal
 
 - if we start from any given node
 - we visit all its neighbour nodes, then take neighbour node, and explore again it adjacent nodes
@@ -238,7 +238,7 @@ void BFSDriver(vector<int>* graph,int nodes){
 
 ![image](https://user-images.githubusercontent.com/35686407/175879446-f372f361-7c92-448c-ac94-f351fc4d3c17.png)
 
-## 1. Number of Proviences (Count Connected Components)
+## 8. Number of Proviences (Count Connected Components)
 
 > Adjacency Matrix is Given :
 
@@ -273,12 +273,12 @@ void BFS(int node,vector<bool>& visited,vector<vector<int>>& matrix,int V){
     }
 ```
 
-## Mark 2D matrix Row Col Visited in 1D array
+## 9. Mark 2D matrix Row Col Visited in 1D array
 
 [Article](https://www.geeksforgeeks.org/emulating-a-2-d-array-using-1-d-array/)
 > Formula : index = j + (i * total_no_of_columns_in_matrix)
 
-## 2. 01 Matrix [Question](https://leetcode.com/problems/01-matrix/)
+## 10. 01 Matrix [Question](https://leetcode.com/problems/01-matrix/)
 
 ![image](https://user-images.githubusercontent.com/35686407/175925763-383ac91e-db5b-4dfa-a739-736c1be939fb.png)
 
@@ -487,6 +487,92 @@ vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
     return mat; 
 }
 ```
+
+## 11. DFS Traversal
+
+> Recursion Method
+
+- Go to depth , depth , depth
+
+![image](https://user-images.githubusercontent.com/35686407/176089570-f178f945-c1c9-4cd5-83f0-c741c35e3d05.png)
+
+- here, when start with 1,
+- go to 2 , now it have 3 neighbours , {1,4,7} 
+    - 1 is already visited,
+    - so, we go to 4, and for 7 we come after we explore 4 first
+    - it's recursive in nature
+- when at 4, its neighbouts are {2,6}
+    - 2 is already visited, so we go to 6
+- now when we are at 6, we go to 7
+
+> DFS : 1 2 4 6 7 3 5
+
+#### Important : DFSDriver (For dis-connected Components)
+
+```cpp
+void DFSDriver(vector<int>* graph,int nodes){
+    
+    vector<bool> visited(nodes,false);
+    vector<int> ans;
+    for(int i = 0; i < nodes; i++){
+        if(visited[i] == false){
+            dfs(i,graph,visited,ans);
+        }
+    }
+    print(ans);
+}
+```
+
+![image](https://user-images.githubusercontent.com/35686407/176090298-23b015e6-00f0-4697-8bf1-c7760072a24b.png)
+
+- Another Component
+![image](https://user-images.githubusercontent.com/35686407/176090771-663b27a9-4c9d-44af-9b46-1f0d23c306a1.png)
+
+![image](https://user-images.githubusercontent.com/35686407/176090880-544a118e-a13e-4d78-a51a-98dc3724d5ca.png)
+
+> Code
+
+```cpp
+void dfs(int node,vector<int> graph[],vector<bool>& visited,vector<int>& ans){
+    
+    ans.push_back(node);
+    visited[node] = true;
+
+    auto& list = graph[node];
+    // sort(list.begin(),list.end()); // ~ if want to traverse in lexographical/Increasing order.
+    for(int nbr:list){
+        if(!visited[nbr]){
+            dfs(nbr,graph,visited,ans);
+        }
+    }
+}
+
+void DFSDriver(vector<int> graph[],int nodes){
+    vector<int> ans;
+    vector<bool> visited(nodes,false);
+    for(int i = 0; i < nodes; i++){
+        if(visited[i] == false){
+            dfs(i,graph,visited,ans);
+        }
+    }
+    print(ans);
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
