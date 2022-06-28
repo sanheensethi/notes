@@ -639,3 +639,47 @@ class Solution {
     }
 };
 ```
+## 14. Topological Sorting [DFS]
+
+```cpp
+class Solution
+{
+    private:
+    
+        void dfsTopoSort(int node,vector<int> graph[],vector<bool>& visited,stack<int>& st){
+            visited[node] = true;
+            auto& nbrs = graph[node];
+            for(auto& nbr : nbrs){
+                if(!visited[nbr]){
+                    dfsTopoSort(nbr,graph,visited,st);
+                }
+            }
+            st.push(node);
+        }
+    
+        void dfsDriver(vector<int> graph[],int nodes,vector<int>& ans){
+            vector<bool> visited(nodes,false);
+            stack<int> st;
+            
+            for(int i = 0; i < nodes; i++){
+                if(visited[i] == false){
+                    dfsTopoSort(i,graph,visited,st);
+                }
+            }
+            
+            for(int i = 0; i < nodes; i++){
+                ans[i] = st.top();
+                st.pop();
+            }
+            
+        }
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    vector<int> ans(V);
+	    dfsDriver(adj,V,ans);
+	    return ans;
+	}
+};
+```
