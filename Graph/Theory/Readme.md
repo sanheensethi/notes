@@ -593,3 +593,49 @@ bool dfsDriver(vector<vector<int>>& graph){
     return true;
 }
 ```
+## 13. Cycle Check in Directed Graph [DFS]
+
+--- wrtite here
+
+```cpp
+class Solution {
+  public:
+  
+    bool isCycle(int node,vector<int> graph[],vector<bool>& visited,vector<bool>& dfsVisited){
+        visited[node] = true;
+        dfsVisited[node] = true;
+        
+        auto& nbrs = graph[node];
+        for(auto& nbr : nbrs){
+            if(visited[nbr] == false){
+                if(isCycle(nbr,graph,visited,dfsVisited)) return true;
+            }else if(dfsVisited[nbr] == true){
+                return true;
+            }
+        }
+        
+        dfsVisited[node] = false;
+        return false;
+    }
+  
+    bool dfsDriver(vector<int> graph[],int nodes){
+        vector<bool> visited(nodes,false);
+        vector<bool> dfsVisited(nodes,false);
+        
+        for(int i = 0; i < nodes; i++){
+            if(visited[i] == false){
+                if(isCycle(i,graph,visited,dfsVisited)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+  
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int V, vector<int> adj[]) {
+        // code here
+        return dfsDriver(adj,V);
+    }
+};
+```
