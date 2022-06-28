@@ -500,3 +500,96 @@ public:
     }
 };
 ```
+
+## 12. Bipartite Check [DFS]
+
+- In this, we do this same as BFS, 
+- but before calling DFS we just update the color array first then call the DFS for neighbour.
+- every node has Question:
+    1. Is neighbour colored ?
+        1. No : Color it and call and call dfs to next node
+        2. Yes : is it color with different color ? :
+            1. Yes : skip/continue
+            2. No : return false;
+
+![image](https://user-images.githubusercontent.com/35686407/176116374-3d6fcb7e-13ab-4850-93c5-2abc36b1a952.png)
+
+
+```cpp
+bool colorAndCheck(int node,vector<int>& color,vector<vector<int>>& graph){
+    auto& nbrs = graph[node];
+    
+    for(auto& nbr : nbrs){
+        if(color[nbr] == -1){
+            // nbr is not colored
+            color[nbr] = color[node] == 1 ? 0 : 1;
+            if(colorAndCheck(nbr,color,graph) == false) return false;
+        }else{
+            // nbr is colored
+            if(color[nbr] == color[node]) return false;
+        }
+    }
+    return true;
+    }
+    
+    bool dfsDriver(vector<vector<int>>& graph){
+    int nodes = graph.size();
+    vector<int> color(nodes,-1);
+    
+    for(int i = 0; i < nodes; i++){
+        if(color[i] == -1){
+            color[i] = 0;
+            if(colorAndCheck(i,color,graph) == false){
+                return false;
+            }
+        }
+    }
+    return true;
+    }
+```
+
+#### Why we call dfs after updating color ? why dont we do normal dfs in which when we visit and update the visited array ? [here color is working as same visited array also.]
+
+- we can do that surely, but to do that we have to update the color array for the current node, but for the current node to update the color, we have to know, what is the color of prev node ?, so we have to pass extra parameter that it's prev node color is this this, you have to color the current node with opposite color
+
+```cpp
+bool colorAndCheck(int node,int prevColor,vector<int>& color,vector<vector<int>>& graph){
+    if(color[node] == -1){
+        // not color
+        if(prevColor == -1) color[node] = 0;
+        else color[node] = prevColor == 0 ? 1 : 0;
+    }else{
+        if(prevColor == color[node]) return false;
+    }
+    
+    auto& nbrs = graph[node];
+    
+    for(auto& nbr : nbrs){
+        if(color[nbr] != -1){
+            // nbr is colored
+            if(color[nbr] == color[node]) return false;
+        }else{
+            // nbr is not colored
+            if(colorAndCheck(nbr,color[node],color,graph) == false){
+                return false;   
+            }                
+        }
+    }
+    return true;
+}
+
+bool dfsDriver(vector<vector<int>>& graph){
+    int nodes = graph.size();
+    vector<int> color(nodes,-1);
+    
+    for(int i = 0; i < nodes; i++){
+        if(color[i] == -1){
+            int prevColor = -1;
+            if(colorAndCheck(i,prevColor,color,graph) == false){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+```
