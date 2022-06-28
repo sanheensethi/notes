@@ -318,7 +318,8 @@ void DFSDriver(vector<int> graph[],int nodes){
 - ab jb 7, 8 ko dalne ki koshish krega to use dekhega ki 8 visited mark hai, to kya vo mera parent hai ? jisse mae aaya hu , nhi mae to ({7,6}) 6 se aaya hu, iska mtlb 8 ko muje dalna chahiye but vo visited hai and mera parent nhi hai, iska mtlb vha cycle hai.
 ![image](https://user-images.githubusercontent.com/35686407/176100269-bec23310-b552-4419-a0d1-edd1e5d59f86.png)
 
-
+![image](https://user-images.githubusercontent.com/35686407/176100849-3e6a7a6e-52ec-482b-9182-96cbc1890280.png)
+ 
 ```cpp
 bool detectCycleBFS(int node,vector<int> graph[],vector<bool>& visited){
     queue<pair<int,int>> Q;
@@ -369,4 +370,51 @@ bool isCycle(int V, vector<int> adj[]) {
 }
 ```
 
+## 10. Detect Cycle in Undirected Graph [DFS]
 
+- isme same concept hai bfs jesa,
+- 2 chije paas krenge, node and node ka parent
+- jb node apni neighbour list nikalega, usme parent hoga to parent to bound hai visited ke liye, isliye use skip krke next nodes ko dekhega
+- aagr next node koi bhi visited aai , to mtlb use koi or kr chuka hai traverse
+- iska mtlb us graph mae cycle hai.
+- TC : O(n)
+- SC : O(n)
+
+![image](https://user-images.githubusercontent.com/35686407/176104322-d5e5d313-39f8-4a2e-9702-afd97e12a713.png)
+
+```cpp
+bool detectCycleDFS(int node,int parent,vector<int> graph[],vector<bool>& visited){
+        
+    visited[node] = true;
+    
+    auto& nbrs = graph[node];
+    
+    for(auto& nbr:nbrs){
+        if(visited[nbr] == true && nbr != parent){
+            return true;
+        }
+        if(!visited[nbr]){
+            if(detectCycleDFS(nbr,node,graph,visited)) return true;
+        }
+    }
+    return false;
+}
+
+bool dfsDriver(vector<int> graph[],int nodes){
+    vector<bool> visited(nodes,false);
+    for(int i = 0; i < nodes; i++){
+        if(visited[i] == false){
+            int parent = -1;
+            if(detectCycleDFS(i,parent,graph,visited)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// Function to detect cycle in an undirected graph.
+bool isCycle(int V, vector<int> adj[]) {
+    return dfsDriver(adj,V);
+}
+```
