@@ -418,3 +418,85 @@ bool isCycle(int V, vector<int> adj[]) {
     return dfsDriver(adj,V);
 }
 ```
+## 11. Bipartite Graph [BFS]
+
+> Bipartite Graph : Graph that can be colored with `exaclty 2 colors`, such that `no two adjacent nodes have same color` .
+
+> Bipartite Graph
+
+![image](https://user-images.githubusercontent.com/35686407/176113021-e6217e10-aee5-429f-abf1-c96f5880c9ff.png)
+
+> Not a Bipartite Graph
+![image](https://user-images.githubusercontent.com/35686407/176113064-793f592a-e11e-4800-aa2d-4530c8a0e5ef.png)
+
+- Observation:
+    1. if `cycle length` is `odd` ~ not a bipartite
+    2. if `cycle length` is `not odd` ~ bipartite [we will not say it evenlength cycle, because if there is no cycle in the graph, then we can say that also that we can color it with two different colors.]
+
+> Below graph is a bipartite graph:
+
+![image](https://user-images.githubusercontent.com/35686407/176113760-a4546658-0286-4724-bc8e-0066b4573bfe.png)
+
+
+- hum ek queue lenge and usme hmari stating node dalenge and use color krenge = 0;
+- and traverse krenge and check krenge kya mera neigbhour colored hai ? if nhi to color krenge
+- Hr node ke paas question hoga puchne ko : 
+    - kya mera neighbour colored hai ? :
+        1. No , to color kro mere se opposite color se, and queue mae push kro, [color work as visited array]
+        - if yes :
+            1. kya mere neigbour ka color mere se different hai ?
+                - if yes : continue, move aage
+                - if no : return false, it is not bipartite graph
+
+```cpp
+class Solution {
+public:
+    
+    bool colorAndCheck(int node,vector<int>& color,vector<vector<int>>& graph){
+        queue<int> Q;
+        Q.push(node);
+        color[node] = 0;
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                node = Q.front();Q.pop();
+                int clr = color[node];
+                
+                auto& nbrs = graph[node];
+                
+                for(auto& nbr : nbrs){
+                    if(color[nbr] != -1){
+                        // nbr is already colored
+                        if(color[nbr] == clr) return false;
+                    }else{
+                        // nbr is not colored
+                        color[nbr] = clr == 0 ? 1 : 0; // also write this ~ !clr;
+                        Q.push(nbr);
+                    }
+                }
+                
+            }
+        }
+        return true;
+    }
+    
+    bool bfsDriver(vector<vector<int>>& graph){
+        int nodes = graph.size();
+        vector<int> color(nodes,-1);
+        
+        for(int i = 0; i < nodes; i++){
+            if(color[i] == -1){
+                if(colorAndCheck(i,color,graph) == false){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    bool isBipartite(vector<vector<int>>& graph) {
+        return bfsDriver(graph);
+    }
+};
+```
