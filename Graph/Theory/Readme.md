@@ -866,3 +866,56 @@ class Solution {
 
 };
 ```
+## 18. Dijkstra Algorithm [Different Weightes in Undirected Graph]
+
+- priority queue min heap
+- we can also use set in case of priority queue
+
+![image](https://user-images.githubusercontent.com/35686407/176370327-307faa81-49c4-4f70-bd91-98534da7b6a0.png)
+
+![image](https://user-images.githubusercontent.com/35686407/176370932-f6cbff81-ba87-4a03-8fd3-1ce97d7aae53.png)
+
+```cpp
+class Solution
+{
+	public:
+	
+	void modifiedBFS(vector<vector<int>> graph[],int nodes,int source,vector<int>& distance){
+	    distance[source] = 0;
+	    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+	    
+	    pq.push({0,source});
+	    
+	    while(!pq.empty()){
+	        auto& pr = pq.top();
+	        int node = pr.second;
+	        pq.pop();
+	        
+	        vector<vector<int>>& nbrs = graph[node];
+	        
+	        for(auto nbr : nbrs){
+	            int nbrNode = nbr[0];
+	            int wt = nbr[1];
+	            
+	            if(distance[nbrNode] > distance[node] + wt){
+	                distance[nbrNode] = distance[node] + wt;
+	                pq.push({distance[nbrNode],nbrNode});
+	            }
+	            
+	        }
+	        
+	    }
+	   
+	    
+	}
+	
+	//Function to find the shortest distance of all the vertices
+    //from the source vertex S.
+    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
+    {
+        vector<int> distance(V,INT_MAX);
+        modifiedBFS(adj,V,S,distance);
+        return distance;
+    }
+};
+```
