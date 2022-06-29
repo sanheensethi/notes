@@ -919,3 +919,104 @@ class Solution
     }
 };
 ```
+## 19. Prim Algorithm [Brute]
+
+> Brute Force
+
+```cpp
+void primAlgorithmBrute(vector<pair<int,int>> graph[],int nodes){
+    vector<int> key(nodes,INT_MAX);
+    vector<int> mst(nodes,false);
+    vector<int> parent(nodes,-1);
+
+    int src = 0;
+    key[src] = 0;
+    parent[src] = -1;
+
+    for(int count = 0; count < nodes-1; count++){
+
+        // find the min key which is not part of mst
+        int mini = INT_MAX;
+        int node;
+        for(int i = 0; i < nodes; i++){
+            if(mst[i] == false && key[i] < mini){
+                node = i;
+                mini = key[i];
+            }
+        }
+        
+        // now this is part of mst
+        mst[node] = true;
+
+        // traverse the adjacent node
+        // skip those nodes who are part of mst
+        // update parent and key whose value is greater then new edge weight
+
+        auto& nbrs = graph[node];
+        
+        for(auto& nbr:nbrs){
+            int nbrNode = nbr.first;
+            int weight = nbr.second;
+            if(mst[nbrNode] == true) continue;
+            if(weight < key[nbrNode]){
+                key[nbrNode] = weight;
+                parent[nbrNode] = node;
+            }
+        }
+
+    }
+
+    print(parent);
+
+}
+```
+
+> Optimized : 
+
+```cpp
+void primAlgorithmOptimized(vector<pair<int,int>> graph[],int nodes){
+    vector<int> key(nodes,INT_MAX);
+    vector<int> mst(nodes,false);
+    vector<int> parent(nodes,-1);
+
+    int src = 0;
+    key[src] = 0;
+    parent[src] = -1;
+
+    // min heap ~ key - min edge,index - node no.
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+
+    pq.push({0,0});
+
+    for(int i = 0; i < nodes-1; i++){
+
+        // find the min key which is not part of mst
+        int node = pq.top().second;
+        pq.pop();
+
+        // now it is part of mst
+        mst[node] = true;
+
+        // go to the adj nodes
+        // skip nbr nodes which are part of mst 
+        // update the parent and key array also push in queue if they satisfies the condition
+
+        auto& nbrs = graph[node];
+
+        for(auto& nbr : nbrs){
+            int nbrNode = nbr.first;
+            int weight = nbr.second;
+
+            if(key[nbrNode] > weight){
+                key[nbrNode] = weight;
+                parent[nbrNode] = node;
+                pq.push({key[nbrNode],nbrNode});
+            }
+
+        }
+
+    }
+
+    print(parent);
+}
+```
