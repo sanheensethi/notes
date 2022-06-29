@@ -792,3 +792,77 @@ class Solution {
     }
 };
 ```
+
+## 17. Shortest path in Direct Ascylic Graph having weights given
+
+![image](https://user-images.githubusercontent.com/35686407/176354415-669d6ebe-3e2b-46fc-9f72-e4dd6ee9a676.png)
+
+> Adj List is of type : vector<pair<int,int>> graph[nodes] , in this, u -> {v,w} , it tells that u is connected to v, with weight w
+
+![image](https://user-images.githubusercontent.com/35686407/176354593-e2992562-415b-4296-a01e-c68c042afd71.png)
+
+Step 1: Find Topological Sort [DFS]
+
+
+```cpp
+class Solution {
+  public:
+
+    void dfsTopoSort(int node,vector<pair<int,int>> graph[],vector<bool>& visited,stack<int>& st){
+        visited[node] = true;
+        vector<pair<int,int>>& nbrs = graph[node];
+        for(auto& nbr:nbrs){
+            if(!visited[nbr.first]){
+                dfsTopoSort(nbr.first,graph,visited,st);
+            }
+        }
+        st.push(node);
+    }
+
+    void topoSort(vector<pair<int,int>> graph[],int nodes,stack<int>& st){
+        vector<bool> visited(nodes,false);
+        for(int i = 0; i < nodes; i++){
+            if(!visited[i]){
+                dfsTopoSort(i,graph,visited,st);
+            }
+        }
+        int size = st.size();
+    }
+
+
+    void shortestPath(vector<pair<int,int>> graph[],int nodes,int src){
+        // Direct Ascylic Graph
+        stack<int> st;
+        topoSort(graph,nodes,st);
+
+        vector<int> distance(nodes,INT_MAX);
+        distance[src] = 0;
+
+        while(!st.empty()){
+            int node = st.top();st.pop();
+
+            if(distance[node] != INT_MAX){
+
+                vector<pair<int,int>>& nbrs = graph[node];
+
+                for(auto& nbr : nbrs){
+
+                    int nbrNode = nbr.first;
+                    int wt = nbr.second;
+
+                    if(distance[node] + wt < distance[nbrNode]){
+                        distance[nbrNode] = distance[node] + wt; 
+                    }
+
+                }
+
+            }
+
+        }
+
+        print(distance);
+
+    }
+
+};
+```
