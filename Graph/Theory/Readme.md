@@ -1020,3 +1020,54 @@ void primAlgorithmOptimized(vector<pair<int,int>> graph[],int nodes){
     print(parent);
 }
 ```
+## 20. Union Find
+
+```cpp
+class unionFind{
+public:
+
+    vector<int> parent;
+    vector<int> rank;
+
+    unionFind(int nodes){
+        parent.resize(nodes+1);
+        rank.resize(nodes+1,0);
+        for(int i = 0; i <= nodes; i++) parent[i] = i;
+    }
+    
+    int _findParent(int node);
+    void _union(int node1,int node2);
+    
+};
+
+int unionFind :: _findParent(int node){
+    // jb tk parent[node] = node na ho, tb tk node = parent[node];
+    // 6 -> 4 -> 2 -> 2
+    // while(node != parent[node]){
+    //     node = parent[node];
+    // }
+
+    // return node;
+
+    if(node == parent[node]) return node;
+
+    return _findParent(parent[node]);
+}
+
+void unionFind :: _union(int node1,int node2){
+    int parent1 = _findParent(node1);
+    int parent2 = _findParent(node2);
+
+    int rank1 = rank[parent1];
+    int rank2 = rank[parent2];
+
+    if(rank1 < rank2){
+        parent[parent1] = parent2;
+    }else if(rank2 < rank1){
+        parent[parent2] = parent1;
+    }else{
+        parent[parent2] = parent1;
+        rank[parent1]++;
+    }
+}
+```
