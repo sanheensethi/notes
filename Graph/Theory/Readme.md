@@ -747,3 +747,45 @@ class Solution
 	}
 };
 ```
+## 16. Shortest path in Undirected Graph with unit weights.
+
+![image](https://user-images.githubusercontent.com/35686407/176353332-e18bcaf4-af37-4f83-bff4-6b151c77aa93.png)
+
+```cpp
+class Solution {
+  public:
+
+    void bfs(int src,vector<int> graph[],int nodes,vector<int>& distance){
+        queue<int> Q;
+        Q.push(src);
+        distance[src] = 0;
+
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                
+                int node = Q.front();
+                int dist = distance[node];
+                Q.pop();
+
+                auto& nbrs = graph[node];
+
+                for(auto& nbr : nbrs){
+                    if(dist + 1 < distance[nbr]){
+                        distance[nbr] = dist+1;
+                        Q.push(nbr);
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    void undirectedShortestPath(vector<int> graph[],int nodes,int src){
+        vector<int> distance(nodes,INT_MAX);
+        bfs(src,graph,nodes,distance);
+        print(distance);
+    }
+};
+```
