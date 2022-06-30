@@ -247,3 +247,70 @@ vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
     return mat; 
 }
 ```
+## 2. Number of Islands
+
+- hme isme numbr of islands count krne hai
+- 1 is land and 0 is water
+
+![image](https://user-images.githubusercontent.com/35686407/176653496-26d67356-5dd7-4618-a1f7-3b3c4d338351.png)
+![image](https://user-images.githubusercontent.com/35686407/176653577-a58c3083-d470-4064-a131-0e2863fede4d.png)
+
+- grid mae dfs lgado, and mark krdo visited position ko ki its already visited,
+- visited ke liye use kro, transformation, from 2d array to 1d array
+- go to up, down, right, left, and if it is possible to move then move otherwise return back and try other direction.
+- its just basically count total number of disconnected components.
+
+```cpp
+class Solution {
+public:
+    
+    bool isPossible(int i,int j,int rows,int cols,vector<bool>& visited,vector<vector<char>>& grid){
+        if(i < 0 || j < 0 || i >= rows || j >= cols || grid[i][j] == '0' || visited[mapIdx(i,j,cols)]) return false;
+        return true;
+    }
+    
+    void dfs(int i,int j,int rows,int cols,vector<bool>& visited,vector<vector<char>>& grid){
+        visited[mapIdx(i,j,cols)] = true;
+        
+        // left 
+        if(isPossible(i,j-1,rows,cols,visited,grid)){
+            dfs(i,j-1,rows,cols,visited,grid);
+        }
+        // right
+        if(isPossible(i,j+1,rows,cols,visited,grid)){
+            dfs(i,j+1,rows,cols,visited,grid);
+        }
+        // up
+        if(isPossible(i-1,j,rows,cols,visited,grid)){
+            dfs(i-1,j,rows,cols,visited,grid);
+        }
+        // down
+        if(isPossible(i+1,j,rows,cols,visited,grid)){
+            dfs(i+1,j,rows,cols,visited,grid);
+        }
+    }
+    
+    int numIslands(vector<vector<char>>& grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        
+        vector<bool> visited(rows*cols,false); // 2d array visited
+        
+        int count = 0;
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if(grid[i][j] == '1' && visited[mapIdx(i,j,cols)] == false){
+                    count++;
+                    dfs(i,j,rows,cols,visited,grid);
+                }
+            }
+        }
+        return count;
+    }
+    
+    int mapIdx(int i,int j,int cols){
+        return j + i*cols;
+    }
+    
+};
+```
