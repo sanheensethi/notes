@@ -1071,3 +1071,107 @@ void unionFind :: _union(int node1,int node2){
     }
 }
 ```
+
+## 21. Krushkal Algorithm
+
+1. Sort according to the weight
+2. Take the first edge and check if they are belonging to the same component or not
+3. Does 1 and 4 belong to the same component, if not take that edge
+
+```cpp
+class UnionFind{
+private:
+    int nodes;
+    vector<int> parent;
+    vector<int> rank;
+
+public:
+
+    UnionFind(int nodes){
+        this->nodes = nodes;
+        this->parent.resize(this->nodes);
+        for(int i = 0; i < nodes; i++){
+            parent[i] = i;
+        }
+        this->rank.resize(nodes,0);
+    }
+
+    int findParent(int node){
+        if(node == parent[node]) return node;
+        return parent[node] = findParent(parent[node]);
+    }
+
+    void unionn(int node1,int node2){
+        int parent1 = findParent(node1);
+        int parent2 = findParent(node2);
+
+        if(rank[parent1] < rank[parent2]){
+            parent[parent1] = parent2; 
+        }else if(rank[parent2] < rank[parent1]){
+            parent[parent2] = parent1;
+        }else{
+            parent[parent2] = parent1;
+            rank[parent1]++;
+        }
+    }
+
+    ~UnionFind(){}
+};
+
+class Solution{
+
+public:
+    static bool compare(vector<int>& a1,vector<int>& a2){
+        return a1[0] < a2[0];
+    }
+
+private:
+    int nodes;
+    int edges;
+    vector<vector<int>> sortedEdges;
+    UnionFind *uf;
+    vector<pair<int,int>> mst;
+
+public:
+    
+    void takeInput(){
+        cin>>this->nodes;
+        cin>>this->edges;
+
+        for(int i = 0; i < edges; i++){
+            int src,dest,wt;
+            cin>>src>>dest>>wt;
+            sortedEdges.push_back({wt,src,dest});
+        }
+
+        sort(sortedEdges.begin(),sortedEdges.end(),compare);
+
+        this->uf = new UnionFind(nodes);
+
+    }
+
+    void krushkalAlgo(){
+
+        int cost = 0;
+        for(auto& edge : sortedEdges){
+            int weight = edge[0];
+            int src = edge[1];
+            int dest = edge[2];
+
+            // will i take that edges, are they belong to same component
+            if(uf->findParent(src) != uf->findParent(dest)){
+                cost += weight; 
+                mst.push_back({src,dest});
+                uf->unionn(src,dest);
+            }
+
+        }
+
+        print(cost);
+        print(mst);
+        
+        delete uf;
+        uf = NULL;
+    }
+};
+```
