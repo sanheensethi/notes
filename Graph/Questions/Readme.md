@@ -255,10 +255,15 @@ vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
 ![image](https://user-images.githubusercontent.com/35686407/176653496-26d67356-5dd7-4618-a1f7-3b3c4d338351.png)
 ![image](https://user-images.githubusercontent.com/35686407/176653577-a58c3083-d470-4064-a131-0e2863fede4d.png)
 
+![image](https://user-images.githubusercontent.com/35686407/176655123-da348837-9790-4bb9-a84d-48f5808ffd5b.png)
+
+
 - grid mae dfs lgado, and mark krdo visited position ko ki its already visited,
 - visited ke liye use kro, transformation, from 2d array to 1d array
 - go to up, down, right, left, and if it is possible to move then move otherwise return back and try other direction.
 - its just basically count total number of disconnected components.
+
+> DFS :
 
 ```cpp
 class Solution {
