@@ -26,6 +26,17 @@ Note: We can also say `oop` , object oriented programming
 
 > OOps bhi ek style hai jisse hum apni problems ko solve krte hai/ development krte hai
 
+Procedural programming is about writing procedures or functions that perform operations on the data, while object-oriented programming is about creating objects that contain both data and functions.
+
+- Advantages:
+    1.  faster and easier to execute
+    2.  provides a clear structure for the programs
+    3.  helps to keep the C++ code DRY "Don't Repeat Yourself"
+    4.  makes the code easier to maintain, modify and debug
+    5.  makes it possible to create full reusable applications with less code and shorter development time
+
+> Note : The "Don't Repeat Yourself" (DRY) principle is about reducing the repetition of code. You should extract out the codes that are common for the application, and place them at a single place and reuse them instead of repeating it.
+
 ## 6 Main Piller of OOPs are
 
 1. Class
@@ -42,7 +53,6 @@ Other `Java,CPP,C#,PHP,Python`
 ## Class :
 - A class is a `blueprint` that `defines the variables` and `the methods` `common` to `all objects of a certain kind.`
 - Class is not real world entitiy , it's just blueprint or prototype
-
 - Class comming from calssification
 - Categorize Everything
 - If we talk about college , we can say that these students belong to computer science, so this is class of computer science, and these students are of electronics, so there's another class of electronics.
@@ -56,6 +66,7 @@ Other `Java,CPP,C#,PHP,Python`
     - Animal : Dog,Cat
     - Birds : Sparrow,Peacock
     - Vechile : Car,Jeep
+- A class is a user-defined data type
 
 ## Object : 
 - an object is an element (or instance) of a class; objects have the behaviors of their class.
