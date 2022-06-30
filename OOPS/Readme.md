@@ -41,8 +41,7 @@ Other `Java,CPP,C#,PHP,Python`
 
 ## Class :
 - A class is a `blueprint` that `defines the variables` and `the methods` `common` to `all objects of a certain kind.`
-- Classes provide the benefit of reusability.
-- class is a template for objects
+- Class is not real world entitiy , it's just blueprint or prototype
 
 - Class comming from calssification
 - Categorize Everything
@@ -65,6 +64,7 @@ Other `Java,CPP,C#,PHP,Python`
 - Example : Suppose civil engineer made a plan for the house, so, Then based on these plan there are many houses are constructed that follow the same design, So design is one and we have created many houses, so design is bassically a blueprint a class and houses are objects which ajapts the features from blueprint or you can say class
 - Example : Making a design of fingerprint scanner, there is a circuit diagram, now, electronic enginner create multiple fingerprint scanner based on that design, so design is blueprint of fingerprint scanner i.e. class, and real world in which we ae trying our thumbs are objects, there can be multiple fingerprint scanner , it means there can be multiple objects of same class.
 
+## Data Hiding - Realted to Encapsulation
 
 ## Principles of OOP
 1. Abstraction : Hiding internal details and showing functionality is known as abstraction., Visible Outside - function, e.g. Telivision, we dont know how it work, just have button to change channels. Buttons-functions
