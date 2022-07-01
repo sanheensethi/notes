@@ -397,4 +397,169 @@ public:
     }
 };
 ```
+## 3. Cheapest Flights with K Stops (Shortest distance from src to dest using K - edges)
 
+#### Approach 1: DFS + Pruning
+
+- we will use dfs technique to reach the destination
+- while going we mark the visited and while returning we mark visited[node] = false because as shown in below graph, from 1 to 4 there are multiple paths, if 1 -> 3 -> 2 -> 4 then also there is a path of 1 -> 2 -> 4 , but when in the first path, if we mark 2 as visited, we cant able to achieve 1 -> 2 -> 4 path. so that is why we need visited array.
+- But this may lead to TLE , as it is of very high time complexity.
+
+![image](https://user-images.githubusercontent.com/35686407/176842839-0bca0dd8-3d00-4a88-82c3-f51d92cec441.png)
+
+```cpp
+class Solution {
+public:
+    
+    void makeGraph(vector<vector<int>>& flights,vector<pair<int,int>> graph[]){
+        for(auto& vec : flights){
+            int src = vec[0];
+            int dest = vec[1];
+            int cost = vec[2];
+            graph[src].push_back({dest,cost});
+        }
+    }
+    
+    void dfs(int src,int dst,int k, vector<pair<int,int>> graph[],int cost,int& finalCost,vector<bool>& visited){
+        
+        
+        if(src == dst){
+            finalCost = min(finalCost,cost);
+            return;
+        }
+        
+        if( k < 0 ) return;
+        if(cost > finalCost) return;
+        visited[src] = true;
+        auto& nbrs = graph[src];
+        
+        for(auto& nbr : nbrs){
+            int nbrNode = nbr.first;
+            int wt = nbr.second;
+            if(visited[nbrNode] != true){
+                dfs(nbrNode,dst,k-1,graph,cost+wt,finalCost,visited);
+            }
+        }
+        
+        visited[src] = false;
+    }
+    
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<pair<int,int>> graph[n];
+        makeGraph(flights,graph);
+        vector<bool> visited(n,false);
+        int finalCost = INT_MAX;
+        int cost = 0;
+        dfs(src,dst,k,graph,cost,finalCost,visited);
+        if(finalCost == INT_MAX) return -1;
+        return finalCost;
+    
+    }
+};
+```
+
+#### Approach 2 : Using DP [Storing Already Calculated Costs] [Optimized]
+
+- in this, we didn't take the visited array, it is handeled by the dp itself
+- we will make the dfs as in returning cost, so that we can memoize
+
+```cpp
+class Solution {
+public:
+    
+    void makeGraph(vector<vector<int>>& flights,vector<pair<int,int>> graph[]){
+        for(auto& vec : flights){
+            int src = vec[0];
+            int dest = vec[1];
+            int cost = vec[2];
+            graph[src].push_back({dest,cost});
+        }
+    }
+    
+    int dfs(int src,int dst,int k, vector<pair<int,int>> graph[],vector<vector<int>>& memo){
+        
+        if(src == dst){
+            return 0;
+        }
+        
+        if( k < 0 ) return INT_MAX;
+        
+        if(memo[src][k] != -1) return memo[src][k];
+        
+        auto& nbrs = graph[src];
+        
+        int ans = INT_MAX;
+        
+        for(auto& nbr : nbrs){
+            int nbrNode = nbr.first;
+            int wt = nbr.second;
+            
+                int dfsans = dfs(nbrNode,dst,k-1,graph,memo);
+                if(dfsans != INT_MAX){
+                    dfsans = dfsans + wt;
+                    ans = min(ans,dfsans);
+            }
+        }
+        return memo[src][k] = ans;
+    }
+    
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<pair<int,int>> graph[n];
+        makeGraph(flights,graph);
+        vector<bool> visited(n,false);
+        
+        vector<vector<int>> memo(n+1,vector<int>(k+1,-1));
+        
+        int cost = dfs(src,dst,k,graph,visited,memo);
+        if(cost == INT_MAX) return -1;
+        return cost;
+    
+    }
+};
+```
+
+#### Approach 3 : [Priority Queue] [Brute TLE]
+
+```cpp
+class Solution {
+public:
+    
+    void makeGraph(vector<vector<int>>& flights,vector<pair<int,int>> graph[]){
+        for(auto& vec : flights){
+            int src = vec[0];
+            int dest = vec[1];
+            int cost = vec[2];
+            graph[src].push_back({dest,cost});
+        }
+    }
+    
+    int dijkstraAlgo(vector<pair<int,int>> graph[],int nodes,int src,int dst,int k){
+        priority_queue<tuple<int,int,int>,vector<tuple<int,int,int>>,greater<tuple<int,int,int>>> pq;
+        
+        pq.push({0,src,0});
+        
+        while(!pq.empty()){
+            auto [cost,node,stop] = pq.top();
+            pq.pop();
+            
+            if(node == dst) return cost;
+            if(stop > k) continue;
+            auto& nbrs = graph[node];
+            for(auto& nbr:nbrs){
+                auto [nbrNode,wt] = nbr;
+                pq.push({wt+cost,nbrNode,stop+1});
+            }
+        }
+        return -1;
+    }
+    
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<pair<int,int>> graph[n];
+        makeGraph(flights,graph);
+        
+        int ans =  dijkstraAlgo(graph,n,src,dst,k);
+        if(ans == INT_MAX) return -1;
+        return ans;
+    }
+};
+```
