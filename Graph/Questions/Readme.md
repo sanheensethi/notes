@@ -319,3 +319,82 @@ public:
     
 };
 ```
+
+## 2. Course Schedule I
+
+- [1 0] , 1 number course ko lene ke liye 0 vala course lena pdega
+- example : [[2,3],[1,2],[4,3],[2,5],[5,6]]
+- we need course 3 for the course 2
+- we need course 2 for the course 1
+- we need course 3 for the course 4
+- Below Graph is shown
+
+![image](https://user-images.githubusercontent.com/35686407/176831216-40695d85-a2a8-4eb7-beed-56e4ef94331f.png)
+
+#### Appraoch 1 : Topological Sort
+- find cycle in Directed Graph , if found then topological sort is not possible
+- if not found then return true
+
+```
+class Solution {
+public:
+    
+    void makeGraph(vector<int> graph[],int nodes,vector<vector<int>>& pre){
+        int size = pre.size();
+        for(int i = 0; i < size; i++){
+            int u = pre[i][0];
+            int v = pre[i][1];
+            graph[v].push_back(u);
+        }
+    }
+    
+    
+    void calcIndegree(vector<vector<int>>& pre,vector<int>& indegree){
+        for(int i = 0; i < pre.size(); i++){
+            int u = pre[i][0];
+            int v = pre[i][1];
+            indegree[u]++;
+        }
+    }
+    
+    bool isCycle(vector<vector<int>>& pre,vector<int> graph[],int nodes){
+        vector<int> indegree(nodes,0);
+        calcIndegree(pre,indegree);
+        
+        queue<int> Q;
+        for(int i = 0; i < nodes; i++){
+            if(indegree[i] == 0){
+                Q.push(i);
+            }
+        }
+        
+        int count = 0;
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                int node = Q.front();Q.pop();
+                count++;
+                vector<int>& nbrs = graph[node];
+                for(auto& nbr : nbrs){
+                    indegree[nbr]--;
+                    if(indegree[nbr] == 0){
+                        Q.push(nbr);
+                    }
+                }
+            }
+        }
+        
+        return count == nodes ? false : true;
+        
+    }
+    
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<int> graph[numCourses];
+        makeGraph(graph,numCourses,prerequisites);
+        
+        if(isCycle(prerequisites,graph,numCourses) == false) return true;
+        return false;
+    }
+};
+```
+
