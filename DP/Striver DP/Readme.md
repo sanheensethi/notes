@@ -191,3 +191,112 @@ int climbStairs(int n) {
     return prev;
 }
 ```
+## 3. Frog Jump
+
+> Why Greedy not Work ?
+
+- You may lost out the actual path when trying greedy
+![image](https://user-images.githubusercontent.com/35686407/176993836-cdfd158a-0cf2-4d0b-9a71-0212c2184ca2.png)
+- cost = 60 in above, Now :
+- ![image](https://user-images.githubusercontent.com/35686407/176993840-99fb64f2-77b9-4fa2-8204-600867649cee.png)
+- but got another path cost = 40, which is minimum, hence, greedy may give you wrong ans.
+
+> Steps to build Recursion
+
+1. Make everything in terms of index
+2. do all stuffs on that index
+3. take min(all stuffs)
+
+> f(n-1) : min energy required to reach from n-1 to 0
+
+- if I'm jumping from idx to idx-1, then enery consume is abs(arr[idx] - arr[idx-1])
+
+| Overlapping Subproblems : 
+
+![image](https://user-images.githubusercontent.com/35686407/176994372-846ac1ce-11e4-48f2-bf3b-8514c5a996f2.png)
+
+#### Approach 1 : Recursion
+
+```cpp
+int solve(int idx,vector<int>& heights){
+    if(idx == 0) return 0; // goal pr poch gya.
+    
+    int v1 = solve(idx-1,heights) + abs(heights[idx] - heights[idx-1]);
+    
+    int v2 = INT_MAX;
+    if(idx-2 >= 0){
+        v2 = solve(idx-2,heights) + abs(heights[idx] - heights[idx-2]);
+    } 
+    return min(v1,v2);
+}
+
+int frogJump(int n, vector<int> &heights)
+{
+    return solve(n-1,heights);
+} 
+```
+
+#### Approach 2 : Memoization
+
+```cpp
+int solve(int idx,vector<int>& heights,vector<int>& memo){
+    if(idx == 0) return 0; // goal pr poch gya.
+   
+    if(memo[idx] != -1) return memo[idx];
+    
+    int v1 = solve(idx-1,heights,memo) + abs(heights[idx] - heights[idx-1]);
+    int v2 = INT_MAX;
+    if(idx-2 >= 0){
+        v2 = solve(idx-2,heights,memo) + abs(heights[idx] - heights[idx-2]);
+    } 
+    return memo[idx] = min(v1,v2);
+}
+
+int frogJump(int n, vector<int> &heights)
+{    
+    vector<int> memo(n,-1);
+    return solve(n-1,heights,memo);
+}
+```
+
+#### Approach 3 : Tabulation
+
+```cpp
+int frogJump(int n, vector<int> &height)
+{    
+    vector<int> dp(n,-1);
+    dp[0] = 0;
+    for(int i = 1; i < n; i++){
+        int v1 = dp[i-1] + abs(height[i] - height[i-1]);
+        int v2 = INT_MAX;
+        if(i-2 >= 0){
+            v2 = dp[i-2] + abs(height[i] - height[i-2]);
+        }
+        dp[i] = min(v1,v2);
+    }
+    return dp[n-1];
+}
+```
+
+#### Approach 4: Space Optimization
+
+> Note : Whenever you find idx-1 and idx-2 , then there will always be a space optimization.
+
+```cpp
+int frogJump(int n, vector<int> &height)
+{    
+    int prev2 = 0;
+    int prev = 0;
+    for(int i = 1; i < n; i++){
+        int v1 = prev + abs(height[i] - height[i-1]);
+        int v2 = INT_MAX;
+        if(i-2 >= 0){
+            v2 = prev2 + abs(height[i] - height[i-2]);
+        }
+        int curr = min(v1,v2);
+        prev2 = prev;
+        prev = curr;
+    }
+    return prev;
+}
+```
