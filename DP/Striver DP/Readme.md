@@ -104,3 +104,90 @@ int fib(int n) {
 }
 ```
 
+## Remember in 1-D DP
+
+> Understand DP Problem :
+
+- Count Number of Ways
+- there are multiple ways to do it ,  minimal output/maximal output
+
+ > Note : Concept of Try All Possible ways comes in : Count , Best Way ~ then try to do recursion
+ 
+## Shortcut - write any recurrence , then memoization then tabulation then space optimization
+1. Try to represent the problem in terms of index
+2. Do all possible stuffs on that index according to the problem statement
+3. Count All Ways , then do sum(all stuffs)
+4. Find Minimum , then do min(all stuffs)
+5. Find Maximum , then do max(all stuffs)
+
+## 2. Climbing Stairs
+
+- Either take 1 Jump or 2 Jump to reach at the top.
+- Step 1 : Here , you are at `0` , you have to reach `n`, so assume 0 , 1 , 2 , 3 , ... n index
+- Step 2 : what recursion job is ? f(n) = number of ways to reach 0 to n
+- Step 3 : write recurrance , jump 1 or jump 2 ~ f(n) = f(n-1) + f(n-2) , sum is because we have to find total ways.
+
+> Recursion :
+
+```cpp
+int reachTop(int n){
+        if(n == 0) return 1;
+        if( n < 0) return 0;
+        return reachTop(n-1) + reachTop(n-2); // fibonacci
+    }
+    int climbStairs(int n) {
+        return reachTop(n);
+    }
+```
+
+> Mmeoization :
+
+- See which parameters are changing , just make that dimension array
+- Here only n is chainging, so we make 1D array
+
+```
+int reachTop(int n,vector<int>& memo){
+    if(n == 0) return 1;
+    if( n < 0) return 0;
+    if(memo[n] != -1) return memo[n];
+    return memo[n] = reachTop(n-1,memo) + reachTop(n-2,memo); // fibonacci
+}
+int climbStairs(int n) {
+    vector<int> memo(n+1,-1);
+    return reachTop(n,memo);
+}
+```
+
+> Tabulation:
+
+- change reachTop() , to dp[] and n to i
+
+```cpp
+int climbStairs(int n) {
+    vector<int> dp(n+1,-1);
+    dp[0] = 1;
+    for(int i = 1; i <= n; i++){
+        int count = 0;
+        count += dp[i-1];
+        if(i > 1) count += dp[i-2];
+        dp[i] = count;
+    }
+    return dp[n];
+}
+```
+
+> Space Optimization: 
+
+```cpp
+int climbStairs(int n) {
+    int prev = 1;
+    int prev2 = 0;
+    for(int i = 1; i <= n; i++){
+        int cur = prev + prev2;
+        prev2 = prev;
+        prev = cur;
+    }
+
+    return prev;
+}
+```
