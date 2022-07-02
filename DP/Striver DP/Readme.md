@@ -300,3 +300,82 @@ int frogJump(int n, vector<int> &height)
     return prev;
 }
 ```
+
+## 4. Frog jump with K Distance
+
+- isme bs k jumps hai, pehle 1 ya 2 hi jump thi
+
+#### Approach 1: Recursion
+
+```cpp
+int solve(int idx,int k,vector<int>& heights){
+    if(idx == 0) return 0;
+    int ans = INT_MAX;
+    for(int i = 1; i<= k; i++){
+        if(idx-i >= 0){
+            int u = solve(idx-i,k,heights) + abs(heights[idx] - heights[idx-i]);
+            ans = min(ans,u);
+        }
+    }
+    return ans;
+}
+
+int frogWithKJumps(int n,int k,vector<int>& heights){
+    return solve(n-1,k,heights);
+}
+```
+
+#### Approach 2: Memoization
+- TC : O(n*k)
+- SC : O(n) stack space + O(n)
+
+```cpp
+int solve(int idx,int k,vector<int>& heights,vector<int>& memo){
+        if(idx == 0) return 0;
+        if(memo[idx] != -1) return memo[idx];
+        int ans = INT_MAX;
+        for(int i = 1; i<= k; i++){
+            if(idx-i >= 0){
+                int u = solve(idx-i,k,heights,memo) + abs(heights[idx] - heights[idx-i]);
+                ans = min(ans,u);
+            }
+        }
+        return memo[idx] = ans;
+    }
+
+    int frogWithKJumps(int n,int k,vector<int>& heights){
+        vector<int> memo(n,-1);
+        return solve(n-1,k,heights,memo);
+    }
+```
+
+#### Approach 3: Tabulation
+- TC : O(n*k)
+- SC : O(n)
+
+```cpp
+int frogWithKJumps(int n,int k,vector<int>& heights){
+    vector<int> dp(n,-1);
+    
+    dp[0] = 0;
+    for(int idx = 1; idx < n; idx++){
+        int ans = INT_MAX;
+        for(int i = 1; i <= k; i++){
+            if(idx - i >= 0){
+                int u = dp[idx-i] + abs(heights[idx] - heights[idx-i]);
+                ans = min(ans,u);
+            }
+        }
+        dp[idx] = ans;
+    }
+    
+    return dp[n-1];
+}
+```
+
+#### Approach 4: Space Optimization
+
+- In worst case k = n, so we have to take atleast k elements array i.e., n , so there is no need to make space optimization as it cannot be done
+- because in worst case k = n.
+- if k is very less then n, we can create a list of k elements and use that, list is because we dont need then assigning k-4 = k-3 , k-3 = k-2 like that.
+
