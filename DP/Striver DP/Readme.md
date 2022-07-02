@@ -127,7 +127,7 @@ int fib(int n) {
 - Step 2 : what recursion job is ? f(n) = number of ways to reach 0 to n
 - Step 3 : write recurrance , jump 1 or jump 2 ~ f(n) = f(n-1) + f(n-2) , sum is because we have to find total ways.
 
-> Recursion :
+#### Appraoch 1: Recursion
 
 ```cpp
 int reachTop(int n){
@@ -140,7 +140,7 @@ int reachTop(int n){
     }
 ```
 
-> Mmeoization :
+#### Approach 2: Memoization
 
 - See which parameters are changing , just make that dimension array
 - Here only n is chainging, so we make 1D array
@@ -158,7 +158,7 @@ int climbStairs(int n) {
 }
 ```
 
-> Tabulation:
+#### Approach 3: Tabulation
 
 - change reachTop() , to dp[] and n to i
 
@@ -176,7 +176,7 @@ int climbStairs(int n) {
 }
 ```
 
-> Space Optimization: 
+#### Approach 4: Space Optimization 
 
 ```cpp
 int climbStairs(int n) {
