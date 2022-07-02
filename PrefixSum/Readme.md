@@ -104,7 +104,9 @@ public:
 #### Approach 2 : TODO Question Before This:
 - Find max subarray with sum < k
 
-## 3. Path Sum III
+
+
+## 5. Path Sum III
 
 ![image](https://user-images.githubusercontent.com/35686407/176989541-fbbe1fdf-a6a9-41ff-a300-b28255094ea9.png)
 
