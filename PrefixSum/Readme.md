@@ -104,6 +104,36 @@ public:
 #### Approach 2 : TODO Question Before This:
 - Find max subarray with sum < k
 
+## 3. Subarray Sum equals to K
+
+- yha pr prefix sum ke count store krenge because suppose hme sum = k chhaiye
+- to piche hum find krenge hashmap se ki sum-k aa rha hai ?
+- agar haan aa rha hai to kitni baar aa rha ahi, kyuki vo sbhi subarary bnayenge for sum = k
+[\[Link\]](https://github.com/sanheensethi/notes/tree/main/Array#brute-force--generate-all-subarray-and-find-the-given-condition)
+
+```cpp
+int subarraySum(vector<int>& nums, int k) {
+    unordered_map<int,int> umap;
+    
+    int prSum = 0;
+    umap[0] = 1;
+    int ans = 0;
+    
+    for(auto&val : nums){
+        prSum += val;
+        
+        if(umap.count(prSum - k)){
+            ans += umap[prSum-k];
+        }
+        
+        umap[prSum]++;
+        
+    }
+    return ans;
+}
+```
+
+## 4.
 
 
 ## 5. Path Sum III
