@@ -379,3 +379,45 @@ int frogWithKJumps(int n,int k,vector<int>& heights){
 - because in worst case k = n.
 - if k is very less then n, we can create a list of k elements and use that, list is because we dont need then assigning k-4 = k-3 , k-3 = k-2 like that.
 
+## 5. House Robber II (Circular Array, 1st index and nth index are joined)
+
+- 1st and Last element didn't occur together.
+- so ans1 = leave 1st element, and perform the house robber problem
+- ans2 = leave last element and perform the house robber problem
+- `ans = max(ans1,ans2)`
+
+![image](https://user-images.githubusercontent.com/35686407/177028154-7af41528-d4de-44c5-8eb1-0fde5d4c34f5.png)
+
+```cpp
+class Solution {
+public:
+    int solve(int idx,vector<int>& nums,vector<int>& memo){
+        if(idx == 0) return nums[idx];
+        if(idx < 0) return 0;
+        if(memo[idx] != -1) return memo[idx];
+        
+        int pick = nums[idx] + solve(idx-2,nums,memo);
+        int notpick = 0 + solve(idx-1,nums,memo);
+        
+        return memo[idx] = max(pick,notpick);
+    }
+    
+    int robLinear(vector<int>& nums){
+        int n = nums.size();
+        vector<int> memo(n,-1);
+        return solve(n-1,nums,memo);
+    }
+    
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1) return nums[0];
+        vector<int> temp1(nums.begin(),nums.end());
+        vector<int> temp2(nums.begin(),nums.end());
+        temp1.erase(temp1.begin()); // pop first
+        temp2.pop_back(); // pop last element
+        int ans1 = robLinear(temp1);
+        int ans2 = robLinear(temp2);
+        return max(ans1,ans2);
+    }
+};
+```
