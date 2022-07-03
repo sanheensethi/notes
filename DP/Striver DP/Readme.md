@@ -558,3 +558,134 @@ int ninjaTraining(int n, vector<vector<int>> &points)
     return prev[3];
 }
 ```
+## 1. Unique Paths (DP on Grids)
+
+> Count Ways : return 0 , if you are not on destination and return 1 if you are at destination
+
+- we have to find number of ways to reach start to end, we can only move right and down
+- so, we are trying all possible ways to go to end ~ Apply Recursion
+
+![image](https://user-images.githubusercontent.com/35686407/177037767-26cd3570-2e54-4f03-a873-ec814647990c.png)
+
+> In 2D Dp
+
+1. Express everything in terms of (i,j)
+2. do stuff on that
+3. for count add all or min/max for min/max cost/moves question
+
+> Note : As i m wrinting recursion in top down approach , so if we are trying to move from (m-1,n-1) to (0,0) we have to move up and left, because from (0,0) to (m-1,n-1) its, right and down.
+
+#### Approach 1: Recursion and Memoization
+
+- TC of rec : every cell have 2 paths up and left : therefore in total 2 x 2 x 2 x ... (mxn) times = O(2^(m x n))
+- SC of rec : O(path length) = O(m-1 + n-1)
+
+![image](https://user-images.githubusercontent.com/35686407/177038242-f63aa1eb-c82b-4cde-ada8-fb4e2844f904.png)
+
+> Memoization : Only when there are overlapping subproblems.
+
+- Changing Parameters : i and j 
+    - i max value : m-1
+    - j max value : n-1
+    - therefore if i need m-1 index we have to make vector of size m
+    - vector<vector<int>> memo(m,vector<int>(n,-1);
+
+```cpp
+int ways(int i,int j,vector<vector<int>>& memo){
+    if(i == 0 && j == 0) return 1;
+    if(i < 0 || j < 0) return 0;
+    
+    if(memo[i][j] != -1) return memo[i][j];
+    
+    int up = ways(i-1,j,memo);
+    int left = ways(i,j-1,memo);
+    return memo[i][j] = up + left;
+    
+}
+
+int uniquePaths(int m, int n) {
+    vector<vector<int>> memo(m,vector<int>(n,-1));
+    return ways(m-1,n-1,memo);
+}
+```
+
+#### Approach 2 : Tabulation
+
+- write the base case , i == 0 && j == 0 , dp[i][j] = 0
+- now, for i = 0, there are multiple values
+    - i = 0 , j = 0,1,2,3,...n-1
+    - i = 1 , j = 0,1,2,3,...n-1
+    - i = 2 , j = 0,1,2,3,...n-1
+    - ans so on.
+- So, for each state of i from 0 to m-1 we have j from 0 to n-1
+- TC : O(NxM)
+- SC : O(NxM)
+
+| Outer Loop     | Inside Loop       |
+| -------------- | -------------- |
+| ![image](https://user-images.githubusercontent.com/35686407/177042202-08132e6d-bb5f-4b29-a8c8-12e430ba44d7.png)    | ![image](https://user-images.githubusercontent.com/35686407/177042317-09e54785-21d2-4d55-a52c-ce7058212b83.png)|
+
+> Memoization _to_ Tabulation :
+
+```cpp
+# Step 1: Declare Base Case
+# Step 2: compress all states in for loop
+# Step 3 : Copy the reccurance and write
+```
+
+```cpp
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector<vector<int>> dp(m,vector<int>(n,-1));
+        dp[0][0] = 1;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(i == 0 && j == 0) dp[i][j] = 1;
+                else{
+                    int up = 0, left = 0;
+                    if(i-1 >= 0) up = dp[i-1][j];
+                    if(j-1 >= 0) left = dp[i][j-1];
+                    dp[i][j] = up + left;
+                }
+            }
+        }
+        
+        
+        return dp[m-1][n-1];
+    }
+};
+```
+
+#### Approach 3: Space Optimization
+
+- `Golden Rule` : if you see at any moment we are using the prev row(dp[i-1][j]), if there is a case iof prev row and prev col(dp[i][j-1]), so there is always a case of space optimization
+- dp[i-1] is always prev row
+- dp[i] is always curr row
+- we initialize prev row as prev
+- and cur row as temp
+
+|Image 1|Image 2|
+|----|----|
+|![image](https://user-images.githubusercontent.com/35686407/177042725-dcd58a94-8e49-408a-abbd-57e43f16bbfe.png)|![image](https://user-images.githubusercontent.com/35686407/177042732-297ec558-84f0-4985-8eec-1f0866e33cc5.png)|
+
+```cpp
+int uniquePaths(int m, int n) {
+    vector<int> prev(n,0); // prev row
+    for(int i = 0; i < m; i++){
+        vector<int> temp(n); // current row
+        for(int j = 0; j < n; j++){
+            if(i == 0 && j == 0) temp[j] = 1;
+            else{
+                int up = 0, left = 0;
+                if(i-1 >= 0) up = prev[j];
+                if(j-1 >= 0) left = temp[j-1];
+                temp[j] = up + left;
+            }
+        }
+        prev = temp;
+    }
+    return prev[n-1];
+}
+```
+
