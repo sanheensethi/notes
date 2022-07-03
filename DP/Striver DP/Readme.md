@@ -425,6 +425,22 @@ public:
 
 #### Appraoch 1 : Recursion and Memoization
 
+- isme hm jo task on 1st day perform kr rhe hai usko agle din perform nhi kr skte and baki 2 mae se koi ek task perform krna hai, lekin jo task aaj hmne kra haii vo hum paro kr skte hai, consecutive 2 days mae nhi kr skte hai.
+- hme maximum points ko gain krna hai.
+- isme greedy fail ho rha hai
+    - as choose 50 from day0 and now choose 11 from day 1 because we cant able to choose task 2, therefore we got profit 61
+    - but if we choose 10 in day 0 therefore because of that we choose 100 from day 1 , then we get profit of 110, therefore here greedy fails
+![image](https://user-images.githubusercontent.com/35686407/177037308-b7fe767c-2806-4bcf-bcc0-106f2abc7fc0.png)
+- so, whenever greedy fails, we have to `Try ALL POSSIBLE WAYS` to get out the maximum
+
+> How to develop recursion ?
+
+Step 1: Treat as index, here what will be the index ? DAY ! as 0th day we are going to do something, day 1 we are going to do something
+Step 2: Do Stuffs on that index
+Step 3: Maximize
+- so, as we see, from the day if we choose task 0 then on next day we cann't able to choose task 0, so we need to know which task is performed on the prev day, so we have to add extra perameter to the recursion i.e., last by which we got to know which task i should not consider current day.
+
+
 ```cpp
 #include<climits>
 int solve(int idx,int last,vector<vector<int>>& points,vector<vector<int>>& memo){
@@ -496,5 +512,49 @@ int ninjaTraining(int n, vector<vector<int>> &points)
     }
     
     return dp[n-1][3];
+}
+```
+#### Approach 4: Space Optimization
+
+- As you can see in the tabulation code, only the prev array index in used. dp[idx-1] rest, current array is used.
+- So, what if we create an array of size 4, only.
+- we use it as prev array, and create a temp array as current array then, after process we make temp array as prev array and new temp array as current array.
+
+![image](https://user-images.githubusercontent.com/35686407/177037040-1021a69b-2ffe-49ff-a6ca-04ce7443789d.png)
+
+```cpp
+#include<climits>
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    vector<int> prev(4,-1);
+    
+    for(int last = 0; last < 4; last++){
+        // options : 0,1,2,3
+        int maxi = INT_MIN;
+        for(int i = 0; i < 3; i++){
+            // pick max such that not equal to the last
+            if(i != last){
+                maxi = max(maxi,points[0][i]);
+            }
+        }
+        prev[last] = maxi;
+    }
+    
+    for(int idx = 1; idx < n; idx++){
+        vector<int> temp(4,-1);
+        for(int last = 0; last < 4; last++){
+            int maxi = INT_MIN;
+            for(int i = 0 ; i < 3; i++){
+                if(i != last){
+                    int val = points[idx][i] + prev[i];
+                    maxi = max(maxi,val);
+                }
+            }
+            temp[last] = maxi;
+        }
+        prev = temp;
+    }
+    
+    return prev[3];
 }
 ```
