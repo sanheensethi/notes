@@ -777,3 +777,94 @@ int mazeObstacles(int n, int m, vector< vector< int> > &mat) {
     return prev[m-1];
 }
 ```
+## 9. Minimum Path Sum
+- isme hum INT_MAX isliye return kr rhe hai kyuki hum (0,0) pr nhi poche to hme compare krne ke liye bhtt badi value chahiye taki agar koi minimum value la rha ahi to vo hum return kr sake.
+
+#### Approach 1 : Recursion + Memoization
+
+```cpp
+#include<climits>
+int f(int i,int j,vector<vector<int>>& grid,vector<vector<int>>& memo){
+    // BASE CASE
+    if(i == 0 && j == 0) return grid[0][0];
+    if(i < 0 || j < 0) return INT_MAX;
+    
+    if(memo[i][j] != -1) return memo[i][j];
+    
+    // FUNCTIONALITY
+    int up = f(i-1,j,grid,memo);
+    
+    if(up != INT_MAX){
+        up += grid[i][j];
+    }
+    
+    int left = f(i,j-1,grid,memo);
+    
+    if(left != INT_MAX){
+        left += grid[i][j];
+    }
+       
+    return memo[i][j] = min(up,left);
+}
+
+int minSumPath(vector<vector<int>> &grid) {
+    int n = grid.size();
+    int m = grid[0].size();
+    vector<vector<int>> memo(n,vector<int>(m,-1));
+    return f(n-1,m-1,grid,memo);
+}
+```
+
+#### Appraoch 2 : Tabulation
+
+```cpp
+#include<climits>
+int minSumPath(vector<vector<int>> &grid) {
+    int n = grid.size();
+    int m = grid[0].size();
+    vector<vector<int>> dp(n,vector<int>(m,-1));
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(i == 0 && j == 0) dp[i][j] = grid[i][j];
+            else{
+                int up = INT_MAX;
+                int left = INT_MAX;
+                if(i-1 >= 0) up = grid[i][j] + dp[i-1][j];
+                if(j-1 >= 0) left = grid[i][j] + dp[i][j-1];
+                dp[i][j] = min(up,left);
+            }
+        }
+    }
+    
+    return dp[n-1][m-1];
+}
+```
+
+#### Approach 3 : Space Optimization
+
+```cpp
+#include<climits>
+int minSumPath(vector<vector<int>> &grid) {
+    int n = grid.size();
+    int m = grid[0].size();
+    vector<int> prev(m);
+    
+    for(int i = 0; i < n; i++){
+        vector<int> temp(m);
+        for(int j = 0; j < m; j++){
+            if(i == 0 && j == 0) temp[j] = grid[i][j];
+            else{
+                int up = INT_MAX;
+                int left = INT_MAX;
+                if(i-1 >= 0) up = grid[i][j] + prev[j];
+                if(j-1 >= 0) left = grid[i][j] + temp[j-1];
+                temp[j] = min(up,left);
+            }
+        }
+        prev = temp;
+    }
+    
+    return prev[m-1];
+}
+```
