@@ -689,3 +689,91 @@ int uniquePaths(int m, int n) {
 }
 ```
 
+## 8. Unique Paths 2
+
+- Similar as Unique Path, just a small difference is that there is a blockage of cell, when mat[i][j] == -1, then there is a blockage we can't move there. so, we have to return 0
+- extra base case : if(i >= 0 && j >= 0 && mat[i][j] == -1) return 0;
+
+#### Appraoch 1 : Recursion + Memoization
+
+```cpp
+int mod = (int)(1e9+7);
+int f(int i,int j,vector<vector<int>>& mat,vector<vector<int>>& memo){
+    // base case
+    if(i >= 0 && j >=0 && mat[i][j] == -1) return 0;
+    if(i == 0 && j == 0) return 1;
+    if(i < 0 || j < 0) return 0;
+    
+    if(memo[i][j] != -1) return memo[i][j];
+    
+   // functional
+    int up = f(i-1,j,mat,memo);
+    int left = f(i,j-1,mat,memo);
+    
+    return memo[i][j] = (up + left)%mod;
+}
+
+int mazeObstacles(int n, int m, vector< vector< int> > &mat) {
+    vector<vector<int>> memo(n,vector<int>(m,-1));
+    return f(n-1,m-1,mat,memo);
+}
+```
+
+#### Approach 2 : Tabulation
+
+```cpp
+int mod = (int)(1e9+7);
+int mazeObstacles(int n, int m, vector< vector< int> > &mat) {
+    vector<vector<int>> dp(n,vector<int>(m,-1));
+    
+    if(mat[0][0] == -1) return 0;
+    
+    dp[0][0] = 1;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(mat[i][j] == -1){
+                dp[i][j] = 0;
+            }else if(i == 0 && j == 0){
+                dp[i][j] = 1;
+            }else{
+                int up = 0,left = 0;
+                if(i-1 >= 0) up += dp[i-1][j];
+                if(j-1 >= 0) left += dp[i][j-1];
+                dp[i][j] = (up + left)%mod;
+            }
+        }
+    }
+    return dp[n-1][m-1];
+}
+```
+
+#### Appraoch 3: Space Optimization
+
+```cpp
+int mod = (int)(1e9+7);
+int mazeObstacles(int n, int m, vector< vector< int> > &mat) {
+   
+    vector<int> prev(m,0);
+    
+    if(mat[0][0] == -1) return 0;
+    
+    prev[0] = 1;
+    for(int i = 0; i < n; i++){
+        vector<int> temp(m);
+        for(int j = 0; j < m; j++){
+            if(mat[i][j] == -1){
+                temp[j] = 0;
+            }else if(i == 0 && j == 0){
+                temp[j] = 1;
+            }else{
+                int up = 0,left = 0;
+                if(i-1 >= 0) up += prev[j];
+                if(j-1 >= 0) left += temp[j-1];
+                temp[j] = (up + left)%mod;
+            }
+        }
+        prev = temp;
+    }
+    return prev[m-1];
+}
+```
