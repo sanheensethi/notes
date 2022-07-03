@@ -421,3 +421,41 @@ public:
     }
 };
 ```
+## 6. Ninja Training
+
+#### Appraoch 1 : Recursion and Memoization
+
+```cpp
+#include<climits>
+int solve(int idx,int last,vector<vector<int>>& points,vector<vector<int>>& memo){
+    
+    if(idx == 0){
+    // when we are at last day , we have to take the maximum from all 3 such that whatever you are picking up the task , that is not performed on the last day from where you are coming.
+        int maxi = INT_MIN;
+        for(int i = 0; i < 3; i++){
+            if(i != last){
+                maxi = max(maxi,points[0][i]);
+            }
+        }
+        return maxi;
+    }
+    
+    if(memo[idx][last] != -1) return memo[idx][last];
+    
+    int maxi = INT_MIN;
+    for(int i = 0; i < 3; i++){
+        if(i != last){
+            // do not perform the task, whatever you did in the last day therefore we write i != last
+            int val = points[idx][i] + solve(idx-1,i,points,memo);
+            maxi = max(maxi,val);
+        }
+    }
+    return memo[idx][last] = maxi;
+}
+
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    vector<vector<int>> memo(n,vector<int>(4,-1));
+    return solve(n-1,3,points,memo);
+}
+```
