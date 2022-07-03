@@ -233,10 +233,32 @@ class ClassD : public ClassB, public ClassC
 ```
 
 ## 11. ABSTRACTION
-- Abstraction is the method of hide the implementation from the user but shows only essential information to the user.It is one of the main features of oop. 
+- Abstraction is the method of hide the implementation from the user but shows only essential information to the user. It is one of the main features of oop. 
 - For example, consider a car. You only need to know how to run a car, and not how the wires are connected inside it. This is obtained using Abstraction
 
 ![image](https://user-images.githubusercontent.com/35686407/177007651-79baecb6-629e-4787-926c-0eb428fc960c.png)
+
+> Two Ways to Achieve:
+
+`Abstraction using Classes`: We can implement Abstraction in C++ using classes by making pure virtual functions in it.
+`Abstraction in Header files`: One more type of abstraction in C++ can be header files
+
+`Points` :
+1. A class is abstract if it has at least one pure virtual function.
+2. We can have pointers and references of abstract class type.
+3. If we do not override the pure virtual function in derived class, then derived class also becomes abstract class. 
+4. An abstract class can have constructors. 
+
+> Advantages of Data Abstraction:
+
+Helps the user to avoid writing the low level code
+Avoids code duplication and increases reusability.
+Can change internal implementation of class independently without affecting the user.
+Helps to increase security of an application or program as only important details are provided to the user.
+
+## Interface
+- An interface does not have implementation of any of its methods
+- In C++, an interface can be simulated by making all methods as pure virtual
 
 
 ## 12. POLYMORPHISM
@@ -409,6 +431,8 @@ class Derived : public Base
 - In C++, a constructor has the same name as that of the class
 - it does not have any return type. 
 
+> Note: Even if we do not define any constructor explicitly, the compiler will automatically provide a default constructor implicitly.
+
 ## 15. TYPES OF CONSTRUCTORS
 - Default constructor
 - Parameterized Constructor
@@ -422,9 +446,34 @@ class Derived : public Base
     - The parameterized constructor takes its arguments provided by the programmer.
 - `Copy Constructor`
     - A copy constructor is a member function that initializes an object using another object of the same class.
+    - Shallow copy and Deep Copy Concept
+    - Shallow Copy : Pointer Address will be copied
+    - Deep Copy : it is done only by user, we have to read the data from poitner and put in the copied object.
 
 ## 16. Constructor Overloading
 - More than one constructor in a class with the same name,each having different list of argumentsis known as Constructor Overloading.
+
+## Copy Constructor :
+```cpp
+ClassName (const ClassName &old_obj); 
+```
+> When is the copy constructor called? 
+
+In C++, a Copy Constructor may be called in the following cases: 
+- When an object of the class is returned by value. 
+- When an object of the class is passed (to a function) by value as an argument. 
+- When an object is constructed based on another object of the same class. 
+- When the compiler generates a temporary object.
+
+> When is a user-defined copy constructor needed? 
+If we don’t define our own copy constructor, the C++ compiler creates a default copy constructor for each class which does a member-wise copy between objects. The compiler-created copy constructor works fine in general. We need to define our own copy constructor only if an object has pointers or any runtime allocation of the resource like file handle, a network connection, etc.
+
+> Note : Deep copy is possible only with a user-defined copy constructor. In a user-defined copy constructor, we make sure that pointers (or references) of copied objects point to new memory locations.  
+
+- Copy constructor vs Assignment Operator 
+    - The main difference between Copy Constructor and Assignment Operator is that the Copy constructor makes a new memory storage every time it is called while the assignment operator does not make new memory storage.
+
+[More Question on Copy Contructor](https://www.geeksforgeeks.org/copy-constructor-in-cpp/?ref=lbp)
 
 ## 17.destructor 
 - A destructor is a special member function that works just opposite to a constructor(unlike constructors that are used for initializing an object,) destructors destroy (or delete) the object.
