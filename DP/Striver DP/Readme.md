@@ -459,3 +459,42 @@ int ninjaTraining(int n, vector<vector<int>> &points)
     return solve(n-1,3,points,memo);
 }
 ```
+#### Appraoch 2 : Tabulation
+```cpp
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    vector<vector<int>> dp(n,vector<int>(4,-1));
+    
+    // base case
+//     dp[0][0] = max(points[0][1],points[0][2]);
+//     dp[0][1] = max(points[0][0],points[0][2]);
+//     dp[0][2] = max(points[0][0],points[0][1]);
+//     dp[0][3] = max(points[0][0],max(points[0][1],points[0][2]));
+    for(int last = 0; last < 4; last++){
+        // options : 0,1,2,3
+        int maxi = INT_MIN;
+        for(int i = 0; i < 3; i++){
+            // pick max such that not equal to the last
+            if(i != last){
+                maxi = max(maxi,points[0][i]);
+            }
+        }
+        dp[0][last] = maxi;
+    }
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int last = 0; last < 4; last++){
+            int maxi = INT_MIN;
+            for(int i = 0 ; i < 3; i++){
+                if(i != last){
+                    int val = points[idx][i] + dp[idx-1][i];
+                    maxi = max(maxi,val);
+                }
+            }
+            dp[idx][last] = maxi;
+        }
+    }
+    
+    return dp[n-1][3];
+}
+```
