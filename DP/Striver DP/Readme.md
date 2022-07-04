@@ -1182,7 +1182,7 @@ public:
 };
 ```
 
-    ## 12. Chocolate / Cherry Pickup II (3D DP Concept)
+## 12. Chocolate / Cherry Pickup II (3D DP Concept)
 
 #### Approach 1 : Recursion + Memoization
 
