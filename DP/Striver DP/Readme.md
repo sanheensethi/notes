@@ -868,3 +868,191 @@ int minSumPath(vector<vector<int>> &grid) {
     return prev[m-1];
 }
 ```
+## Variable Starting and Variable Ending
+
+## 10. Triangle (Fixed Start and Variable Ending)
+
+![image](https://user-images.githubusercontent.com/35686407/177080595-85f8e021-4c2d-4777-8912-dc00099d94f3.png)|
+- Staring Point is fixed. Ending point might vary,
+- in ending row, you can eiter reach index 0 or 1 or 2 or 3
+- You can move downward in next row, or downward in aage in next row.
+    - from (i,j) to (i+1,j) or (i+1,j+1)
+- Find the minimum cost to reach to the row.
+- There is no uniformity/greedy solution, therefore we try out all the paths.
+- Try all ways ~ Recursion , find the minimum sum
+
+> Steps
+
+1. Represent everything in numbers (i,j)
+2. Explore all the paths , down or diagonally
+3. Minimum(all paths)
+
+> In prev questions, we know ending point is something like n-1,m-1 from where we write recursion,
+bur here we didn;'t know where to end.
+
+|Point|Image|
+|---|---|
+|Logically it make no sense if i write the recurrence i.e., you write recurrence from the last , you have many options to write the recurrance, now all the 4 reccurance which give you best ans is your ans.|![image](https://user-images.githubusercontent.com/35686407/177080991-95237886-0209-4f85-8304-0ccc97693b32.png)|
+
+> Preferable logic : we know there is single fixed point from the start , so we start from there  Logically it is preferraable that you start from top and do recursion, if we start from bottom then we have to write recursion for 4 different cols
+
+- f(0,0) ~ minimum path sum from 0,0 to the last row
+
+
+```cpp
+Base Case: destination is (n-1)th row, so we have to stop at (n-1)th row, 
+return whatever is there on jth columns
+```
+
+#### Approach 1 : Recursion + Memoization
+- 2 Moves, Move down and Move diagonal
+- TC of recursion :
+    - 1st row 1 col
+    - 2nd row 2 cols
+    - 3 row 3 cols
+    - for every column we have 2 options down/diagonal
+    - n row has n cols
+    - So, 2^(1+2+3+....n)
+- SC : Stack Space O(n)
+- Found overlapping subproblems, so we apply memoization
+- TC of memoization :
+
+```cpp
+int solve(int i,int j,vector<vector<int>>& triangle,vector<vector<int>>& memo){
+    if(i == triangle.size()-1){
+        return triangle[i][j];
+    }
+    
+    if(memo[i][j] != -1) return memo[i][j];
+    
+    int move1 = triangle[i][j] + solve(i+1,j,triangle,memo);
+    int move2 = triangle[i][j] + solve(i+1,j+1,triangle,memo);
+    
+    return memo[i][j] = min(move1,move2);
+}
+
+int minimumTotal(vector<vector<int>>& triangle) {
+    int n = triangle.size();
+    int m = traiangle[n-1].size();
+    vector<vector<int>> memo(n,vector<int>(m,-1));
+    return solve(0,0,triangle,memo);
+}
+```
+
+#### Approach 2 : Tabulation
+
+- it is different from the last questions
+- here the tabulation is slight different
+- `Golden Rule : ` Whaterever you write in the recursion , tabulation is just opposite to that.
+- In recursion its 0 to n-1,
+- now for tabulation its from n-1 to 0
+
+> Now :
+
+- How many base cases we have ?
+- if i == n-1, possible values of j :
+    - j = 0, 1, 2, 3
+
+```cpp
+// Base Case
+for (int i = 0 ; i < n; i++){
+    dp[n-1][j] = triangle[n-1][j];
+}
+```
+
+![image](https://user-images.githubusercontent.com/35686407/177083425-e39072b2-c789-4c02-91ca-5cfa36cd0333.png)
+
+- we know, for each row there are uthne hi cols
+- i.e., for i = 0 , j = 0
+- for i = 1, j = 0,1
+- for i = 2, j = 0,1,2
+- for i = 3, j = 0,1,2,3
+- therefore first write the loop for i then write the loop for j
+- create nested loop
+- TC : O(NxM)
+- SC : O(NxM)
+
+```cpp
+for(int i = n-2; i >= 0; i--){
+    for(int j = i; j >= 0; j--){
+        // copy paste reccuranec
+    }
+}
+```
+
+> Code
+
+```cpp
+int minimumTotal(vector<vector<int>>& triangle) {
+        
+    int n = triangle.size();
+    int m = triangle[n-1].size();
+    
+    vector<vector<int>> dp(n,vector<int>(m,-1));
+    
+    // Base Case
+    for(int j = m-1; j>= 0; j--){
+        dp[n-1][j] = triangle[n-1][j];
+    }
+    
+    // functional
+    for(int i = n-2; i>= 0; i--){
+        for(int j = i; j>= 0; j--){
+            int move1 = triangle[i][j] + dp[i+1][j];
+            int move2 = triangle[i][j] + dp[i+1][j+1];
+            dp[i][j] = min(move1,move2);
+        }
+    }
+    return dp[0][0];
+}
+```
+
+
+#### Approach 3 : Space Optimization
+
+- There is i+1 and i only, so we need only the next row,
+- so i just need to store the 2 rows
+- current row and next row (dp)
+- thus these 2 are needed.
+
+```cpp
+int minimumTotal(vector<vector<int>>& triangle) {
+    int n = triangle.size();
+    int m = triangle[n-1].size();
+    
+    vector<int> nextRow(m,-1);
+    
+    // Base Case
+    for(int j = m-1; j>= 0; j--){
+        nextRow[j] = triangle[n-1][j];
+    }
+    
+    // functional
+    for(int i = n-2; i>= 0; i--){
+        vector<int> temp(m);
+        for(int j = i; j>= 0; j--){
+            int move1 = triangle[i][j] + nextRow[j];
+            int move2 = triangle[i][j] + nextRow[j+1];
+            temp[j] = min(move1,move2);
+        }
+        nextRow = temp;
+    }
+    return nextRow[0];
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
