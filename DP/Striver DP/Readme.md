@@ -1349,7 +1349,87 @@ public:
 };
 ```
 
+## Dp On Subsequences/Subsets & Target
 
+|Defination|Image|
+|---|---|
+|Contigious as well as Non Contigious Elements are subsequence|![image](https://user-images.githubusercontent.com/35686407/177139853-6f1cdbfb-5ed0-4548-8f81-2ed3dc3336ee.png)|
+
+## 14. Subset Sum equals to Target
+
+#### Basic Approach
+- Generate all subsequence and and find which gives sum K
+- Two options : Power Set and Recursion
+- Does it ask us to generate all > No.
+- Question says - does there exists 1 subset with sum K ? no need to genetate all
+
+#### Approach 1 : Recursion + Memoization
+
+1. Express everyting in terms on Index , [Every array problem have index] | on every index we have to take care of the target we are looking for
+    - `[THUMB RULE]` : express (index,target) 
+2. Explore possibilities of that index
+    - is part of subsequence : pick
+    - not part of subsequence : not pick
+3. if any of them give true, return true. `return T/F`
+
+> express : f(n-1,target) ~ in the entire array till index n-1 does there exists target ?
+
+- Base Cases :
+    - target = 0 return true
+    - idx == 0 return arr[0] == target
+
+- Take and Not Take Concept,
+- if i am at index 0, and if i found my target required, return true else return false;
+
+#### Approach 1 : Recursion + Memoization
+
+```cpp
+bool f(int idx,int target,vector<int>& arr,vector<vector<int>>& memo){
+    if(target == 0) return true;
+    if(idx == 0) return (arr[0] == target);
+    if(memo[idx][target] != -1) return memo[idx][target];
+    // notpick
+    bool notpick = f(idx-1,target,arr,memo);
+    //pick
+    bool pick = false;
+    if(arr[idx] <= target){
+        pick = f(idx-1,(target-arr[idx]),arr,memo);
+    }
+    return memo[idx][target] = pick || notpick;
+}
+
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    vector<vector<int>> memo(n,vector<int>(k+1,-1));
+    return f(n-1,k,arr,memo);
+}
+```
+
+#### Approach 2 : Tabulation
+
+```cpp
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    vector<vector<bool>> dp(n,vector<bool>(k+1,false));
+    
+    // target == 0 ,  all true
+    for(int idx = 0 ; idx < n; idx++){
+        dp[idx][0] = true;
+    }
+    // Another base case
+    dp[0][arr[0]] = true; // because there is only one element
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int target = 1; target < k+1; target++){
+            bool notpick = dp[idx-1][target];
+            bool pick = false;
+            if(arr[idx] <= target){
+                pick = dp[idx-1][target-arr[idx]];
+            }
+            dp[idx][target] = notpick || pick;
+        }
+    }
+    return dp[n-1][k];
+}
+```
 
 
 
