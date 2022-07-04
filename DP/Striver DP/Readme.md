@@ -1041,7 +1041,146 @@ int minimumTotal(vector<vector<int>>& triangle) {
 }
 ```
 
+## 11. Minimum Maximim Falling Path Sum (Variable Starting Point and Variable Ending Point)
 
+|Points|Image|
+|---|---|
+|This question has variable starting and variable ending point.|![image](https://user-images.githubusercontent.com/35686407/177093241-6e91a5e8-7600-4fde-b5aa-a01a8bd608bf.png)|
+you can start anywhere from the first row and and you can end anywhere in the ending row||
+
+- Uniformity is not there, we can not apply greedy
+- Start from any cell in the first row and end in any cell in the last row
+- Try out all the paths ~ Recursion
+
+> Steps
+
+![image](https://user-images.githubusercontent.com/35686407/177097338-a86187b5-f8ee-454a-a74f-5b9e458049aa.png)
+
+#### Approach 1: Recursion + Memoization
+- TC for rec : from each cell 3 options : 3^n
+- SC for rec : O(n) , n rows
+- TC for memo : O(NxM)
+- SC for memo : O(NxM)
+
+```cpp
+class Solution {
+public:
+    int f(int i,int j,vector<vector<int>>& matrix,vector<vector<int>>& memo){
+        // niche se upar aa rhe hai, top down approach
+        if(j < 0 || j >= matrix[0].size()) return INT_MAX;
+        if(i == 0) return matrix[0][j];
+        
+        if(memo[i][j] != -1) return memo[i][j];
+        
+        int up = INT_MAX,left = INT_MAX,right = INT_MAX;
+        
+        up = f(i-1,j,matrix,memo);
+        left = f(i-1,j-1,matrix,memo);
+        right = f(i-1,j+1,matrix,memo);
+        
+        if(up != INT_MAX) up += matrix[i][j];
+        if(left != INT_MAX) left += matrix[i][j];
+        if(right != INT_MAX) right += matrix[i][j];
+        
+        return memo[i][j] = min({up,left,right});
+    }
+    
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<vector<int>> memo(n,vector<int>(m,-1));
+        int mini = INT_MAX;
+        for(int j = 0; j < m; j++){
+            int val = f(n-1,j,matrix,memo);
+            mini = min(mini,val);
+        }
+        return mini;
+    }
+};
+```
+
+#### Appraoach 2 : Tabulation
+
+- TC : O(N x M)
+- SC : O(N x M)
+
+```cpp
+int minFallingPathSum(vector<vector<int>>& matrix) {
+    int n = matrix.size();
+    int m = matrix[0].size();
+    vector<vector<int>> dp(n,vector<int>(m,-1));
+    
+    // Base Case
+    for(int j = 0; j < m; j++){
+        dp[0][j] = matrix[0][j];
+    }
+    
+    // functional
+    for(int i = 1; i < n; i++){
+        for(int j = 0; j < m; j++){
+            
+            int up = INT_MAX,left = INT_MAX,right = INT_MAX;
+            
+            up = matrix[i][j] + dp[i-1][j];
+            if(j-1 >= 0) left = matrix[i][j] + dp[i-1][j-1];
+            if(j+1 < m) right = matrix[i][j] + dp[i-1][j+1];
+            
+            dp[i][j] = min({up,left,right});
+            
+        }
+    }
+    
+    int ans = INT_MAX;
+    for(int j = 0; j < m; j++){
+        ans = min(ans,dp[n-1][j]);
+    }
+    return ans;
+}
+```
+
+#### Approach 3 : Space Optimization
+
+- TC : O(N x M)
+- SC : O(M)
+
+```cpp
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<int> prev(m,-1);
+        
+        // Base Case
+        for(int j = 0; j < m; j++){
+            prev[j] = matrix[0][j];
+        }
+        
+        // functional
+        for(int i = 1; i < n; i++){
+            vector<int> cur(m);
+            for(int j = 0; j < m; j++){
+                
+                int up = INT_MAX,left = INT_MAX,right = INT_MAX;
+                
+                up = matrix[i][j] + prev[j];
+                if(j-1 >= 0) left = matrix[i][j] + prev[j-1];
+                if(j+1 < m) right = matrix[i][j] + prev[j+1];
+                
+                cur[j] = min({up,left,right});
+                
+            }
+            prev = cur;
+        }
+        
+        int ans = INT_MAX;
+        for(int j = 0; j < m; j++){
+            ans = min(ans,prev[j]);
+        }
+        return ans;
+    }
+};
+```
 
 
 
