@@ -1182,7 +1182,172 @@ public:
 };
 ```
 
+    ## 12. Chocolate / Cherry Pickup II (3D DP Concept)
 
+#### Approach 1 : Recursion + Memoization
+
+- TC for recursion : 3^n x 3^n
+- SC for recursion : O(n)
+- TC for memo : O(N x M x M) X 9
+- SC for memo : O(N x M x M) + O(N)
+
+```cpp
+class Solution {
+public:
+    
+    typedef vector<int> vi;
+    typedef vector<vi> vvi;
+    typedef vector<vvi> vvvi;
+    
+    int f(int i,int j1,int j2,int r,int c,vvi& grid,vvvi& memo){
+        if(j1 < 0 || j2 < 0 || j1 >= c || j2 >= c){
+            return -1e8;
+        }
+        
+        if(i == r - 1){
+            if(j1 == j2) return grid[i][j1];
+            else return grid[i][j1] + grid[i][j2];
+        }
+        
+        if(memo[i][j1][j2] != -1) return memo[i][j1][j2];
+        
+        int maxi = -1e8;
+        
+        for(int ja = -1 ; ja <= 1; ja++){ // a - alice
+            for(int jb = -1; jb <= 1; jb++){ // b - bob
+                int val;
+                if(j1 == j2){ // abhi vali value
+                    val = grid[i][j1];
+                }else{
+                    val = grid[i][j1] + grid[i][j2];
+                }
+                val += f(i+1,j1+ja,j2+jb,r,c,grid,memo);
+                maxi = max(maxi,val);
+            }
+        }
+        return memo[i][j1][j2] = maxi;
+    }
+    
+    int cherryPickup(vector<vector<int>>& grid) {
+        int r = grid.size();
+        int c = grid[0].size();
+        vvvi memo(r,vvi(c,vi(c,-1)));
+        return f(0,0,c-1,r,c,grid,memo);
+    }
+};
+```
+
+#### Tabulation :
+
+```cpp
+class Solution {
+public:
+    
+    typedef vector<int> vi;
+    typedef vector<vi> vvi;
+    typedef vector<vvi> vvvi;
+    
+    int cherryPickup(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        vvvi dp(n,vvi(m,vi(m,-1)));
+        
+        // BASE CASE
+        for(int j1 = 0; j1 < m; j1++){
+            for(int j2 = 0; j2 < m; j2++){
+                dp[n-1][j1][j2] = (j1 == j2) ? grid[n-1][j1] : (grid[n-1][j1] + grid[n-1][j2]);
+            }
+        }
+        
+        // Functionality
+        for(int i = n-2; i>= 0; i--){
+            for(int j1 = 0; j1 < m; j1++){
+                for(int j2 = 0; j2 < m; j2++){
+                    int maxi = -1e8;
+                    for(int ja = -1 ; ja <= 1; ja++){ // a - alice
+                        for(int jb = -1; jb <= 1; jb++){ // b - bob
+                            int val;
+                            if(j1 + ja >= 0 && j1 + ja < m && j2 + jb >= 0 && j2 + jb < m){
+                                val = dp[i+1][j1+ja][j2+jb];
+                            }else{
+                                val = -1e8;
+                            }
+                            
+                            if(j1 == j2){ // abhi vali value
+                                val += grid[i][j1];
+                            }else{
+                                val += grid[i][j1] + grid[i][j2];
+                            }
+                            maxi = max(maxi,val);
+                        }
+                    }
+                    dp[i][j1][j2] = maxi;
+                }
+            }
+        }
+        return dp[0][0][m-1];
+    }
+};
+```
+
+#### Approach 3 : Space Optimization 
+
+```cpp
+class Solution {
+public:
+    
+    typedef vector<int> vi;
+    typedef vector<vi> vvi;
+    typedef vector<vvi> vvvi;
+    
+    int cherryPickup(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>> front(m,vector<int>(m,-1));
+        vector<vector<int>> cur(m,vector<int>(m,-1));
+        
+        // BASE CASE
+        for(int j1 = 0; j1 < m; j1++){
+            for(int j2 = 0; j2 < m; j2++){
+                if(j1 == j2){
+                    front[j1][j2] = grid[n-1][j1];
+                }else{
+                    front[j1][j2] = grid[n-1][j1] + grid[n-1][j2];
+                }
+            }
+        }
+        
+        // Functionality
+        for(int i = n-2; i>= 0; i--){
+            for(int j1 = 0; j1 < m; j1++){
+                for(int j2 = 0; j2 < m; j2++){
+                    int maxi = -1e8;
+                    for(int ja = -1 ; ja <= 1; ja++){ // a - alice
+                        for(int jb = -1; jb <= 1; jb++){ // b - bob
+                            int val;
+                            if(j1 + ja >= 0 && j1 + ja < m && j2 + jb >= 0 && j2 + jb < m){
+                                val = front[j1+ja][j2+jb];
+                            }else{
+                                val = -1e8;
+                            }
+                            
+                            if(j1 == j2){ // abhi vali value
+                                val += grid[i][j1];
+                            }else{
+                                val += grid[i][j1] + grid[i][j2];
+                            }
+                            maxi = max(maxi,val);
+                        }
+                    }
+                    cur[j1][j2] = maxi;
+                }
+            }
+            front = cur;
+        }
+        return front[0][m-1];
+    }
+};
+```
 
 
 
