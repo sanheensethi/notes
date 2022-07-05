@@ -1415,6 +1415,11 @@ bool subsetSumToK(int n, int k, vector<int> &arr) {
 - TC : O(n x target)
 - SC : O(n x target)
 
+> Note :
+
+![image](https://user-images.githubusercontent.com/35686407/177253195-20b9cbea-c760-43bb-abc9-db05aa6e97f2.png)
+![image](https://user-images.githubusercontent.com/35686407/177253237-10d2ca02-e888-4746-9927-09abd933dcfd.png)
+    
 ```cpp
 bool subsetSumToK(int n, int k, vector<int> &arr) {
     vector<vector<bool>> dp(n,vector<bool>(k+1,false));
@@ -1449,6 +1454,11 @@ bool subsetSumToK(int n, int k, vector<int> &arr) {
 - and in base case, for every 0th index , it is marked as true, always,
 - `Thumb Rule` : every time you make the new Row,  index 0 is marked as true
 
+> Note :
+
+![image](https://user-images.githubusercontent.com/35686407/177253195-20b9cbea-c760-43bb-abc9-db05aa6e97f2.png)
+![image](https://user-images.githubusercontent.com/35686407/177253237-10d2ca02-e888-4746-9927-09abd933dcfd.png)
+    
 ```cpp
 bool subsetSumToK(int n, int k, vector<int> &arr) {
     vector<bool> prev(k+1,false),cur(k+1,false);
