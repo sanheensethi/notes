@@ -1869,3 +1869,29 @@ int countPartitions(int n, int d, vector<int> &arr) {
 }
 ```
 
+## 19. 0-1 KnapSack (Very Very Important) [Most Common Asked Question] [Variation can be asked]
+
+#### Approach 1 : Recrusion + Memoization
+
+```cpp
+int f(int idx,int W,vector<int>& weight,vector<int>& value,vector<vector<int>>& memo){
+    if(idx == 0){
+        if(weight[idx] <= W) return value[idx];
+        else return 0;
+    } 
+    if(memo[idx][W] != -1) return memo[idx][W];
+    // not pick
+    int notpick = 0 + f(idx-1,W,weight,value,memo);
+    int pick = INT_MIN;
+    if(weight[idx] <= W){
+        pick = value[idx] + f(idx-1,W-weight[idx],weight,value,memo);   
+    }
+    return memo[idx][W] = max(notpick,pick);
+}
+
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+    vector<vector<int>> memo(n,vector<int>(maxWeight+1,-1));
+	return f(n-1,maxWeight,weight,value,memo);
+}
+```
