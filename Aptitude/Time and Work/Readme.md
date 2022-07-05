@@ -58,3 +58,21 @@ fraction work mae
 ---
 
 ![image](https://user-images.githubusercontent.com/35686407/177049802-95ffeefc-1ee2-411e-9922-fbfc553cdad4.png)
+
+![image](https://user-images.githubusercontent.com/35686407/177198390-0b4344a1-4285-4757-9ae5-f3424ffe72fd.png)
+
+![image](https://user-images.githubusercontent.com/35686407/177198641-8589de3c-56b2-415b-931a-13956638f52b.png)
+
+![image](https://user-images.githubusercontent.com/35686407/177198952-e62ec489-9a79-40e2-890a-80092b043b00.png)
+
+![image](https://user-images.githubusercontent.com/35686407/177199218-c4cc6d2c-9d95-4fb0-a03c-009b39cd396f.png)
+
+> Efficiency is 1 day work
+
+![image](https://user-images.githubusercontent.com/35686407/177199466-1c179e16-6fc7-4f36-85fa-028856bc0312.png)
+
+> Niche vale mae, 1 kaam agar A 60 din mae complete krta hai, lekin vo 15 din mae chla gya, to kaam kitna complete hua ? 1*15/60 = 1/4 , to bcha kaam B nae complete kia 30 din mae , 3/4 = 15 , solve it
+
+![image](https://user-images.githubusercontent.com/35686407/177199963-fdeed304-f225-4274-b5b3-60d6515b043e.png)
+![image](https://user-images.githubusercontent.com/35686407/177200265-54dfb20e-552f-4276-a20f-3bf1fc3f6e4a.png)
+![image](https://user-images.githubusercontent.com/35686407/177200600-2918c66c-f6ec-4a9c-ab72-90eded9c0cd3.png)
