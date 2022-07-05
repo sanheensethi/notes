@@ -1587,6 +1587,108 @@ int minSubsetSumDifference(vector<int>& arr, int n)
 }
 ```
 
+## 17. Count Subsets with Sum K (Pattern : DP on Subsequence and Subset Sum , given is target)
+
+![image](https://user-images.githubusercontent.com/35686407/177265006-29856c3d-a9ff-490e-ab3e-c927ec830f72.png)
+
+> Whenever there is a problem related to count :
+
+- Base Case :
+    - condition satisfies : return 1
+    - else : return 0
+- all recursive calls will be add up , f() + f() + ... to count all possibilities
+
+> How to geenerate recursion ?
+
+1. Express in terms of indexes
+2. explain all possibilities
+3. Sum of all possibilities and return it gives total number of ways.
+
+#### Approach 1 : Recursion + Memoization
+- TC for Rec : O(2^n)
+- SC for Rec : O(n)
+- TC for Memoization : O(N x Sum)
+- SC : O(N x Sum) + O(N)
+
+```cpp
+int f(int idx,int target,vector<int>& nums,vector<vector<int>>& memo){
+    if(target == 0) return 1;
+    if(idx == 0){
+        if(nums[0] == target) return 1;
+        else return 0;
+    }
+    if(memo[idx][target] != -1) return memo[idx][target];
+    int notpick = f(idx-1,target,nums,memo);
+    int pick = 0;
+    if(nums[idx] <= target){
+        pick = f(idx-1,target-nums[idx],nums,memo);
+    }
+    return memo[idx][target] = pick+notpick;
+}
+
+int findWays(vector<int> &num, int tar)
+{
+    int n = num.size();
+    vector<vector<int>> memo(n,vector<int>(tar+1,-1));
+    return f(n-1,tar,num,memo);
+}
+```
+
+#### Approach 2 : Tabulation
+
+```cpp
+int findWays(vector<int> &arr, int tar)
+{
+    int n = arr.size();
+    vector<vector<int>> dp(n,vector<int>(tar+1,0));
+    
+    // Base Case
+    for(int idx = 0; idx < n; idx++){
+        dp[idx][0] = 1;
+    }
+    if(arr[0] <= tar) dp[0][arr[0]] = 1;
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int target = 1; target <= tar; target++){
+            int notpick = dp[idx-1][target];
+            int pick = 0;
+            if(arr[idx] <= target){
+                pick = dp[idx-1][target-arr[idx]];
+            }
+            dp[idx][target] = pick+notpick;
+        }
+    }
+    
+    return dp[n-1][tar];
+}
+```
+
+#### Appraoch 3 : Space Optimization
+
+```cpp
+int findWays(vector<int> &arr, int tar)
+{
+    int n = arr.size();
+    vector<int> prev(tar+1,0),cur(tar+1,0);
+    
+    // Base Case
+    prev[0] = cur[0] = 1;
+    if(arr[0] <= tar) prev[arr[0]] = 1;
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int target = 1; target <= tar; target++){
+            int notpick = prev[target];
+            int pick = 0;
+            if(arr[idx] <= target){
+                pick = prev[target-arr[idx]];
+            }
+            cur[target] = pick+notpick;
+        }
+        prev = cur;
+    }
+    return prev[tar];
+}
+```
 
 
 
