@@ -1406,6 +1406,14 @@ bool subsetSumToK(int n, int k, vector<int> &arr) {
 
 #### Approach 2 : Tabulation
 
+- first base case is , when target is 0 no matter what the idx is, it is true, 
+- therefore dp first column is always true;
+- now second base case is, if idx == 0 , arr[0] == target then it is true else false,
+- therefore, there is only one value which is equal to the target , idx == 0, means there is only one element in the array, it , then target is true if, arr[0] == target.
+- so as there is onle element in the target, then, dp[0][arr[0]] = dp[0][first element of array] = true., 
+- mtlb ye hai ki , hmare paas ek hi element hai and hme target bnana hai, target tbhi bnega na jb hmara a[0] equal hoga target ke, otherwise nhi bnega.
+
+
 ```cpp
 bool subsetSumToK(int n, int k, vector<int> &arr) {
     vector<vector<bool>> dp(n,vector<bool>(k+1,false));
