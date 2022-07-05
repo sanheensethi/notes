@@ -1412,7 +1412,8 @@ bool subsetSumToK(int n, int k, vector<int> &arr) {
 - therefore, there is only one value which is equal to the target , idx == 0, means there is only one element in the array, it , then target is true if, arr[0] == target.
 - so as there is onle element in the target, then, dp[0][arr[0]] = dp[0][first element of array] = true., 
 - mtlb ye hai ki , hmare paas ek hi element hai and hme target bnana hai, target tbhi bnega na jb hmara a[0] equal hoga target ke, otherwise nhi bnega.
-
+- TC : O(n x target)
+- SC : O(n x target)
 
 ```cpp
 bool subsetSumToK(int n, int k, vector<int> &arr) {
@@ -1439,7 +1440,36 @@ bool subsetSumToK(int n, int k, vector<int> &arr) {
 }
 ```
 
+#### Appraoch 3 : Space Optimization
 
+- Whenever you see idx - 1, then its always possible to make space optimization.
+- But we have to take care of something,
+- first time we always take the index 0,
+- some a[i] is marked as true
+- and in base case, for every 0th index , it is marked as true, always,
+- `Thumb Rule` : every time you make the new Row,  index 0 is marked as true
+
+```cpp
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    vector<bool> prev(k+1,false),cur(k+1,false);
+    // Base case
+    prev[0] = cur[0] = true;
+    prev[arr[0]] = true; // because there is only one element
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int target = 1; target < k+1; target++){
+            bool notpick = prev[target];
+            bool pick = false;
+            if(arr[idx] <= target){
+                pick = prev[target-arr[idx]];
+            }
+            cur[target] = notpick || pick;   
+        }
+        prev = cur;
+    }
+    return prev[k];
+}
+```
 
 
 
