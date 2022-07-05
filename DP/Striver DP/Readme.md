@@ -1690,5 +1690,182 @@ int findWays(vector<int> &arr, int tar)
 }
 ```
 
+### Array is given : [0,0,1] , code give 1 subset , ideally it should give 4
+![image](https://user-images.githubusercontent.com/35686407/177273443-b644860c-649a-439b-98d7-2c1bbc377c5a.png)
+- is 0 alter the sum ? NO, addition of 0 and removal of 0 didnt change the sum.
+- Number of zeros = 2.
+- In How many ways 2 zeros can be represented.
+![image](https://user-images.githubusercontent.com/35686407/177279718-1be706f1-5be2-4dac-99f9-bc71d090911f.png)
+![image](https://user-images.githubusercontent.com/35686407/177279724-5c5f6ee1-b5bb-4791-9032-226b2b31edb7.png)
+![image](https://user-images.githubusercontent.com/35686407/177279766-a41387b8-b8fd-4b45-934f-4e7d301d9547.png)
 
+How do you correct it ?
+- there is a line sum == 0 return 1
+- so i need to go deep, when sum = 0,
+- remove sum == 0
+- go deep till index == 0
+- if(idx == 0) sum == 0 and arr[0] == 0 return 2; // 2 possible ways to form take or not take
+- if(idx == 0) sum == 0 and arr[0] != 0, then its only 1 option , i.e., not takling arr[0] , return 1
+- if(idx == 0) sum == 0 and sum == arr[0] return 1;
+
+![image](https://user-images.githubusercontent.com/35686407/177280682-b7c796f1-cc1c-4cba-a8ca-43de7cd14971.png)
+
+
+## 18. Count Partitions with given Difference
+
+- Problem is to find , how many subsets are there which have S1 - S2 = D, where S1 > S2
+![image](https://user-images.githubusercontent.com/35686407/177282068-0a08a677-645e-40d8-9152-8d27b5532dfa.png)
+- Looking for total subsets whose sum is (total-D)/2
+- Question boils down to , find the count of the subsets whose total sum = (total-D)/2 , modified target
+- Edge Cases ? given : nums[i] >= 0
+- total - D cannot be negative, it have to be > 0 , `(total - D) > 0`,
+    - negative tb ho skta hai, jb array ke sare element 0 ho and D > 0 ho
+- s2 = sum of subset, if it is a subset and numbers are > 0, how subset sum is negative
+- given all are intergers , so, there should not be fractions and we are dividing it by 2, so `(totalSum - D)` has to be `even.`
+- also, we are dividing by 2, so there will be no fractions
+
+#### Appraoch 1 : Recursion + Memoization
+
+```cpp
+int mod = 1e9 + 7;
+
+int f(int idx,int target,vector<int>& arr,vector<vector<int>>& memo){
+    if(idx == 0){
+        if(target == 0 && arr[idx] == 0) return 2;
+        if(target == 0 ||  target == arr[0]) return 1;
+        return 0;
+    }
+    if(memo[idx][target] != -1) return memo[idx][target];
+    int notpick = f(idx-1,target,arr,memo);
+    int pick = 0;
+    if(arr[idx] <= target){
+        pick = f(idx-1,target-arr[idx],arr,memo);
+    }
+    return memo[idx][target] = (pick+notpick)%mod;
+}
+
+int count(vector<int>& arr,int target){
+    int n = arr.size();
+    vector<vector<int>> memo(n,vector<int>(target+1,-1));
+    return f(n-1,target,arr,memo);
+}
+
+int countPartitions(int n, int d, vector<int> &arr) {
+    // s1 - s2 = D
+    // s1 = total - s2
+    // total - 2 x s2 = D
+    // s2 = (total - D)/2
+    // (total - D) > 0  and even, as there are no fractions
+    
+    int totalSum = accumulate(arr.begin(),arr.end(),0);
+    int total_D = totalSum - d;
+    if(total_D < 0 || (total_D %2)) return 0;
+    int find = total_D/2;
+    
+    return count(arr,find);
+}
+```
+
+#### Appraoch 2: Tabulation
+
+- What are the base cases in the recurson ?
+
+![image](https://user-images.githubusercontent.com/35686407/177302771-8cdac487-da14-4e37-b9d8-af068295c46f.png)
+
+|Memoization|Tabulation|
+|----|---|
+|if our target is 0 , and arr[0] is also 0, then we have 2 cases because 0 uthao to bhi target 0 hi rhega , 0 na uthao to bhi target 0 hi rhega | if arr[0][0] == 0 : dp[0][0] = 2, it means that idx == 0 hai and sum == 0 hai, to i have two options , rather pick it or not pick it , as pick 0 and not pick 0 didnt affect my ans |
+|and if target == 0 and arr[0] != 0 , suppose mera target 0 hai lekin array ka element at idx = 0 , 0 nhi hai suppose 5 hai, to how many options i have to choose pick or not pikc ? i can not pick it, because if target pehele se 0 hia , uthauya to 0-ele = -ele < 0 ho jayega jbki 0 pehle se hi hia, to 1 hi option hai as i will not pick | else dp[0][0] = 1 , because sum == 0  and arr[0] != 0 , we have only 1 option to leave it, not to pick it,|
+
+- if arr[0] != 0 && arr[0] <= target : dp[0][arr[0]] = 1; isme hme ye pta hai ki agar arr[0] <= target hoga vha 1 krenge but, ye bhi to socho ki agar arr[0] == 0, ho gya to ? ye to first if condition hai ki sum == 0 hai as arr[0] = 0, then it should be equal to 2
+
+```cpp
+int count(vector<int>& arr,int target){
+    int n = arr.size();
+    vector<vector<int>> dp(n,vector<int>(target+1,0));
+    
+    // Base Case
+    if(arr[0] == 0) dp[0][0] = 2; // 2 case pick or not pick
+    else dp[0][0] = 1; // 1 case not pick
+    
+    // num[0] == 0 ?
+    if(arr[0] != 0 && arr[0] <= target) dp[0][arr[0]] = 1;
+    
+    // functional
+    for(int idx = 1; idx < n; idx++){
+        for(int sum = 0; sum <= target; sum++){
+            int notpick = dp[idx-1][sum];
+            int pick = 0;
+            if(arr[idx] <= sum){
+                pick = dp[idx-1][sum-arr[idx]];
+            }
+            dp[idx][sum] = (pick+notpick)%mod;
+        }
+    }
+    
+    return dp[n-1][target];
+}
+
+int countPartitions(int n, int d, vector<int> &arr) {
+    // s1 - s2 = D
+    // s1 = total - s2
+    // total - 2 x s2 = D
+    // s2 = (total - D)/2
+    // (total - D) > 0  and even, as there are no fractions
+    
+    int totalSum = accumulate(arr.begin(),arr.end(),0);
+    int total_D = totalSum - d;
+    if(total_D < 0 || (total_D %2)) return 0;
+    int find = total_D/2;
+    
+    return count(arr,find);
+}
+```
+
+#### Approach 3 : Space Optimizaton
+
+```cpp
+int mod = 1e9 + 7;
+int count(vector<int>& arr,int target){
+    int n = arr.size();
+    vector<int> prev(target+1,0),cur(target+1,0);
+    
+    // Base Case
+    if(arr[0] == 0) prev[0] = 2; // 2 case pick or not pick
+    else prev[0] = 1; // 1 case not pick
+    
+    // num[0] == 0 ?
+    if(arr[0] != 0 && arr[0] <= target) prev[arr[0]] = 1;
+    
+    // functional
+    for(int idx = 1; idx < n; idx++){
+        for(int sum = 0; sum <= target; sum++){
+            int notpick = prev[sum];
+            int pick = 0;
+            if(arr[idx] <= sum){
+                pick = prev[sum-arr[idx]];
+            }
+            cur[sum] = (pick+notpick)%mod;
+        }
+        prev = cur;
+    }
+    
+    return prev[target];
+}
+
+int countPartitions(int n, int d, vector<int> &arr) {
+    // s1 - s2 = D
+    // s1 = total - s2
+    // total - 2 x s2 = D
+    // s2 = (total - D)/2
+    // (total - D) > 0  and even, as there are no fractions
+    
+    int totalSum = accumulate(arr.begin(),arr.end(),0);
+    int total_D = totalSum - d;
+    if(total_D < 0 || (total_D %2)) return 0;
+    int find = total_D/2;
+    
+    return count(arr,find);
+}
+```
 
