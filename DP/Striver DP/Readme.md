@@ -1471,7 +1471,32 @@ bool subsetSumToK(int n, int k, vector<int> &arr) {
 }
 ```
 
+## 15. Partition Equal Subset Sum
 
+|Note|Image|
+|---|---|
+|we have to divide the array in such a way that two subsets have equal sum|![image](https://user-images.githubusercontent.com/35686407/177249834-a5307919-44f5-437e-a06a-cee00de52fc2.png)|
+
+|Point|Image|
+|---|---|
+| 1. Entire Subset Sum = S , then Sum Subset of S1 = S/2 |![image](https://user-images.githubusercontent.com/35686407/177250081-8c57d7f1-daaa-43d0-9bbc-c0b24e5812ba.png)|
+
+- Divide them in exactly two subsets, such that sum1 = sum2
+- S : Odd ~ Not Possible
+- S : Even , Looking for a subset with sum S/2
+- if, one subset is S/2 then other will also be S/2 (remaning elements are bound to give S/2)
+- Therfore, it boils down to , check Given an array there exists a target = S/2 , where S = Total Sum
+- Statement 1 in code - [Subset Sum Equals To Target](#14-subset-sum-equals-to-target)
+
+```cpp
+bool canPartition(vector<int>& nums) {
+    int sum = accumulate(nums.begin(),nums.end(),0);
+    if((sum&1)) return false;
+    int target = sum/2;
+    int n = nums.size();
+    return subsetSumEqualsTarget(nums,target); // Statement 1
+}
+```
 
 
 
