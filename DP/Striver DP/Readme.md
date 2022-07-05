@@ -1508,7 +1508,84 @@ bool canPartition(vector<int>& nums) {
 }
 ```
 
+## 16. Partiton of a Set into Two Subsets with Minimum absolute sum Difference
 
+|abs(Sum1 - Sum2) is as minimal as possible|Example|
+|---|---|
+|![image](https://user-images.githubusercontent.com/35686407/177254141-12f5af49-7025-4e31-8a13-9a50fba2a0b3.png)|![image](https://user-images.githubusercontent.com/35686407/177254101-2bc05c55-16ca-4605-b9bc-8e96aaa4bbe4.png)|
+
+|What `dp[i][j]` Signifies ?|Image|
+|---|---|
+|If we look at the dp table in Subset sum equal to target  table, them each dp[i][j] signifies something. Here, dp[4][0] signifies, is there is a possibility that with 4 elements we can create target sum 0, which is true,and if you think logically, it is true. Also, if we see at the dp[4][4] . it says is there is a possibility in creating target sum = 4 from the 4 elements, and it is true|![image](https://user-images.githubusercontent.com/35686407/177257684-eda781bb-9f07-4a72-b6b0-77e0866ec446.png)|
+
+
+- f(n-1,target) means -> can array index upto n-1 achieve a given target ?
+     - ans will lie at dp[n-1][target]
+     - dp[4][7] == true, then we can have subset of sum 7.
+- So , we want to achive the minimum sum difference, `abs(sum1 - sum2) is minimal`
+- agar hum srf sum1 pr focus kre to kya sum2 nikal skte hai ? yes , if we know the total sum
+- to hum sum1 mae hr possible target ko check krenge ki kya ye sum possible hai as sum1
+    - minimum value of sum1 is 0
+    - maxumum value of sum1 is sum of all array (take all elements to subset 1)
+- So, we need to make the dp array such that, it have all possible sum from 0 to total sum of array
+- and we will find the minimum by trying all valid subset sum 1 taken from 0 to total sum.
+- Now after creating dp array, check if target is possible.
+- if possible , then take it as sum1 and find the sum 2 and calculate the difference and then find the minimum difference. from all possible sum1.
+
+> Example
+
+- `arr[] : [3 2 7]`
+- s1 - sum1 possible (from dp array)
+- s2 - total - sum1
+![image](https://user-images.githubusercontent.com/35686407/177259731-29ea984c-9881-44f6-971b-8046bba95545.png)
+- observe : Repetative, s1 = 0, s2 = 12 | and after some moment , s1 = 12 , s2 = 0
+- and other also follow same pattern,
+- so , we will iterate for half 
+
+> Steps :
+
+- Subset sum ka dp array bnao upto total sum
+- ab hr True value ko possible value mano s1 kifrom last row of dp array, as it include all elements of array and find kro s2 ki value
+- ab unka difference nikalkr, minimum ke sath compare kro
+
+```cpp
+void createDPArray(vector<int>& arr,int n,int total,vector<vector<bool>>& dp){
+    // subset sum dp array
+    for(int idx = 0; idx < n; idx++){
+        dp[idx][0] = true;
+    }
+    
+    if(arr[0] <= total) dp[0][arr[0]] = true;
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int target = 1; target <= total ; target++){
+            bool notpick = dp[idx-1][target];
+            bool pick = false;
+            if(arr[idx] <= target){
+                pick = dp[idx-1][target-arr[idx]];
+            }
+            dp[idx][target] = pick || notpick;
+        }
+    }
+}
+
+int minSubsetSumDifference(vector<int>& arr, int n)
+{
+	int total = accumulate(arr.begin(),arr.end(),0);
+    vector<vector<bool>> dp(n,vector<bool>(total+1,false));
+    
+    createDPArray(arr,n,total,dp);
+    
+    int mini = 1e9;
+    for(int sum1 = 0; sum1 <= total/2; sum1++){
+        if(dp[n-1][sum1] == true){
+            int sum2 = total - sum1;
+            mini = min(mini , abs(sum1-sum2));
+        }
+    }
+    return mini;
+}
+```
 
 
 
