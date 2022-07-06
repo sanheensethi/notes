@@ -2220,6 +2220,103 @@ int change(int amount, vector<int>& coins) {
 }
 ```
 
+## 23. Unbounded Knapsack
+
+- Pick single item multiple times
+![image](https://user-images.githubusercontent.com/35686407/177521451-6bd8e476-383e-450b-af7b-b2ae4ac03d88.png)
+- Find the maximum possible value, you can get in knapsack.
+
+#### Appraoch 1 : Recursion + Memoization
+
+- Base Case, if weight is 8, and item weight is 3, then it takes only 2 times the same item, as there are infinite supply.
+
+|Example|Base Case|
+|---|---|
+|![image](https://user-images.githubusercontent.com/35686407/177525345-610fef49-1b9c-43c4-8801-e8d7105d1871.png)|![image](https://user-images.githubusercontent.com/35686407/177525530-59525fd2-6580-4352-bb48-347ea73c8e92.png)|
+
+```cpp
+int f(int idx,int W,vector<int>& profit,vector<int>& weight,vector<vector<int>>& memo){
+    if(idx == 0){
+        return (W/weight[0])*profit[0];
+    }
+    if(memo[idx][W] != -1) return memo[idx][W];
+    int nottake = 0 + f(idx-1,W,profit,weight,memo);
+    int take = 0;
+    if(weight[idx] <= W){
+        take = profit[idx] + f(idx,W-weight[idx],profit,weight,memo);
+    }
+    return memo[idx][W] = max(take,nottake);
+}
+
+int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight)
+{
+    vector<vector<int>> memo(n,vector<int>(w+1,-1));
+    return f(n-1,w,profit,weight,memo);
+}
+```
+
+#### Tabulation
+
+```cpp
+int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight)
+{
+    vector<vector<int>> dp(n,vector<int>(w+1,0));
+    
+    for(int wt = 0; wt <= w; wt++){
+        dp[0][wt] = (wt/weight[0])*profit[0];
+    }
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int wt = 0; wt <= w; wt++){
+            int nottake = 0 + dp[idx-1][wt];
+            int take = 0;
+            if(weight[idx] <= wt){
+                take = profit[idx] + dp[idx][wt-weight[idx]];
+            }
+            dp[idx][wt] = max(take,nottake);
+        }
+    }
+    
+    return dp[n-1][w];
+}
+```
+
+#### Appraoch 3 : Space Optimization
+
+```cpp
+int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight)
+{
+    vector<int> prev(w+1,0),cur(w+1,0);
+    
+    for(int wt = 0; wt <= w; wt++){
+        prev[wt] = (wt/weight[0])*profit[0];
+    }
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int wt = 0; wt <= w; wt++){
+            int nottake = 0 + prev[wt];
+            int take = 0;
+            if(weight[idx] <= wt){
+                take = profit[idx] + cur[wt-weight[idx]];
+            }
+           cur[wt] = max(take,nottake);
+        }
+        prev = cur;
+    }
+    
+    return prev[w];
+}
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
