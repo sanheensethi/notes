@@ -2010,6 +2010,109 @@ int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight)
 }
 ```
 
+## Coin Change (Minimum Coins)
+- I can pick the same coin again and again.
+- in the idx == 0 base case, how many coins i can take think ?
+    - if arr[0] = 6 and target = 7, i can take probably no coints such as by taking infinite coins i can not make that 7, take 6,6,6,6,6 again and again. so return 1e9
+    - if arr[0] = 4 and target = 12 , then i can take probably 3 coins. 12/4
+    - So, i can take the coins only when target%coins[0] == 0
+
+
+#### Appraoch 1: Recursion + Memoization
+- TC for rec : >> O(2^n)
+- SC : O(n)
+
+```cpp
+class Solution {
+public:
+    int solve(int idx,int target,vector<int>& coins,vector<vector<int>>& memo){
+        
+        if(idx == 0){
+            if(target%coins[0] == 0) return target/coins[0];
+            return 1e9;
+        }
+        if(memo[idx][target] != -1) return memo[idx][target];
+        int notpick = 0+solve(idx-1,target,coins,memo);
+        int pick = 1e9;
+        if(coins[idx] <= target){
+            pick = 1+solve(idx,target-coins[idx],coins,memo);
+        }
+        return memo[idx][target] = min(pick,notpick);
+    }
+    
+    int coinChange(vector<int>& coins, int amount) {
+        int n = coins.size();
+        vector<vector<int>> memo(n,vector<int>(amount+1,-1));
+        int x = solve(coins.size()-1,amount,coins,memo);
+        if(x == 1e9) return -1;
+        return x;
+    }
+};
+```
+
+#### Approach 2 : Tabulation
+
+```cpp
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int n = coins.size();
+        vector<vector<int>> dp(n,vector<int>(amount+1,0));
+        
+        for(int target = 0; target <= amount; target++){
+            dp[0][target] = (target%coins[0] == 0) ? target/coins[0] : 1e9;
+        }
+        
+        for(int idx = 1; idx < n; idx++){
+            for(int target = 0; target <= amount; target++){
+                int notpick = 0+dp[idx-1][target];
+                int pick = 1e9;
+                if(coins[idx] <= target){
+                    pick = 1+dp[idx][target-coins[idx]];
+                }
+                dp[idx][target] = min(pick,notpick);
+            }
+        }
+        
+        int x = dp[n-1][amount];
+        if(x == 1e9) return -1;
+        return x;
+    }
+};
+```
+
+#### Appraoch 3 : Space Optimization
+
+```cpp
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int n = coins.size();
+        vector<int> prev(amount+1,0),cur(amount+1,0);
+        
+        for(int target = 0; target <= amount; target++){
+            prev[target] = (target%coins[0] == 0) ? target/coins[0] : 1e9;
+        }
+        
+        for(int idx = 1; idx < n; idx++){
+            for(int target = 0; target <= amount; target++){
+                int notpick = 0+prev[target];
+                int pick = 1e9;
+                if(coins[idx] <= target){
+                    pick = 1+cur[target-coins[idx]];
+                }
+                cur[target] = min(pick,notpick);
+            }
+            prev = cur;
+        }
+        
+        int x = prev[amount];
+        if(x == 1e9) return -1;
+        return x;
+    }
+};
+```
+
 
 
 
