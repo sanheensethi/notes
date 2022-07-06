@@ -1873,6 +1873,16 @@ int countPartitions(int n, int d, vector<int> &arr) {
 
 #### Approach 1 : Recrusion + Memoization
 
+- we write the base case on 0, as we start from n-1
+- if idx == 0 :
+    - f(0,W) means, single element bag weight W
+    - max value he can get ? if weight of element is <= W return value[0]
+    - but if W > weight value, he cannot able to pick else return 0
+- TC of recursion : 2^n
+- SC of recrusion : O(N)
+- TC of memoization : O(NxW)
+- SC of Memoization : O(NxW)
+
 ```cpp
 int f(int idx,int W,vector<int>& weight,vector<int>& value,vector<vector<int>>& memo){
     if(idx == 0){
@@ -1895,3 +1905,111 @@ int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight)
 	return f(n-1,maxWeight,weight,value,memo);
 }
 ```
+
+#### Approach 2 : Tabulation
+
+- write the base case
+- int dp[N][W+1]
+- for i = wt[0] to W , i can steal it, because, wt <= W , i can steal dp[0][i] = value[0]
+- index : n-1 to 0 in rec, therefore in tab : its 1 to n-1
+- and weight : W to 0 in rec , therfore in tab : its 0 to W
+![image](https://user-images.githubusercontent.com/35686407/177473591-7facd1ba-6f0a-4eb9-8b90-2b707346a639.png)
+
+```cpp
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+    vector<vector<int>> dp(n,vector<int>(maxWeight+1,0));
+    
+    // i have to fill dp[0] , idx = 0, base case
+    // all W greater then wt[0] will pick the 0th element
+    for(int i = weight[0] ; i <= maxWeight; i++){
+        dp[0][i] = value[0];
+    }
+    
+    for(int i = 1; i < n; i++){
+        for(int j = 0; j <= maxWeight; j++){
+            int notpick = 0 + dp[i-1][j];
+            int pick = INT_MIN;
+            if(weight[i] <= j){
+                pick = value[i] + dp[i-1][j-weight[i]];
+            }
+            dp[i][j] = max(notpick,pick);
+        }
+    }
+    
+	return dp[n-1][maxWeight];
+}
+```
+
+#### Approach 3 : 2 Row Space Optimization
+
+```cpp
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+    vector<int> prev(maxWeight+1),cur(maxWeight+1);
+    
+    // i have to fill dp[0] , idx = 0, base case
+    // all W greater then wt[0] will pick the 0th element
+    for(int i = weight[0] ; i <= maxWeight; i++){
+        prev[i] = value[0];
+    }
+    
+    for(int i = 1; i < n; i++){
+        for(int j = 0; j <= maxWeight; j++){
+            int notpick = 0 + prev[j];
+            int pick = INT_MIN;
+            if(weight[i] <= j){
+                pick = value[i] + prev[j-weight[i]];
+            }
+            cur[j] = max(notpick,pick);
+        }
+        prev = cur;
+    }
+    
+	return prev[maxWeight];
+}
+```
+
+#### Appraoch 4 : 1 Row Space Optimization
+
+- in recursion we use W-wt[idx]
+- you see that if w is somewhere between, then w-wt[idx] will be in its left side, and right side is empty for that,
+- but how will this helps ?,
+- as who say us to write W from 0 to W, write it from W to 0,
+- use same prev again and again, cur not needed.
+
+|W is dependent on its left values|When we fill from right to left, W take tahe value as W-wt[idx] from left, so run 2nd loop from W to 0|
+|---|---|
+|![image](https://user-images.githubusercontent.com/35686407/177475538-f97bfa49-0658-4317-b330-ddc84ac8c3e8.png)|![image](https://user-images.githubusercontent.com/35686407/177476125-0ea7d6fe-e45b-48b4-92f3-a1e909edeaa4.png)|
+
+- when i fill it from right, it only need its left values , so that is why it is working in only in 1 Row Array Space
+
+```cpp
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+    vector<int> prev(maxWeight+1);
+    
+    // i have to fill dp[0] , idx = 0, base case
+    // all W greater then wt[0] will pick the 0th element
+    for(int i = weight[0] ; i <= maxWeight; i++){
+        prev[i] = value[0];
+    }
+    
+    for(int i = 1; i < n; i++){
+        for(int j = maxWeight; j >= 0; j--){
+            int notpick = 0 + prev[j];
+            int pick = INT_MIN;
+            if(weight[i] <= j){
+                pick = value[i] + prev[j-weight[i]];
+            }
+            prev[j] = max(notpick,pick);
+        }
+    }
+    
+	return prev[maxWeight];
+}
+```
+
+
+
+
