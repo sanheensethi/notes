@@ -2555,8 +2555,209 @@ int cutRod(vector<int> &prices, int n)
                 take = prices[i] + prev[wt-rodLength];
             }
             prev[wt] = max(take,notTake);
+	}
+     }
+     return prev[n];
+}
+```
 
+## DP on Strings
 
+#### General Problems on : Comparison / Replaces / Edits
+
+## 25. Longest Commoon Subswquence
+
+![image](https://user-images.githubusercontent.com/35686407/177567179-2910f485-3349-4a90-bca7-13a73c985157.png)
+- bc : consecutive and maintating the orer
+- ac : didnt concecutive and maintain the order
+- Subsequence : it can and cannot be consiqutive and as long as it maintains the order , it is subsequences.
+
+> To print Subsequences : either use power set or user recursion(Pick or Non pick)
+
+- 2^n subsequences in total
+
+> Longest Common Subsequences
+
+![image](https://user-images.githubusercontent.com/35686407/177567862-c9327a3f-c887-4c86-a3ae-c0f1d322ae1a.png)
+
+- here from s1 , does a exisits in s2 as subsequence ? Yes, so till now length of longest subsequence is 1,
+- and we keep finding on them.
+- Longest Subsequnce in both is [adb] , length = 3
+
+#### Appraoch 1 : Brute Force, generate all subsequences of both and compare. [Exponential in nature]
+
+#### Approach 2 : `Genetate all subsequences and Compare on the Way` | Recursion
+
+- Recursion | Dp ON strings
+- Technically follow rec method, not generate these, instead of using parameters to generate them
+- We try to the `some reccurance` which `give me the ans in through the way`
+
+`Rules`:
+
+1. Express everything in terms of index (idx1,idx2) for both strings
+2. Explore possibility on that index
+3. Take the best among them.
+
+> f(2) signify the string at index 2, a single index cannot express both the string thereby i have to represent them by two indexes, where idx1 represent s1 and idx2 represent idx2
+
+> f(2,2) : tell me the LCS of string s1 from 0 to 2 and string s2 friom 0 to 2
+![image](https://user-images.githubusercontent.com/35686407/177569993-79f88845-ab07-44b1-97fd-f51df2c416f5.png)
+
+f(2,5) : give me the LCS between s1 0 to 2 and string s2 0 to 5 , smaller and larger string.
+
+> Now explore all possibilities
+
+> SOLUTION : Do comparison on characters
+
+- f(2,2) : s1[idx1] == s2[idx2] , it means i got subsequence of length 1 and shrink the string , new strings are ac | ce [ 1 + ac | ce ] = 1 + f(1,1);
+- s1[idx1] != s2[idx2] , now something i am sure that ac will match with c of ce , or if there is ec | ce , then maybe it happends that e of ec match with ce's e , then we have to expplore both possibilities ,
+    - v1 = f(idx1-1,idx2)
+    - v2 = f(idx1,idx2-1)
+    - return max of both , 0 + max(v1,v2); , 0 because there is no match.
+
+![image](https://user-images.githubusercontent.com/35686407/177571869-fcf93a72-3112-40ae-b1eb-371fc9376338.png)
+
+- If some of the index goes negative, rec ends and return 0; , either idx1 is negative or either idx2 is negative
+- idx is negative means end the string. if its end of the string , `it length ? 0.`
+
+> NOTE : IN STRING - MATHCH OR NOT MATCH PATTERN
+
+#### Appraoch 1 : Recursion + Memoization
+
+- TC : O(N x M)
+- SC : O(N x M) + O(N+M)
+
+```cpp
+int f(int idx1,int idx2,string& text1,string& text2,vector<vector<int>>& memo){
+        if(idx1 < 0 || idx2 < 0){
+            return 0;
+        }
+        if(memo[idx1][idx2] != -1) return memo[idx1][idx2];
+        if(text1[idx1] == text2[idx2]){
+            return memo[idx1][idx2] = 1 + f(idx1-1,idx2-1,text1,text2,memo);
+        }
+        int v1 = f(idx1-1,idx2,text1,text2,memo);
+        int v2 = f(idx1,idx2-1,text1,text2,memo);
+        return memo[idx1][idx2] = max(v1,v2);
+    }
+    
+    int longestCommonSubsequence(string text1, string text2) {
+        int n1 = text1.size();
+        int n2 = text2.size();
+        vector<vector<int>> memo(n1,vector<int>(n2,-1));
+        return f(n1-1,n2-1,text1,text2,memo);
+    }
+```
+
+#### Appproach 2: Tabulation
+
+1. Copy base case,
+2. write changing parameter in opposite parameter
+3. copy the reccurance
+
+> But copy base case is bit tricky here, Why ? if(i < 0 || j < 0) return 0
+
+- In base case, i and j are negative then it return 0,
+- so we can't write base cases for -1
+- we do `shifting of index, in order to write tabulation`.
+
+![image](https://user-images.githubusercontent.com/35686407/177575336-22dea9aa-cda4-4799-9973-52718789e357.png)
+
+- we have to right shift of the index. f(n,m) here n means n-1, m means m-1 , we shift it 1 right.
+
+![image](https://user-images.githubusercontent.com/35686407/177575565-e77ded47-c537-4b65-96d3-911176ecdca9.png)
+
+- So can i say ? f(i,j) , every i should be treated as i-1 and every j should be treated as j-1
+- therefore, instead of i < 0 pr j < 0 , we write i == 0 or j == 0 retrurn 0
+
+```cpp
+// shifting index in recursion
+int f(int idx1,int idx2,string& text1,string& text2,vector<vector<int>>& memo){
+        if(idx1 == 0 || idx2 == 0){
+            return 0;
+        }
+        
+        if(memo[idx1][idx2] != -1) return memo[idx1][idx2];
+        
+        if(text1[idx1-1] == text2[idx2-1]){
+            return memo[idx1][idx2] = 1 + f(idx1-1,idx2-1,text1,text2,memo);
+        }
+        int v1 = f(idx1-1,idx2,text1,text2,memo);
+        int v2 = f(idx1,idx2-1,text1,text2,memo);
+        return memo[idx1][idx2] = max(v1,v2);
+    }
+    //  return f(n1,n2,text1,text2,memo); // call
+```
+
+###### Tabulation : 
+
+- Now, Base case is, i == 0 || j == 0 return 0;
+- i == 0 means dp[0][anything] = 0
+- j == 0 means dp[anything][0] = 0
+- Now copy reccurance of shifted index and do process.
+
+```cpp
+class Solution {
+public:
+    
+    int longestCommonSubsequence(string text1, string text2) {
+        int n1 = text1.size();
+        int n2 = text2.size();
+        vector<vector<int>> dp(n1+1,vector<int>(n2+1,0));
+        
+        // BASE CASE
+        for(int j = 0; j <= n2; j++){
+            dp[0][j] = 0;
+        }
+        
+        for(int i = 0; i <= n1; i++){
+            dp[i][0] = 0;
+        }
+        
+        // FUNCTIONAL
+        for(int i = 1; i <= n1; i++){
+            for(int j = 1; j <= n2; j++){
+                if(text1[i-1] == text2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    int v1 = dp[i-1][j];
+                    int v2 = dp[i][j-1];
+                    dp[i][j] = max(v1,v2);   
+                }
+            }
+        }
+        
+        return dp[n1][n2];
+    }
+};
+```
+
+#### Approach 3 : Space Optimization
+
+```cpp
+int longestCommonSubsequence(string text1, string text2) {
+        int n1 = text1.size();
+        int n2 = text2.size();
+        vector<int> prev(n2+1,0),cur(n2+1,0);
+        
+        prev[0] = cur[0] = 0;
+        
+        for(int i = 1; i <= n1; i++){
+            for(int j = 1; j <= n2; j++){
+                if(text1[i-1] == text2[j-1]){
+                    cur[j] = 1 + prev[j-1];
+                }else{
+                    int v1 = prev[j];
+                    int v2 = cur[j-1];
+                    cur[j] = max(v1,v2);   
+                }
+            }
+            prev = cur;
+        }
+        
+        return prev[n2];
+    }
+```
 
 
 
