@@ -2831,7 +2831,52 @@ string printLCS(string& s1,string& s2){
     return ans;
 ```
 
+## 27. Longest Common Substring
 
+> String s1 = abcd and s2 = abzd
+
+![image](https://user-images.githubusercontent.com/35686407/177660532-5c1f8391-7c38-4d3a-80e1-258b12aba735.png)
+
+
+- isme subsequence ki trh hi bharna hai 2d array ko ,
+- 2d array subsequence mae kese bharta hai ? , vo dekhta hai ki kya abhi vala char matched hai . if yes hai to picle vale ke paas jata (i-1,j-1) hai check krta hai kya tu matched hai, mtlb tere tk kitni length ki subsequence bni hai, usme +1 kr deta hui, taki vo us subsequence mae khud ko bhi jod de
+- if they match nhi krte vo max lete hai 2 values ka dp[i-1][j] and dp[i][j-1] , is max lene ka mtlb ye hai ki abhi tk maximum kitne char match ho chuke hai vhi idar cell mae likh do.
+- But here substring is there, so, hum yha pr max nhi lenge dono ka, kyuki substing hota hai contiguous, to isme max lene se to hum subsequence ka pta lgayange instead we write 0, as hme discontiguous fashion ko aage nhi bhadana hai.
+- jb substring ke liye 2d array fill krenge then hm ye dekhte hai ki, agar abhi vala char match krta hai to vo piche (i-1,j-1) ke paas jakr check krta hai ki tumhare tk kitne contiguous char match ho chuke hai, usme mera +1 kr do else dp[i][j] = 0 if char didn't match.
+- so, we see in diagram also, when b matches, it checks for the a that how mnany char matches for string of len1 , and we also see we fill up 0 when a and b not matches in (1,2)
+
+```cpp
+int printLCSubstring(string& s1,string& s2){
+    int n1 = s1.size();
+    int n2 = s2.size();
+
+    vector<vector<int>> dp(n1+1,vector<int>(n2+1,-1));
+    // BASE CASE
+    for(int j = 0; j <= n2;j++){
+        dp[0][j] = 0;
+    }
+
+    for(int i = 0; i <= n1;i++){
+        dp[i][0] = 0;
+    }
+
+    // functional
+    int maxi = -1e9;
+
+    for(int i = 1; i <= n1; i++){
+        for(int j = 1; j <= n2; j++){
+            if(s1[i-1] == s2[j-1]){
+                dp[i][j] = 1 + dp[i-1][j-1];
+                maxi = max(dp[i][j],maxi);
+            }else{
+                dp[i][j] = 0;
+            }
+        }
+    }
+
+    return maxi;
+}
+```
 
 
 
