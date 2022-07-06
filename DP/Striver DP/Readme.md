@@ -2124,4 +2124,107 @@ public:
 > Now problem boils down to Count Partitions with given Difference [Link](#18-count-partitions-with-given-difference)
 
 
+## 22. Coin Change 2 (Number of ways target can be maked)
+
+![image](https://user-images.githubusercontent.com/35686407/177514578-22c74483-f4e8-4722-9833-addaa392e599.png)
+
+|Note|Note|
+|---|---|
+|if question says any number of times you can pick, then always you have to land on the same index|if Question says about number of ways, then base case always return 1 or 0, if it reaches destination or not respectivelt.|
+
+#### Appraoch 1 : Recursion + Memoization
+
+- TC : O(2^n)
+- SC : >> O(n) , worst O(target) [1] target = 100 
+- TC for rec : O(n x target)
+- SC : O(n x target) + O(target)
+
+```cpp
+int f(int idx,int target,vector<int>& coins,vector<vector<int>>& memo){
+    if(idx == 0){
+        if(target%coins[0] == 0) return 1;
+        else return 0;
+    }   
+    if(memo[idx][target] != -1) return memo[idx][target];
+    int nottake = f(idx-1,target,coins,memo);
+    int take = 0;
+    if(coins[idx] <= target){
+        take = f(idx,target-coins[idx],coins,memo);
+    }
+    return memo[idx][target] = nottake + take;
+}
+
+int change(int amount, vector<int>& coins) {
+    int n = coins.size();
+    vector<vector<int>> memo(n,vector<int>(amount+1,-1));
+    return f(n-1,amount,coins,memo);
+}
+```
+
+#### Appraoch 2 : Tabulation
+
+- TC : O(n x target)
+- SC : O(n x target)
+
+```cpp
+int change(int amount, vector<int>& coins) {
+    int n = coins.size();
+    vector<vector<int>> dp(n,vector<int>(amount+1,0));
+    
+    for(int target = 0; target <= amount; target++){
+        if(target%coins[0] == 0) dp[0][target] = 1;
+        else dp[0][target] = 0;
+    }
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int target = 0; target <= amount; target++){
+            int nottake = dp[idx-1][target];
+            int take = 0;
+            if(coins[idx] <= target){
+                take = dp[idx][target-coins[idx]];
+            }
+            dp[idx][target] = nottake + take;
+        }
+    }
+    return dp[n-1][amount];
+}
+```
+
+#### Appraoch 3 : Space Optimization
+
+- TC : O(n x target)
+- SC : O(target)
+
+```cpp
+int change(int amount, vector<int>& coins) {
+    int n = coins.size();
+    vector<int> prev(amount+1,0),cur(amount+1,0);
+    
+    for(int target = 0; target <= amount; target++){
+        if(target%coins[0] == 0) prev[target] = 1;
+        else prev[target] = 0;
+    }
+    
+    for(int idx = 1; idx < n; idx++){
+        for(int target = 0; target <= amount; target++){
+            int nottake = prev[target];
+            int take = 0;
+            if(coins[idx] <= target){
+                take = cur[target-coins[idx]];
+            }
+            cur[target] = nottake + take;
+        }
+        prev = cur;
+    }
+    return prev[amount];
+}
+```
+
+
+
+
+
+
+
+
 
