@@ -2113,6 +2113,15 @@ public:
 };
 ```
 
+## 21. Target Sum (Assign + and - sign)
+
+- we can do this with recursion assigning + or - sign to each element and explore all the paths
+- Can we do better ? Yes
+- we have already done with the question, find the subset partiton with sum difference = D
+- |S1 - S2| = D
+![image](https://user-images.githubusercontent.com/35686407/177512837-cb574829-308a-4460-833d-bf0b6e4c067f.png)
+
+> Now problem boils down to Count Partitions with given Difference [Link](#18-count-partitions-with-given-difference)
 
 
 
