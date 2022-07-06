@@ -2431,7 +2431,130 @@ int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight)
 
 ```
 
+## 24. Rod Cutting Problem
 
+![image](https://user-images.githubusercontent.com/35686407/177530995-996793c5-f446-4e4a-9f80-62e7e2ffd545.png)
+- cut the rod into pieces, 
+- for the length 1 rod, you will get the price = 2 Rs (for every length of rod), so 1 x 2 = 10 Rs.,
+- another way to cut the rod is 1,2,2 ~ 2 + 5 + 5 = 12 Rs.
+- maximize the cost
+
+> Think in opposite fashion, try to make the rod length n from given lengths, we knwo that index 4 is of length 5, index 3 is of length 4 rod, etc.
+
+![image](https://user-images.githubusercontent.com/35686407/177532105-93b77f57-04bd-4fb6-adde-11773839ce15.png)
+
+> problem is similar to unbounded knapsack , in which we have given its weights and values to weights.
+
+- Try to pick lengths and sum them up to make N, try in all possible ways.
+
+![image](https://user-images.githubusercontent.com/35686407/177533002-7bb682b2-95ef-429f-b604-05b29bbab4fd.png)
+
+- f(4,N) means till index 4 what is the max price you can obtain.
+- Problem is similar to unbounded knap sack , rod lengths (index) as weights and and prices as values. 
+- BASE CASE : f(0,N) it requires N rod of length 1 , what will be the price : N * value[0]
+
+#### Approach 1 : Recursion + Memoization
+
+```cpp
+int f(int idx,int W,vector<int>& prices,vector<vector<int>>& memo){
+    if(idx == 0){
+        return (W/1)*prices[0];
+    }
+    if(memo[idx][W] != -1) return memo[idx][W];
+    int notTake = 0 + f(idx-1,W,prices,memo);
+    int take = -1e9;
+    int rodLength = (idx+1);
+    if(rodLength <= W){
+        take = prices[idx] + f(idx,W-rodLength,prices,memo);
+    }
+    return memo[idx][W] = max(take,notTake);
+}
+
+int cutRod(vector<int> &price, int n)
+{
+    int idx = price.size()-1;
+	vector<vector<int>> memo(idx+1,vector<int>(n+1,-1));
+    return f(idx,n,price,memo);
+}
+```
+
+#### Approach 2 : Tabulation
+
+```cpp
+int cutRod(vector<int> &prices, int n)
+{
+    int idx = prices.size()-1;
+	vector<vector<int>> dp(idx+1,vector<int>(n+1,0));
+    
+    for(int wt = 0; wt <= n; wt++){
+        dp[0][wt] = wt*prices[0];
+    }
+    
+    for(int i = 1; i < idx+1 ; i++){
+        for(int wt = 0; wt <= n; wt++){
+            int notTake = 0 + dp[i-1][wt];
+            int take = 0;
+            int rodLength = (i+1);
+            if(rodLength <= wt){
+                take = prices[i] + dp[i][wt-rodLength];
+            }
+            dp[i][wt] = max(take,notTake);
+        }
+    }
+    return dp[idx][n];
+}
+
+```
+
+#### Approach 3 : Space Optimization
+
+```cpp
+int cutRod(vector<int> &prices, int n)
+{
+    int idx = prices.size()-1;
+	vector<int> prev(n+1,0),cur(n+1,0);
+    
+    for(int wt = 0; wt <= n; wt++){
+        prev[wt] = wt*prices[0];
+    }
+    
+    for(int i = 1; i < idx+1 ; i++){
+        for(int wt = 0; wt <= n; wt++){
+            int notTake = 0 + prev[wt];
+            int take = 0;
+            int rodLength = (i+1);
+            if(rodLength <= wt){
+                take = prices[i] + cur[wt-rodLength];
+            }
+            cur[wt] = max(take,notTake);
+        }
+        prev = cur;
+    }
+    return prev[n];
+}
+```
+
+#### Appraoch 4 : 1 Row Space Optimization
+
+```cpp
+int cutRod(vector<int> &prices, int n)
+{
+    int idx = prices.size()-1;
+	vector<int> prev(n+1,0);
+    
+    for(int wt = 0; wt <= n; wt++){
+        prev[wt] = wt*prices[0];
+    }
+    
+    for(int i = 1; i < idx+1 ; i++){
+        for(int wt = 0; wt <= n; wt++){
+            int notTake = 0 + prev[wt];
+            int take = 0;
+            int rodLength = (i+1);
+            if(rodLength <= wt){
+                take = prices[i] + prev[wt-rodLength];
+            }
+            prev[wt] = max(take,notTake);
 
 
 
