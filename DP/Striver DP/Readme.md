@@ -2759,7 +2759,77 @@ int longestCommonSubsequence(string text1, string text2) {
     }
 ```
 
+## Print Longest Common Subsequence
 
+> Printing is simpler from the 2d dp array.
+
+- string s1 = abcde
+- string s2 = bdgek
+- 2d dp array of longest common subsequence
+- ans is on dp[5][5] , because we shift the index as we did in longest common subsequence.
+
+![image](https://user-images.githubusercontent.com/35686407/177595967-ea46e721-a349-4b4e-8ebe-e19b5a0ed37a.png)
+
+- meaning of dp[5][5] = i = 5 , entire string s1 and j = 5 , entire string s2
+- meaning of dp[4][2] , i = 4 , take s1 of length 4 and take s2 of length 2 dp[4][2] = 2, longest length
+ 
+> Understand how tabulation 2d dp filled up.
+
+- if they char matched then , it checks to its previous that it matchs or not if yes then 1 + dp[i-1][j-1]
+- if they didn't match then it take the maximum, which means that till now what is the maximum length which is matched. max(v1,v2) , v1 = dp[i-1][j] and v2 = dp[i][j-1];
+- Now, we have to backtrack from the n,m position to 0th position in LCS
+- so we move according to the same condition that
+- if s1[i-1] == s2[j-1] move diagonall left upwards
+- if they didn't match then we see that which is max , dp[i-1][j] or dp[i][j-1] whatever is maximum we move to that direction only.
+![image](https://user-images.githubusercontent.com/35686407/177658125-139bf071-bf28-4d87-9ba7-dce0dd4fd3a3.png)
+
+```cpp
+string printLCS(string& s1,string& s2){
+    int n1 = s1.size();
+    int n2 = s2.size();
+
+    vector<vector<int>> dp(n1+1,vector<int>(n2+1,-1));
+    // BASE CASE
+    for(int j = 0; j <= n2;j++){
+        dp[0][j] = 0;
+    }
+
+    for(int i = 0; i <= n1;i++){
+        dp[i][0] = 0;
+    }
+
+    // functional
+    for(int i = 1; i <= n1; i++){
+        for(int j = 1; j <= n2; j++){
+            if(s1[i-1] == s2[j-1]){
+                dp[i][j] = 1 + dp[i-1][j-1];
+            }else{
+                int v1 = dp[i-1][j];
+                int v2 = dp[i][j-1];
+                dp[i][j] = max(v1,v2);
+            }
+        }
+    }
+
+    // Printing
+    int i = n1, j = n2;
+    string ans(dp[n1][n2],'$'); 
+    int index = ans.size()-1;
+    while(i > 0 && j > 0){
+        if(s1[i-1] == s2[j-1]){
+            ans[index] = s1[i-1];
+            index--;
+            i--;j--;
+        }else{
+            if(dp[i-1][j] > dp[i][j-1]){
+                i--;
+            }else{
+                j--;
+            }
+        }
+    }
+    return ans;
+```
 
 
 
