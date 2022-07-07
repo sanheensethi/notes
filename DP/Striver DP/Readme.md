@@ -2932,6 +2932,127 @@ Solution : `n - longest Palindromic Subsequence`
 > Solution : (n+m - 2 x lcs) where (n - lcs) is number of deletions and (m-lcs) is number of insertions. 
 
 
+## 31.A. Shortest Common SuperSequence
+
+- given string s1 and string s2, make a string s such that s1 and s2 both are in new string named as super sequence
+![image](https://user-images.githubusercontent.com/35686407/177746929-281d276f-4614-4f1e-8275-6d71a70b889f.png)
+- Join Both : brute+groot = brutegroot ~ One of the super sequence, can we have shortest from that ?
+- Shotest Super Sequence : `bgruoote` ; length = 8
+- s1 = bleed s2 = blue , Shortest Super Sequence : `bleued`
+
+> Solution : take the `common things only once`:: `n + m - length(lcs)`
+
+- n+m length have twice lcs, we have to remove one from that, which is my ans.
+
+## 31.B. Print the Shortest Common Supersequence
+
+- Print LCS DP table will be used.
+![image](https://user-images.githubusercontent.com/35686407/177748147-dea65bad-454b-44ad-aa96-7ef3709ce565.png)
+
+|Image 1|Image 2 (Fully Filled DP Table)|
+|---|---|
+|![image](https://user-images.githubusercontent.com/35686407/177748309-b0be0019-9a3d-4c0e-9019-c1cb56ce3fde.png)|![image](https://user-images.githubusercontent.com/35686407/177748344-8074f98b-ad94-4ba6-986b-defe63ce007b.png)|
+
+- How to print shortest common supersequence,
+- we know ans lie on dp[n][m]
+- check does this t match with e ? NO , where it come from max(dp[i-1][j],dp[i][j-1]) , so in this you move up
+- so what will happen when you move up, and see which string reduces, its string s1 ~ brute , to brut, so we add up t,
+- when we move left, which string reduces its str2 , then we have to write its char.
+
+
+|Steps|Image|Answer|
+|---|---|---|
+|1. e and t not matches, move to max side.|![image](https://user-images.githubusercontent.com/35686407/177748825-b20d0ecc-5c1c-48f6-9de8-f35d22ece931.png)|ans = "e"|
+|2.t and t matches, both string reduces, Commmon Guy added once |![image](https://user-images.githubusercontent.com/35686407/177749253-9e7e6315-5907-47cc-a330-b81fee26955a.png)|ans = "et" (Common Guy added once)|
+|3. here o didnt not match with u, so it moves to the max side, but both are same, move to any part, so it's moving to left side.|![image](https://user-images.githubusercontent.com/35686407/177749605-fe8129c6-4ce2-465b-910f-1bad56c55bd1.png)|ans = "eto"|
+|4. Strings left till now|![image](https://user-images.githubusercontent.com/35686407/177749847-a940095a-db0a-40f3-9d56-516df76b5f70.png)|ans = "eto"|
+|5. u and o not matches, suppose we go upwards, string s1 reduces|![image](https://user-images.githubusercontent.com/35686407/177750087-a5820ed1-d94a-48b5-83ba-3bd689b48a71.png)|ans = "etou"|
+|6. o and r not matches , suppose it goes to left|![image](https://user-images.githubusercontent.com/35686407/177750362-f53eead1-cf77-4f64-a7b3-b8ba4d7ac900.png)|ans = "etouo"|
+|7. Now r and r matches, go diagonal upward|![image](https://user-images.githubusercontent.com/35686407/177750586-9030f0a3-1797-4386-a411-2c624260f3a1.png)|ans = "etouor"|
+|8. b and g didn't matches, go upward or left whatever you want |![image](https://user-images.githubusercontent.com/35686407/177751191-ca9b8b1f-6d06-45c5-80cc-92dcd0db1618.png)|ans = "etouorb"|
+|9. Now, still left with g elements of str2 and str1 ends as beyond 1 index , but in 2nd string str2 only 1 char left|We have to write that left chars also in left string|ans = "etouorbg"|
+
+- Now reverse the string : "etouorbg" ~ `gbouorbg`, which is Shortest common supersequence.
+
+```cpp
+class Solution {
+public:
+    
+    void createLCSDpArray(string& str1,string& str2,vector<vector<int>>& dp){
+        int n = str1.size();
+        int m = str2.size();
+        
+        // BASE CASE
+        for(int j = 0; j <= m; j++){
+            dp[0][j] = 0;
+        }
+        
+        for(int i = 0; i <= n; i++){
+            dp[i][0] = 0;
+        }
+        
+        // Functional
+        for(int i = 1; i <= n; i++){
+            for(int j = 1; j <= m; j++){
+                if(str1[i-1] == str2[j-1]){
+                    dp[i][j] = 1+dp[i-1][j-1];
+                }else{
+                    int v1 = dp[i-1][j];
+                    int v2 = dp[i][j-1];
+                    dp[i][j] = max(v1,v2);
+                }
+            }
+        }
+    }
+    
+    string printSCS(vector<vector<int>>& dp,string& str1,string& str2){
+        int i = str1.size();
+        int j = str2.size();
+        string ans = "";
+        
+        while(i > 0 && j > 0){
+            if(str1[i-1] == str2[j-1]){
+                ans.push_back(str1[i-1]);
+                i--;j--;
+            }else{
+                if(dp[i-1][j] > dp[i][j-1]){
+                    // going up
+                    // str1 reduces
+                    ans.push_back(str1[i-1]);
+                    i--;
+                }else{
+                    ans.push_back(str2[j-1]);
+                    j--;
+                }
+            } 
+        }
+        
+        while(i > 0){
+            ans.push_back(str1[i-1]);
+            i--;
+        }
+        
+        while(j > 0){
+            ans.push_back(str2[j-1]);
+            j--;
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+    
+    string shortestCommonSupersequence(string str1, string str2) {
+        int n = str1.size();
+        int m = str2.size();
+        
+        vector<vector<int>> dp(n+1,vector<int>(m+1,-1));
+        
+        createLCSDpArray(str1,str2,dp);
+        
+        return printSCS(dp,str1,str2);
+        
+    }
+};
+```
 
 
 
