@@ -2878,6 +2878,15 @@ int printLCSubstring(string& s1,string& s2){
 }
 ```
 
+## 28. Longest Palindromic Subsequence
+
+> Solution : lcs(string , reverse(string));
+
+Why so ? because we know palindrome is the string which reads in both direction is same. so when we reverse the palindromic string it remains the same.
+
+> Example : in this, we see that we have "babcbab" is palindromic substrng, which came when we comapre the two string one normal and second it's reverse, because it's reverse string starting char matches with the normal string starting char, which may lead to palindrome as it property says, reading from front or back remains same.
+
+![image](https://user-images.githubusercontent.com/35686407/177661993-ed30812c-1007-483c-8a9e-9269aeb2ecea.png)
 
 
 
