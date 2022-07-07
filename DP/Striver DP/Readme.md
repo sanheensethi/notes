@@ -3054,6 +3054,223 @@ public:
 };
 ```
 
+## String Matching in Dp On Strings
+
+## 32. Distinct Subsequences
+- str1 ="babgbag" , str2 = "bag"
+- tell , how many times string 2 apprears on string 1 ?
+- In total there will be 5 occurance of str2 in str1
+![image](https://user-images.githubusercontent.com/35686407/177755429-85f7c662-77f8-4cb6-9f2a-d4144ef08dd6.png)
+
+> How to solve ? Something we have to apply recursion
+
+Why Recrusion ? there are multiple b and g, so there are many options to take b and g, so we have to explore all paths / different method of comparing/ `trying all ways ~ Recursion`
+
+> Question Says : `Count Number of Ways`
+
+- Whenever ther is something like count + ways then
+![image](https://user-images.githubusercontent.com/35686407/177755842-8218b68b-aa16-47c3-b206-0a4910651906.png)
+
+**How to write Reccurance ?**
+1. Whenever there are two strings, we take 2 parameters, (i,j) , i for str1 and j for str2
+2. Explore All Possibilities 
+3. Return the summition of All possibilities
+4. Write down the base case
+
+> Try to write f(i,j), base case baad mae sochenge
+
+|Image 1|f(n-1,m-1) => Number if distinct subsequences of s2[0 ... j] in s1[0 ... i]|
+|---|---|
+|![image](https://user-images.githubusercontent.com/35686407/177756308-362c1e4b-a766-4b00-b964-2de8a08ed29d.png)|![image](https://user-images.githubusercontent.com/35686407/177756444-ae3c6b6b-7239-4cfc-90f0-b155f0eb13e4.png)|
+
+- g is matching with g, so we will take g and not take g, so that we can find out another g aage.
+- same for other a's and b's
+- if they are matching , i know 1 thing for sure bag reduce to ba, take g, [f(i-1,j-1)] what if i am not interseted, i am not matching g, lets looking for another occurance of g, [f(i-1,j)],
+- what if you came to the case when you are on the case, where a and g not matches, so what you will do ? i will not match it, else [f(i-1,j)]
+- If Matching 2 States :
+    - f(i-1,j-1)
+    - f(i-1,j)
+    - return f(i-1,j-1) + f(i-1,j)
+- If not Matching only 1 State : 
+     - f(i-1,j)
+     - return f(i-1,j)
+
+> Base Case : 
+
+- Base case has to return 1 and return 0
+- When will it return 1 or 0 ?
+- Base case is asking yourself what will happen , 
+- what if i am still looking to b and my pointer is negative index in str1 , some portion of string s2 remaining
+![image](https://user-images.githubusercontent.com/35686407/177758460-95ec4832-ed4f-4121-9050-c14cd41ab116.png)
+- or i can say i might end up coming to -1 also on j, i == -1 and j == -1, actually matched everyone, that is my case which i am looking for
+- if all chars of s2 matches then return 1
+- if (i < 0) still matching to be done in j counter part , then return 0
+![image](https://user-images.githubusercontent.com/35686407/177758820-a840d38e-c5e4-466e-8e11-64ae8a6a2bb8.png)
+
+> Codes :
+
+#### Approach 1 : Recursion + Memoization
+
+- TC for rec : 2^n (s1) and 2^m (s2) , exponentional in nature
+- SC for rec : O(n) + O(m)
+- TC for memo : O(NxM)
+- SC for memo : O(NxM) + O(N+M)
+
+```cpp
+// Without Shifting Indexes.
+int f(int i,int j,string& s1,string& s2,vector<vector<int>>& memo){
+    if(j < 0) return 1;
+    if(i < 0) return 0;
+    if(memo[i][j] != -1) return memo[i][j];
+    if(s1[i] == s2[j]){
+        return memo[i][j] = f(i-1,j-1,s1,s2,memo) + f(i-1,j,s1,s2,memo);
+    }else{
+        return memo[i][j] = f(i-1,j,s1,s2,memo);
+    }
+}
+```
+
+>  `Shifting Index` , as for tabulation we have to store the base cases, so we shift the indexes.
+
+```cpp
+int f(int i,int j,string& s1,string& s2,vector<vector<int>>& memo){
+        if(j == 0) return 1;
+        if(i == 0) return 0;
+        if(memo[i][j] != -1) return memo[i][j];
+        if(s1[i-1] == s2[j-1]){
+            return memo[i][j] = f(i-1,j-1,s1,s2,memo) + f(i-1,j,s1,s2,memo);
+        }else{
+            return memo[i][j] = f(i-1,j,s1,s2,memo);
+        }
+    }
+    
+    int numDistinct(string s, string t) {
+        int n = s.size();
+        int m = t.size();
+        vector<vector<int>> memo(n+1,vector<int>(m+1,-1));
+        return f(n,m,s,t,memo);
+    }
+```
+
+#### Approach 2 : Tabulation
+
+TC : O(N x M)
+SC : O(N x M)
+
+```cpp
+class Solution {
+public:
+    
+    int numDistinct(string s, string t) {
+        int n = s.size();
+        int m = t.size();
+        vector<vector<double>> dp(n+1,vector<double>(m+1,0));
+        
+        // BASE CASE
+        for(int i = 0; i <= n; i++){
+            dp[i][0] = 1;
+        }
+        
+        // for j = 0 we already write on above for loop, 
+        // so we have to write it from 1
+        for(int j = 1; j <= m; j++){ // if we remove that loop, it also runs, because we make the dp array initiaize with 0
+            dp[0][j] = 0;
+        }
+        
+        // Functional
+        for(int i = 1; i <= n; i++){
+            for(int j = 1; j <= m; j++){
+                if(s[i-1] == t[j-1]){
+                    dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+                }else{
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+        return (int)dp[n][m];
+    }
+};
+```
+
+#### Approach 3 : Space Optimization
+
+```cpp
+class Solution {
+public:
+    
+    int numDistinct(string s, string t) {
+        int n = s.size();
+        int m = t.size();
+        vector<double> prev(m+1,0),cur(m+1,0);
+        
+        // BASE CASE
+        prev[0] = cur[0] = 1;
+        
+        // Functional
+        for(int i = 1; i <= n; i++){
+            for(int j = 1; j <= m; j++){
+                if(s[i-1] == t[j-1]){
+                    cur[j] = prev[j-1] + prev[j];
+                }else{
+                    cur[j] = prev[j];
+                }
+            }
+            prev = cur;
+        }
+        return (int)prev[m];
+    }
+};
+```
+
+> But how many arrays are we using ?, we are using 2 arrays.
+
+- Let's analize, can we reduce that into single array optimization.
+- we are using prev row's left value while computing the current value, so what is we start computing j from right to left 
+
+```cpp
+class Solution {
+public:
+    
+    int numDistinct(string s, string t) {
+        int n = s.size();
+        int m = t.size();
+        vector<double> prev(m+1,0);
+        
+        // BASE CASE
+        prev[0] = 1;
+        
+        // Functional
+        for(int i = 1; i <= n; i++){
+            for(int j = m; j >= 1; j--){
+                if(s[i-1] == t[j-1]){
+                    prev[j] = prev[j-1] + prev[j];
+                }else{
+                    prev[j] = prev[j];
+                }
+            }
+        }
+        return (int)prev[m];
+    }
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
