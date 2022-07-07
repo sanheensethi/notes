@@ -2909,7 +2909,27 @@ which is again palindromic subsequence.
 Solution : `n - longest Palindromic Subsequence`
 
 
+## 30. Minimum Operation to convert string1 to string2
 
+- perform deletions and insertions
+- maximum number of operations is `n+m` string lengths, because, delete all struing s1 and add all string s2.
+- but we need to find minimum operations so,
+- keep the common part so that we can touch only minimum portion so that to get the ans minimum.
+- Common part is LCS (longest common subsequence)
+
+> Example:
+
+- string s1 = abcd
+- string s2 = anc
+
+- now, common porton of both is , ac 
+- to convert abcd to ac , how many deletions required ? len(abcd) - len(ac)
+- to convert ac to anc . how many insertion equired ? len(anc) - len(ac)
+- `DELETION : (n - lcs)`
+- `INSERTION : (m - lcs)`
+- `TOTAL OPERATIONS : (n + m - 2 x lcs)`
+
+> Solution : (n+m - 2 x lcs) where (n - lcs) is number of deletions and (m-lcs) is number of insertions. 
 
 
 
