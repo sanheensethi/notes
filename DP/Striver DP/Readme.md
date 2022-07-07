@@ -2889,7 +2889,24 @@ Why so ? because we know palindrome is the string which reads in both direction 
 ![image](https://user-images.githubusercontent.com/35686407/177661993-ed30812c-1007-483c-8a9e-9269aeb2ecea.png)
 
 
+## 29. Minimum Insertions required to make the string Palindrome.
 
+- you can insert any char to anywhere
+- maximum number of operation is string + reverse(string)
+- to find the minimum , keep the palindromic portion (subsequence) of string side, and check which portion left, just add that in reverse order, and put it between to make string palindrome.
+- Always the portion left is (N - longestPalindromicSubsequence) which is my ans, as minimum insertions required to make string palindrome.
+- `Solution:` `(n - longestPalindromicSubsequence)`
+
+> Example
+
+- string s1 = abcaa
+- now we see that, aca, aba, aaa , these 3 are longest Palindrome suubsequence
+- just pick anyone, suppose aaa
+- a   a   a , now which portion left ? bc => a bc a __ a , just add reverse if bc that is cb => abcacba which is palindrome
+- take any other palindromic subsequene, suppose aca => a `b` c `a` a , we have to put b and a in opposite direction from medium , => a `ab` c `ba` a ,
+which is again palindromic subsequence.
+
+Solution : `n - longest Palindromic Subsequence`
 
 
 
