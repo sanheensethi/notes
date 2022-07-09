@@ -4088,6 +4088,113 @@ int f(int idx,int transID,int k,vector<int>& prices,vector<vector<int>>& memo){
 > Simmilarly Other Approaches can be handled.
 
 
+## 39. Best Time to Buy and Sell Stock with Cooldown
+
+- isme cooldown dia hai, mtlb aap jis din sell kr rhe ho, usse just next day aap kharid nhi skte otherwise aage kharid skte ho agle dino mae
+- Infinite Transactions
+- we know that. jb hum sell krte hai, hum uske next day se buy start kr dete hia , in sell part : `f(idx+1,1,prices);` , bs isme hme `idx+1` ko replace krna hai `idx+2` se, because hme next day nhi kharidna hai,usse next day beshak khrid le.
+- So,minor change 
+![image](https://user-images.githubusercontent.com/35686407/178124163-b579b4e2-06b3-491d-ad97-225ec16304f9.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
