@@ -3850,6 +3850,304 @@ public:
 };
 ```
 
+## 36. Best Time to Buy and Sell Stock III
+
+- ye problem lgbhag same hai 35. Best Time to Buy and Sell Stock II jesi
+- bs frk itna hai ki, isme hme atmost 2 transactions krni hai,
+- jbki II vale mae hmare paas infinite transactions krna allowed tha.
+- ab srf 2 transaction krni hai, isse jayeda nhi, to ye thoda dekho knapsack ke sath match kra jese usme hme W weight ka bag fill krna hota tha.
+- Yha bhi hum ek `cap (capacity)` name ka variable lenge, and `if capacity == 0 : return 0`
+- or kb buy krke vo sell ho jayegi tbhi 1 trasaction complete hoga tbhi hme `cap-1` krna hai.
+
+#### Approach 1 : Recursion + Memoization
+
+```cpp
+int f(int idx,int buy,int cap,vector<int>& prices,vector<vector<vector<int>>>& memo){
+    if(cap == 0) return 0;
+    if(idx == prices.size()) return 0;
+    if(memo[idx][buy][cap] != -1) return memo[idx][buy][cap];
+    if(buy == 1){
+        int v1 = -prices[idx] + f(idx+1,0,cap,prices,memo);
+        int v2 = 0 + f(idx+1,1,cap,prices,memo);
+        return memo[idx][buy][cap] = max(v1,v2);
+    }else{
+        int v1 = +prices[idx] + f(idx+1,1,cap-1,prices,memo);
+        int v2 = 0 + f(idx+1,0,cap,prices,memo);
+        return memo[idx][buy][cap] = max(v1,v2);
+    }
+}
+
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    vector<vector<vector<int>>> memo(n,vector<vector<int>>(2,vector<int>(3,-1)));
+    return f(0,1,2,prices,memo);   
+}
+```
+
+#### Appraoch 2 : Tabulation
+
+```cpp
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    vector<vector<vector<int>>> dp(n+1,vector<vector<int>>(2,vector<int>(3,0)));
+    
+    // BASE CASE
+    for(int idx = 0; idx < n; idx++){
+        for(int buy = 0; buy <= 1; buy++){
+            dp[idx][buy][0] = 0;
+        }
+    }
+    
+    for(int buy = 0; buy <= 1; buy++){
+        for(int cap = 0; cap < 3; cap++){
+            dp[n][buy][cap] = 0;
+        }
+    }
+    
+    for(int idx = n-1; idx >= 0; idx--){
+        for(int buy = 0; buy <= 1; buy++){
+            for(int cap = 2; cap >= 1; cap--){
+                if(buy == 1){
+                    int v1 = -prices[idx] + dp[idx+1][0][cap];
+                    int v2 = 0 + dp[idx+1][1][cap];
+                    dp[idx][buy][cap] = max(v1,v2);
+                }else{
+                    int v1 = +prices[idx] + dp[idx+1][1][cap-1];
+                    int v2 = 0 + dp[idx+1][0][cap];
+                    dp[idx][buy][cap] = max(v1,v2);
+                }
+            }
+        }
+    }
+    
+    return dp[0][1][2];   
+}
+```
+
+#### Appraoch 3 : Space Optimization
+
+```cpp
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    vector<vector<int>> after(2,vector<int>(3,0)),cur(2,vector<int>(3,0));
+    
+    for(int idx = n-1; idx >= 0; idx--){
+        for(int buy = 0; buy <= 1; buy++){
+            for(int cap = 2; cap >= 1; cap--){
+                if(buy == 1){
+                    int v1 = -prices[idx] + after[0][cap];
+                    int v2 = 0 + after[1][cap];
+                    cur[buy][cap] = max(v1,v2);
+                }else{
+                    int v1 = +prices[idx] + after[1][cap-1];
+                    int v2 = 0 + after[0][cap];
+                    cur[buy][cap] = max(v1,v2);
+                }
+            }
+            after = cur;
+        }
+    }
+    
+    return after[1][2];   
+}
+```
+
+### Other Intuative To Write Solution
+
+- as we know there are at max 2 transaction, so we give id to each transaction , e.g. B S B S where B is Buy and Sell is S,
+- So id would be given as 0 1 2 3 (B S B S) , now you can see Buy is at id 0,2 which is even id and sell is at odd id.
+- So rather taking the 3 variables, we will take only 2 variables.
+
+#### Appraoch 1 : Recursion + Memoization
+
+```cpp
+int f(int idx,int transID,vector<int>& prices,vector<vector<int>>& memo){
+    if(idx == prices.size() || transID == 4) return 0;
+    
+    if(memo[idx][transID] != -1) return memo[idx][transID];
+    
+    if(transID % 2 == 0){
+        // even then buy
+        return memo[idx][transID] = max(-prices[idx] + f(idx+1,transID+1,prices,memo),0 + f(idx+1,transID,prices,memo));
+    }else{
+        // odd then sell
+        return memo[idx][transID] = max(+prices[idx] + f(idx+1,transID+1,prices,memo),0 + f(idx+1,transID,prices,memo));
+    }
+    
+}
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    vector<vector<int>> memo(n,vector<int>(4,-1));
+    return f(0,0,prices,memo);   
+}
+```
+
+#### Appraoch 2 : Tabulation :
+```cpp
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    vector<vector<int>> dp(n+1,vector<int>(5,0));
+    
+    for(int idx = n-1; idx >= 0; idx--){
+        for(int transID = 3; transID >= 0; transID--){
+            if(transID % 2 == 0){
+        // even then buy
+                dp[idx][transID] = max(-prices[idx] + dp[idx+1][transID+1],0 + dp[idx+1][transID]);
+            }else{
+                // odd then sell
+                dp[idx][transID] = max(+prices[idx] + dp[idx+1][transID+1],0 + dp[idx+1][transID]);
+            }
+        }
+    }
+    
+    return dp[0][0];   
+}
+```
+
+#### Space Optimization
+
+```cpp
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    vector<int> ahead(5,0),cur(5,0);
+    
+    for(int idx = n-1; idx >= 0; idx--){
+        for(int transID = 3; transID >= 0; transID--){
+            if(transID % 2 == 0){
+        // even then buy
+                cur[transID] = max(-prices[idx] + ahead[transID+1],0 + ahead[transID]);
+            }else{
+                // odd then sell
+                cur[transID] = max(+prices[idx] + ahead[transID+1],0 + ahead[transID]);
+            }
+        }
+        ahead = cur;
+    }
+    
+    return ahead[0];   
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
