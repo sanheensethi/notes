@@ -3254,7 +3254,7 @@ public:
 };
 ```
 
-## Edit Distance
+## 33. Edit Distance
 
 - Convert String str1 to String str2
 - ![image](https://user-images.githubusercontent.com/35686407/178092040-09dfa2ae-2938-4a49-90d4-76f7d7049545.png)
