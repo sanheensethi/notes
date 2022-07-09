@@ -3850,7 +3850,7 @@ public:
 };
 ```
 
-## 36. Best Time to Buy and Sell Stock III
+## 37. Best Time to Buy and Sell Stock III
 
 - ye problem lgbhag same hai 35. Best Time to Buy and Sell Stock II jesi
 - bs frk itna hai ki, isme hme atmost 2 transactions krni hai,
@@ -4059,6 +4059,32 @@ int maxProfit(int k, vector<int>& prices) {
 }
 ```
 
+#### Approach 2 : Other Intuative Approach :
+
+```cpp
+int f(int idx,int transID,int k,vector<int>& prices,vector<vector<int>>& memo){
+	if(transID == 2*k) return 0;
+	if(idx == prices.size()) return 0;
+
+	if(memo[idx][transID] != -1) return memo[idx][transID];
+
+	if(transID % 2 == 0){
+	    // i can buy
+	    return memo[idx][transID] = max(-prices[idx] + f(idx+1,transID+1,k,prices,memo),0+f(idx+1,transID,k,prices,memo));
+	}else{
+	    return memo[idx][transID] = max(+prices[idx] + f(idx+1,transID+1,k,prices,memo),0 + f(idx+1,transID,k,prices,memo));
+	}
+
+	}
+
+	int maxProfit(int k, vector<int>& prices) {
+	int n = prices.size();
+	vector<vector<int>> memo(n,vector<int>(2*k+1,-1));
+	return f(0,0,k,prices,memo);
+}
+```
+	
+	
 > Simmilarly Other Approaches can be handled.
 
 
