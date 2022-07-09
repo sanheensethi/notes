@@ -3618,6 +3618,243 @@ public:
 ```
 
 
+## DP ON STOCKS
+(Space Optimization is Important to learn)
+
+## 35. Best time to Buy and Sell Stock
+
+- n , number of days
+- prices[i] : price on the ith day.
+- you have to buy the stock and sell the stock
+- in this , you are allowed to buy and sell only once.
+- `Buy is one before selling` , you can't do like sell before and buy after it's illogical.
+
+> Note : if you are selling on the ith day, it means you have to buy it on the day 1 to i-1, and if you want to maximize the profit then you have to choose min from day 1 to i-1.Therefore, while moving we keep track of the minimum, and try to sell it on every day.
+
+```cpp
+int maxProfit(vector<int>& prices) {
+    int mini = prices[0];
+    int profit = 0;
+    for(auto& val:prices){
+        profit = max(profit,val - mini);
+        mini = min(val,mini);
+    }
+    return profit;
+}
+```
+
+## 36. Best Time to Buy and Sell Stock II
+
+- isme hm buy kitni bhi bari kr skte hai and sell kitni bhi bari kr skte hai
+- but make sure, ki agar buy krne ja rhe ho to pichla stock you already sell it, otherwise it is not possible to buy,
+- mtlb ese ni kr skte buy buy buy sell sell buy 
+- ese kr skte hai , buy sell buy sell buy sell
+- hme maximum profit nikal kr dena hai.
+-  You can only hold at most one share of the stock at any time. However, you can buy it then immediately sell it on the same day.
+
+> Example : [7,1,5,3,6,4]
+Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+Total profit is 4 + 3 = 7.
+
+- So how to approach this problem ?
+- so, here hme ye dekh rha hai ki 1 day pr kai option hai Buy it / Sell it
+- mtlb hum all possible ways nikalkr maximum profit calculate kr skte hai
+- Many ways in one option : Recursion
+
+> How to write recursion ?
+
+1. Express all in terms of (index, ?) , 
+    a) do we need another parameter like in knaosack we track our weight how many it is left , do we need here any extra variable ? Yes, as agar hum buy krte hai, to aage hme buy allowed nhi hai hme bechna hi pdega uske baad hum aage allowed hai dobara buy ke liye    
+    b) So, there is question on each day that Is i am allowed to buy today or not ?
+    c) So, there is need of extra vairable `buy` having value 1 or 0, 1 means allowed to buy and 0 means not allowed to buy, you can only sell prev ones.
+    d) `f(index,buy)`
+2. Now, explore all possibilities on that day
+3. Return the best one , in this case, it is maximum
+4. Base Case
+
+> Explore All Possibilities :
+
+- so what are the possibilitites on each day ?
+    1. if i am allowed to buy on a day `buy = 1`, then i have 2 options :
+        - buy it 
+            - if i buy it, you know how profit is calculated, price(sell) - price(buy) , here buy price have sign -ve and sell price have sign +ve
+            - `-value[idx] + f(idx+1,0);` // 0 because you are not now allowed to buy, you are allowed to sell.
+        - not buy it
+            - `0 + f(idx+1,1);` // i am still allowed to buy.
+    2. if i am not allowed to buy that is `buy = 0`, then in this case also i have 2 options
+        - sell it
+            - if i sell it, you know how profit is calculated, price(sell) - price(buy) , here buy price have sign -ve and sell price have sign +ve
+            - `+value[idx] + f(idx+1,1)` // not i am allowed to buy aage as i sold stock    
+        - not sell it
+            - `0 + f(idx+1,0)` // i didn't sold it, so i am not able to buy in the future untill i sold it.
+
+> Base Cases : There is only one base case, when you reach at `index == n`, are you able to sell it ? No, profit is 0, as if you buy it, and dont able to sell it, there is no profit, and it is not negative because there is no selling price, if there is a selling price then it may be negative or not, but here there is no selling price so profit = 0 so base case is : `if index == n : return 0;`
+
+#### Approach 1 : Recursion + Memoization
+
+```cpp
+class Solution {
+public:
+    int f(int idx,int buy,vector<int>& prices,vector<vector<int>>& memo){
+        if(idx == prices.size()) return 0;
+        if(memo[idx][buy] != -1) return memo[idx][buy];
+        if(buy == 1){
+            // i am allowed to buy, 2 choice : buy or not buy
+            int v1 = -prices[idx] + f(idx+1,0,prices,memo); // buy, didn't allowed to buy in future untill i sell
+            int v2 = 0 + f(idx+1,1,prices,memo); // not buy , allowed to buy in future.
+            return memo[idx][buy] = max(v1,v2);
+        }else{
+            // i am not allowed to buy, only allowed to sell
+            // 2 options : sell it or not sell it
+            int v1 = +prices[idx] + f(idx+1,1,prices,memo); // sold it, allowed to buy in future
+            int v2 = 0 + f(idx+1,0,prices,memo); // didn't sell, not allowed to buy in future
+            return memo[idx][buy] = max(v1,v2);
+        }
+    }
+    
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        vector<vector<int>> memo(n,vector<int>(2,-1));
+        return f(0,1,prices,memo);    
+    }
+};
+```
+
+#### Appraoch 2 : Tabulation
+
+```cpp
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    vector<vector<int>> dp(n+1,vector<int>(2,-1));
+    
+    // BASE CASE 
+    dp[n][0] = dp[n][1] = 0;
+    
+    for(int idx = n-1; idx >= 0; idx--){
+        for(int buy = 1; buy >= 0; buy--){
+            if(buy == 1){
+                int v1 = -prices[idx] + dp[idx+1][0];
+                int v2 = 0 + dp[idx+1][1];
+                dp[idx][buy] = max(v1,v2);
+            }else{
+                int v1 = +prices[idx] + dp[idx+1][1];
+                int v2 = 0 + dp[idx+1][0];
+                dp[idx][buy] = max(v1,v2);
+            }
+        }
+    }
+    
+    return dp[0][1];    
+}
+```
+
+#### Apporach 3 : Space Optimization :
+
+```cpp
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    vector<int> ahead(2,0),cur(2,0);
+    
+    // BASE CASE 
+    ahead[0] = ahead[1] = 0;
+    
+    for(int idx = n-1; idx >= 0; idx--){
+        for(int buy = 1; buy >= 0; buy--){
+            if(buy == 1){
+                int v1 = -prices[idx] + ahead[0];
+                int v2 = 0 + ahead[1];
+                cur[buy] = max(v1,v2);
+            }else{
+                int v1 = +prices[idx] + ahead[1];
+                int v2 = 0 + ahead[0];
+                cur[buy] = max(v1,v2);
+            }
+        }
+        ahead = cur;
+    }
+    
+    return ahead[1];    
+}
+```
+
+#### Approach 4 : Space Optimization to 4 Variables
+- as we know there are only 4 spaces (fixed size ahead and cur array) which are used to store the results and calculation of the results.
+- So we make 4 varaibles :
+    - ahead[1] : aheadBuy
+    - ahead[0] : aheadNotBuy
+    - cur[1] : curBuy
+    - cur[0] : curNotBuy
+
+```cpp
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        
+        int aheadNotBuy,aheadBuy,curNotBuy,curBuy;
+        
+        // Base Case
+        aheadNotBuy = aheadBuy = 0;
+        
+        for(int idx = n-1; idx >= 0; idx--){
+            for(int buy = 1; buy >= 0; buy--){
+                if(buy == 1){
+                    int v1 = -prices[idx] + aheadNotBuy;
+                    int v2 = 0 + aheadBuy;
+                    curBuy = max(v1,v2);
+                }else{
+                    int v1 = +prices[idx] + aheadBuy;
+                    int v2 = 0 + aheadNotBuy;
+                    curNotBuy = max(v1,v2);
+                }
+            }
+            aheadNotBuy = curNotBuy;
+            aheadBuy = curBuy;
+        }
+        
+        return aheadBuy;    
+    }
+};
+```
+
+##### if we omit the inner for loop, it works, as we calucate both simultaneously
+
+```cpp
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        
+        int aheadNotBuy,aheadBuy,curNotBuy,curBuy;
+        
+        // Base Case
+        aheadNotBuy = aheadBuy = 0;
+        
+        for(int idx = n-1; idx >= 0; idx--){
+            
+            int v1 = -prices[idx] + aheadNotBuy;
+            int v2 = 0 + aheadBuy;
+            curBuy = max(v1,v2);
+            
+            int v3 = +prices[idx] + aheadBuy;
+            int v4 = 0 + aheadNotBuy;
+            curNotBuy = max(v3,v4);
+            
+            aheadNotBuy = curNotBuy;
+            aheadBuy = curBuy;
+        }
+        
+        return aheadBuy;    
+    }
+};
+```
+
+
+
+
+
+
 
 
 
