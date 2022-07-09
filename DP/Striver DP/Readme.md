@@ -3254,6 +3254,196 @@ public:
 };
 ```
 
+## Edit Distance
+
+- Convert String str1 to String str2
+- ![image](https://user-images.githubusercontent.com/35686407/178092040-09dfa2ae-2938-4a49-90d4-76f7d7049545.png)
+
+> Is it always possible ? Yes ! , Delete all char of s1 and add char of s2
+
+- Minimal Operations Example :
+
+|Image 1 (3 Operations)|Image 2 (5 Operations)|
+|---|---|
+|![image](https://user-images.githubusercontent.com/35686407/178092116-26c7a130-52d3-4907-82db-8d32aaa057e0.png)|![image](https://user-images.githubusercontent.com/35686407/178092353-dec6f96d-d76c-4806-a0da-36d16cc6ecd2.png)|
+
+- We will go with string matching algorithm, and try to match char recursively
+- Example : str1 = "horse" and str2 = "ros"
+    - from last s and e not lets delete e from str1
+    - now s and s matches from both
+    - r and o not matching delete r from str1
+    - now o and o matches
+    - now h and r not matches, replace h with r in str1 
+
+> Intutation : I have to do string matching where i take 1 charr from s2 and other char from s2 if they are matching good, if not then i have alot of options. Options are - Insert the same char, I will delete that char and find somewhere else, I try to replace and they got match, these 3 opterations i can think in case of string matching.
+
+- If i am trying to do all possible stuffs, and take out the best ~ Try all ways ~ Recursion and then take the minimum operations
+
+> How to write reccurance ?
+
+1. Two Strings, express in terms of (i,j) , i represent str1 and j represent str2
+2. explore all possibilities
+3. return the best ans, minimal of all paths
+4. Base Case.
+
+> f(i,j) singnifies ? example : str1 = "horse" str2 = "ros" , find me the minimum operations to convert from 0 to i in str1 to string str2 from 0 to j
+![image](https://user-images.githubusercontent.com/35686407/178092607-d1a7d06b-ca87-4b31-88bc-b815de909537.png)
+
+- Cases :
+    - 2 possible cases :
+        - Either they match or not match :
+            - if they match `if(str[i] == str[j])`
+                - do we need to perform operation ? No. if they are matching already , why you need to insert/delete/replace
+                - shrink the string, there is no need to do any operation insert, delete and replace
+                - `return 0 + f(i-1,j-1)`
+            - if they didn't match `if(str[i] != str[j])`
+                - What thing i can do ? insert/delete/replace
+                    1. I can insert 's' and str1 = 'horse`s`' and str2 = 'ro`s`' and s matches with s and move j-- in str2 and i stays at the same place (Hypotheticallly place this s and e can be matched with o) `f(i,j-1)`
+                    ![image](https://user-images.githubusercontent.com/35686407/178092788-53a74011-6c9b-437a-8406-48f04f934ee7.png)
+                    2. I can delete `e` and match s with s of str1 and str2 respectively. str1 = hor`s`e and str2 = ro`s` , i reduces and i deleted and j remains the same place because you are still looking to s after deletion (i-1) `f(i-1,j)` , deleted `e` in str1 and still looking for `s` in str2
+                    ![image](https://user-images.githubusercontent.com/35686407/178092864-4cee35db-4dbd-4ccf-81d0-14afc56d7b9b.png)
+                    3. replace `s` and `e` in str1 and str2 respectively, will you replace with 'a' NO, why you do a fool , you know you will replace with `s` because you want to match these guys, so replace it and reduce both the strings `f(i-1,j-1)`
+                    ![image](https://user-images.githubusercontent.com/35686407/178092925-b52aecac-c12a-406b-b951-57798f8c72b6.png)
+                - Return best possibility, return minimum
+            - Base Case :
+                - Base cases when it's over :
+                    - When it over ?
+                        1. if str1 get exausted :
+                            - i < 0 and j > 0 str1 exausted , and str2 not exausted how many operation you required ? `j+1` operations , because minimum operations to convert and empty string from [0...j] is `j+1` `insert` operations.  
+                            - `return j+1`
+                             ![image](https://user-images.githubusercontent.com/35686407/178093035-21858fb8-44ed-4390-b781-05d2e2a83a4a.png)
+                        2. if str2 get exausted :
+                            - if j < 0 and i > 0  return `i+1` because we need i+1 `delete operations` to convert rest of the string
+                             ![image](https://user-images.githubusercontent.com/35686407/178093129-76a880f3-edac-4bae-a5eb-e17761301475.png)
+
+#### Approach 1 : Recursion + Memoization
+
+- TC for rec : exponential
+- SC for rec : O(N+M)
+- TC for Memo : 
+- SC for Memo : 
+
+```cpp
+int f(int i,int j, string& word1,string& word2,vector<vector<int>>& memo){
+    if(i < 0) return j+1;
+    if(j < 0) return i+1;
+    if(memo[i][j] != -1) return memo[i][j];
+    if(word1[i] == word2[j]){
+        return memo[i][j] = 0 + f(i-1,j-1,word1,word2,memo);
+    }else{
+        int v1 = 1 + f(i,j-1,word1,word2,memo); // insert
+        int v2 = 1 + f(i-1,j,word1,word2,memo); // delete
+        int v3 = 1 + f(i-1,j-1,word1,word2,memo); // replace
+        return memo[i][j] = min({v1,v2,v3});
+    }
+}
+int minDistance(string word1, string word2) {
+    int n = word1.size();
+    int m = word2.size();
+    vector<vector<int>> memo(n,vector<int>(m,-1));
+    return f(n-1,m-1,word1,word2,memo);
+}
+```
+
+#### Appraoch 1  : Shifting of Index Recursion + Memo (to write tabulation easily)
+
+- i < 0 and j < 0 ~ i == 0 and j == 0
+- word[i] == word[j] ~ word[i-1] == word[j-1] , because we have to check for index, and we are giving length in recursion parameter.
+
+```cpp
+int f(int i,int j, string& word1,string& word2,vector<vector<int>>& memo){
+    if(i == 0) return j;
+    if(j == 0) return i;
+    if(memo[i][j] != -1) return memo[i][j];
+    if(word1[i-1] == word2[j-1]){
+        return memo[i][j] = 0 + f(i-1,j-1,word1,word2,memo);
+    }else{
+        int v1 = 1 + f(i,j-1,word1,word2,memo); // insert
+        int v2 = 1 + f(i-1,j,word1,word2,memo); // delete
+        int v3 = 1 + f(i-1,j-1,word1,word2,memo); // replace
+        return memo[i][j] = min({v1,v2,v3});
+    }
+}
+int minDistance(string word1, string word2) {
+    int n = word1.size();
+    int m = word2.size();
+    vector<vector<int>> memo(n+1,vector<int>(m+1,-1));
+    return f(n,m,word1,word2,memo);
+}
+```
+
+#### Appraoch 2: Tabulation
+
+```cpp
+int minDistance(string word1, string word2) {
+    int n = word1.size();
+    int m = word2.size();
+    vector<vector<int>> dp(n+1,vector<int>(m+1,-1));
+    
+    // BASE CASE
+    
+    for(int j = 0; j<= m; j++){
+        dp[0][j] = j;
+    }
+    
+    for(int i = 0; i <= n; i++){
+        dp[i][0] = i;
+    }
+    
+    // FUNCTIONAL
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++){
+            if(word1[i-1] == word2[j-1]){
+                dp[i][j] = 0 + dp[i-1][j-1];
+            }else{
+                int v1 = 1 + dp[i][j-1]; // insert
+                int v2 = 1 + dp[i-1][j]; // delete
+                int v3 = 1 + dp[i-1][j-1]; // replace
+                dp[i][j] = min({v1,v2,v3});
+            }
+        }
+    }
+    
+    return dp[n][m];
+}
+```
+
+#### Approach 3 : Space Optimization
+
+```cpp
+class Solution {
+public:
+
+    int minDistance(string word1, string word2) {
+        int n = word1.size();
+        int m = word2.size();
+        vector<int> prev(m+1,-1),cur(m+1,-1);
+        
+        for(int j = 0; j<= m; j++){
+            prev[j] = j;
+        }
+        // FUNCTIONAL
+        for(int i = 1; i <= n; i++){
+            cur[0] = i;
+            for(int j = 1; j <= m; j++){
+                if(word1[i-1] == word2[j-1]){
+                    cur[j] = 0 + prev[j-1];
+                }else{
+                    int v1 = 1 + cur[j-1]; // insert
+                    int v2 = 1 + prev[j]; // delete
+                    int v3 = 1 + prev[j-1]; // replace
+                    cur[j] = min({v1,v2,v3});
+                }
+            }
+            prev = cur;
+        }
+        
+        return prev[m];
+    }
+};
+```
+
+
 
 
 
