@@ -53,6 +53,15 @@ The process of saving the context of one process and loading the context of anot
 
 
 
+## Process Synchronization
+
+*Process :*
+1. Cooperative Process : `1 ki execution dusre ke upar effect dalti hai` (they share something in commmon , variable , share memory, Common Code, Resourses [CPU/Printer/Scanner etc.])
+2. Independent Process : 1 ki execution dusre ke upar effect nhi dalti hai.
+
+## Coperative Processes : 
+if IRCTC pr 1000ro log ek tym pr ek hi train ko book kre, that generates that problem ,
+They can create the problem , it's not always but they can.
 
 
 
