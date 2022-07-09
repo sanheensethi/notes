@@ -3443,7 +3443,7 @@ public:
 };
 ```
 
-## 33. WildCard Matching
+## 34. WildCard Matching
 
 #### Approach 1 : Recursion + Memoization
 
