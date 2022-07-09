@@ -4029,7 +4029,37 @@ int maxProfit(vector<int>& prices) {
 ```
 
 
+## 38. Best Time to Buy and Sell Stock IV
 
+- Same as question number 37 , best time to buy and sell stock IV,
+- usme hme srf max 2 transaction allowed thi, isme hme k transactions allowed hai, to hm, cap = k kr dengnge, jo pehle 2 thi
+
+#### Approach 1 : Recursion + Memoization
+
+```cpp
+int f(int idx,int buy,int cap,vector<int>& prices,vector<vector<int>>& memo){
+    if(cap == 0) return 0;
+    if(idx == prices.size()) return 0;
+    
+    if(memo[idx][buy] != -1) return memo[idx][buy];
+    
+    if(buy == 1){
+        // i can buy
+        return memo[idx][buy] = max(-prices[idx] + f(idx+1,0,cap,prices,memo),0+f(idx+1,1,cap,prices,memo));
+    }else{
+        return memo[idx][buy] = max(+prices[idx] + f(idx+1,1,cap-1,prices,memo),0 + f(idx+1,0,cap,prices,memo));
+    }
+    
+}
+
+int maxProfit(int k, vector<int>& prices) {
+    int n = prices.size();
+    vector<vector<int>> memo(n,vector<int>(k+1,-1));
+    return f(0,1,k,prices,memo);
+}
+```
+
+> Simmilarly Other Approaches can be handled.
 
 
 
