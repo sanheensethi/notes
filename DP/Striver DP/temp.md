@@ -182,3 +182,114 @@ public:
     }
 };
 ```
+## 43. Longest String Chain
+
+#### Approach 1 : Recursion + Memoization
+
+```cpp
+class Solution {
+public:
+    
+    bool compare(string& s1,string& s2){
+        if(s1.size() != s2.size()+1) return false;
+        // s2 is smaller and s1 is larger
+        
+        int first = 0;
+        int second = 0;
+        
+        while(first < s1.size()){
+            if(second < s2.size() && s1[first] == s2[second]){
+                first++;
+                second++;
+            }else{
+                first++;
+            }
+        }
+        
+        if(first == s1.size() && second == s2.size()) return true;
+        return false;
+    }
+    
+    int solve(int cur_idx,int prev_idx,vector<string>& words,vector<vector<int>>& memo){
+        if(cur_idx == words.size()) return 0;
+        
+        if(memo[cur_idx][prev_idx+1] != -1) return memo[cur_idx][prev_idx+1];
+        
+        // not take
+        int len = 0 + solve(cur_idx+1,prev_idx,words,memo);
+        
+        // take
+        if(prev_idx == -1 || compare(words[cur_idx],words[prev_idx])){
+            len = max(len,1+solve(cur_idx+1,cur_idx,words,memo));
+        }
+        return memo[cur_idx][prev_idx+1] = len;
+    }
+    
+    static bool cmp(string& s1,string& s2){
+        return s1.size() < s2.size();
+    }
+    
+    int longestStrChain(vector<string>& words) {
+        sort(words.begin(),words.end(),cmp);
+        // for(auto& word:words){
+        //     cout<<word<<endl;
+        // }
+        int cur_idx = 0;
+        int prev_idx = -1;
+        int n = words.size();
+        vector<vector<int>> memo(n,vector<int>(n+1,-1));
+        return solve(cur_idx,prev_idx,words,memo);
+    }
+};
+```
+
+#### Approach 2 : Tabulation (Same as LIS, just we have to do comapre string in if condition)
+
+#### Approach 3 : Space Optimization (Same as LIS, just we have to compare stirng in if condition)
+
+#### Approach 2 : Another Way Tabulation
+```cpp
+class Solution {
+public:
+    
+    static bool compare(const string& s1,const string& s2){
+        return s1.size() < s2.size();
+    }
+    
+    bool compareWords(const string& s1,const string& s2){
+        int first = 0;
+        int second = 0;
+        int n = s1.size();
+        int m = s2.size();
+        
+        if(n != m+1) return false;
+        
+        while(first < n){
+            if(second < m && s1[first] == s2[second]){
+                first++;
+                second++;
+            }else{
+                first++;
+            }
+        }
+        if(first == n && second == m) return true;
+        return false;
+    }
+    
+    int longestStrChain(vector<string>& words) {
+        int n = words.size();
+        sort(words.begin(),words.end(),compare);
+        vector<int> dp(n,1);
+        int maxi = 1;
+        for(int idx = 1; idx < n; idx++){
+            for(int prev_idx = 0; prev_idx < idx; prev_idx++){
+                if(compareWords(words[idx],words[prev_idx]) && dp[idx] < dp[prev_idx]+1){
+                    dp[idx] = dp[prev_idx]+1;
+                }
+            }
+            maxi = max(maxi,dp[idx]);
+        }
+        return maxi;
+    }
+};
+```
