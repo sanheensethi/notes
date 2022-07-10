@@ -108,3 +108,77 @@ int lengthOfLIS(vector<int>& nums) {
     return size;
 }
 ```
+
+## Print LIS
+
+```cpp
+int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(n,1);
+        vector<int> hash(n);
+        iota(hash.begin(),hash.end(),0); // fill with consecutive numbers
+        
+        int maxi = 1;
+        int lastIdx = 0;
+        for(int idx = 1; idx < n; idx++){
+            for(int prev_idx = 0; prev_idx < idx; prev_idx++){
+                if(nums[idx] > nums[prev_idx] && dp[idx] < dp[prev_idx]+1){
+                    dp[idx] = dp[prev_idx]+1;
+                    hash[idx] = prev_idx;
+                }
+            }
+            if(maxi < dp[idx]){
+                maxi = dp[idx];
+                lastIdx = idx;
+            }
+        }
+        
+        cout<<nums[lastIdx]<<" ";
+        while(hash[lastIdx] != lastIdx){
+            lastIdx = hash[lastIdx];
+            cout<<nums[lastIdx]<<" ";
+        }
+        
+        return maxi;
+ ```
+ 
+ ## 42. Largest Divisible Subset
+
+```cpp
+class Solution {
+public:
+    vector<int> largestDivisibleSubset(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(),nums.end());
+        vector<int> dp(n,1);
+        vector<int> hash(n);
+        iota(hash.begin(),hash.end(),0);
+        
+        int maxi = 1;
+        int lastIdx = 0;
+        
+        for(int idx = 1; idx < n; idx++){
+            for(int prev_idx = 0; prev_idx < idx; prev_idx++){
+                if(nums[idx]%nums[prev_idx] == 0 && dp[idx] < dp[prev_idx] + 1){
+                    dp[idx] = dp[prev_idx] + 1;
+                    hash[idx] = prev_idx;
+                }
+            }
+            if(dp[idx] > maxi){
+                maxi = dp[idx];
+                lastIdx = idx;
+            }
+        }
+        
+        vector<int> ans;
+        ans.push_back(nums[lastIdx]);
+        
+        while(hash[lastIdx] != lastIdx){
+            lastIdx = hash[lastIdx];
+            ans.push_back(nums[lastIdx]);
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+```
