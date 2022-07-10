@@ -144,6 +144,14 @@ int lengthOfLIS(vector<int>& nums) {
  
  ## 42. Largest Divisible Subset
 
+#### Approach 1 : Recursion + Memoization (Same as LIS just change the if condition)
+
+#### Approach 2 : Tabulation (Same as LIST just change the if condition)
+
+#### Approach 3 : Space optimization (Same as LIS, just change the if condition)
+
+#### Appraoch 4 : Another Way Tabulation
+
 ```cpp
 class Solution {
 public:
