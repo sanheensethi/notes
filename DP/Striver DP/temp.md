@@ -365,3 +365,111 @@ int findNumberOfLIS(vector<int> &arr)
     return cnt;
 }
 ```
+
+## 48. Matrix Chain Multiplication (MCM)
+
+#### Appraoch 1 : Recursion + Memoization
+
+```cpp
+int f(int i,int j,vector<int>& arr,vector<vector<int>>& memo){
+    if( i == j) return 0;
+    if(memo[i][j] != -1) return memo[i][j];
+    int mini = INT_MAX;
+    for(int k = i; k <= j-1; k++){
+        int steps = arr[i-1] * arr[k] * arr[j];
+        steps += f(i,k,arr,memo);
+        steps += f(k+1,j,arr,memo);
+        mini = min(mini,steps);
+    }
+    return memo[i][j] = mini;
+}
+
+int matrixMultiplication(vector<int> &arr, int N)
+{
+    vector<vector<int>> memo(N+1,vector<int>(N+1,-1));
+    return f(1,N-1,arr,memo);
+}
+```
+## 49. Matrix Chain Multiplication (Tabular)
+
+#### Approach 2 : Tabulation
+
+```cpp
+int matrixMultiplication(vector<int> &arr, int N)
+{
+    vector<vector<int>> dp(N+1,vector<int>(N+1,0));
+    // Base Case
+    for(int i = 0; i < N; i++){
+        dp[i][i] = 0;
+    }
+    
+    // Functional
+    for(int i = N-1; i >= 0 ; i--){
+        for(int j = i+1; j < N; j++){
+            int mini = INT_MAX;
+            for(int k = i; k <= j-1; k++){
+                int steps = arr[i-1] * arr[k] * arr[j];
+                steps += dp[i][k];
+                steps += dp[k+1][j];
+                mini = min(mini,steps);
+            }
+            dp[i][j] = mini;
+        }
+    }
+    return dp[1][N-1];
+}
+```
+
+## 50. Minimum cost to Cut the Stick
+
+```cpp
+int f(int i,int j,vector<int>& cuts,vector<vector<int>>& memo){
+    if( i > j) return 0;
+    if(memo[i][j] != -1) return memo[i][j];
+    int mini = INT_MAX;
+    for(int idx = i; idx <= j; idx++){
+        int cost = cuts[j+1] - cuts[i-1] + f(i,idx-1,cuts,memo) + f(idx+1,j,cuts,memo);
+        mini = min(mini,cost);
+    }
+    return memo[i][j] = mini;
+}
+int minCost(int n, vector<int>& cuts) {
+    int N = cuts.size();
+    cuts.push_back(n);
+    cuts.insert(cuts.begin(),0);
+    sort(cuts.begin(),cuts.end());
+    
+    vector<vector<int>> memo(N+1,vector<int>(N+1,-1));
+    
+    return f(1,N,cuts,memo);
+}
+```
+
+## 51. Burst Ballons
+
+```cpp
+class Solution {
+public:
+    
+    int f(int i,int j,vector<int>& nums,vector<vector<int>>& memo){
+        if( i > j ) return 0;
+        if(memo[i][j] != -1) return memo[i][j];
+        int maxi = INT_MIN;
+        for(int idx = i; idx <= j; idx++){
+            int cost = nums[i-1] * nums[idx] * nums[j+1]
+                        + f(i,idx-1,nums,memo) + f(idx+1,j,nums,memo);
+            maxi = max(maxi,cost);
+        }
+        return memo[i][j] = maxi;
+    }
+    
+    int maxCoins(vector<int>& nums) {
+        int n = nums.size();
+        nums.push_back(1);
+        nums.insert(nums.begin(),1);
+        vector<vector<int>> memo(n+1,vector<int>(n+1,-1));
+        return f(1,n,nums,memo);
+    }
+};
+```
+
