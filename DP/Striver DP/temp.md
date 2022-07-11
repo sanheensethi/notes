@@ -109,7 +109,7 @@ int lengthOfLIS(vector<int>& nums) {
 }
 ```
 
-## Print LIS
+## 42. Print LIS
 
 ```cpp
 int lengthOfLIS(vector<int>& nums) {
@@ -142,7 +142,7 @@ int lengthOfLIS(vector<int>& nums) {
         return maxi;
  ```
  
- ## 42. Largest Divisible Subset
+ ## 44. Largest Divisible Subset
 
 #### Approach 1 : Recursion + Memoization (Same as LIS just change the if condition)
 
@@ -190,7 +190,7 @@ public:
     }
 };
 ```
-## 43. Longest String Chain
+## 45. Longest String Chain
 
 #### Approach 1 : Recursion + Memoization
 
