@@ -500,3 +500,60 @@ int maxCoins(vector<int>& nums) {
         return dp[1][n];
     }
 ```
+
+## 52. Boolean Evaluation to True
+
+```cpp
+#define ll long long int
+#define mod 1000000007
+int f(int i,int j,int isTrue,string& str,vector<vector<vector<ll>>>& memo){
+    if(i > j) return 0;
+    if(i == j){
+        if(isTrue){
+            return (str[i] == 'T');
+        }else{
+            return (str[i] == 'F');
+        }
+    }
+    
+    if(memo[i][j][isTrue] != -1) return memo[i][j][isTrue];
+    
+    ll ways = 0;
+    for(int idx = i+1; idx <= j-1; idx+=2){
+        ll lT = f(i,idx-1,1,str,memo);
+        ll lF = f(i,idx-1,0,str,memo);
+        ll rT = f(idx+1,j,1,str,memo);
+        ll rF = f(idx+1,j,0,str,memo);
+        
+        if(str[idx] == '&'){
+            if(isTrue){
+                ways =  (ways + (lT * rT)%mod)%mod;
+            }
+            else{
+                ways =  (ways + (lF * rF)%mod + (lF * rT)%mod + (lT * rF)%mod)%mod;
+            }
+        }else if(str[idx] == '|'){
+            if(isTrue){
+                ways =  (ways + (lT * rF)%mod + (lF * rT)%mod + (lT * rT)%mod)%mod;
+            }
+            else{
+                ways = (ways + (lF * rF)%mod)%mod;
+            }
+        }else if(str[idx] == '^'){
+            if(isTrue){
+                ways =  (ways + (lF * rT)%mod + (lT * rF)%mod)%mod;
+            }
+            else{
+                ways = (ways + (lF * rF)%mod + (lT * rT)%mod)%mod;
+            }
+        }
+    }
+    return memo[i][j][isTrue] = ways;
+}
+
+int evaluateExp(string & exp) {
+    int n = exp.size();
+    vector<vector<vector<ll>>> memo(n,vector<vector<ll>>(n,vector<ll>(2,-1)));
+    return f(0,n-1,1,exp,memo);
+}
+```
