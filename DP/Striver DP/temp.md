@@ -557,3 +557,62 @@ int evaluateExp(string & exp) {
     return f(0,n-1,1,exp,memo);
 }
 ```
+## 53. Palindrome Partitioning II
+
+```cpp
+class Solution {
+public:
+    
+    bool isPali(string& str){
+        int i = 0;
+        int j = str.size()-1;
+        while(i <= j){
+            if(str[i] != str[j]) return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    
+    int f(int i,string& str,vector<int>& memo){
+        if(i == str.size()) return 0;
+        if(memo[i] != -1) return memo[i];
+        int mini = INT_MAX;
+        string temp = "";
+        for(int idx = i; idx < str.size(); idx++){
+            temp += str[idx];
+            if(isPali(temp)){
+                int cost = 1 + f(idx+1,str,memo);
+                mini = min(mini,cost);
+            }
+        }
+        return memo[i] = mini;
+    }
+    
+    int minCut(string s) {
+        int n = s.size();
+        vector<int> memo(n,-1);
+        return f(0,s,memo)-1 ;
+    }
+};
+```
+
+> we can also write ispali like that
+
+```cpp
+bool isPali(string& str,int i,int j){
+    while(i <= j){
+        if(str[i] != str[j]) return false;
+        i++;
+        j--;
+    }
+    return true;
+}
+// call : isPali(str,i,idx)
+```
+
+
+
+
+
+
