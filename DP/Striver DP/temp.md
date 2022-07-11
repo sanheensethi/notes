@@ -611,7 +611,35 @@ bool isPali(string& str,int i,int j){
 // call : isPali(str,i,idx)
 ```
 
+## 54. Partition Array for Max Sum
 
+```cpp
+class Solution {
+public:
+    
+    int f(int i,int k,vector<int>& arr,vector<int>& memo){
+        int n = arr.size();
+        if(i == n) return 0;
+        if(memo[i] != -1) return memo[i];
+        int len = 0;
+        int maxi = INT_MIN;
+        int ans = INT_MIN;
+        for(int idx = i; idx < min(i+k,n); idx++){
+            len++;
+            maxi = max(maxi,arr[idx]);
+            int sum = maxi*len + f(idx+1,k,arr,memo);
+            ans = max(sum,ans);
+        }
+        return memo[i] = ans;
+    }
+    
+    int maxSumAfterPartitioning(vector<int>& arr, int k) {
+        int n = arr.size();
+        vector<int> memo(n,-1);
+        return f(0,k,arr,memo);
+    }
+};
+```
 
 
 
