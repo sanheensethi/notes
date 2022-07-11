@@ -301,3 +301,67 @@ public:
     }
 };
 ```
+## 46. Longest Bitonic Subsequence LIS
+
+- isme hme aage se and piche se LIS dhundna hai 2 array bnakr,
+- and fr hmne dp1[i] + dp2[i] - common element (1) krna hai, isme se jo max aayega vo hmara ans
+
+```cpp
+int longestBitonicSequence(vector<int>& arr, int n) {
+	// from aage se
+    vector<int> dp1(n,1);
+    for(int idx = 1; idx < n; idx++){
+        for(int prev_idx = 0; prev_idx < idx; prev_idx++){
+            if(arr[prev_idx] < arr[idx]){
+                dp1[idx] = max(dp1[idx],dp1[prev_idx]+1);
+            }
+        }
+    }
+    
+    // from piche se
+    vector<int> dp2(n,1);
+    for(int idx = n-2; idx >= 0; idx--){
+        for(int prev_idx = n-1; prev_idx > idx; prev_idx--){
+            if(arr[prev_idx] < arr[idx]){
+                dp2[idx] = max(dp2[idx],dp2[prev_idx]+1);
+            }
+        }
+    }
+    
+    int maxi = 1;
+    for(int i = 0; i < n; i++){
+        maxi = max(maxi,(dp1[i]+dp2[i]-1));
+    }
+    return maxi;
+} 
+```
+
+## 47. Count/Number of Longest Increasing Subsequence
+
+```cpp
+int findNumberOfLIS(vector<int> &arr)
+{
+    int n = arr.size();
+    vector<int> dp(n,1);
+    vector<int> count(n,1);
+    int maxi = 1;
+    for(int idx = 0; idx < n; idx++){
+        for(int prev_idx = 0; prev_idx < idx; prev_idx++){
+            if(arr[prev_idx] < arr[idx] && dp[idx] < dp[prev_idx] + 1){
+                dp[idx] = dp[prev_idx] + 1;
+                count[idx] = count[prev_idx];
+            }else if(arr[prev_idx] < arr[idx] && dp[idx] == dp[prev_idx]+1){
+                count[idx] = count[idx] + count[prev_idx];
+            }
+        }
+        maxi = max(dp[idx],maxi);
+    }
+    
+    int cnt = 0;
+    for(int i = 0; i < n; i++){
+        if(dp[i] == maxi) cnt += count[i];
+    }
+    
+    return cnt;
+}
+```
