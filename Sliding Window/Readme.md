@@ -342,6 +342,82 @@ public:
 };
 ```
 
+## 1. Minimum Size Subarray Sum
+
+```cpp
+int minSubArrayLen(int target, vector<int>& nums) {
+    int len = 1e9;
+    int i = 0;
+    int j = 0;
+    int n = nums.size();
+    int sum = 0;
+    while(j < n){
+        sum += nums[j];
+        if(sum < target){
+            j++;
+        }else{
+            while(sum >= target){
+                len = min(len,j-i+1);
+                sum -= nums[i];
+                i++;
+            }
+            if(sum < target) j++;
+        }
+    }
+    return len == 1e9 ? 0 : len;
+}
+```
+
+## 2. Longest Repeating Char Replacement
+
+> Intuation : Find the longest subarray with k distinct elements , its just similar to that, isme hme ye btana hai ki at max K operation of replacement krke hum kitni bdi substring bna skte hai same elements ki, ab ye aata hai ki kese kre, ye substring maang rha hai, longest bhi bola hai, to ho skta hai ki sliding window lge.
+
+- agar hum km freq vale ko replace kre, to km operation lgenge, suppose k nhi hai, bhul jao, to agar minimum freq vale ko replace krenge to minimum operation lagenge.
+- isme hmne ye dekha ki, jb ek variable size hota hai sliding window ka, tb usme kuch char honge, unme se max konsa char hai ? , if we replace the minimum frequency characters in the window, then it takes less operations.
+- so , hme ye pta chla ki window ki length agar j-i+1 hai and ek element ki frequency maxi hai, to length of window - maxi , ye mere vo char hue jinki freq km hai,
+- ab aagar inhe change krna hai, mtlb replacen, then they should be <= k , if yes len nikalo, and j++ krdo
+- ab aagr k length - maxi > k, tb hme i++ krna hai us element ko htakr, and hme ye bhi make sure krna hai ki j bhi ++ kre when i moves, because, if ye nhi krte to window choti ho skti hai, i j ke paas aata rhega , jbki hme window bdi bnani hai, to make it larget., 
+- agar mae j ko j++ nhi krta else mae, to same char, umap[s[j]]++ ho jayega baar baar hoga, jisse ans galgat aayega.
+
+```cpp
+int characterReplacement(string s, int k) {
+    int i = 0;
+    int j = 0;
+    int maxi = 0;
+    int n = s.size();
+    int len = 0;
+    unordered_map<char,int> umap;
+    while(j < n){
+        
+        umap[s[j]]++;
+        maxi = max(maxi,umap[s[j]]);
+        
+        if((j-i+1) - maxi <= k){
+            len = max(len,j-i+1);
+            j++;
+        }else{
+            umap[s[i]]--;
+            i++;
+            j++;
+        }
+    }
+    return len;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
