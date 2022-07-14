@@ -198,7 +198,45 @@ int pivotIndex(vector<int>& nums) {
 }
 ```
 
+## 6. Find K Closest Elements
 
+- Max Heap Implementation
+
+```cpp
+class compare{
+    public:
+    bool operator()(const pair<int,int>& p1,const pair<int,int>& p2){
+        if(p1.first != p2.first){
+            return p1.first < p2.first;
+        }
+        else{
+            return p1.second < p2.second;
+        }
+    }     
+};
+    
+
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        priority_queue<pair<int,int>,vector<pair<int,int>>,compare> pq;
+        
+        for(auto& val : arr){
+            int distance = abs(val-x);
+            pq.push({distance,val});
+            if(pq.size() > k) pq.pop();
+        }
+        
+        vector<int> ans;
+        while(!pq.empty()){
+            ans.push_back(pq.top().second);
+            pq.pop();
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
+```
 
 
 
