@@ -297,7 +297,47 @@ vector<int> findClosestElements(vector<int>& arr, int k, int x) {
 }
 ```
 
+## 7. Find Pair Given Difference / K-diff pairs in array
 
+[GFG]
+
+```cpp
+bool findPair(int arr[], int size, int n){
+    int i = 0;
+    int j = 1;
+    sort(arr,arr+size);
+    while(i < size && j < size){
+        if(i != j && (arr[j] - arr[i]) == n) return true;
+        else if((arr[j] - arr[i]) > n) i++;
+        else j++;
+    }
+    return 0;
+}
+```
+
+- [Leetcode] : Count Unique Pairs ~ skip repeatitive elements
+
+```cpp
+int findPairs(vector<int>& nums, int k) {
+        int i = 0;
+        int j = 1;
+        sort(nums.begin(),nums.end());
+        int n = nums.size();
+        int ans = 0;
+        while(i < n && j < n){
+            if(i != j && nums[j] - nums[i] == k){
+                ans++;
+                i++;j++;
+                while(j < n && j > 0 && nums[j] == nums[j-1]) j++;
+            }else if(nums[j] - nums[i] < k){
+                j++;
+            }else{
+                i++;
+            }
+        }
+        return ans;
+    }
+```
 
 
 
