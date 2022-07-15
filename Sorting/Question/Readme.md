@@ -339,7 +339,24 @@ int findPairs(vector<int>& nums, int k) {
     }
 ```
 
+## 8. Roof Top
 
+```cpp
+int maxStep(int A[], int N){
+   int ans = 0;
+   int count = 0;
+   for(int i = 0; i+1 < N; i++){
+       if(A[i] < A[i+1]){
+           count++;
+       }else{
+           ans = max(count,ans);
+           count = 0;
+       }
+   }
+   ans = max(ans,count);
+   return ans;
+}
+```
 
 
 
