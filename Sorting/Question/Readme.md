@@ -358,7 +358,20 @@ int maxStep(int A[], int N){
 }
 ```
 
+## 9. Maximize the sum of arr[i]*i
 
+```cpp
+int mod = 1e9+7;
+int Maximize(int a[],int n)
+{
+    sort(a,a+n);
+    long long maxi = 0;
+    for(int i = 0; i < n; i++){
+        maxi = (maxi + (i*(long long int)a[i])%mod)%mod;
+    }
+    return maxi%mod;
+}
+```
 
 
 
