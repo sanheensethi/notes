@@ -563,3 +563,80 @@ public:
     }
 };
 ```
+
+## 4. Perfect Friends (Union Find) - [Pepcoding](https://nados.io/question/perfect-friends?zen=true)
+
+```cpp
+class unionFind{
+
+   public:
+      vector<int> parent;
+      vector<int> size;
+
+      unionFind(){}
+      unionFind(int n){
+         parent.resize(n);
+         iota(parent.begin(),parent.end(),0);
+         size.resize(n,1);
+      }
+
+      int findParent(int v){
+         if(v == parent[v]) return v;
+         return parent[v] = findParent(parent[v]);
+      }
+
+      void _union(int a,int b){
+         a = findParent(a);
+         b = findParent(b);
+         if(a != b){
+            if(size[a] < size[b]) swap(a,b);
+            parent[b] = a;
+            size[a] += size[b];
+         }
+      }
+
+      int findAns(){
+         set<int> ss;
+         int n = parent.size();
+         for(int i = 0; i < n; i++){
+            ss.insert(findParent(i));
+         }
+         
+         vector<int> comp(ss.size());
+
+         int k = 0;
+         for(auto& val:ss){
+            comp[k++] = size[val];
+         }
+
+         int ans = 0;
+         for(int i = 0; i < k; i++){
+            for(int j = i+1; j < k; j++){
+               ans = ans + (comp[i]*comp[j]);
+            }
+         }
+         return ans;
+      }
+};
+
+int main(){
+   int n;
+   cin>>n;
+      
+   int k;
+   cin>>k;
+      
+   unionFind uf(n);
+   while(k--){
+      int a,b;
+      cin>>a>>b;
+      uf._union(a,b);
+   }
+
+   int ans = uf.findAns();
+   cout<<ans<<endl;
+
+          
+   return 0;
+ }
+ ```
