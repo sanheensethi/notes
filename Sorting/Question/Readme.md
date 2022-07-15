@@ -200,7 +200,7 @@ int pivotIndex(vector<int>& nums) {
 
 ## 6. Find K Closest Elements
 
-- Max Heap Implementation
+#### Appraoch 1 : (Max Heap)
 
 ```cpp
 class compare{
@@ -237,6 +237,72 @@ public:
     }
 };
 ```
+
+## Approach 2 : Binary Search
+
+- if we do left = mid and right = mid+1, then it fails when k = 1
+- [1,5,10] k = 1 x = 4 , if we do left = mid-1 and right = mid then it fails on another testcase of k = 1
+- [1,3] k = 1 x = 2 , this work when left = mid and right = mid+1
+- so, to avoid that we wrote left = max(0,mid-1);
+- and right = left + 1
+
+```cpp
+vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+    int n = arr.size();
+    int low = 0;
+    int high = n-1;
+    int mid;
+    while(low <= high){
+        mid = low + (high - low)/2;
+        if(arr[mid] == x){
+            break;
+        }else if(arr[mid] < x){
+            low = mid+1;
+        }else{
+            high = mid-1;
+        }
+    }
+    
+    int left = max(0,mid-1);
+    int right = left+1;
+    vector<int> ans;
+    
+    while(left >= 0 && right < n && k--){
+        int leftD = abs(arr[left]-x);
+        int rightD = abs(arr[right]-x);
+        if(leftD <= rightD){
+            ans.push_back(arr[left]);
+            left--;
+        }else if(leftD > rightD){
+            ans.push_back(arr[right]);
+            right++;
+        }
+    }
+    
+    while(k > 0 && left >= 0){
+        ans.push_back(arr[left]);
+        left--;
+        k--;
+    }
+    
+    while(k > 0 && right < n){
+        ans.push_back(arr[right]);
+        right++;
+        k--;
+    }
+    
+    sort(ans.begin(),ans.end());
+    return ans;
+    
+}
+```
+
+
+
+
+
+
+
 
 
 
