@@ -640,3 +640,62 @@ int main(){
    return 0;
  }
  ```
+## 5. Hamiltonian Cycle
+
+```cpp
+void printPath(int src,vector<pair<int,int>> graph[],int n,
+                unordered_map<int,bool>& visited,vector<int>& path,int endsrc){
+    if(visited.size() == n-1){
+        print(path);
+
+        vector<pair<int,int>>& nbrs = graph[src];
+        bool found = false;
+        for(auto& prnbr:nbrs){
+            int nbr = prnbr.first;
+            if(nbr == endsrc){
+                found = true;
+                break;
+            }
+        }
+
+        if(found){
+            cout<<"This path is a Cycle"<<endl;
+        }
+
+        return;
+    }
+
+    visited[src] = true;
+    vector<pair<int,int>>& nbrs = graph[src];
+    for(auto& prnbr : nbrs){
+        int nbr = prnbr.first;
+        if(!visited.count(nbr)){
+            path.push_back(nbr);
+            printPath(nbr,graph,n,visited,path,endsrc);
+            path.pop_back();
+        }
+    }
+    visited.erase(src);
+}
+
+void hamiltonian(int src,vector<pair<int,int>> graph[],int n){
+    unordered_map<int,bool> visited;
+    vector<int> path;
+    path.push_back(src);
+    printPath(src,graph,n,visited,path,src);
+}
+
+void solve(){
+    int n;cin>>n;
+    vector<pair<int,int>> graph[n];
+    int k;cin>>k;
+    while(k--){
+        int src,dest,wt;
+        cin>>src>>dest>>wt;
+        graph[src].push_back({dest,wt});
+        graph[dest].push_back({src,wt});
+    }
+    int src;cin>>src;
+    hamiltonian(src,graph,n);
+}
+```
