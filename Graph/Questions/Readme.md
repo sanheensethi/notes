@@ -640,6 +640,7 @@ int main(){
    return 0;
  }
  ```
+ 
 ## 5. Hamiltonian Cycle
 
 ```cpp
@@ -698,4 +699,58 @@ void solve(){
     int src;cin>>src;
     hamiltonian(src,graph,n);
 }
+```
+
+## 6. Color a Graph
+
+```cpp
+class Solution {
+public:
+    #define debug(x) cout<<#x<<":"<<x<<endl;
+    vector<int> dx = {0,0,-1,1};
+    vector<int> dy = {1,-1,0,0};
+    void doColor(int i,int j,int val,int m,int n,vector<vector<int>>& grid){
+        
+        grid[i][j] = -val;
+        int count = 0;
+        // 4 calls
+        for(int k = 0; k < 4; k++){
+            
+            int _i = i + dx[k];
+            int _j = j + dy[k];
+            
+            if(_i < 0 || _j < 0 || _i >= m || _j >= n || abs(grid[_i][_j]) != val){
+                continue;
+            }
+            
+            if(abs(grid[_i][_j]) == val){
+                count++;   
+                if(grid[_i][_j] < 0) continue;
+                // call
+                doColor(_i,_j,val,m,n,grid);
+            }            
+        }
+       
+        if(count == 4){
+            grid[i][j] = val;
+        }else{
+            // pass
+            return;
+        }                                        
+    }
+                   
+    vector<vector<int>> colorBorder(vector<vector<int>>& grid, int row, int col, int color) {
+        int i = row;
+        int j = col;
+        int m = grid.size();
+        int n = grid[0].size();
+        doColor(i,j,grid[i][j],m,n,grid);
+        for(int l = 0; l < m; l++){
+            for(int k = 0; k < n; k++){
+                if(grid[l][k] < 0) grid[l][k] = color;
+            }
+        }
+        return grid;
+    }
+};
 ```
