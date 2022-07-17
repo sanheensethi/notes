@@ -701,7 +701,7 @@ void solve(){
 }
 ```
 
-## 6. Color a Graph
+## 6. Color a Border
 
 ```cpp
 class Solution {
