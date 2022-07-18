@@ -1014,3 +1014,74 @@ public:
     }
 };
 ```
+## 6. Shortest Bridge
+ 
+- isme exactly 2 island hai, to hme 1 island ko figureout krna hai and use queue mae daal dena hai
+- uske baad us island ke hr ek 1 se jo queue mae hai, vha se dusra island search krna hai by bfs,
+- jb vo mil jayega , jis level pr milega, vhi mera ans hoga.
+
+```cpp
+class Solution {
+public:
+    int dx[4] = {0,0,+1,-1};
+    int dy[4] = {-1,+1,0,0};
+    
+    void dfs(int i,int j,queue<pair<int,int>>& Q,vector<vector<int>>& grid){
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        if(i < 0 || j < 0 || i >= n || j >= m || grid[i][j] == 2 || grid[i][j] == 0) return;
+        
+        Q.push({i,j});
+        grid[i][j] = 2;
+        
+        for(int k = 0; k < 4; k++){
+            int _i = i + dx[k];
+            int _j = j + dy[k];
+            dfs(_i,_j,Q,grid);
+        }
+    }
+    
+    int shortestBridge(vector<vector<int>>& grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        
+        queue<pair<int,int>> Q;
+        
+        int flag = false;
+        for(int i = 0; i < rows && !flag; i++){
+            for(int j = 0; j < cols && !flag; j++){
+                if(grid[i][j] == 1){
+                    dfs(i,j,Q,grid);
+                    flag = true;
+                }
+            }
+        }
+        
+        if(flag == false) return -1;
+        
+        int level = 0;
+        
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                pair<int,int>& cord = Q.front();
+                
+                for(int k = 0; k < 4; k++){
+                    int _i = cord.first + dx[k];
+                    int _j = cord.second + dy[k];        
+                    if(_i < 0 || _j < 0 || _i >= rows || _j >= cols || grid[_i][_j] == 2) continue;
+                    if(grid[_i][_j] == 1) return level;
+                    grid[_i][_j] = 2;
+                    Q.push({_i,_j});   
+                }
+                Q.pop();
+            }
+            level++;
+        }
+        
+        return -1;
+    }
+};
+```
