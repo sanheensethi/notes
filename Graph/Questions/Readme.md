@@ -956,3 +956,59 @@ public:
     }
 };
 ```
+## 5. As far from Land as Possible
+
+```cpp
+class Solution {
+public:
+    int maxDistance(vector<vector<int>>& grid) {
+        int ans = 0;
+        int rows = grid.size();
+        int cols = grid[0].size();
+        
+        vector<vector<int>> dist(rows,vector<int>(cols,INT_MAX));
+        
+        queue<pair<int,int>> Q;
+        bool noland = true;
+        bool nowater = true;
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if(grid[i][j] == 1){
+                    noland = false;
+                    dist[i][j] = 0;
+                    Q.push({i,j});
+                }
+                if(grid[i][j] == 0){
+                    nowater = false;
+                }
+            }
+        }
+        
+        if(noland || nowater) return -1;
+        
+        pair<int,int> dxy[4] = {{0,-1},{0,+1},{-1,0},{+1,0}};
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                pair<int,int>& cord = Q.front();
+                
+                for(int k = 0; k < 4; k++){
+                    int _i = cord.first + dxy[k].first;
+                    int _j = cord.second + dxy[k].second;
+                    
+                    if(_i < 0 || _j < 0 || _i >= rows || _j >= cols) continue;
+                    
+                    if(dist[_i][_j] > dist[cord.first][cord.second] + 1){
+                        dist[_i][_j] = dist[cord.first][cord.second]+1;
+                        ans = max(ans,dist[_i][_j]);
+                        Q.push({_i,_j});
+                    }
+                    
+                }
+                Q.pop();
+            }
+        }
+        return ans;
+    }
+};
+```
