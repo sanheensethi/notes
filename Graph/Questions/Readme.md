@@ -905,3 +905,54 @@ class Solution {
     }
 };
 ```
+
+## 4. Rotten Oranges 
+
+- Hme simultaneously fresh oranges ko roatten krna hai
+- simultaneously means BFS
+
+```cpp
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        queue<pair<int,int>> Q;
+        int fresh = 0;
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if(grid[i][j] == 2){
+                    Q.push({i,j});
+                }else if(grid[i][j] == 1){
+                    fresh++;
+                }
+            }
+        }
+        
+        int t = -1;
+        pair<int,int> dxy[4] = {{0,-1},{0,+1},{-1,0},{+1,0}};
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                pair<int,int>& coord = Q.front();
+                for(int k = 0; k < 4; k++){
+                    int _i = coord.first + dxy[k].first;
+                    int _j = coord.second + dxy[k].second;
+                    if(_i < 0 || _j < 0 || _i >= rows || _j >= cols || grid[_i][_j] == 0 || grid[_i][_j] == 2){
+                        continue;
+                    }
+                    
+                    grid[_i][_j] = 2;
+                    Q.push({_i,_j});
+                    fresh--;
+                }
+                Q.pop();
+            }
+            t++;
+        }
+        if(fresh > 0) return -1;
+        if(t == -1) return 0;
+        return t;
+    }
+};
+```
