@@ -754,3 +754,53 @@ public:
     }
 };
 ```
+## 2. Number of Enclaves
+
+- isme hme vo 1's count krne hai jo hme out of boundary na lekr jaye, mtlb jo 1's boundary pr hai uske sath jo bhi joined hai unhe count nhi krna hai baki 1's ko count krna hai.
+- iske liye hme i = 0, j = 0, i == last row , j = last col , ke liye dfs lgakr connected components ko ek krna hoga taki hm 1's count kr sake jo connected nhi hai, boundary se.
+
+```cpp
+class Solution {
+public:
+    
+    int dx[4] = {0,0,-1,+1};
+    int dy[4] = {-1,+1,0,0};
+    
+    int numEnclaves(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(i == 0 || j == 0 || i == n-1 || j == m-1){
+                    dfs(i,j,grid);
+                }
+            }
+        }
+        
+        int ans = 0;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(grid[i][j] == 1) ans++;
+            }
+        }
+        return ans;
+    }
+    
+    void dfs(int i,int j,vector<vector<int>>& grid){
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        if(i < 0 || j < 0 || i >= n || j>= m || grid[i][j] == 0) return;
+        
+        grid[i][j] = 0;
+        
+        for(int k = 0; k < 4; k++){
+            int _i = i + dx[k];
+            int _j = j + dy[k];
+            dfs(_i,_j,grid);
+        }
+    }
+    
+};
+```
