@@ -195,6 +195,49 @@ vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
 }
 ```
 
+> Another Way to Write :
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        int rows = mat.size();
+        int cols = mat[0].size();
+        
+        vector<vector<int>> dist(rows,vector<int>(cols,INT_MAX));
+        
+        queue<pair<int,int>> Q;
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if(mat[i][j] == 0){
+                    Q.push({i,j});
+                    dist[i][j] = 0;
+                }
+            }
+        }
+        
+        pair<int,int> dxy[4] = {{0,+1},{0,-1},{-1,0},{+1,0}};
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                pair<int,int>& cord = Q.front();
+                for(int k = 0; k < 4; k++){
+                    int _i = cord.first + dxy[k].first;
+                    int _j = cord.second + dxy[k].second;
+                    
+                    if(_i >= 0 && _j >= 0 && _i < rows && _j < cols && dist[_i][_j] > dist[cord.first][cord.second]+1){
+                        dist[_i][_j] = dist[cord.first][cord.second]+1;
+                        Q.push({_i,_j});
+                    }
+                }
+                Q.pop();
+            }
+        }
+        return dist;
+    }
+};
+```
+
 #### Appraoch 3: More Optimized (Dynamic Programming) [Not Proper DP, it's just algo.]
 
 - For convinience, let's call the cell with value 0 as **zero-cell**, the cell has with value 1 as one-cell, the distance of the nearest 0 of a cell as **distance**.
