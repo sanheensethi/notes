@@ -804,3 +804,61 @@ public:
     
 };
 ```
+
+## 3. Number of Distinct Islands
+
+- starting position ko 'x' keh rhe hai.
+- isme hm jb right ja rhe hai to define kr rhe hai path mae 'r'
+- for left it's 'l' , up 'u' and down 'd'
+- ab, hme ise set mae dalna hai, but isme ek problem ye hogi hm backtrack ko ek char nhi de rhe hai, to esa ho skta hai for two different islands , we have same path value so, backtrack ko bhi ek char dena pdega, let its be 'z'
+- ab ye sb set mae daal denge, now, we got distinct number of islands as our size of set.
+
+```cpp
+class Solution {
+  public:
+  
+    void dfs(int i,int j,string& path,vector<vector<int>>& grid){
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        if(i < 0 || j < 0 || i >= n || j >= m || grid[i][j] == 0) return;
+        
+        grid[i][j] = 0;
+        
+        // right
+        path += 'r';
+        dfs(i,j+1,path,grid);
+        path += 'z';
+        // left
+        path += 'l';
+        dfs(i,j-1,path,grid);
+        path += 'z';
+        // up
+        path += 'u';
+        dfs(i-1,j,path,grid);
+        path += 'z';
+        // down
+        path += 'd';
+        dfs(i+1,j,path,grid);
+        path += 'z';
+        
+    }
+  
+    int countDistinctIslands(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        set<string> ss;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(grid[i][j] == 1){
+                    string path = "x";
+                    dfs(i,j,path,grid);
+                    ss.insert(path);
+                }        
+            }
+        }
+        return ss.size();
+    }
+};
+```
