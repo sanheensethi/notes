@@ -958,7 +958,7 @@ public:
 ```
 ## 5. As far from Land as Possible
 
-- Manhattan distance is nothing , just a jumps, similar as [zero one matrix Better Optimized](https://github.com/sanheensethi/notes/tree/main/Graph/Questions#approach-2-optimized-better-bfs)
+- Manhattan distance is nothing , just a jumps, similar as [zero one matrix Better Optimized](#approach-2-optimized-better-bfs)
 
 ```cpp
 class Solution {
