@@ -1261,7 +1261,7 @@ class Solution
 	}
 };
 ```
-## Pepcoder and Reversing [0-1 BFS] [Question](https://nados.io/question/pepcoder-and-reversing)
+## 10. Pepcoder and Reversing [0-1 BFS] [Question](https://nados.io/question/pepcoder-and-reversing)
 
 ```cpp
 #include<bits/stdc++.h>
