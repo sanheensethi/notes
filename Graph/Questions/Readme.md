@@ -1085,3 +1085,78 @@ public:
     }
 };
 ```
+
+## Bus Routes (LeetCode)
+
+- isme hme ye to pta hai, ki konc bus konse konse stops pr rukti hai
+- lekin ye nikalna ki konse stop pr konc bus aati hai O(1) mae difficult hai
+- mtlb hum O(1) mae bus number se sare stop nikal skte hai
+- lekin O(1) mae stop number se bus number nhi,
+- to iske liye hashmap lenge taki hum ye pta lga sake ki konse stop pr konc konc buses chlti hai O(1) mae
+- map : <stopNumber,AllBusesFromThatStop>
+- ab hum 2 bool vector lenge,
+    1. jo hme ye btaye ki ye bus already le chuke hai (isse hme ye pta chlega ki hmne iske sare routes ko queue mae already daal dia hai, istead one by one checking of it's routes that it is visited or not)
+    2. jo hme ye byatega ki ye route already visited hai (Node Visited)
+- ab hum queue bnayenge , src dalenge and stopVisited[src] = true kr denge
+- and jb queue mae aayenge, 1st stop nikalenge, nikalne ke baad hm vha se jane vali sari buses nikalenge hmare umap se, 
+- ab sari buses ke vo routes Q mae dalenge jo visited na ho.
+- jb dest == stopNumber aayega, tb return level (which is minimum buses)
+
+```cpp
+class Solution {
+public:
+    
+    void makeStopBusMap(vector<vector<int>>& routes,unordered_map<int,vector<int>>& umap,int& maxi){
+        int n = routes.size();
+        for(int i = 0; i < n; i++){
+            int bus = i;
+            for(auto& stop : routes[i]){
+                umap[stop].push_back(bus);
+                maxi = max(maxi,stop);
+            }
+        }
+    }
+    
+    int numBusesToDestination(vector<vector<int>>& routes, int source, int target) {
+        unordered_map<int,vector<int>> umap; // stopNumber and Buses
+        int maxi = -1;
+        makeStopBusMap(routes,umap,maxi);
+        
+        return minimumBuses(routes,umap,maxi,source,target);
+    }
+    
+    int minimumBuses(vector<vector<int>>& routes,unordered_map<int,vector<int>>& umap,const int& maxi,const int& src,const int& dest){
+        
+        int buses = routes.size();
+        vector<bool> busTaken(buses,false);
+        vector<bool> stopVisited(maxi+1,false);
+        
+        queue<int> Q;
+        Q.push(src);
+        stopVisited[src] = true;
+        int level = 0;
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                int stopNumber = Q.front();Q.pop();
+                if(stopNumber == dest) return level;
+                vector<int>& allBuses = umap[stopNumber];
+                for(auto& bus : allBuses){
+                    if(busTaken[bus] == true) continue;
+                    vector<int>& allStopsOfThisBus = routes[bus];
+                    for(auto& stop : allStopsOfThisBus){
+                        if(stopVisited[stop] == true) continue;
+                        Q.push(stop);
+                        stopVisited[stop] = true;
+                    }
+                    busTaken[bus] = true;
+                }
+            }
+            level++;
+        }
+        return -1;
+    }
+    
+};
+```
