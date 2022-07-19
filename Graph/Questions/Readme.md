@@ -1317,46 +1317,60 @@ void solve(){
 ## 11. Alien Dictionary
 
 ```cpp
-void Indegree(vector<int> graph[],int nodes,vector<int>& indegree){
-    for(int i = 0; i < nodes; i++){
-        for(auto& val : graph[i]){
-            indegree[val]++;
-        }
-    }
-}
- 
-void bfs(int nodes,vector<int>& indegree,vector<int>& ans,vector<vector<int>> graph[]){
-    
-    queue<int> Q;
-    
-    for(int i = 0; i < nodes; i++){
-        if(indegree[i] == 0){
-            Q.push(i);        
-        }
-    }
-    
-    while(!Q.empty()){
-        int size = Q.size();
-        while(size--){
-            int node = Q.front();Q.pop();
-            ans.push_back(node);
-            
-            auto& nbrs = graph[node];
-            for(auto& nbr : nbrs){
-                indegree[nbr]--;
-                if(indegree[nbr] == 0){
-                    Q.push(nbr);
+class Solution{
+    public:
+    string findOrder(string dict[], int n, int K) {
+        vector<vector<int>> graph(K);
+        vector<int> indegree(K,0);
+        
+        for(int i = 0; i+1 < n; i++){
+            string& cur = dict[i];
+            string& next = dict[i+1];
+            bool flag = true;
+            for(int j = 0; j < min(cur.size(),next.size()); j++){
+                char& ch1 = cur[j];
+                char& ch2 = next[j];
+                
+                if(ch1 != ch2){
+                    int gIdx = ch1-'a'; // graph index
+                    int iIdx = ch2-'a'; // indegree index
+                    // b->a
+                    graph[gIdx].push_back(iIdx);
+                    indegree[iIdx]++;
+                    flag = false;
+                    break;
                 }
             }
-            
+            if(flag == true && cur.size() > next.size()) return "";
         }
+        
+        queue<int> Q;
+        for(int i = 0; i < K; i++){
+            if(indegree[i] == 0){
+                Q.push(i);
+            }
+        }
+        
+        string ans = "";
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                int node = Q.front();Q.pop();
+                
+                ans.push_back((node+'a'));
+                
+                auto& nbrs = graph[node];
+                
+                for(auto& nbr : nbrs){
+                    indegree[nbr]--;
+                    if(indegree[nbr] == 0){
+                        Q.push(nbr);
+                    }
+                }
+                
+            }
+        }
+        return ans;
     }
-    
-}
- 
-void bfsDriver(int nodes,vector<int>& ans,vector<int> graph[]){
-    vector<int> indegree(nodes,0);
-    Indegree(graph,nodes,indegree);
-    bfs(nodes,indegree,ans,graph);
-}
+};
 ```
