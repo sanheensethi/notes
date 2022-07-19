@@ -1086,7 +1086,7 @@ public:
 };
 ```
 
-## Bus Routes (LeetCode)
+## 7. Bus Routes (LeetCode)
 
 - isme hme ye to pta hai, ki konc bus konse konse stops pr rukti hai
 - lekin ye nikalna ki konse stop pr konc bus aati hai O(1) mae difficult hai
@@ -1158,5 +1158,71 @@ public:
         return -1;
     }
     
+};
+```
+
+## 8. Sliding Puzzle
+
+```cpp
+class Solution {
+public:
+    #define debug(x) cout<<#x<<":"<<x<<endl;
+    string serialize(vector<vector<int>>& board){
+        string str = "";
+        int n = board.size();
+        int m = board[0].size();
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                str += (board[i][j] + '0');
+            }
+        }
+        return str;
+    }
+    int slidingPuzzle(vector<vector<int>>& board) {
+        string target = "123450";
+        string initial = serialize(board);
+        int zeroIdx = -1;
+        int n = initial.size();
+        for(int i = 0; i < n; i++){
+            if(initial[i] == '0'){
+                zeroIdx = i;
+                break;
+            }
+        }
+        
+        unordered_map<string,bool> visited;
+        int level = 0;
+        vector<vector<int>> swapWith = {{1,3},{0,2,4},{1,5},{0,4},{1,3,5},{4,2}};
+        
+        queue<pair<string,int>> Q; // board serialize,zeroidx
+        Q.push({initial,zeroIdx});
+        visited[initial] = true;
+        
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size--){
+                auto& pr = Q.front();
+                string& str = pr.first;
+                int& zeroidx = pr.second;
+                if(str == target) return level;
+                
+                auto& allSwapsIdx = swapWith[zeroidx];
+                
+                for(auto idx:allSwapsIdx){
+                    swap(str[zeroidx],str[idx]);
+                    string newStr = str;
+                    swap(str[zeroidx],str[idx]);
+                    
+                    if(visited[newStr] == false){
+                        Q.push({newStr,idx});
+                        visited[newStr] = true;
+                    }
+                }
+                Q.pop();
+            }
+            level++;
+        }
+        return -1;
+    }
 };
 ```
