@@ -1261,3 +1261,57 @@ class Solution
 	}
 };
 ```
+## Pepcoder and Reversing [0-1 BFS] [Question](https://nados.io/question/pepcoder-and-reversing)
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int dijkstra(int src,int dest,vector<vector<pair<int,int>>>& graph){
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+    pq.push({0,src});
+    int n = graph.size();
+    vector<int> distance(n+1,1e9);
+    distance[src] = 0;
+
+    while(!pq.empty()){
+        pair<int,int> pr = pq.top();pq.pop();
+
+        int dist = pr.first;
+        int node = pr.second;
+
+        auto& nbrs = graph[node];
+
+        for(auto& prnbr : nbrs){
+            int nbr = prnbr.first;
+            int wt = prnbr.second;
+            if(distance[nbr] > distance[node] + wt){
+                distance[nbr] = distance[node] + wt;
+                pq.push({distance[nbr],nbr});
+            }
+        }
+
+        
+    }
+
+    return distance[dest];
+}
+
+void solve(){
+    int n,m;
+    cin>>n>>m;
+    vector<vector<pair<int,int>>> graph(n+1);
+    while(m--){
+        int src,dest;
+        cin>>src>>dest;
+        graph[src].push_back({dest,0});
+        graph[dest].push_back({src,1});
+    }
+
+    int ans = dijkstra(1,n,graph);
+    if(ans == 1e9) cout<<-1<<endl;
+    else cout<<ans<<endl;
+
+}
+```
+
