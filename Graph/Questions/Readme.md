@@ -1226,3 +1226,38 @@ public:
     }
 };
 ```
+## 9. Minimum swaps to make array sorted.
+
+```cpp
+class Solution 
+{
+    public:
+    //Function to find the minimum number of swaps required to sort the array. 
+	int minSwaps(vector<int>&nums)
+	{
+	    int n = nums.size();
+	    vector<pair<int,int>> vec(n);
+	    for(int i = 0; i < n; i++){
+	        vec[i] = {nums[i],i};
+	    }
+	    
+	    sort(vec.begin(),vec.end());
+	    
+	    vector<bool> visited(n,false);
+	    int ans = 0;
+	    for(int i = 0; i < n; i++){
+	        if(visited[i] == true || vec[i].second == i) continue;
+	        
+	        int j = i;
+	        int clen = 0;
+	        while(visited[j] == false){
+	            visited[j] = true;
+	            clen++;
+	            j = vec[j].second;
+	        }
+	        ans+=clen-1;
+	    }
+	    return ans;
+	}
+};
+```
