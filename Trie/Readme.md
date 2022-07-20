@@ -307,3 +307,13 @@ int countDistinctSubstrings(string &s){
     return ans+1;
 }
 ```
+
+##5. PreRequisities for Tries in Bits
+
+- we will store all 32/64 bits
+- index start from right
+- xor : 
+    - even number of 1's : 0
+    - odd number of 1's : 1
+- Check ith bit is set or not : (num >> i) & 1
+- Set/Turn On the ith Bit : (1 << i) | num
