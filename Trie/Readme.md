@@ -74,3 +74,117 @@ public:
     }
 };
 ```
+
+## 2. Implementation (INSERT / CountWordsEqualTo / CountWordsStartingWith) :
+
+```cpp
+class Node{
+private:
+    Node* links[26];
+    int cntEndsWith = 0;
+    int cntPrefix = 0;
+public:
+    bool containsKey(char ch){
+        return links[ch-'a'] != NULL;
+    }
+    
+    Node* get(char ch){
+        return links[ch-'a'];
+    }
+    
+    void put(char ch,Node* node){
+        links[ch-'a'] = node;
+    }
+    
+    void incEnd(){
+        cntEndsWith++;
+    }
+    
+    void incPrefix(){
+        cntPrefix++;
+    }
+    
+    void decEnd(){
+        cntEndsWith--;
+    }
+    
+    void decPrefix(){
+        cntPrefix--;
+    }
+    
+    int getEnd(){
+        return cntEndsWith;
+    }
+    
+    int getPrefix(){
+        return cntPrefix;
+    }
+    
+};
+
+class Trie{
+    private:
+        Node* root;
+    public:
+
+    Trie(){
+        root = new Node();
+    }
+
+    void insert(string &word){
+        int n = word.size();
+        Node* node = root;
+        for(int i = 0; i < n; i++){
+            char ch = word[i];
+            if(!node->containsKey(ch)){
+                node->put(ch,new Node());
+            }
+            node = node->get(ch);
+            node->incPrefix();
+        }
+        node->incEnd();
+    }
+
+    int countWordsEqualTo(string &word){
+        int n = word.size();
+        Node* node = root;
+        for(int i = 0; i < n; i++){
+            char ch = word[i];
+            if(!node->containsKey(ch)){
+                return 0;
+            }
+            node = node->get(ch);
+        }
+        return node->getEnd();
+    }
+
+    int countWordsStartingWith(string &word){
+        int n = word.size();
+        Node* node = root;
+        for(int i = 0; i < n; i++){
+            char ch = word[i];
+            if(node->containsKey(ch)){
+                node = node->get(ch);
+            }else{
+                return 0;
+            }
+        }
+        return node->getPrefix();
+    }
+
+    void erase(string &word){
+        int n = word.size();
+        Node* node = root;
+        for(int i = 0; i < n; i++){
+            char ch = word[i];
+            if(node->containsKey(ch)){
+                node = node->get(ch);
+                node->decPrefix();
+            }else{
+                return;
+            }
+        }
+        node->decEnd();
+    }
+};
+```
