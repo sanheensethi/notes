@@ -308,7 +308,7 @@ int countDistinctSubstrings(string &s){
 }
 ```
 
-##5. PreRequisities for Tries in Bits
+## 5. PreRequisities for Tries in Bits
 
 - we will store all 32/64 bits
 - index start from right
