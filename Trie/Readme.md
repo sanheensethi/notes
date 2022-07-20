@@ -317,3 +317,77 @@ int countDistinctSubstrings(string &s){
     - odd number of 1's : 1
 - Check ith bit is set or not : (num >> i) & 1
 - Set/Turn On the ith Bit : (1 << i) | num
+
+## 6. Maxmimum XOR of Two Numbers in 2 Arrays / an Array
+
+```cpp
+class Node{
+    private: 
+        Node* links[2];
+
+    public: 
+        bool contains(int bit){
+            return links[bit] != NULL;
+        }
+    
+        void put(int bit,Node* node){
+            links[bit] = node;
+        }
+    
+        Node* get(int bit){
+            return links[bit];
+        }
+};
+
+class Trie{
+  
+    private:
+        Node* root;
+    public:
+        Trie(){
+            root = new Node();
+        }
+        
+        void insert(int num){
+            Node* node = root;
+            for(int i = 31 ; i >= 0 ; i--){
+                int bit = (num >> i) & 1;
+                if(!node->contains(bit)){
+                    node->put(bit,new Node());
+                }
+                node = node->get(bit);
+            }
+        }
+        
+        int getMax(int x){
+            int maxi = 0;
+            Node* node = root;
+            
+            for(int i = 31; i >= 0; i--){
+                int bit = (x >> i) & 1;
+                if(node->contains(1-bit)){
+                    maxi = maxi | (1 << i);
+                    node = node->get(1-bit);
+                }else{
+                    node = node->get(bit);
+                }
+            }
+            return maxi;
+        }
+    
+};
+
+class Solution {
+public:
+    
+    int findMaximumXOR(vector<int>& nums) {
+        Trie trie;
+        for(auto& num : nums) trie.insert(num);
+        
+        int ans = 0;
+        for(auto& num : nums) ans = max(ans,trie.getMax(num));
+        
+        return ans;
+    }
+};
+```
