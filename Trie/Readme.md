@@ -391,3 +391,97 @@ public:
     }
 };
 ```
+## 7. Max Xor with an element from an array (Queries)
+
+```cpp
+class Node{
+private:
+    Node* links[2];
+public:
+    bool containsKey(int bit){
+        return links[bit] != NULL;
+    }    
+    
+    void put(int bit,Node* node){
+        links[bit] = node;
+    }
+    
+    Node* get(int bit){
+        return links[bit];
+    }
+};
+
+class Trie{
+private:
+    Node* root;
+public:
+    Trie(){
+        root = new Node();
+    }
+    
+    void insert(int num){
+        Node* node = root;
+        for(int i = 31; i >= 0; i--){
+            int bit = (num >> i) & 1;
+            if(!node->containsKey(bit)){
+                node->put(bit,new Node());
+            }
+            node = node->get(bit);
+        }
+    }
+    
+    int getMax(int x){
+        int maxi = 0;
+        Node* node = root;
+        for(int i = 31; i>= 0; i--){
+            int bit = (x >> i) & 1;
+            if(node->containsKey(1-bit)){
+                maxi = maxi | (1 << i);
+                node = node->get(1-bit);
+            }else{
+                node = node->get(bit);
+            }
+        }
+        return maxi;
+    }
+};
+
+class Solution {
+public:
+    vector<int> maximizeXor(vector<int>& nums, vector<vector<int>>& queries) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>> offQueries;
+        int n = nums.size();
+        int qn = queries.size();
+        
+        for(int i = 0; i < qn; i++){
+            int xi = queries[i][0];
+            int mi = queries[i][1];
+            offQueries.push_back({mi,xi,i});
+        }
+        
+        sort(offQueries.begin(),offQueries.end(),[](const vector<int>& a1,const vector<int>& a2){
+            return a1[0] < a2[0];
+        });
+        
+        int idx = 0;
+        vector<int> ans(qn);
+        int oqn = offQueries.size();
+        Trie trie;
+        for(int i = 0; i < oqn ; i++){
+            int mi = offQueries[i][0];
+            int xi = offQueries[i][1];
+            int qIdx = offQueries[i][2];
+            
+            while(idx < n && nums[idx] <= mi){
+                trie.insert(nums[idx]);
+                idx++;
+            }
+            
+            if(idx == 0) ans[qIdx] = -1;
+            else ans[qIdx] = trie.getMax(xi);
+        }
+        return ans;
+    }
+};
+```
