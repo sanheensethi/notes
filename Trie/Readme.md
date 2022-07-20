@@ -271,3 +271,39 @@ string completeString(int n, vector<string> &words){
     return ans == "" ? "None" : ans;
 }
 ```
+## 4. Count Distinct Substring
+```cpp
+class Node{
+    private:
+        Node* links[26];
+    public:
+        bool containsKey(char ch){
+            return links[ch-'a'] != NULL;
+        }
+    
+        void put(char ch,Node* node){
+            links[ch-'a'] = node;
+        }
+    
+        Node* get(char ch){
+            return links[ch-'a'];
+        }
+};
+
+int countDistinctSubstrings(string &s){
+    int n = s.size();
+    Node* root = new Node();
+    int ans = 0;
+    for(int i = 0; i < n; i++){
+        Node* node = root;
+        for(int j = i; j < n; j++){
+            if(!node->containsKey(s[j])){
+                node->put(s[j],new Node());
+                ans++;
+            }
+            node = node->get(s[j]);
+        }
+    }
+    return ans+1;
+}
+```
