@@ -188,3 +188,86 @@ class Trie{
     }
 };
 ```
+## 3. Complete String
+
+```cpp
+class Node{
+    private:
+        Node* links[26];
+        bool flag = false;
+    public:
+        
+        bool containsKey(char ch){
+            return links[ch-'a'];
+        }
+    
+        void put(char ch,Node* node){
+            links[ch-'a'] = node;
+        }
+    
+        Node* get(char ch){
+            return links[ch-'a'];
+        }
+    
+        void setEnd(){
+            flag = true;
+        }
+    
+        bool isEnd(){
+            return flag;
+        }
+};
+
+class Trie{
+    private: Node* root;
+    
+    public: Trie(){
+        root = new Node();
+    }
+    
+    public: void insert(string& word){
+        int n = word.size();
+        Node* node = root;
+        for(int i = 0; i < n; i++){
+            if(!node->containsKey(word[i])){
+                node->put(word[i],new Node());
+            }
+            node = node->get(word[i]);
+        }
+        node->setEnd();
+    }
+    
+    public: bool isPossible(string& word){
+        int n = word.size();
+        Node* node = root;
+        for(int i = 0; i < n; i++){
+            if(node->containsKey(word[i])){
+                node = node->get(word[i]);
+                if(!node->isEnd()) return false;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+    
+};
+
+string completeString(int n, vector<string> &words){
+    Trie trie;
+    for(auto& word:words){
+        trie.insert(word);
+    }
+    
+    string ans = "";
+    for(auto& word:words){
+        bool check = trie.isPossible(word);
+        if(check && ans.size() < word.size()){
+            ans = word;
+        }else if(check && ans.size() == word.size() && word < ans){
+            ans = word;
+        }
+    }
+    return ans == "" ? "None" : ans;
+}
+```
