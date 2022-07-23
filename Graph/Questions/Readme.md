@@ -1374,3 +1374,35 @@ class Solution{
     }
 };
 ```
+## 12. Optimize Water Distribution
+
+- wells ko 1 jagah bna lo , 0 node pr, and well cost ko edges bna do baki sari nodes pr.
+- Then MST nikal do
+
+```cpp
+int minCostToSupplyWater(int n, vector<int>&wells, vector<vector<int>>& pipes){
+
+    for(int i = 0; i < wells.size(); i++){
+       pipes.push_back({0,i+1,wells[i]});
+    }
+
+    sort(pipes.begin(),pipes.end(),[](const vector<int>& v1,const vector<int>& v2){
+        return v1[2] < v2[2];
+    });
+
+    UnionFind uf(n+1);
+    int edges = pipes.size();
+    int cost = 0;
+    for(int i = 0; i < edges; i++){
+        int src = pipes[i][0];
+        int dest = pipes[i][1];
+        int wt = pipes[i][2];
+        if(uf.findParent(src) != uf.findParent(dest)){
+            uf.Union(src,dest);
+            cost += wt;
+        }
+    }
+    return cost;
+
+}
+```
