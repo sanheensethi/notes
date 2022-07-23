@@ -1223,6 +1223,10 @@ vector<int> bellmanFord(int n,int m,vector<vector<int>>& edges){
 ```
 ## 23. Kosaraju's Algorithm (Strongly Connected Components)
 
+- Sort all nodes in order of finishing time (Topological Sort)
+- Transform the Graph (Reverse edges)
+- DFS according to the finish time (topo sort)
+
 ```cpp
 void dfs(int node,vector<vector<int>>& graph,vector<bool>& visited,stack<int>& st){
 	visited[node] = true;
