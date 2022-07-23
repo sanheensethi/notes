@@ -1175,3 +1175,49 @@ public:
     }
 };
 ```
+## 22. Bellman's Ford Algorithm
+
+- Find Shortest Distance with negative edges untill there is no negative edge cycle
+- If there is negative edge cycle , them bellman's ford detect it, but can't find the distance with negative edge cycle
+
+> Algorithm
+
+1. Relax all nodes N-1 times
+2. Realxing means : if dist[u] + weight < dist[v] : dist[v] = dist[u] + weight
+3. after relaxing N-1 times, relax it also Nth time , i.e. one time more, if distance gets updated then , there is negatice edge cycle;
+
+```cpp
+vector<int> bellmanFord(int n,int m,vector<vector<int>>& edges){
+    
+    vector<int> distance(n,1e9);
+    distance[0] = 0;
+
+    for(int i = 1; i <= n-1; i++){
+        for(auto& edge : edges){
+            int u = edge[0];
+            int v = edge[1];
+            int wt = edge[2];
+            if(distance[u] + wt < distance[v]){
+                distance[v] = distance[u] + wt;
+            }
+        }
+    }
+
+    bool flag = false;
+    for(auto& edge : edges){
+            int u = edge[0];
+            int v = edge[1];
+            int wt = edge[2];
+            if(distance[u] + wt < distance[v]){
+                print("Negative Edge Cycle");
+                flag = true;
+                break;
+                distance[v] = distance[u] + wt;
+            }
+        }
+    
+    if(flag) return {}; // there is negative edge cycle
+    
+    return distance;
+}
+```
