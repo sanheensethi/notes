@@ -1409,6 +1409,8 @@ int minCostToSupplyWater(int n, vector<int>&wells, vector<vector<int>>& pipes){
 
 ## 13. Swim in Rising Water
 
+#### Appraoch 1 : Priority Queue
+
 ```cpp
 class Solution {
 public:
@@ -1447,3 +1449,4 @@ public:
     }
 };
 ```
+#### Approach 2 : [Binary Search] (https://leetcode.com/problems/swim-in-rising-water/discuss/1991823/DFS-%2B-Binary-Search-oror-C%2B%2B-oror)
