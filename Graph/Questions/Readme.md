@@ -1450,3 +1450,45 @@ public:
 };
 ```
 #### Approach 2 : [Binary Search] (https://leetcode.com/problems/swim-in-rising-water/discuss/1991823/DFS-%2B-Binary-Search-oror-C%2B%2B-oror)
+
+## 14. Connecting Cities with Minimum Cost
+
+> in UnionFind Class, add allConnected Method :
+
+```cpp
+bool allConnected(){
+    set<int> ss;
+    int n = parent.size();
+    for(int i = 0; i < n; i++){
+	ss.insert(findParent(i));
+    }
+    return ss.size() == 1;
+}
+```
+
+> CODE :
+
+```cpp
+int getMinimumCost(int n, int m, vector<vector<int>> &connections)
+{
+    sort(connections.begin(),connections.end(),[](vector<int>& v1,vector<int>& v2){
+       return v1[2] < v2[2]; 
+    });
+    
+    UnionFind uf(n);
+    int cost = 0;
+    for(int i = 0; i < m; i++){
+        int src = connections[i][0];
+        int dest = connections[i][1];
+        int wt = connections[i][2];
+        
+        if(uf.findParent(src-1) != uf.findParent(dest-1)){
+            cost += wt;
+            uf.Union(src-1,dest-1);
+        }
+    }
+    
+    return uf.allConnected() == false ? -1 : cost;
+    
+}
+```
