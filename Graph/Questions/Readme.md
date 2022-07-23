@@ -1406,3 +1406,44 @@ int minCostToSupplyWater(int n, vector<int>&wells, vector<vector<int>>& pipes){
 
 }
 ```
+
+## 13. Swim in Rising Water
+
+```cpp
+class Solution {
+public:
+    int swimInWater(vector<vector<int>>& grid) {
+        priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> pq;
+        
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<bool>> visited(n,vector<bool>(m,false));
+        pq.push({grid[0][0],0,0});
+        
+        vector<vector<int>> dir = {{0,-1},{0,1},{-1,0},{1,0}};
+        
+        while(!pq.empty()){
+            vector<int> vec = pq.top();pq.pop();
+            
+            int i = vec[1]; int j = vec[2];
+            
+            if(i == n-1 && j == m-1){
+                return vec[0];
+            }
+            
+            if(visited[i][j] == true) continue;
+            visited[i][j] = true;
+            
+            for(int k = 0; k < 4; k++){
+                int _i = i + dir[k][0];
+                int _j = j + dir[k][1];
+                if(_i < 0 || _j < 0 || _i >= n || _j >= m || visited[_i][_j] == true){
+                    continue;
+                }
+                pq.push({max(vec[0],grid[_i][_j]),_i,_j});
+            }
+        }
+        return 0;
+    }
+};
+```
