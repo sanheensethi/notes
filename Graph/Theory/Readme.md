@@ -1221,3 +1221,65 @@ vector<int> bellmanFord(int n,int m,vector<vector<int>>& edges){
     return distance;
 }
 ```
+## 23. Kosaraju's Algorithm (Strongly Connected Components)
+
+```cpp
+void dfs(int node,vector<vector<int>>& graph,vector<bool>& visited,stack<int>& st){
+	visited[node] = true;
+	for(auto& nbr : graph[node]){
+		if(!visited[nbr]){
+			dfs(nbr,graph,visited,st);
+		}
+	}
+	st.push(node);
+}
+
+void topoSortDriver(vector<vector<int>>& graph,int N,stack<int>& st,vector<bool>& visited){
+	for(int i = 0; i < N; i++){
+		if(!visited[i]){
+			dfs(i,graph,visited,st);
+		}
+	}
+}
+
+void reverseDFS(int node,vector<vector<int>>& graph,vector<bool>& visited){
+	visited[node] = true;
+	for(auto& nbr : graph[node]){
+		if(!visited[nbr]){
+			reverseDFS(nbr,graph,visited);
+		}
+	}
+}
+
+int reverseDFSDriver(vector<vector<int>>& graph,int N,vector<bool>& visited,stack<int>& st){
+	int count = 0;
+
+	while(!st.empty()){
+		int i = st.top();st.pop();
+		if(!visited[i]){
+			count++;
+			reverseDFS(i,graph,visited);
+		}
+	}
+
+	return count;
+}
+
+int kosaraju(vector<vector<int>> & graph,int N){
+   
+   stack<int> st;
+   vector<bool> visited(N,false);
+   topoSortDriver(graph,N,st,visited);
+   
+   vector<vector<int>> transporse(N);
+
+   for(int i = 0; i < N; i++){
+	   visited[i] = false;
+	   for(auto& nbr : graph[i]){
+		   transporse[nbr].push_back(i);
+	   }
+   }
+
+	return reverseDFSDriver(transporse,N,visited,st);
+}
+```
