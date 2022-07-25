@@ -1492,3 +1492,68 @@ int getMinimumCost(int n, int m, vector<vector<int>> &connections)
     
 }
 ```
+
+## 15. Mother Vertex
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+#define debug(x) cout<<#x<<" : "<<x<<endl;
+vector<int> visited;
+stack<int> st;
+void dfsTopoSort(int node,vector<vector<int>>& graph){
+    visited[node] = true;
+    auto& nbrs = graph[node];
+    for(auto& nbr : nbrs){
+        if(!visited[nbr]){
+            dfsTopoSort(nbr,graph);
+        }
+    }
+    st.push(node);
+}
+
+void dfs(int node,vector<vector<int>>& graph){
+    visited[node] = true;
+    auto& nbrs = graph[node];
+    for(auto& nbr : nbrs){
+        if(!visited[nbr]){
+            dfs(nbr,graph);
+        }
+    }
+}
+
+int findMotherVertex(int n,vector<vector<int>> &adjlist){
+    visited.resize(n,false);
+    for(int i = 0; i < n; i++){
+        if(visited[i] == false){
+            dfsTopoSort(i,adjlist);
+        }
+    }
+
+    fill(visited.begin(),visited.end(),false);
+
+    // debug(st.top());
+    int count = 0;
+    int ans = st.top();
+    dfs(ans,adjlist);
+    for(int i = 0; i < n; i++){
+        if(visited[i] == false) return -1;
+    }
+    return ans+1;
+}
+
+
+
+int main()
+{
+    int n,m;cin>>n>>m;
+    vector<vector<int>> adjlist(n);
+    for(int i=0;i<m;++i)
+    {
+        int u,v;cin>>u>>v;
+        adjlist[u-1].push_back(v-1);
+    }
+    cout<<findMotherVertex(n,adjlist)<<"\n";
+    return 0;
+}
+```
