@@ -1355,3 +1355,61 @@ public:
     }
 };
 ```
+
+## 25. Bridges in Graph (Critical Connection)
+
+```cpp
+vector<int>parent;
+vector<int>disc;
+vector<int>low;
+vector<bool>visited;
+
+int timer = 1;
+
+void bridges(int node,vector<vector<int>>& graph,vector<vector<int>>& ans){
+    disc[node] = low[node] = timer;
+    timer++;
+    visited[node] = true;
+
+    auto& nbrs = graph[node];
+    for(auto& nbr : nbrs){
+        if(parent[node] == nbr){
+            continue;
+        }else if(visited[nbr] == true){
+            low[node] = min(low[node],disc[nbr]);
+        }else if(visited[nbr] != true){
+            parent[nbr] = node;
+            bridges(nbr,graph,ans);
+
+            low[node] = min(low[node],low[nbr]);
+            if(low[nbr] > disc[node]){
+                ans.push_back({node,nbr});
+            }
+        }
+    }
+
+}
+
+
+vector<vector<int>> criticalConnection(int n,vector<vector<int>>& edges){
+    vector<vector<int>>graph(n);
+    
+    for(int i=0;i<edges.size();i++){
+        int u=edges[i][0];
+        int v=edges[i][1];
+        
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+    
+    parent.resize(n);
+    disc.resize(n);
+    low.resize(n);
+    visited.resize(n,false);
+    
+    vector<vector<int>>ans;
+    bridges(0,graph,ans);
+    
+    return ans;
+}
+```
