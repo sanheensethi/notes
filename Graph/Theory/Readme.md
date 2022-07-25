@@ -1287,3 +1287,71 @@ int kosaraju(vector<vector<int>> & graph,int N){
 	return reverseDFSDriver(transporse,N,visited,st);
 }
 ```
+## 24. Articulation Point (Nados)
+
+```cpp
+class Solution{
+
+private:
+    vector<int> parent;
+    vector<int> disc;
+    vector<int> low;
+    vector<int> visited;
+    vector<int> articPoints;
+    int time = 1;
+
+    int articulationPoints(int node,vector<vector<int>>& graph){
+        disc[node] = low[node] = time;
+        time++;
+        visited[node] = true;
+        int count = 0;
+
+        auto& nbrs = graph[node];
+
+        for(auto& nbr : nbrs){
+
+            if(parent[node] == nbr) continue;
+
+            if(parent[node] != nbr && visited[nbr] == true){
+                low[node] = min(low[node],disc[nbr]);
+            }else if(visited[nbr] == false){
+                
+                count++;
+                parent[nbr] = node;
+                articulationPoints(nbr,graph);
+
+                low[node] = min(low[node],low[nbr]);
+                
+                if(parent[node] == -1){
+                    if(count >= 2){
+                        articPoints[node] = true;
+                    }
+                }else{
+                    if(low[nbr] >= disc[node]){
+                        articPoints[node] = true;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+public:
+    int countArticulationPoints(int n,vector<vector<int>>& graph){
+        parent.resize(n);
+        disc.resize(n);
+        low.resize(n);
+        visited.resize(n,false);
+        articPoints.resize(n,false);
+        parent[0] = -1;
+        articulationPoints(0,graph);
+
+        int count = 0;
+        for(int i = 0; i < n; i++){
+            if(articPoints[i]) count++;
+        }
+        return count;
+    }
+};
+```
