@@ -1557,3 +1557,89 @@ int main()
     return 0;
 }
 ```
+## 16. Maximum number of Edges to be removed to make graph fully traversable
+
+```cpp
+#define debug(x) cout<<#x<<":"<<x<<endl;
+class UnionFind{
+    private:
+        vector<int> parent;
+        vector<int> size;
+    public:
+        UnionFind(){}
+        UnionFind(int n){
+            parent.resize(n);
+            iota(parent.begin(),parent.end(),0);
+            size.resize(n,1);
+        }
+    
+        bool Union(int a,int b){
+            a = findParent(a);
+            b = findParent(b);
+            if(a != b){
+                if(size[a] < size[b]) swap(a,b);
+                parent[b] = a;
+                size[a] += size[b];
+                return true;
+            }else{
+                return false;
+            }
+        }
+        
+        int findParent(int v){
+            if(v == parent[v]) return v;
+            return parent[v] = findParent(parent[v]);
+        }
+        
+};
+
+class Solution {
+public:
+    int maxNumEdgesToRemove(int n, vector<vector<int>>& edges) {
+        int countA = 1;
+        int countB = 1;
+        int maxEdge = 0;
+        
+        sort(edges.begin(),edges.end(),[](const vector<int>& v1,const vector<int>& v2){
+            return v1[0] > v2[0];
+        });
+        
+        UnionFind alice(n);
+        UnionFind bob(n);
+        
+        for(auto& edge : edges){
+            int type = edge[0];
+            int src = edge[1];
+            int dest = edge[2];
+            
+            
+            if(type == 3){
+                // both
+                int v1 = alice.Union(src-1,dest-1);
+                if(v1) countA++;
+                int v2 = bob.Union(src-1,dest-1);
+                if(v2) countB++;
+                
+                if(!v1 && !v2) maxEdge++;
+                
+            }else if(type == 2){
+                // bob
+                int v2 = bob.Union(src-1,dest-1);
+                if(v2) countB++;
+                else maxEdge++;
+            }else if(type == 1){
+                // alice
+                int v1 = alice.Union(src-1,dest-1);
+                if(v1) countA++;
+                else maxEdge++;
+            }
+            
+        }
+        
+        if(countA != n || countB != n){
+            return -1;
+        }
+        return maxEdge;
+    }
+};
+```
