@@ -1695,6 +1695,7 @@ vector<int>numIslands2(int m,int n, vector<vector<int>>& pos){
     for(int i = 0; i < pn; i++){
         int r = pos[i][0];
         int c = pos[i][1];
+	if(matrix[r][c] == 1) continue;
         matrix[r][c] = 1;
         ans += 1;
         for(int k = 0; k < 4; k++){
