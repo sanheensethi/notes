@@ -1643,3 +1643,74 @@ public:
     }
 };
 ```
+
+## 17. Number of Islands 2 (Nados)
+
+```cpp
+#define debug(x) cout<<#x<<":"<<x<<endl;
+#define print(x,y) cout<<"("<<#x<<","<<#y<<")"<<":"<<"("<<x<<","<<y<<")"<<endl;
+class UnionFind{
+    private:
+        vector<int> parent;
+        vector<int> size;
+    public:
+        UnionFind(){}
+        UnionFind(int n){
+            parent.resize(n);
+            iota(parent.begin(),parent.end(),0);
+            size.resize(n,1);
+        }
+
+        bool Union(int a,int b){
+            a = findParent(a);
+            b = findParent(b);
+            if(a != b){
+                if(size[a] < size[b]) swap(a,b);
+                parent[b] = a;
+                size[a] += size[b];
+                return true;
+            }
+            return false;
+        }
+
+        int findParent(int v){
+            if(v == parent[v]) return v;
+            return parent[v] = findParent(parent[v]);
+        }
+};
+
+int index(int r,int c,int totalCol){
+    return c + r * totalCol;
+}
+
+vector<int>numIslands2(int m,int n, vector<vector<int>>& pos){
+    vector<vector<int>> matrix(m,vector<int>(n,0));
+
+    int mn = m*n;
+    UnionFind uf(mn);
+    int ans = 0;
+    vector<int> rans;
+    vector<int> dir[4] = {{-1,0},{1,0},{0,1},{0,-1}};
+    int pn = pos.size();
+    for(int i = 0; i < pn; i++){
+        int r = pos[i][0];
+        int c = pos[i][1];
+        matrix[r][c] = 1;
+        ans += 1;
+        for(int k = 0; k < 4; k++){
+            int _i = r + dir[k][0];
+            int _j = c + dir[k][1];
+            if(_i < 0 || _j < 0 || _i >= m || _j >= n) continue;
+            if(matrix[_i][_j] == 1){
+                int idx1 = index(r,c,n);
+                int idx2 = index(_i,_j,n);
+                int v = uf.Union(idx1,idx2);
+                if(v) ans -= 1;
+            }
+
+        }
+        rans.push_back(ans);
+    }
+    return rans;
+}
+```
