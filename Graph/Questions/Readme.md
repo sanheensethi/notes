@@ -1715,3 +1715,102 @@ vector<int>numIslands2(int m,int n, vector<vector<int>>& pos){
     return rans;
 }
 ```
+
+## 18. Regions Cut By Slashes
+
+```cpp
+#define debug(x) cout<<#x<<":"<<x<<endl;
+class UnionFind{
+private:
+    vector<int> parent;
+    vector<int> size;
+public:
+    UnionFind(){}
+    UnionFind(int n){
+        parent.resize(n);
+        iota(parent.begin(),parent.end(),0);
+        size.resize(n,1);
+    }
+    
+    bool Union(int a,int b){
+        a = findParent(a);
+        b = findParent(b);
+        if(a != b){
+            if(size[a] < size[b]) swap(a,b);
+            parent[b] = a;
+            size[a] += size[b];
+            return true;
+        }
+        return false;
+    }
+    
+    int findParent(int v){
+        if(v == parent[v]) return v;
+        return parent[v] = findParent(parent[v]);
+    }
+};
+
+class Solution {
+public:
+    int cols;
+    
+    UnionFind* uf;
+    
+    int index(int r,int c){
+        return c + r*cols;
+    }
+    
+    void ConnectBoundaryDots(int n){
+        for(int r = 0; r+1 < n; r++){
+            int idx1 = index(r,0);
+            int idx2 = index(r+1,0);
+            uf->Union(idx1,idx2);
+        }
+        
+        for(int r = n-1; r-1 >= 0; r--){
+            int idx1 = index(r,n-1);
+            int idx2 = index(r-1,n-1);
+            uf->Union(idx1,idx2);
+        }
+        
+        for(int c = 0; c+1 < n; c++){
+            int idx1 = index(n-1,c);
+            int idx2 = index(n-1,c+1);
+            uf->Union(idx1,idx2);
+        }
+        
+        for(int c = n-1; c-1 >= 0; c--){
+            int idx1 = index(0,c);
+            int idx2 = index(0,c-1);
+            uf->Union(idx1,idx2);
+        }
+    }
+    
+    int regionsBySlashes(vector<string>& grid) {
+        int n = grid.size();
+        this->cols = n;
+        n++;
+        uf = new UnionFind(n*n);
+        ConnectBoundaryDots(n);
+        int ans = 1;
+        for(int i = 0; i < n-1; i++){
+            for(int j = 0; j < n-1; j++){
+                char ch = grid[i][j];
+                if(ch == ' ') continue;
+                if(ch == '/'){
+                    int idx1 = index(i+1,j);
+                    int idx2 = index(i,j+1);
+                    bool v = uf->Union(idx1,idx2);
+                    if(!v) ans++;
+                }else if(ch == '\\'){
+                    int idx1 = index(i,j);
+                    int idx2 = index(i+1,j+1);
+                    bool v = uf->Union(idx1,idx2);
+                    if(!v) ans++;
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
