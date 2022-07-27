@@ -159,3 +159,50 @@ class Solution{
     }
 };
 ```
+
+## 4. Largest Subarray with 0 Sum
+
+```cpp
+class Solution{
+    public:
+    int maxLen(vector<int>&arr, int n)
+    {   
+        int ans = 0;
+        unordered_map<int,int> umap;
+        umap[0] = -1;
+        int sum = 0;
+        for(int i = 0; i < n; i++){
+            sum += arr[i];
+            if(umap.count(sum)){
+                ans = max(ans,i-umap[sum]);
+            }else{
+                umap[sum] = i;
+            } 
+        }
+        return ans;
+    }
+};
+```
+
+## 5. Count 0 Sum Subarrays
+
+```cpp
+class Solution{
+    public:
+    //Function to count subarrays with sum equal to 0.
+    ll findSubarray(vector<ll> arr, int n ) {
+        ll ans = 0;
+        ll sum = 0;
+        unordered_map<ll,ll> umap;
+        umap[0] = 1;
+        for(auto& val : arr){
+            sum += val;
+            if(umap.count(sum)){
+                ans += umap[sum];
+            }
+            umap[sum]++;
+        }
+        return ans;
+    }
+};
+```
