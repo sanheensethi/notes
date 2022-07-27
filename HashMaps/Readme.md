@@ -234,3 +234,50 @@ int solution(vector<int> &arr){
     return ans;
 }
 ```
+## 7. Minimum Window Substring
+
+```cpp
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int i,j;
+        i = j = 0;
+        int n = s.size();
+        if(n < t.size()) return "";
+        int start = -1;
+        unordered_map<char,int> umap;
+        for(auto& ch : t){
+            umap[ch]++;
+        }
+        
+        int count = umap.size();
+        int len = 1e9;
+        while(j < n){
+            char chj = s[j];
+            if(umap.count(chj)){
+                umap[chj]--;
+                if(umap[chj] == 0){
+                    count--;
+                }
+            }
+            while(count == 0){
+                if(j - i + 1 < len){
+                    len = j - i + 1;
+                    start = i;
+                }
+                char chi = s[i];
+                if(umap.count(chi)){
+                    umap[chi]++;
+                    if(umap[chi] > 0){
+                        count++;
+                    }
+                }
+                i++;
+            }
+            j++;
+        }
+        if(start < 0) return "";
+        return s.substr(start,len);
+    }
+};
+```
