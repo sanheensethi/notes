@@ -136,3 +136,26 @@ public:
     }
 };
 ```
+## 4. Largest Subarray with 0 Sum
+
+```cpp
+class Solution{
+    public:
+    int maxLen(vector<int>&arr, int n)
+    {   
+        int ans = 0;
+        unordered_map<int,int> umap;
+        umap[0] = -1;
+        int sum = 0;
+        for(int i = 0; i < n; i++){
+            sum += arr[i];
+            if(umap.count(sum)){
+                ans = max(ans,i-umap[sum]);
+            }else{
+                umap[sum] = i;
+            } 
+        }
+        return ans;
+    }
+};
+```
