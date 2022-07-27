@@ -126,7 +126,7 @@ public:
         for(int i = 0; i < k; i++){
             if(i == 0){
                 if(umap[i]%2 != 0) return false;
-            }else if(checkmiddle && i == middle){
+            }else if(checkmiddle && i == middle){ // we can also check 2*i == k , to discard 2 checks checkmiddle vagera and i == middle
                 if(umap[i]%2 != 0) return false;
             }else{
                 if(umap[i] != umap[k-i]) return false;
