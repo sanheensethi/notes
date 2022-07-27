@@ -206,3 +206,31 @@ class Solution{
     }
 };
 ```
+## 6. Largest Subarray with Contiguous Elements
+
+```cpp
+int solution(vector<int> &arr){
+    unordered_map<int,bool> umap;
+    int n = arr.size();
+    int ans = 1;
+    for(int i = 0; i < n-1; i++){
+        umap.clear();
+        int mini = arr[i];
+        int maxi = arr[i];
+        umap[arr[i]] = true;
+        for(int j = i+1; j , n; j++){
+            if(umap.count(arr[j])) break;
+
+            umap[arr[j]] = true;
+            mini = min(mini,arr[j]);
+            maxi = max(maxi,arr[j]);
+
+            if(maxi - mini == j - i){
+                ans = max(ans,j-i+1);
+            }
+            // ans = (maxi - mini == j - i) ? max(ans,j-i+1) : ans;
+        }
+    }
+    return ans;
+}
+```
