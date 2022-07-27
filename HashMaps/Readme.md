@@ -98,3 +98,41 @@ int main(){
    return 0;
 }
 ```
+## 3. Check if Array Pairs are divisible by K
+
+- isme sb remainder ka khel hai
+- 2 numbers are divisible by 10 if their remainder sum = 10
+- 2 number are divisible by k , if their remainder sum = k
+- 0 and middle element (if k is even) , ye edge cases hai,
+- if rem = 0 , then to make pair, even number of remainder 0 elements are required, simmilarly for middle remainder when k is even , example for k = 6, middle = 3 , then remainder = 3 elements should be even.
+- Edge Case : When remainder is negative : rem < 0 : rem += k; , make negative remainder to positive remainder
+
+```cpp
+class Solution {
+public:
+    bool canArrange(vector<int>& arr, int k) {
+        unordered_map<int,int> umap; // remainder,freq
+        
+        for(auto& val : arr){
+            int rem = val%k;
+            if(rem < 0) rem += k;
+            umap[rem]++;
+        }
+        
+        bool checkmiddle = true;
+        if((k&1)) checkmiddle = false;
+        int middle = k/2;
+        
+        for(int i = 0; i < k; i++){
+            if(i == 0){
+                if(umap[i]%2 != 0) return false;
+            }else if(checkmiddle && i == middle){
+                if(umap[i]%2 != 0) return false;
+            }else{
+                if(umap[i] != umap[k-i]) return false;
+            }
+        }
+        return true;
+    }
+};
+```
