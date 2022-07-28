@@ -370,7 +370,7 @@ int solution(vector<int> &arr, int k) {
 }
 ```
 
-## 11. Maximum Consequtive Ones
+## 11. Maximum Consequtive Ones - I
 
 ```cpp
 int findMaxConsecutiveOnes(vector<int>& arr) {
@@ -386,5 +386,97 @@ int findMaxConsecutiveOnes(vector<int>& arr) {
         ans = max(ans,count);
     }
     return ans;
+}
+```
+
+## 12. Maximum Consequtive Ones - II
+
+```cpp
+int solution(vector<int>& arr) {
+  int k = 1;
+  int i = 0;
+  int j = 0;
+  int n = arr.size();
+
+  int ans = 0;
+  int ones = 0;
+  while(j < n){
+    if(arr[j] == 1 || k != -1){
+      if(arr[j] == 0) k--;
+      ones++;
+      
+    }
+    while(k == -1){
+      if(arr[i] == 1) ones--;
+      if(arr[i] == 0){
+        ones--;
+        k++;
+      }
+      i++;
+    }
+    j++;
+    ans = max(ans,ones);
+  }
+  return ans;
+}
+
+int main()
+{
+  int n;
+  cin >> n;
+  vector<int>arr(n, 0);
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  };
+
+  cout << solution(arr);
+  return 0;
+}
+```
+
+## 13. Maximim Consequtive Ones - III
+
+```cpp
+int solution(vector<int> arr, int k) {
+  int i = 0; 
+  int j = 0;
+  int n = arr.size();
+  int ones = 0;
+  int ans = 0;
+  while(j < n){
+    if(arr[j] == 1 || k != -1){
+      if(arr[j] == 0){
+        k--;
+      }
+      ones++;
+    }
+
+    while(k == -1){
+      if(arr[i] == 1) ones--;
+      if(arr[i] == 0){
+        k++;
+        ones--;
+      }
+      i++;
+    }
+    ans = max(ans,j-i+1);
+    j++;
+  }
+  return ans;
+}
+
+int main()
+{
+  int n, k;
+  cin >> n;
+  vector<int>arr(n, 0);
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  };
+  cin >> k;
+  cout << solution(arr, k);
+  return 0;
 }
 ```
