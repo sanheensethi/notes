@@ -310,6 +310,10 @@ int longestSubstrDistinctChars (string str)
     return ans;
 }
 ```
+
+## 9. Count of Substring Having all Unique Charaters
+
+```cpp
 int countSubstring (string &s) {
   int n = s.size();
   int i = 0;
@@ -341,3 +345,4 @@ int main(int argc,char** argv){
  cin>>s;
  cout<<countSubstring(s)<<endl;
 }
+```
