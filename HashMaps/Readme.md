@@ -310,3 +310,34 @@ int longestSubstrDistinctChars (string str)
     return ans;
 }
 ```
+int countSubstring (string &s) {
+  int n = s.size();
+  int i = 0;
+  int j = 0;
+  int ans = 0;
+  unordered_map<char,int> umap;
+  int count = 0;
+  while(j < n){
+    char chj = s[j];
+    umap[chj]++;
+    count++;
+    while(count > umap.size()){
+      char chi = s[i];
+      umap[chi]--;
+      if(umap[chi] == 0) umap.erase(chi);
+      count--;
+      i++;
+    }
+    if(count == umap.size()){
+      ans += (j-i+1);
+    }
+    j++;
+  }
+  return ans;
+}
+ 
+int main(int argc,char** argv){
+ string s;
+ cin>>s;
+ cout<<countSubstring(s)<<endl;
+}
