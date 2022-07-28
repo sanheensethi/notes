@@ -281,3 +281,32 @@ public:
     }
 };
 ```
+## 8. Longest Distinct Chars in a String
+
+```cpp
+int longestSubstrDistinctChars (string str)
+{
+    unordered_map<char,int> umap;
+    int i = 0, j = 0;
+    int n = str.size();
+    int ans = 0;
+    int count = 0;
+    while(j < n){
+        char chj = str[j];
+        umap[chj]++;
+        count++;
+        while(count > umap.size()){
+            char chi = str[i];
+            umap[chi]--;
+            count--;
+            if(umap[chi] == 0) umap.erase(chi);
+            i++;
+        }
+        if(count == umap.size()){
+            ans = max(ans,j-i+1);
+        }
+        j++;
+    }
+    return ans;
+}
+```
