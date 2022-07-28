@@ -346,3 +346,26 @@ int main(int argc,char** argv){
  cout<<countSubstring(s)<<endl;
 }
 ```
+
+## 10. Equivalent Subarrays
+
+```cpp
+int solution(vector<int> &arr, int k) {
+  int i = 0;
+  int j = 0;
+  int ans = 0;
+  int n = arr.size();
+  unordered_map<int,int> umap;
+  while( j < n){
+    umap[arr[j]]++;
+    while(umap.size() == k){
+      ans += n-1-j+1;
+      umap[arr[i]]--;
+      if(umap[arr[i]] == 0) umap.erase(arr[i]);
+      i++;
+    }
+    j++;
+  }
+  return ans;
+}
+```
