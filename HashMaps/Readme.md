@@ -369,3 +369,22 @@ int solution(vector<int> &arr, int k) {
   return ans;
 }
 ```
+
+## 11. Maximum Consequtive Ones
+
+```cpp
+int findMaxConsecutiveOnes(vector<int>& arr) {
+    int i = 0;
+    int ans = 0;
+    int n = arr.size();
+    for(int i = 0; i < n; i++){
+        int count = 0;
+        while(i < n && arr[i] == 1){
+            count++;
+            i++;
+        }
+        ans = max(ans,count);
+    }
+    return ans;
+}
+```
