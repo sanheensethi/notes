@@ -507,3 +507,21 @@ class Solution {
     }
 };
 ```
+## 15. Find Anagram Mappings
+
+```cpp
+vector<int> findMapping(int a1[],int a2[],int n){
+    unordered_map<int,queue<int>> umap;
+    for(int i = 0; i < n; i++){
+        umap[a1[i]].push(i);
+    }
+
+    vector<int> ans;
+    for(int i = 0; i < n; i++){
+        auto& q = umap[a2[i]];
+        ans.push_back(q.front());
+        q.pop();
+    }
+    return ans;
+}
+```
