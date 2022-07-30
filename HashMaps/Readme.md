@@ -618,3 +618,25 @@ bool wordPattern(string pattern, string s) {
     return true;
 }
 ```
+
+## 18. Longest Subarray Sum divisible by K
+
+```cpp
+int longSubarrWthSumDivByK(int arr[], int n, int k){
+    unordered_map<int,int> umap;
+    umap[0] = -1;
+    int sum = 0;
+    int ans = 0;
+    for(int i = 0; i < n; i++){
+        sum += arr[i];
+        int rem = sum%k;
+        if(rem < 0) rem += k;
+        if(umap.count(rem)){
+            ans = max(ans,i-umap[rem]);
+        }else{
+            umap[rem] = i;
+        }
+    }
+    return ans;
+}
+```
