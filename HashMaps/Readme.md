@@ -587,3 +587,34 @@ bool isIsomorphic(string s, string t) {
     return true;
 }
 ```
+## 17. Word Pattern
+
+```cpp
+bool wordPattern(string pattern, string s) {
+    unordered_map<char,string> umap;
+    unordered_map<string,bool> used;
+
+    int j = 0;
+    int n = s.size();
+
+    for(int i = 0; i < pattern.size(); i++){
+        string temp = "";
+        while(j < n && s[j] != ' '){
+            temp += s[j];
+            j++;
+        }
+        j++;
+        if(temp == "") return false;
+        // char already mapped
+        if(umap.count(pattern[i])){
+            if(umap[pattern[i]] != temp) return false;
+        }else{
+            if(used.count(temp)) return false;
+            umap[pattern[i]] = temp;
+            used[temp] = true;
+        }
+    }
+    if(j < n) return false;
+    return true;
+}
+```
