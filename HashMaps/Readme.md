@@ -480,3 +480,30 @@ int main()
   return 0;
 }
 ```
+## 14. are K Anagrams ?
+
+```cpp
+class Solution {
+  public:
+    bool areKAnagrams(string str1, string str2, int k) {
+        if(str1.size() != str2.size()) return false;
+        unordered_map<char,int> umap;
+        int count = 0;
+        for(auto& ch : str1){
+            umap[ch]++;
+            count++;
+        }
+        
+        for(auto& ch : str2){
+            if(umap.count(ch) == 1){
+                umap[ch]--;
+                count--;
+                if(umap[ch] == 0){
+                    umap.erase(ch);
+                }
+            }
+        }
+        return count <= k;
+    }
+};
+```
