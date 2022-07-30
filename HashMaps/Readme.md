@@ -525,3 +525,65 @@ vector<int> findMapping(int a1[],int a2[],int n){
     return ans;
 }
 ```
+
+## 15. Group Shifted String
+
+```cpp
+class solution{
+    public:
+    string serialize(string& str){
+        int n = str.size();
+        string code = "";
+        for(int i = 1; i < n; i++){
+            int k = str[i] - str[i-1];
+            if(k < 0) k+= 26;
+            code += to_string(k);
+            code += '#';
+        }
+        return code;
+    }
+    vector<vector<string>> groupStrings(vector<string>& strings) {
+        int n = strings.size();
+        unordered_map<string,vector<string>> umap;
+        for(int i = 0; i < n; i++){
+            string key = serialize(strings[i]);
+            umap[key].push_back(strings[i]);
+        }
+
+        vector<vector<string>> ans;
+        for(auto& pr : umap){
+            vector<string> vec;
+            for(auto& val : pr.second){
+                vec.push_back(val);
+            }
+            ans.push_back(vec);
+        }
+        return ans;
+    }
+};
+```
+
+## 16. Isomorphic Strings
+
+```cpp
+bool isIsomorphic(string s, string t) { 
+    if(s.size() != t.size()) return false;
+
+    unordered_map<char,char> umap;
+    unordered_map<char,bool> used;
+
+    for(int i = 0; i < s.size(); i++){
+            // is already mapped ?
+        if(umap.count(s[i])){
+            if(umap[s[i]] != t[i]) return false;
+        }else{
+            if(used.count(t[i]) == 1) return false;
+            else{
+                umap[s[i]] = t[i];
+                used[t[i]] = true;
+            }
+        }
+    }
+    return true;
+}
+```
