@@ -807,3 +807,23 @@ string calc(int num,int deno){
     return temp;
 }
 ```
+
+## 25. Rabbits in Forest
+
+```cpp
+int numRabbits(vector<int>& answers) {
+    unordered_map<int,int> umap;
+    for(auto& val : answers){
+        umap[val]++;
+    }
+    
+    int ans = 0;
+    for(auto& pr : umap){
+        int groupSize = pr.first + 1;
+        int rabbits = pr.second;
+        int numGroups = (int)ceil(((rabbits * 1.0) / (groupSize * 1.0)));
+        ans += numGroups * groupSize;
+    }
+    return ans;
+}
+```
