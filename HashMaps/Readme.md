@@ -685,3 +685,40 @@ long long int countSubarrWithEqualZeroAndOne(int arr[], int n){
     return ans;
 }
 ```
+
+## 21. Equal Number of 0's 1's and 2's
+
+![image](https://user-images.githubusercontent.com/35686407/182282709-74f9942a-6f13-4b5b-a7aa-477f945667be.png)
+
+- hum find krenge (count 0's - count 1's) and (count 1's - count 2's) if they both are same aage also, then in between them there are equal number of 0's 1's and 2's.
+- Key : c1-c0#c2-c1
+
+```cpp
+string createKey(long long zero,long long one,long long two){
+    return to_string(one-zero) + "#" + to_string(two-one);
+}
+long long getSubstringWithEqual012(string str) {
+    long long count = 0;
+    long long zero = 0;
+    long long one = 0;
+    long long two = 0;
+    unordered_map<string,int> umap;
+    string k = createKey(zero,one,two);
+    umap[k] = 1;
+    string key = to_string(zero) + to_string(one) + to_string(two);
+    for(auto& ch : str){
+        if(ch == '0'){
+            zero++;
+        }else if(ch == '1'){
+            one++;
+        }else if (ch == '2'){
+            two++;
+        }
+        
+        string key = createKey(zero,one,two);
+        count += umap[key];
+        umap[key]++;
+    }
+    return count;
+}
+```
