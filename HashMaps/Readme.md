@@ -778,3 +778,32 @@ bool solution(vector<int>& arr, int n) {
   return false;
 }
 ```
+
+## 24. Recurring Sequence in  Fraction
+
+```cpp
+string calc(int num,int deno){
+    string temp = "";
+    int rem = num%deno;
+    int quot = num/deno;
+    temp += to_string(quot);
+    if(rem == 0) return temp;
+    temp += '.';
+    unordered_map<int,int> umap; // rem , kb aaya tha
+    while(rem != 0){
+        if(umap.count(rem)){
+            int len = umap[rem];
+            temp.insert(temp.begin()+len,'(');
+            temp.push_back(')');
+            break;
+        }else{
+            umap[rem] = temp.size();
+            rem *= 10;
+            quot = (rem)/deno;
+            rem = (rem)%deno;
+            temp += to_string(quot);    
+        }
+    }
+    return temp;
+}
+```
