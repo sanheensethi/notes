@@ -686,7 +686,43 @@ long long int countSubarrWithEqualZeroAndOne(int arr[], int n){
 }
 ```
 
-## 21. Equal Number of 0's 1's and 2's
+## 21. Longest Subarray with Equal 0's 1's 2's
+
+- hum find krenge (count 0's - count 1's) and (count 1's - count 2's) if they both are same aage also, then in between them there are equal number of 0's 1's and 2's.
+- Key : c1-c0#c2-c1
+
+```cpp
+string createKey(int zero,int ones,int two){
+    return to_string(zero-ones) + "#" + to_string(ones-two);
+}
+
+int solution(vector<int> &v){
+   int zeros = 0;
+   int ones = 0;
+   int two = 0;
+    unordered_map<string,int> umap;
+
+    string key = createKey(zeros,ones,two);
+    umap[key] = -1;
+    int ans = 0;
+    int i = 0;
+   for(auto& num : v){
+       if(num == 0) zeros++;
+       else if(num == 1) ones++;
+       else two++;
+       key = createKey(zeros,ones,two);
+        if(umap.count(key)){
+            ans = max(ans,i-umap[key]);
+        }else{
+            umap[key] = i;
+        }
+        i++;
+   }
+   return ans;
+}
+```
+
+## 22. Equal Number of 0's 1's and 2's
 
 ![image](https://user-images.githubusercontent.com/35686407/182282709-74f9942a-6f13-4b5b-a7aa-477f945667be.png)
 
