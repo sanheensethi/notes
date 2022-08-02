@@ -660,3 +660,28 @@ int subarraysDivByK(vector<int>& nums, int k) {
     return ans;
 }
 ```
+
+## 20. Number of Subarrays with equal 0's and 1's
+
+- Trick : isme hum 0 ko -1 maan lenge and sum = 0 vale subarrays find krenge
+
+```cpp
+long long int countSubarrWithEqualZeroAndOne(int arr[], int n){
+    long long sum = 0;
+    long long ans = 0;
+    unordered_map<int,int> umap;
+    umap[0] = 1;
+    for(int i = 0; i < n; i++){
+        if(arr[i] == 0){
+            sum += (-1);
+        }else{
+            sum += 1;
+        }
+        if(umap.count(sum)){
+            ans += umap[sum];
+        }
+        umap[sum]++;
+    }
+    return ans;
+}
+```
