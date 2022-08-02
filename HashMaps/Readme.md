@@ -758,3 +758,23 @@ long long getSubstringWithEqual012(string str) {
     return count;
 }
 ```
+
+## 23. Pairs with Equal Sum
+
+- if there exsts A + B = C + D, the, tjem return true;
+
+```cpp
+bool solution(vector<int>& arr, int n) {
+  unordered_map<int,int> umap;
+  for(int i = 0; i < n; i++){
+    for(int j = i+1; j < n; j++){
+      int sum = arr[i] + arr[j];
+      if(umap.count(sum)){
+        return true;
+      }
+      umap[sum]++;
+    }
+  }
+  return false;
+}
+```
