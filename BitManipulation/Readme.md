@@ -35,3 +35,17 @@ int main(){
 
 }
 ```
+
+## 2. kernighans Algorithm
+
+```cpp
+int solve(n){
+    int count = 0;
+    while(n){
+        int rsbm = n & -n;
+        n -= rsbm;
+        count++;
+    }
+    return count;
+}
+```
