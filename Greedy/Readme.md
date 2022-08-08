@@ -56,3 +56,33 @@ int findPlatform(int arr[], int dep[], int n){
     return maxi;
 }
 ```
+## 3. Job Sequencing
+
+```cpp
+vector<int> JobScheduling(Job arr[], int n) { 
+    sort(arr,arr+n,[](Job& j1,Job& j2){
+       return j1.profit > j2.profit; 
+    });
+
+    int maxi = 0;
+    for(int i = 0; i < n; i++){
+        maxi = max(maxi,arr[i].dead);
+    }
+
+    vector<int> jobs(maxi+1,-1);
+    int ans = 0;
+    int count = 0;
+    for(int i = 0; i < n; i++){
+        auto& k = arr[i].dead;
+        while(k > 0 && jobs[k] != -1){
+            k--;
+        }
+        if(k > 0){
+            jobs[k] = arr[i].id; 
+            ans += arr[i].profit;
+            count += 1;
+        }
+    }
+    return {count,ans};
+} 
+```
