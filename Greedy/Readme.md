@@ -33,3 +33,26 @@ class Solution
     }
 }
 ```
+
+## 2. MInimum Platforms
+
+```cpp
+int findPlatform(int arr[], int dep[], int n){
+    sort(arr,arr+n);
+    sort(dep,dep+n);
+    int i = 0, j = 0;
+    int plat = 0;
+    int maxi = 0;
+    while(i < n && j < n){
+        if(dep[j] >= arr[i]){
+            i++;
+            plat++;
+        }else if(dep[j] < arr[i]){
+            j++;
+            plat--;
+        }
+        maxi = max(maxi,plat);
+    }
+    return maxi;
+}
+```
