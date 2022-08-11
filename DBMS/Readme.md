@@ -63,3 +63,6 @@
 > Physical Level : Database Adminn , how data is stored - Centralized / Distributed
 
 - Actual mae harddisk ke andar Files ki form mae store ho rha hai, lekin hme vo viwe show hota hai jo Physical level pr decide ho rha hai.
+
+
+## Who maintain refrential integrity : Foreign Key
