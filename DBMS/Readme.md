@@ -44,3 +44,22 @@
 - Logical Representation of Database
 - How data is represented
 - RDBMS
+
+
+## 3 Schema Architecture
+
+![image](https://user-images.githubusercontent.com/35686407/184066441-71935cea-b843-42f4-9c8e-c03e356082f1.png)
+
+- Any data which is stored, what is it's structure ?
+- Data ko save krne ke liye 2D table mae daal dia
+
+- Motive : Data Indepedance
+- User needs not to know where data is store
+
+> External Schema : View Level
+
+> Conceptual : ER Model 
+
+> Physical Level : Database Adminn , how data is stored - Centralized / Distributed
+
+- Actual mae harddisk ke andar Files ki form mae store ho rha hai, lekin hme vo viwe show hota hai jo Physical level pr decide ho rha hai.
