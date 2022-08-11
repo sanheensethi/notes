@@ -1,5 +1,6 @@
 ## File System vs DBMS
 
+[Link](https://www.javatpoint.com/dbms-vs-files-system)
 |BASIS|DBMS|FILE SYSTEM|
 |---|---|---|
 |Meaning|DBMS is a collection of data. In DBMS, the user is not required to write the procedures.|The file system is a collection of data. In this system, the user has to write the procedures for managing the database.|
