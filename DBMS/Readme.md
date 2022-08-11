@@ -39,3 +39,8 @@
 - web application sari 3 tier architecture hai
 
 
+## Schema
+
+- Logical Representation of Database
+- How data is represented
+- RDBMS
