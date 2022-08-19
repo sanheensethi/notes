@@ -66,3 +66,6 @@
 
 
 ## Who maintain refrential integrity : Foreign Key
+
+
+![image](https://user-images.githubusercontent.com/35686407/185567659-77afe6bc-7be4-4703-b439-b345b1f32950.png)
