@@ -241,20 +241,16 @@ Database architecture can be seen as a single tier or multi-tier. But logically,
 ****
 
 ## Data Independance
-- Data independence can be explained using the three-schema architecture.
-- Data independence refers characteristic of being able to modify the schema at one level of the database system without altering the schema at the next higher level.
+- Data independence means a change of data at one level should not affect another level. Two types of data independence are present in this architecture:
 
 **1. Logical Data Independence**
-- Logical data independence refers characteristic of being able to change the conceptual schema without having to change the external schema.
-- Logical data independence is used to separate the external level from the conceptual view.
-- If we do any changes in the conceptual view of the data, then the user view of the data would not be affected.
-- Logical data independence occurs at the user interface level.
+- The data at conceptual level schema and external level schema must be independent. 
+- This means, change in conceptual schema should not affect external schema. e.g.; Adding or deleting attributes of a table should not affect the user’s view of table. 
+- But this type of independence is difficult to achieve as compared to physical data independence because the changes in conceptual schema are reflected in user’s view.
 
 **2. Physical Data Independence**
-- Physical data independence can be defined as the capacity to change the internal schema without having to change the conceptual schema.
-- If we do any changes in the storage size of the database system server, then the Conceptual structure of the database will not be affected.
-- Physical data independence is used to separate conceptual levels from the internal levels.
-- Physical data independence occurs at the logical interface level.
+- Any change in the physical location of tables and indexes should not affect the conceptual level or external view of data. 
+- This data independence is easy to achieve and implemented by most of the DBMS.
 
 ![](https://static.javatpoint.com/dbms/images/dbms-data-independence.png)
 
