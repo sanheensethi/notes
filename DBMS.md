@@ -185,6 +185,12 @@ Database architecture can be seen as a single tier or multi-tier. But logically,
 
 ![](https://static.javatpoint.com/dbms/images/dbms-3-tier-architecture.png)
 
+### What is Schema ?
+- Schema is the skeleton structure that represents the logical view of the entire database. 
+- It defines how the data is organized and how the relations among them are associated.
+
+### 
+
 ### Three schema Architecture
 
 - The three schema architecture is also called ANSI/SPARC architecture or three-level architecture.
