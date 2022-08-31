@@ -33,6 +33,7 @@ Other Notes Links:
 - It is an organized collection of interrelated information that show some aspects of the real world. 
 - Database System is designed to make the information easily accessible and manageable.
 - Database is a collection of data in some organised manner,such that the user can easily access,manage,upload the data.
+- For Example, university database organizes the data about students, faculty, and admin staff etc. which helps in efficient retrieval, insertion and deletion of data from it.
 
 #### Types of Databases
 ![](https://static.javatpoint.com/dbms/images/types-of-databases.png)
