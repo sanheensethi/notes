@@ -26,6 +26,7 @@
 # NETWORK TOPOLOGY
 - Network topology is a physical layout of the network, connecting the different nodes using the links. It depicts the connectivity between the computers, devices, cables, etc.
 1. BUS
+
 ![](https://user-images.githubusercontent.com/86204416/188299091-695142d7-6d0a-4a9c-b192-a696fe6eadcf.png)
 
 - Bus topology is a network topology in which all the nodes are connected to a single cable known as a central cable or bus.
@@ -33,6 +34,7 @@
 - Bus topology is useful for a small number of devices. As if the bus is damaged then the whole network fails.
 
 2. STAR
+
 ![](https://user-images.githubusercontent.com/86204416/188299116-d85fb114-0e7a-4ebe-a874-b9a33075c432.png)
 
 - Star topology is a network topology in which all the nodes are connected to a single device known as a central device.
@@ -42,6 +44,7 @@
 - Star topology is commonly used in office and home networks.
 
 3. RING
+
 ![](https://user-images.githubusercontent.com/86204416/188299137-a466bae4-c445-4e14-a622-d364c40b067b.png)
 
 - Ring topology is a network topology in which nodes are exactly connected to two or more nodes and thus, forming a single continuous path for the transmission.
@@ -51,6 +54,7 @@
 - Examples of Ring topology are SONET network, SDH network, etc.
 
 4. MESH
+
 ![](https://user-images.githubusercontent.com/86204416/188299164-8c19f246-2d3d-41fc-b49b-17536e35a4f2.png)
 
 - Mesh topology is a network topology in which all the nodes are individually connected to other nodes.
@@ -63,6 +67,7 @@
 - Cabling cost is high as it requires bulk wiring.
 
 5. TREE
+
 ![](https://user-images.githubusercontent.com/86204416/188299177-02d5a409-ee35-454c-8348-d8b2e5c23acc.png)
 
 - Tree topology is a combination of star and bus topology. It is also known as the expanded star topology.
@@ -80,6 +85,7 @@
 
 # How are Network types classified?/Explain different types of networks.
 - `PLMWG`
+
 ![](https://user-images.githubusercontent.com/86204416/188309000-a28a748d-5600-4410-8490-e19aa1f9ee58.png)
 
 ![](https://user-images.githubusercontent.com/86204416/188309026-cebda001-3623-4776-91c6-2e09cc5fca2d.png)
@@ -239,6 +245,26 @@ establishment and connection termination on the basis of need.
 3. `Inter-process Communication` - Network users, located geographically apart, may converse in an interactive session through the network. In order to permit this, the network must provide almost error-free communications.
 
 4. `Flexible access` - Files can be accessed from any computer in the network. The project can be begun on one computer and finished on another.
+
+## Manchaster Encoding
+
+![Screenshot Capture - 2022-09-14 - 23-49-24](https://user-images.githubusercontent.com/35686407/190232178-485f26c1-0bca-4c2f-9230-b16dcae9da67.png)
+
+## Repeaters:
+
+![Screenshot Capture - 2022-09-14 - 23-52-01](https://user-images.githubusercontent.com/35686407/190232608-da2193ce-16b8-4345-ab43-9cbc9bc6b60f.png)
+
+## HUB
+
+![Screenshot Capture - 2022-09-14 - 23-51-12](https://user-images.githubusercontent.com/35686407/190232455-cf42af91-a3c5-488e-a5a4-b589d10acb81.png)
+
+## Bridges:
+
+![Gate Smashers - Lec-12 Bridges In Computer Networks Physical and data link layer device  dDP36_ZBs6A - 885x498 - 0m51s](https://user-images.githubusercontent.com/35686407/190232706-e6251f7b-499f-407d-b344-42280a491da5.png)
+
+## Routers
+
+![Screenshot Capture - 2022-09-14 - 23-53-48](https://user-images.githubusercontent.com/35686407/190232898-4758c4e2-d05a-4d83-ac2b-719ceb101031.png)
 
 ## TRANSMISSION MODES
 1. `Simplex Communication` is uni-directional or one-way in Simplex Mode. i.e. Only one device is allowed to transfer data and the other device simply recieves it. e.g. Radio
@@ -779,4 +805,8 @@ Receiver discards the data and asks the sender for retransmission.
 ![Gate Smashers - Lec-39 Token Ring (IEEE 802 5) in Computer Networks  -u4Dzu63eZc - 885x498 - 5m14s](https://user-images.githubusercontent.com/35686407/190229632-1cbb8a0f-0b7d-4499-abae-758dda68e933.png)
 
 ![Screenshot Capture - 2022-09-14 - 23-37-41](https://user-images.githubusercontent.com/35686407/190229880-1c4ee723-a5bf-49fc-b96d-271829efbef9.png)
+
+
+
+
 
