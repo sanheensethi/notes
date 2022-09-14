@@ -682,6 +682,29 @@ Receiver discards the data and asks the sender for retransmission.
 - If the beginning of the slot is missed, then station has to wait until the beginning of the next time slot.
 - A collision may occur if two or more stations try to transmit data at the beginning of the same time slot.
 
+### Time Division Multiplexing (TDM)
+
+- Time of the link is divided into fixed size intervals called as time slots or time slices.
+- Time slots are allocated to the stations in Round Robin manner.
+- Each station transmit its data during the time slot allocated to it.
+- In case, station does not have any data to send, its time slot goes waste.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Time-Division-Multiplexing-Example-1.png)
+
+> Size Of Time Slots- 
+
+- The size of each time slot is kept such that each station gets sufficient time for the following tasks:
+    - To put its data packet on to the transmission link
+    - Last bit of the packet is able to get out of the transmission link
+    - Size of each time slot = Tt + Tp
+
+Disadvantage-
+
+- If any station does not have the data to send during its time slot, then its time slot goes waste.
+- This reduces the efficiency.
+- This time slot could have been allotted to some other station willing to send data.
+
+
 ### CSMA / CD (Carrier Sense Multiple Access / Collision Detection).
 - Sense The Carrier:
 - Detecting The Collision
