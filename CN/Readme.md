@@ -923,6 +923,8 @@ Total number of Hosts available =  Numbers possible due to available the Host ID
     - class C mae 256 hai only, So, Wastage of IP Address
 - Maintainance is Time Consuming
 - More Prone to Errors
+    - More Chances of Errors
+    - Jitna Bda Ghr Hoga, Possibilty hai ki Loop Holes Max Ho
 
 
 
