@@ -933,7 +933,10 @@ Total number of Hosts available =  Numbers possible due to available the Host ID
 - It makes the allocation of IP Addresses more efficient.
 - It replaces the older classful addressing system based on classes.
 - It is also known as Classless Inter Domain Routing (CIDR).
+- 
 ![Screenshot Capture - 2022-09-15 - 10-13-30](https://user-images.githubusercontent.com/35686407/190316416-7452c250-aaab-4fb3-ad1f-b12744fe2eed.png)
+
+- IP adress mae kitne Hosts hai ? 2^4 = 16 Hosts
 
 1. No Classes
 2. **Concept of Blocks**
@@ -953,6 +956,13 @@ Total number of Hosts available =  Numbers possible due to available the Host ID
 - 28 bits are used for the identification of network. (Block ID ko represent krta hai 28 Bits)
 - Remaining 4 bits are used for the identification of hosts in the network.
 
+- 200.10.20.40/28
+200.10.20.40 is one of the Sysyem IP address in Network, 
+So IP Address of Network is can identified by AND (&) mask with IP Address
+- idhar mask /n : 11111111.11111111.11111111.11110000 (28 ones) - Mask
+- 255.255.255.240 is mask AND it with Given IP Address
+- Shortcut: 28 Bits ko mt cherdo
+- last ki 4 bits ko sbhi ko 0 kr do , that is Network IP Address 200.10.20.32/28 is Network IP Address
 
 
 ![Screenshot Capture - 2022-09-15 - 10-06-01](https://user-images.githubusercontent.com/35686407/190315467-e01ea301-6265-4e87-b4ca-2668b18c63e6.png)
