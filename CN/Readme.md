@@ -927,7 +927,38 @@ Total number of Hosts available =  Numbers possible due to available the Host ID
     - Jitna Bda Ghr Hoga, Possibilty hai ki Loop Holes Max Ho
 
 
+## ClassLess Addressing
 
+- Classless Addressing is an improved IP Addressing system.
+- It makes the allocation of IP Addresses more efficient.
+- It replaces the older classful addressing system based on classes.
+- It is also known as Classless Inter Domain Routing (CIDR).
+![Screenshot Capture - 2022-09-15 - 10-13-30](https://user-images.githubusercontent.com/35686407/190316416-7452c250-aaab-4fb3-ad1f-b12744fe2eed.png)
+
+1. No Classes
+2. **Concept of Blocks**
+    - user ki demand hai, utne size ka block hi provide krenge
+    - **provided by** **IANA** (Internet Assigned Number Authority)
+3. IP Address is of **32 Bits**
+    - **Block ID**
+    - **Host ID**
+4. Notaion:
+    - x.y.z.w/n
+    - /n represent mask ( IP network prefix)
+    - the number of bits used for the identification of network.
+    - Remaining bits are used for the identification of hosts in the network.
+
+> Example: 182.0.1.2 / 28 It suggests-
+
+- 28 bits are used for the identification of network. (Block ID ko represent krta hai 28 Bits)
+- Remaining 4 bits are used for the identification of hosts in the network.
+
+
+
+![Screenshot Capture - 2022-09-15 - 10-06-01](https://user-images.githubusercontent.com/35686407/190315467-e01ea301-6265-4e87-b4ca-2668b18c63e6.png)
+
+- Contiguous: 
+![Screenshot Capture - 2022-09-15 - 10-16-37](https://user-images.githubusercontent.com/35686407/190316751-a61544a6-89de-4c6e-ba68-87820c1c57b5.png)
 
 
 
