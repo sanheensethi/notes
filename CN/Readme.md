@@ -829,6 +829,174 @@ Disadvantage-
 
 ![Screenshot Capture - 2022-09-14 - 23-37-41](https://user-images.githubusercontent.com/35686407/190229880-1c4ee723-a5bf-49fc-b96d-271829efbef9.png)
 
+# IP Address in Networking (Host to Host Delivery By IP Address)
+
+- IP Address is short for **Internet Protocol Address**.
+- It is a **unique address** assigned to each computing device in an IP network.
+- ISP assigns IP Address to all the devices present on its network.
+- Computing devices use IP Address to identify and communicate with other devices in the IP network.
+
+## Types
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/IP-Address-1.png)
+1. Static
+    - Static IP Address is an IP Address that **once assigned** to a network element **always remains the same.**
+    - They are configured manually.
+    - Some ISPs do not provide static IP addresses.
+    - Static IP Addresses are more costly than dynamic IP Addresses.
+
+2. Dynamic:
+    - Dynamic IP Address is a **temporarily assigned IP Address** to a network element.
+    - It can be assigned to a different device if it is not in use.
+    - DHCP or PPPoE assigns dynamic IP addresses.
+    - DHCP (Dynamic Host Configuration Protocol):
+        - Dynamic Host Configuration Protocol (DHCP) is a client/server protocol that automatically provides an Internet Protocol (IP) host with its IP address and other related configuration information such as the subnet mask and default gateway.
+
+## IP Address Format-
+ 
+- IP Address is a **32 bit binary address** written as **4 numbers** **separated by dots**.
+The **4 numbers** are called as **octets** where **each octet has 8 bits**.
+The **octets** are **divided** into **2 components**- **Net ID and Host ID**.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Format-of-an-IP-Address.png)
+
+- **Network ID** :  represents the IP Address of the network and is **used to identify the network.**
+- **Host ID** :  represents the IP Address of the host and is **used to identify the host within the network.**
+
+## IP Address Example-
+1. Binary Representation : 00000001.10100000.00001010.11110000
+2. Decimal Representation : 1.160.10.240
+
+## There are two systems in which IP Addresses are classified-
+
+1. Classful Addressing System
+2. Classless Addressing System
+
+### Classful Addressing System:
+
+> 5 Classes:
+
+1. **Class A** : If the 32 bit binary address **starts** with a **bit 0**,
+2. **Class B** : If the 32 bit binary address **starts** with **bits 10**
+3. **Class C** : If the 32 bit binary address **starts** with **bits 110**
+4. **Class D** : If the 32 bit binary address **starts** with **bits 1110**
+5. **Class E** : If the 32 bit binary address **starts** with **bits 1111**
+
+|Class of IP Address|Network ID|Host ID|Usage|
+|---|---|---|---|
+|Class A|8 Bits|24 Bits|Class A is used by organizations requiring very large size networks like NASA, Pentagon etc.|
+|Class B|16 Bits|16 Bits|Class B is used by organizations requiring medium size networks like IRCTC, banks etc.|
+|Class C|24 Bits|8 Bits|organizations requiring small to medium size networks, e.g. engineering colleges, small universities, small offices etc.|
+|Class D|-|-|Class D is reserved for multicasting. In multicasting, there is no need to extract host address from the IP Address.This is because data is not destined for a particular host.|
+|Class E|-|-|Class E is reserved for future or experimental purposes.|
+
+Total number of networks available = Number of Bits in NET ID
+Total number of Hosts available =  Numbers possible due to available the Host ID
+
+> Note: Range of First Octet in Class A is [1,126], because 2 networks are reserved. 
+
+![Screenshot Capture - 2022-09-15 - 09-28-13](https://user-images.githubusercontent.com/35686407/190310734-28f223c9-5c57-42eb-9ee4-045e59ed9d14.png)
+
+
+#### Points:
+- All the hosts in a single network always have the same network ID but different Host ID.
+- However, two hosts in two different networks can have the same host ID.
+- A single network interface can be associated with more than one IP Address.
+- There is no relation between MAC Address and IP Address of a host.
+- IP Address of the network called Net ID is obtained by setting all the bits for Host ID to zero.
+- In class A, total number of IP Addresses available for networks are 2 less.
+    - This is to account for the two reserved network IP Addresses 0.xxx.xxx.xxx and 127.xxx.xxx.xxx.
+    - IP Address 0.0.0.0 is reserved for broadcasting requirements.
+    - IP Address 127.0.0.1 is reserved for loopback address used for software testing.
+- In all the classes, total number of hosts that can be configured are 2 less.
+    - This is to account for the two reserved IP addresses in which all the bits for host ID are either zero or one.
+    - When all Host ID bits are 0, it represents the Network ID for the network.
+    - When all Host ID bits are 1, it represents the Broadcast Address.
+- Only those devices which have the network layer will have IP Address.
+- So, switches, hubs and repeaters does not have any IP Address.
+
+
+### Disadvantages:
+- Wastage of IP Address
+    - Class A : 2^24 = 1 Crore HOST Address, itne use nhi hote bde organizations mae bhi
+    - 1 Crore is Very Huge
+    - if organization says i need 1024 IP address, Class B mae 65K hai
+    - class C mae 256 hai only, So, Wastage of IP Address
+- Maintainance is Time Consuming
+- More Prone to Errors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
