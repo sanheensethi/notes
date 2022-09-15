@@ -971,6 +971,178 @@ So IP Address of Network is can identified by AND (&) mask with IP Address
 ![Screenshot Capture - 2022-09-15 - 10-16-37](https://user-images.githubusercontent.com/35686407/190316751-a61544a6-89de-4c6e-ba68-87820c1c57b5.png)
 
 
+## Netwok ID mae sari host ki bits ko 0 kr do.
+
+## Subnetting - Dividing the Big Network into Small Networks
+
+- sub networks so created are called as subnets.
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Subnetting.png)
+
+### Advantages-
+
+- It improves the security.
+- The maintenance and administration of subnets is easy.
+
+### Subnet ID-
+- Each subnet has its unique network address known as its Subnet ID.
+- The subnet ID is created by borrowing some bits from the Host ID part of the IP Address.
+- The number of bits borrowed depends on the number of subnets created.
+
+### Types of Subnetting-
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Types-of-Subnetting.png)
+
+#### 1. Fixed Length Subnetting:
+- Fixed length subnetting also called as classful subnetting divides the network into subnets where-
+    - All the subnets are of same size.
+    - All the subnets have equal number of hosts.
+    - All the subnets have same subnet mask.
+
+#### 2. Variable Length Subnetting-
+- Variable length subnetting also called as classless subnetting divides the network into subnets where-
+    - All the subnets are not of same size.
+    - All the subnets do not have equal number of hosts.
+    - All the subnets do not have same subnet mask.
+
+[Examples](https://www.gatevidyalay.com/subnetting-ip-subnetting-examples/)
+
+##### Example:
+
+- Consider
+    - We have a big single network having IP Address 200.1.2.0.
+    - We want to do subnetting and divide this network into 2 subnets.
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Subnetting-Single-Network-IP-Address-Example-01.png)
+
+
+- For creating two subnets and to represent their subnet IDs, we require 1 bit.So,
+    - We borrow one bit from the Host ID part.
+    - After borrowing one bit, Host ID part remains with only 7 bits.
+    - If borrowed bit = 0, then it represents the first subnet.
+    - If borrowed bit = 1, then it represents the second subnet.
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Subnetting-Subnet-ID-Example-01.png)
+
+- IP Address of the two subnets are-
+    - 200.1.2.00000000 = 200.1.2.0
+    - 200.1.2.10000000 = 200.1.2.128
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Subnetting-Example-01.png)
+
+###### For 1st Subnet-
+- IP Address of the subnet = 200.1.2.0
+- Total number of IP Addresses = 27 = 128
+- Total number of hosts that can be configured = 128 – 2 = 126
+- Range of IP Addresses = [200.1.2.00000000, 200.1.2.01111111] = [200.1.2.0, 200.1.2.127]
+- Direct Broadcast Address = 200.1.2.01111111 = 200.1.2.127
+- Limited Broadcast Address = 255.255.255.255
+
+###### For 2nd Subnet-
+- IP Address of the subnet = 200.1.2.128
+- Total number of IP Addresses = 27 = 128
+- Total number of hosts that can be configured = 128 – 2 = 126
+- Range of IP Addresses = [200.1.2.10000000, 200.1.2.11111111] = [200.1.2.128, 200.1.2.255]
+- Direct Broadcast Address = 200.1.2.11111111 = 200.1.2.255
+- Limited Broadcast Address = 255.255.255.255
+
+### Disadvantages of Subnetting-
+
+1. Subnetting leads to loss of IP Addresses.
+    - We have to face a loss of IP Addresses.
+    - This is because two IP Addresses are wasted for each subnet.
+    - One IP address is wasted for its network address.
+    - Other IP Address is wasted for its direct broadcasting address.
+2. Subnetting leads to complicated communication process.
+    - Identifying the network
+    - Identifying the sub network
+    - Identifying the host
+    - Identifying the process
+
+## Variable Length Subnetting:
+
+- Different Size Subnets
+- Fix first bit for half and half
+- Fix 2nd bit for the 2nd half, to make it divide into two subnets
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Subnetting-Example-03.png)
+
+### CIDR Subnetting
+
+> 195.10.20.128/26
+
+- 26 denot , number of network bits
+- 32 - 26 = 6 bits represents hosts bits
+- 2^6 = 64 Hosts
+
+![Gate Smashers - Lec-50 Subnetting in CIDR Addressing Classless Interdomain Routing in Hindi with Example  wvvoT-dpr8o - 885x498 - 5m09s](https://user-images.githubusercontent.com/35686407/190326897-dcd63724-fe0a-4137-9f8f-ce314aef301d.png)
+
+
+![Gate Smashers - Lec-50 Subnetting in CIDR Addressing Classless Interdomain Routing in Hindi with Example  wvvoT-dpr8o - 885x498 - 10m45s](https://user-images.githubusercontent.com/35686407/190330489-f9db822a-33fe-42c5-8925-a08d44c27582.png)
+
+## Arrangement Of Subnets-
+
+- All the subnets are connected to an internal router.
+- Internal router is connected to an external router.
+- The link connecting the internal router with a subnet is called as an interface.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/09/Arrangement-of-Subnets-3.png)
+
+When a data packet arrives,
+- External router forwards the data packet to the internal router.
+- Internal router identifies the interface on which it should forward the incoming data packet.
+- Internal router forwards the data packet on that interface.
+
+#### Routing Table-
+- A table is maintained by the internal router called as Routing table.
+- It helps the internal router to decide on which interface the data packet should be forwarded.
+- Routing table consists of the following three fields-
+    - IP Address of the destination subnet
+    - Subnet mask of the subnet
+    - Interface
+
+![Screenshot Capture - 2022-09-15 - 12-09-06](https://user-images.githubusercontent.com/35686407/190332392-034dafdc-4301-47ef-b7a4-1592b67cfcbd.png)
+
+
+- When a data packet arrives to the internal router, it follows the following steps-
+
+`Step-01:`
+
+- Router performs the bitwise AND of-
+    - Destination IP Address mentioned on the data packet
+    - And all the subnet masks one by one.
+
+`Step-02:`
+
+- Router compares each result with their corresponding IP Address of the destination subnet in the routing table.
+- Then, following three cases may occur-
+    - Case-01: If there occurs only one match,
+        - Router forwards the data packet on the corresponding interface.
+    - Case-02: If there occurs more than one match,
+        - Router forwards the data packet on the interface corresponding to the longest subnet mask.
+    - Case-03: If there occurs no match,
+        - Router forwards the data packet on the interface corresponding to the default entry.
+
+### Important Notes-
+
+- In fixed length subnetting,
+    - All the subnets have the same subnet mask.
+    - So, bitwise ANDing is performed only once.
+- If the result matches to any of the destination subnet IP Address,
+    - Router forwards the data packet on its corresponding interface.
+    - Otherwise, it is forwarded on the default interface.
+- In variable length subnetting,
+    - All the subnets do not have the same subnet mask.
+    - So, bitwise ANDing is performed once with each subnet mask.
+    - Then, the above three cases are followed.
+- Subnet mask for default route = 0.0.0.0
+- Subnet mask for host specific route = 255.255.255.255
+- A host may also be directly connected to the router.
+- In that case, there exists a host specific route from the router to the host.
+- Router saves the IP Address of that host in the “Destination Network” column.
+- Router saves 255.255.255.255 in the “Subnet Mask” column.
+- The ANDing of its destination address and subnet mask yields the IP Address of the host.
+- When a data packet arrives for that specific host, bitwise ANDing is performed.
+- When the result of ANDing is the IP Address of the host, packet is forwarded to its host specific route.
+
+#### [Subnet Mast](https://www.gatevidyalay.com/subnet-mask-subnet-mask-use/) 
+
 
 
 
