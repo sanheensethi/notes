@@ -1145,7 +1145,13 @@ When a data packet arrives,
 
 
 
-
+- IPv4 is Connectionless Protocol
+- Datagram Service: koi bhi Route follow ho skta hai
+- Reliability less
+- Header will tell how packet move/travel, what are there charachterstics?
+- Header Size : 20 - 60 Bytes
+- Payload - Pure Data Comming from transport layer : 0 - 65515 Bytes
+- Pure Packet ko Datagramn kehte hai,max 2^16 length
 
 
 
