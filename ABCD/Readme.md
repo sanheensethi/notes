@@ -21,10 +21,11 @@ Basically it is a the coding society for the MCA students. the main goal of the 
 ## What are your Strengths
 - I am so hard working kind of person and always eager to learn new technologies
 - I always manage my time efficiently. 
+- Code - readibility is good
 
 ## Your Weakness
 - It seems very difficult to me to say NO to anyone
-- I am too much honest and people sometimes misuses me 
+- I get little nervous when talking in public
 
 ## ALL ABOUT ARAYAKA NETWORKS
 - Aryaka is a company that provides wide-area software-defined network ( SD-WAN) connectivity and application delivery.
